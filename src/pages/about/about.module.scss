@@ -1,0 +1,476 @@
+.about {
+  width: 100vw;
+  background: var(--white-color);
+}
+
+.bannerWrapper {
+  background: url('https://bo-api-testing.medpro.com.vn/static/images/medpro/web/bg_intro.png') no-repeat center center;
+  width: 100%;
+  height: 500px;
+  background-size: cover;
+}
+.banner_container {
+  max-width: 1180px;
+  margin: auto;
+  height: 100%;
+}
+.banner_content {
+  display: flex;
+  height: 100%;
+}
+
+.banner_img {
+  background-image: url(https://medpro.vn/_next/image?url=https%3A%2F%2Fbo-api-testing.medpro.com.vn%2Fstatic%2Fimages%2Fmedpro%2Fweb%2Fbg_phone.svg&w=256&q=75);
+  height: 404px;
+  width: 237px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.banner_title {
+  margin-top: 120px;
+  margin-left: 26.18px;
+  border-left: 2px solid #fff;
+  height: fit-content;
+}
+
+.banner_title span {
+  padding-left: 20px;
+  color: var(--primary-body-text, #003553);
+  text-shadow: 2px 2px 4px rgba(83, 116, 180, 0.25) !important;
+  font-size: 31px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 8px;
+}
+
+.banner_title h1 {
+  padding-left: 20px;
+  color: #27aae1;
+  text-align: left;
+  text-shadow: 2px 2px 4px rgba(127, 146, 210, 0.25);
+  font-family: Montserrat !important;
+  font-size: 39px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.introduct {
+  max-width: 1180px;
+  margin: auto;
+  padding-top: 32px;
+}
+
+.introduct_introduce {
+  display: flex;
+  padding-top: 32px;
+}
+
+.introduce_left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 40px 0 10px;
+}
+
+.introduce_Content h1 {
+  font-family: Montserrat !important;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 48px;
+  letter-spacing: 0;
+  text-align: left;
+  color: var(--blue-color);
+  margin-bottom: 8px;
+}
+
+.introduce_Content p {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 19px;
+  letter-spacing: 0;
+  text-align: left;
+  margin-bottom: 40px;
+  color: #003553;
+}
+
+.introduce_Service {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+
+.Service_item {
+  padding: 9px 18px;
+  display: flex;
+  align-items: center;
+  background: var(--white-color);
+  max-width: 50%;
+  flex: 46%;
+  border-radius: 16px;
+}
+
+.Service_item h2 {
+  font-family: Montserrat !important;
+  font-size: 60px;
+  font-weight: 700;
+  line-height: 78px;
+  padding-right: 10px;
+  text-align: center;
+  color: #ffb54a;
+}
+
+.Service_item p {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-weight: 500;
+  text-align: left;
+  align-content: center;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: linear-gradient(0deg, #003553, #003553);
+}
+
+.Service_item strong {
+  color: var(--blue-color);
+  padding-bottom: 4px;
+}
+
+.introduce_rightImage {
+  width: 472px;
+  height: 463px;
+  background-image: url('../../assets/images/introduce_img.webp');
+  background-size: cover;
+}
+
+.introduct_culture {
+  width: 100%;
+  margin-top: 44px;
+  background-color: var(--white-color);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.culture_img {
+  width: 56px;
+  height: 115px;
+  background-image: url('../../assets/images/culture_img.png');
+  background-size: cover;
+}
+
+.culture_content {
+  display: flex;
+  padding: 28px 24px 50px 24px;
+}
+
+.culture_contentItem {
+  padding: 0 64px;
+}
+.culture_title {
+  color: var(--blue-color);
+  font-size: 32px;
+  font-style: normal;
+  line-height: normal;
+  margin-bottom: 0.5em;
+  text-align: center;
+}
+.culture_des {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 19px;
+  letter-spacing: 0;
+  text-align: left;
+  color: #829caa;
+}
+
+.philosophy {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 64px;
+}
+
+.philosophy_img {
+  width: 56px;
+  height: 115px;
+  background-image: url('../../assets/images/philosophy_img.webp');
+  background-size: cover;
+}
+
+.philosophy_content {
+  margin-top: 28px;
+}
+
+.philosophy_title {
+  font-family: Montserrat !important;
+  font-size: 40px;
+  font-weight: bold;
+  line-height: 57px;
+  letter-spacing: 0;
+  text-align: center;
+  color: var(--blue-color);
+  margin-bottom: 20px;
+}
+
+.philosophy_des {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 19px;
+  letter-spacing: 0;
+  text-align: center;
+  color: #646464;
+  width: 727px;
+  height: 38px;
+  margin: 0 auto;
+}
+.philosophy_introduct {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 104px;
+  margin-bottom: 80px;
+  width: 100%;
+}
+
+.philosophy_introductBg {
+  width: 462px;
+  height: 462px;
+  background-image: url(../../assets/images/circle.webp);
+  background-size: cover;
+}
+.philosophy_introductImgPhone {
+  position: absolute;
+  top: 49%;
+  left: 50.5%;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  width: 382px;
+  height: 662px;
+  background-image: url(../../assets/images/phone.svg);
+
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.philosophy_introductLocation1 {
+  position: absolute;
+  width: 310px;
+  padding: 0px 8px;
+  top: -14px;
+  right: 54.5%;
+}
+
+.philosophy_introductLocation2 {
+  position: absolute;
+  width: 275px;
+  padding: 0px 8px;
+  top: 52px;
+  right: 25.5%;
+}
+
+.philosophy_introductLocation3 {
+  position: absolute;
+  width: 275px;
+  padding: 0px 8px;
+  top: 51%;
+  right: 55%;
+}
+
+.philosophy_introductLocation4 {
+  position: absolute;
+  width: 290px;
+  padding: 0px 8px;
+  top: 69%;
+  right: 26.5%;
+}
+
+.philosophy_detail {
+  display: flex;
+  border-radius: 17.6px;
+  gap: 9px;
+  box-shadow: 0 10.95689106px 21.91378212px 0 rgba(0, 0, 0, 0.04);
+  background-color: hsla(0, 0%, 100%, 0.8);
+  padding: 12px;
+  backdrop-filter: blur(10px);
+  width: 100%;
+  height: 100%;
+}
+.philosophy_detail h2 {
+  width: 35px;
+  height: 35px;
+  min-width: 35px;
+  border-radius: 50%;
+  background: #ffb54a;
+  text-align: center;
+  color: #fff;
+  font-family: Montserrat !important;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.philosophy_detail_content {
+  display: flex;
+  flex-direction: column;
+}
+
+.philosophy_detail_title {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 23px;
+  letter-spacing: 0;
+  text-align: left;
+  color: #003553;
+  margin: 0;
+}
+
+.philosophy_detail_des {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 19px;
+  letter-spacing: 0;
+  text-align: left;
+  color: #003553;
+  margin: 0;
+}
+
+.hopital {
+  width: 1180px;
+  margin: auto;
+  border-radius: 20px;
+  background-color: #fff;
+  cursor: pointer;
+  text-align: center;
+  margin-bottom: 24px;
+  height: 420px;
+}
+.hopital_wapper {
+  padding-top: 29px;
+}
+
+.hopital_title {
+  padding-bottom: 30px;
+  font-family: Montserrat !important;
+  font-size: 39px;
+  font-weight: 700;
+  line-height: 48px;
+  letter-spacing: 0;
+  text-align: center;
+  color: var(--blue-color);
+}
+
+.hopital_Listlogo {
+  padding: 0 125px;
+}
+
+.hopital_sliderItem {
+  display: flex !important;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.hopital_logo {
+  width: 14.24%;
+  padding: 12px;
+  text-align: center;
+}
+
+.support {
+  position: relative;
+  max-width: 1180px;
+  margin: auto;
+  padding-bottom: 69px;
+}
+
+.support_image {
+  background-image: url(../../assets//images/support.png);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 160px 15px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 20px;
+  border: 1px solid #fff;
+  box-shadow: 0 4px 20px hsla(220, 8%, 55%, 0.2);
+  margin-top: 64px;
+}
+
+.support_method {
+  position: absolute;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  top: 106px;
+  right: 0;
+  padding: 0px 30px;
+}
+.support_info {
+  display: flex;
+  gap: 20px;
+  flex: 2.4;
+  justify-content: flex-end;
+}
+
+.info_phoneIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 89px;
+  height: 89px;
+  border-radius: 99999px;
+  background-color: var(--white-color);
+}
+
+.support_infoTitle {
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 28px;
+  color: #fff;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.support_infoPhone {
+  color: #fff;
+  margin-top: 8px;
+  font-weight: 700;
+  font-size: 49px;
+  line-height: 57px;
+}
+
+.support_qrCard {
+  display: flex;
+  justify-content: flex-end;
+  gap: 30px;
+  text-align: center;
+  flex: 1;
+}
+
+.support_qr {
+  background-color: var(--white-color);
+  padding: 14px 12px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  img {
+    width: 80px;
+    height: 80px;
+  }
+}

@@ -20,7 +20,7 @@ import { menu } from './menu';
 
 import style from './header.module.scss';
 import Button from '~/components/Button';
-// import { logoutUser } from '~/redux/user/authSlide';
+import { logoutUser } from '~/redux/user/authSlice';
 
 import classNames from 'classnames/bind';
 const cx = classNames.bind(style);
@@ -39,7 +39,7 @@ function Header() {
 
   const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-  const user = useSelector((state) => state.auth.user);
+  const user = useSelector((state) => state.auth.user?.payload);
 
   // bắt sự kiện click show modal
   const handleShowModalProfile = () => {
@@ -55,19 +55,19 @@ function Header() {
   };
 
   // rút gọn name
-  // const handleshortName = () => {
-  //   let fullName = isLoggedIn && user && `${user.userData.fullName}`;
-  //   if (isLoggedIn && fullName) {
-  //     let nameParts = fullName.split(' ');
-  //     let shortName = '';
-  //     if (nameParts.length > 1) {
-  //       shortName = nameParts[nameParts.length - 2] + ' ' + nameParts[nameParts.length - 1];
-  //     } else {
-  //       shortName = nameParts[0];
-  //     }
-  //     setShortName(shortName);
-  //   }
-  // };
+  const handleshortName = () => {
+    let fullName = isLoggedIn && user && `${user.user.fullName}`;
+    if (isLoggedIn && fullName) {
+      let nameParts = fullName.split(' ');
+      let shortName = '';
+      if (nameParts.length > 1) {
+        shortName = nameParts[nameParts.length - 2] + ' ' + nameParts[nameParts.length - 1];
+      } else {
+        shortName = nameParts[0];
+      }
+      setShortName(shortName);
+    }
+  };
 
   // bắt sự kiện click ra ngoài modal profile
   const handleClickOusideModal = (e) => {
@@ -78,7 +78,7 @@ function Header() {
 
   /* eslint-disable-next-line react-hooks/exhaustive-deps */
   useEffect(() => {
-    // handleshortName();
+    handleshortName();
 
     document.addEventListener('click', handleClickOusideModal);
     return () => {
@@ -160,7 +160,7 @@ function Header() {
                   className={cx('accountBtn')}
                   onClick={handleShowModalProfile}
                 >
-                  {isLoggedIn && user.userData && `${user.userData.fullName}` ? shortName : t('header.account')}
+                  {isLoggedIn && `${user.user.fullName}` ? shortName : t('header.account')}
                 </Button>
               </div>
               <div className={cx('language')}>
@@ -209,7 +209,7 @@ function Header() {
                     <div className={cx('profile-avata')}></div>
                     <div className={cx('profile-info')}>
                       <span> Xin chào </span>
-                      <h5> {`${user.userData.fullName}`}</h5>
+                      <h5> {`${user.user.fullName}`}</h5>
                     </div>
                   </div>
                   <ul className={cx('information-list')}>
@@ -240,7 +240,7 @@ function Header() {
                     <li className={cx('information-item')}>
                       <div
                         onClick={() => {
-                          // dispatch(logoutUser());
+                          dispatch(logoutUser());
                           setShowModal(false);
                           toast.success('Đăng xuất thành công');
                         }}

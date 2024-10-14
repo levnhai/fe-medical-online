@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { publicRoutes } from '~/routes';
 import { Fragment } from 'react';
+import { ToastContainer } from 'react-toastify';
 
 import DefaultLayout from './layouts/defaultLayout';
 
@@ -24,6 +25,7 @@ function App() {
                 element={
                   <Layout>
                     <Page />
+                    <ToastContainer />
                   </Layout>
                 }
               />

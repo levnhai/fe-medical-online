@@ -4,10 +4,68 @@ import axios from '~/axios';
 // check phone number
 export const fetchCheckPhone = createAsyncThunk('authSlice/fetchCheckPhone', async (phoneNumber) => {
   try {
-    console.log('checl phone', phoneNumber);
-    const response = await axios.post('/check-phone', { phoneNumber });
-    console.log('check response: ', response);
-    // return response.data.data;
+    const response = await axios.post('auth/check-phone', { phoneNumber });
+    return response;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+});
+
+// send otp
+export const fetchOtpInput = createAsyncThunk('authSlice/fetchOtpInput', async (phoneNumber) => {
+  try {
+    const response = await axios.post('auth/otp-input', { phoneNumber });
+    return response.result;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+});
+
+// verify otp
+export const fetchVerifyOtp = createAsyncThunk('authSlice/verifyOtp', async ({ phoneNumber, otpInput }) => {
+  try {
+    const response = await axios.post('auth/verify-otp', { phoneNumber, otp: otpInput });
+    return response;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+});
+
+// create account user
+export const fetchCreateUser = createAsyncThunk('authSlice/fetchCreateUser', async (formData) => {
+  try {
+    const response = await axios.post('auth/create-account', {
+      formData,
+    });
+    return response.result;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+});
+
+// login user
+export const fetchLoginUser = createAsyncThunk('authSlice/fetchLoginUser', async ({ phoneNumber, password }) => {
+  try {
+    const response = await axios.post('auth/login', {
+      phoneNumber,
+      password,
+    });
+    return response.result;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+});
+
+// forgot password
+export const fetchForgotPassword = createAsyncThunk('authSlice/fetchForgotPassword', async (formData) => {
+  try {
+    const { phoneNumber, password, reEnterPassword } = formData;
+    const response = await axios.post('auth/forgot-password', {
+      phoneNumber,
+      password,
+      reEnterPassword,
+    });
+    return response.result;
   } catch (error) {
     throw new Error(error.message);
   }
@@ -19,7 +77,6 @@ const authSlice = createSlice({
     isLoggedIn: false,
     user: null,
     phoneNumber: null,
-    isPhoneNumber: false,
     loading: false,
     error: null,
   },
@@ -36,22 +93,7 @@ const authSlice = createSlice({
       state.phoneNumber = action.payload;
     },
   },
-  extraReducers: (builder) => {
-    // get top docter
-    builder
-      .addCase(fetchCheckPhone.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(fetchCheckPhone.fulfilled, (state, action) => {
-        state.loading = false;
-        state.isPhoneNumber = action.payload;
-      })
-      .addCase(fetchCheckPhone.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error.message;
-      });
-  },
+  extraReducers: (builder) => {},
 });
 
 export const { loginUser, logoutUser, phoneNumber } = authSlice.actions;

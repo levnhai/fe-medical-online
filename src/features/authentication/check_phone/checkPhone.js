@@ -1,14 +1,15 @@
 import classNames from 'classnames/bind';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { FormProvider, useForm } from 'react-hook-form';
+import { unwrapResult } from '@reduxjs/toolkit';
 
 import Button from '~/components/Button';
 import { Input } from '~/components/input/input';
 import { phone_validation } from '~/utils/inputValidations';
-import { phoneNumber as phone } from '~/redux/user/authSlice';
-import { fetchCheckPhone } from '~/redux/user/authSlice';
+import { phoneNumber } from '~/redux/user/authSlice';
+import { fetchCheckPhone, fetchOtpInput } from '~/redux/user/authSlice';
 
 import style from './checkPhone.module.scss';
 import Auth from '../auth';
@@ -21,20 +22,18 @@ function CheckPhone() {
   const methods = useForm();
   const { setFocus } = methods;
 
-  const selectorIsPhoneNumbers = useSelector((state) => state.auth.isPhoneNumber);
-
   const handleBtnLogin = methods.handleSubmit(async (data) => {
     try {
-      dispatch(fetchCheckPhone(data.phoneNumber));
-      dispatch(phone(data.phoneNumber));
-      console.log('chek selectorIsPhoneNumbers', selectorIsPhoneNumbers);
+      const res = await dispatch(fetchCheckPhone(data.phoneNumber));
+      const checkPhone = unwrapResult(res);
 
-      // if (isCheckPhoneExists.isCheckPhoneExists) {
-      //   navigate('/login');
-      // } else {
-      //   let randomOtp = await userServise.handleRandomOtp();
-      //   navigate('/otp-input', { state: { randomOtp: randomOtp.otpInput } });
-      // }
+      dispatch(phoneNumber(data.phoneNumber));
+      if (checkPhone.exists) {
+        navigate('/login');
+      } else {
+        await dispatch(fetchOtpInput(data.phoneNumber));
+        navigate('/otp-input');
+      }
     } catch (error) {
       console.log(error);
     }

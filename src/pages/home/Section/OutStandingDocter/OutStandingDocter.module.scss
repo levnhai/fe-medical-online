@@ -1,0 +1,117 @@
+.wapper {
+  width: 100%;
+  background: url('https://cdn.bookingcare.vn/fo/w1920/2023/11/01/140311-background5.png') no-repeat center center;
+  background-size: cover;
+  padding-bottom: 50px;
+  margin-bottom: 30px;
+}
+.container {
+  margin: 0px 164px;
+}
+.header {
+  padding: 10px 0px 14px;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+.header-title {
+  font-weight: 600;
+  color: rgb(26, 26, 26);
+  font-size: 24px;
+}
+.header-seeMoreBtn {
+  background-color: rgb(218, 243, 246);
+  padding: 10px 8px;
+  border-radius: 16px;
+  cursor: pointer;
+
+  Button {
+    background: transparent;
+    padding: 4px 8px;
+    font-size: 20px;
+    color: rgb(52, 146, 158);
+    font-weight: 600;
+  }
+
+  &:hover {
+    background-color: rgb(200, 240, 245);
+  }
+}
+.OutStanding-docter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.avata {
+  border-radius: 99999px;
+  width: 200px;
+  height: 200px;
+  box-shadow: 0px 6px 5px #ccc;
+}
+
+.position {
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  div {
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    color: rgb(17, 49, 53);
+  }
+  span {
+    font-size: 16px;
+    text-align: center;
+    font-weight: 400;
+    color: rgb(98, 98, 98);
+  }
+}
+
+// loader
+
+.loader {
+  width: 215px;
+  height: 215px;
+  display: block;
+  margin: auto;
+  position: relative;
+  background: #fff;
+  box-sizing: border-box;
+}
+.loader::after {
+  content: '';
+  width: calc(100% - 30px);
+  height: calc(100% - 30px);
+  top: 15px;
+  left: 15px;
+  position: absolute;
+  background-image: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5) 50%, transparent 100%),
+    radial-gradient(circle 50px, #ddd 100%, transparent 0), linear-gradient(#ddd 16px, transparent 0),
+    linear-gradient(#ddd 24px, transparent 0);
+  background-repeat: no-repeat;
+  background-size: 75px 175px, 100% 100px, 80% 16px, 80% 16px;
+  background-position: -185px 0, center 10px, center 125px, center 155px;
+  box-sizing: border-box;
+  animation: animloader 1s linear infinite;
+}
+
+@keyframes animloader {
+  to {
+    background-position: 185px 0, center 10px, center 125px, center 155px;
+  }
+}

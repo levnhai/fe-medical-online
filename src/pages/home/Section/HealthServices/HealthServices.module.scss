@@ -1,0 +1,33 @@
+.ArowServicesIcon {
+  position: absolute;
+}
+
+.healthServices {
+  width: 1180px;
+  margin: auto;
+  margin-top: -90px;
+}
+
+.healthServices_card {
+  width: 160px;
+  height: 160px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 27px 26px;
+  flex-direction: column;
+  background-color: #fff;
+  box-shadow: 4px 8px 30px 0 rgba(177, 196, 218, 0.35);
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+.healthServices_card > span {
+  margin-top: 8px;
+  color: #003553;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+}

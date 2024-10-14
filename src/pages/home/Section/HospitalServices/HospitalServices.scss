@@ -1,0 +1,83 @@
+.home_listHospital {
+  display: flex;
+  flex-direction: column;
+
+  .hopital_sliderItem {
+    width: 100%;
+    padding: 29px 37px;
+  }
+
+  .hopital_card {
+    &:hover .sliderItem_img {
+      transform: scale(1.2);
+    }
+
+    .hopital_cardImage {
+      overflow: hidden;
+      border-radius: 16px;
+
+      .sliderItem_img {
+        width: 330px;
+        height: 208px;
+        transition: transform 0.3s ease-in-out;
+      }
+    }
+
+    .sliderItem_btn {
+      width: 100%;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 23px;
+      background: linear-gradient(83.63deg, var(--blue-color) 33.34%, #00e0ff 113.91%);
+      border-radius: 16px;
+      margin-top: 20px;
+      padding: 10px 5px;
+      color: #fff;
+    }
+
+    .sliderItem_des {
+      margin-top: 8px;
+      text-align: center;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 19px;
+      color: #858585;
+    }
+  }
+
+  // custom slick slider
+  .slick-track {
+    display: flex;
+    // transform: none !important;
+  }
+  .slick-slide + .slick-active {
+    width: 404px !important;
+  }
+
+  // custom slick dots
+  .slick-dots {
+    bottom: 0;
+  }
+
+  .slick-dots li {
+    height: 5px;
+    width: 5px;
+    background-color: #e5e7e9;
+    border-radius: 50%;
+    position: relative;
+  }
+
+  .slick-dots .slick-active {
+    background-color: #40c7f4;
+  }
+
+  .ft-slick__dots--custom {
+    height: 5px;
+    border-radius: 50%;
+    width: 5px;
+
+    &:hover {
+      background-color: #333;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+.home_listHospital {
+  display: flex;
+  flex-direction: column;
+}
+
+.hopital_sliderItem {
+  width: 100%;
+  padding: 29px 37px;
+}
+
+.sliderItem_img {
+  width: 330px;
+  height: 208px;
+  border-radius: 16px;
+}
+
+.ft-slick__dots--custom {
+  height: 5px;
+  width: 5px;
+  border-radius: 50%;
+  position: relative;
+}

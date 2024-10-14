@@ -168,7 +168,18 @@
   height: 260px;
   border-radius: 20px;
   background-image: url(../../assets/images/datkhamnhanh.webp);
+  background-size: cover;
+  background-position: center;
+
+  @media (min-width: 640px) {
+    width: 75%; 
+  }
+
+  @media (min-width: 768px) {
+    width: 66%; 
+  }
 }
+
 .cardTitle_title {
   width: 100%;
   font-weight: 600;
@@ -413,6 +424,11 @@
   font-size: 20px;
   line-height: 23px;
   font-family: Roboto, sans-serif !important;
+  
+  @media (max-width: 768px) {
+    display: none;
+  }
+  
 }
 .service_des {
   color: #858585;
@@ -420,6 +436,10 @@
   font-weight: 300;
   line-height: 1.5;
   text-rendering: optimizeSpeed;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 
 .serviceInfo_backgroundCenter {
@@ -492,6 +512,14 @@
 .media_video {
   margin-top: 60px;
   border-radius: 20px;
+  width: 100%;
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 }
 .home_news {
   max-width: 1180px;
@@ -512,21 +540,31 @@
   display: flex;
   gap: 20px;
 }
+
+/* Thay đổi cho chiều rộng nhỏ hơn 1024px */
+@media (max-width: 1023px) {
+  .new_card {
+    flex-direction: column; /* Đặt hướng là cột cho màn hình nhỏ */
+  }
+}
+
 .new_cardLeft {
   min-height: 150px;
-  width: 40%;
+  width: 100%; /* Chiếm toàn bộ chiều rộng */
   padding: 14px;
   background-color: var(--white-color);
   border-radius: 10px;
 }
+
 .cardLeft_image {
   background-image: url(../../assets/images/new_1.webp);
-  background-size: contain;
+  background-size: cover; /* Thay đổi từ contain thành cover để hình ảnh chiếm toàn bộ chiều rộng */
   background-repeat: no-repeat;
   width: 100%;
   height: 278px;
   border-radius: 10px;
 }
+
 .cardLeft_title {
   margin-top: 16px;
   font-weight: 500;
@@ -534,6 +572,7 @@
   line-height: 23px;
   font-family: Roboto, sans-serif !important;
 }
+
 .cardLeft_tag {
   margin: 8px 0;
   color: #858585;
@@ -541,6 +580,7 @@
   font-size: 13px;
   line-height: 15px;
 }
+
 .cardLeft_des {
   font-weight: 400;
   font-size: 16px;
@@ -550,25 +590,29 @@
 
 .new_cardRight {
   min-height: 150px;
-  width: 60%;
+  width: 100%; /* Chiếm toàn bộ chiều rộng */
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* Cho phép phần tử wrap cho các item */
   gap: 20px;
 }
+
 .cardRight_item {
-  width: 330px;
+  width: calc(50% - 10px); /* Mỗi item chiếm 50% chiều rộng (2 cột) */
   padding: 14px;
   border-radius: 10px;
   background-color: var(--white-color);
+  box-sizing: border-box; /* Đảm bảo padding không làm tăng kích thước */
 }
+
 .cardRight_image {
   background-image: url(../../assets/images/new_2.webp);
-  background-size: contain;
+  background-size: cover; /* Thay đổi từ contain thành cover để hình ảnh chiếm toàn bộ chiều rộng */
   background-repeat: no-repeat;
   width: 100%;
   height: 192px;
   border-radius: 10px;
 }
+
 .cardRight_title {
   font-weight: 500;
   font-size: 16px;
@@ -576,6 +620,7 @@
   margin-top: 16px;
   font-family: Roboto, sans-serif !important;
 }
+
 .cardRight_tag {
   margin-top: 4px;
   color: #858585;
@@ -583,6 +628,21 @@
   font-size: 13px;
   line-height: 15px;
 }
+
+/* Media query để xử lý trên màn hình lớn hơn 1024px */
+@media (min-width: 1024px) {
+  .new_cardLeft {
+    width: 40%; /* Chiếm 40% chiều rộng trên màn hình lớn */
+  }
+  .new_cardRight {
+    width: 60%; /* Chiếm 60% chiều rộng trên màn hình lớn */
+  }
+  
+  .cardRight_item {
+    width: 330px; /* Chiều rộng cố định cho các item */
+  }
+}
+
 
 .new_viewMore {
   margin-top: 40px;

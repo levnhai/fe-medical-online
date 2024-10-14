@@ -1,113 +1,210 @@
-.wapper {
+// Variables
+$primary-color: rgb(26, 26, 26);
+$secondary-color: rgb(52, 146, 158);
+$background-color: rgb(218, 243, 246);
+$hover-color: rgb(200, 240, 245);
+$text-color: rgb(17, 49, 53);
+$subtext-color: rgb(98, 98, 98);
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin responsive($breakpoint) {
+  @if $breakpoint == tablet {
+    @media (min-width: 768px) { @content; }
+  } @else if $breakpoint == desktop {
+    @media (min-width: 1024px) { @content; }
+  }
+}
+
+.wrapper {
   width: 100%;
   background: url('https://cdn.bookingcare.vn/fo/w1920/2023/11/01/140311-background5.png') no-repeat center center;
   background-size: cover;
   padding-bottom: 50px;
   margin-bottom: 30px;
 }
+
 .container {
-  margin: 0px 164px;
+  margin: 0 20px;
+  
+  @include responsive(tablet) {
+    margin: 0 80px;
+  }
+  
+  @include responsive(desktop) {
+    margin: 0 164px;
+  }
 }
+
 .header {
-  padding: 10px 0px 14px;
+  padding: 10px 0 14px;
   display: flex;
   justify-content: space-between;
   text-align: center;
-}
-.header-title {
-  font-weight: 600;
-  color: rgb(26, 26, 26);
-  font-size: 24px;
-}
-.header-seeMoreBtn {
-  background-color: rgb(218, 243, 246);
-  padding: 10px 8px;
-  border-radius: 16px;
-  cursor: pointer;
+  flex-direction: column;
+  
+  @include responsive(tablet) {
+    flex-direction: row;
+  }
 
-  Button {
-    background: transparent;
-    padding: 4px 8px;
-    font-size: 20px;
-    color: rgb(52, 146, 158);
+  &-title {
     font-weight: 600;
+    color: $primary-color;
+    font-size: 20px;
+    margin-bottom: 10px;
+    
+    @include responsive(tablet) {
+      font-size: 24px;
+      margin-bottom: 0;
+    }
   }
 
-  &:hover {
-    background-color: rgb(200, 240, 245);
+  &-seeMoreBtn {
+    background-color: $background-color;
+    padding: 8px 6px;
+    border-radius: 16px;
+    cursor: pointer;
+    align-self: center;
+    
+    @include responsive(tablet) {
+      padding: 10px 8px;
+    }
+
+    button {
+      background: transparent;
+      padding: 4px 8px;
+      font-size: 16px;
+      color: $secondary-color;
+      font-weight: 600;
+      
+      @include responsive(tablet) {
+        font-size: 20px;
+      }
+    }
+
+    &:hover {
+      background-color: $hover-color;
+    }
   }
 }
+
 .OutStanding-docter {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  
+  @include responsive(tablet) {
+    justify-content: space-between;
+  }
 }
 
 .profile {
-  display: flex;
+  @include flex-center;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   width: 100%;
+  margin-bottom: 20px;
+  
+  @include responsive(tablet) {
+    width: 48%;
+  }
+  
+  @include responsive(desktop) {
+    width: 23%;
+  }
 
   div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex-center;
   }
 }
 
 .avata {
-  border-radius: 99999px;
-  width: 200px;
-  height: 200px;
-  box-shadow: 0px 6px 5px #ccc;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  box-shadow: 0 6px 5px #ccc;
+  
+  @include responsive(tablet) {
+    width: 180px;
+    height: 180px;
+  }
+  
+  @include responsive(desktop) {
+    width: 200px;
+    height: 200px;
+  }
 }
 
 .position {
   display: flex;
   flex-direction: column;
   padding-top: 20px;
+
   div {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
     text-align: center;
-    color: rgb(17, 49, 53);
+    color: $text-color;
+    
+    @include responsive(tablet) {
+      font-size: 18px;
+    }
   }
+
   span {
-    font-size: 16px;
+    font-size: 14px;
     text-align: center;
     font-weight: 400;
-    color: rgb(98, 98, 98);
+    color: $subtext-color;
+    
+    @include responsive(tablet) {
+      font-size: 16px;
+    }
   }
 }
 
-// loader
-
+// Loader
 .loader {
-  width: 215px;
-  height: 215px;
+  width: 180px;
+  height: 180px;
   display: block;
   margin: auto;
   position: relative;
   background: #fff;
   box-sizing: border-box;
-}
-.loader::after {
-  content: '';
-  width: calc(100% - 30px);
-  height: calc(100% - 30px);
-  top: 15px;
-  left: 15px;
-  position: absolute;
-  background-image: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5) 50%, transparent 100%),
-    radial-gradient(circle 50px, #ddd 100%, transparent 0), linear-gradient(#ddd 16px, transparent 0),
-    linear-gradient(#ddd 24px, transparent 0);
-  background-repeat: no-repeat;
-  background-size: 75px 175px, 100% 100px, 80% 16px, 80% 16px;
-  background-position: -185px 0, center 10px, center 125px, center 155px;
-  box-sizing: border-box;
-  animation: animloader 1s linear infinite;
+  
+  @include responsive(tablet) {
+    width: 200px;
+    height: 200px;
+  }
+  
+  @include responsive(desktop) {
+    width: 215px;
+    height: 215px;
+  }
+
+  &::after {
+    content: '';
+    width: calc(100% - 30px);
+    height: calc(100% - 30px);
+    top: 15px;
+    left: 15px;
+    position: absolute;
+    background-image: 
+      linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5) 50%, transparent 100%),
+      radial-gradient(circle 50px, #ddd 100%, transparent 0),
+      linear-gradient(#ddd 16px, transparent 0),
+      linear-gradient(#ddd 24px, transparent 0);
+    background-repeat: no-repeat;
+    background-size: 75px 175px, 100% 100px, 80% 16px, 80% 16px;
+    background-position: -185px 0, center 10px, center 125px, center 155px;
+    box-sizing: border-box;
+    animation: animloader 1s linear infinite;
+  }
 }
 
 @keyframes animloader {

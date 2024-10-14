@@ -1,10 +1,10 @@
-.header {
-  position: fixed;
-  z-index: 1;
-  background-color: #fff;
-  width: 100%;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.04), 0 0 1px rgba(0, 0, 0, 0.04);
-}
+  .header {
+    position: fixed;
+    z-index: 1;
+    background-color: #fff;
+    width: 100%;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.04), 0 0 1px rgba(0, 0, 0, 0.04);
+  }
 
 .fixed-on-scroll {
   // position: fixed;
@@ -35,6 +35,7 @@
     .icon {
       width: 12rem;
     }
+    
   }
 
   .body {
@@ -597,4 +598,122 @@
     transform: translateY(0);
     opacity: 1;
   }
+}
+.header-mobile {
+  display: none;
+  @media (max-width: 991px) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+  }
+}
+
+.nav_mobile {
+  display: none;
+  @media (max-width: 991px) {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: 1000;
+    overflow-y: auto;
+  }
+}
+
+.nav_wrapper {
+  padding: 1rem;
+}
+
+.nav_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.nav_body {
+  .topMenu {
+    margin-bottom: 1rem;
+  }
+
+  .menu_mobile {
+    .list_menu {
+      list-style-type: none;
+      padding: 0;
+
+      .item_menu {
+        margin-bottom: 0.5rem;
+
+        .btn_item {
+          width: 100%;
+          text-align: left;
+        }
+
+        .submenu {
+          list-style-type: none;
+          padding-left: 1rem;
+
+          .subitem_menu {
+            margin-top: 0.5rem;
+
+            .subitem_link {
+              text-decoration: none;
+              color: inherit;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .language_mobile {
+    margin-top: 1rem;
+
+    .language_btn {
+      display: flex;
+      align-items: center;
+
+      .flag-image {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+}
+.header-mobile .flag-image {
+  width: 24px; /* Đặt kích thước đồng đều cho cả cờ Việt Nam và Mỹ */
+  height: 24px;
+  object-fit: cover; /* Đảm bảo ảnh luôn giữ tỷ lệ chuẩn */
+  border-radius: 50%; /* Bo tròn hình cờ cho đẹp */
+  margin-right: 8px; /* Tạo khoảng cách giữa cờ và chữ */
+}
+
+.header-mobile .menu {
+  list-style: none; /* Loại bỏ dấu chấm của danh sách */
+  padding: 0;
+  margin: 0;
+}
+
+.header-mobile .menu .item {
+  display: flex; /* Sắp xếp các phần tử trong hàng ngang */
+  align-items: center;
+  padding: 8px 16px; /* Cân đối khoảng cách giữa các mục trong menu */
+  cursor: pointer;
+}
+
+.header-mobile .menu .item:hover {
+  background-color: #f0f0f0; /* Thêm hiệu ứng hover */
+}
+
+.header-mobile .language span {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.header-mobile .language img {
+  margin-right: 8px; /* Đảm bảo cờ có khoảng cách đều với văn bản */
 }

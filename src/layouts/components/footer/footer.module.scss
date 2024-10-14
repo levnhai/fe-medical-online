@@ -7,20 +7,34 @@
   max-width: 1180px;
   margin: auto;
   display: flex;
-  padding: 32px 0 16px;
+  flex-direction: column;
+  padding: 32px 16px 16px;
+}
+
+@media (min-width: 768px) {
+  .footer_container {
+    flex-direction: row;
+  }
 }
 
 .footer_info {
   padding: 0px 8px;
   display: flex;
   flex-direction: column;
-  max-width: 33.33333333%;
+  max-width: 100%;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 768px) {
+  .footer_info {
+    max-width: 33.33333333%;
+    margin-bottom: 0;
+  }
 }
 
 .footer_logo {
   height: 96px;
-  background: url('https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.d646d4b8.svg&w=256&q=75')
-    no-repeat;
+  background: url('https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.d646d4b8.svg&w=256&q=75') no-repeat;
   background-size: contain;
   margin-bottom: 16px;
 }
@@ -37,18 +51,33 @@
 
 .footer_menu {
   display: flex;
-  margin-left: 8%;
-  max-width: 58.33333333%;
-  min-width: 58.33333333%;
-  height: 200px;
+  flex-direction: column;
+  width: 100%;
   flex-wrap: wrap;
-  row-gap: 40px;
+  row-gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .footer_menu {
+    flex-direction: row;
+    margin-left: 8%;
+    max-width: 58.33333333%;
+    min-width: 58.33333333%;
+    height: auto;
+    row-gap: 40px;
+  }
 }
 
 .footer_menuWapper {
   padding: 0px 8px;
-  max-width: 33.33333333%;
-  min-width: 33.33333333%;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .footer_menuWapper {
+    max-width: 33.33333333%;
+    min-width: 33.33333333%;
+  }
 }
 
 .footer_title {
@@ -78,6 +107,15 @@
   width: 100%;
   flex-wrap: wrap;
   gap: 13px 16px;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+@media (min-width: 768px) {
+  .footer_oder {
+    justify-content: flex-start;
+    margin-top: 0;
+  }
 }
 
 .footer_ImageOder img {
@@ -87,16 +125,26 @@
 
 .footer_coppyRight {
   background-color: var(--blue-color);
-  margin-top: 120px;
+  margin-top: 40px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 12px 0;
+  padding: 12px 16px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .footer_coppyRight {
+    flex-direction: row;
+    margin-top: 120px;
+    padding: 12px 0;
+  }
 }
 
 .coppyRight_tag {
-  padding-right: 15px;
-  margin: 0;
+  padding-right: 0;
+  margin: 0 0 8px 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -105,4 +153,11 @@
   line-height: 22px;
   color: var(--white-color);
   font-family: Roboto, sans-serif !important;
+}
+
+@media (min-width: 768px) {
+  .coppyRight_tag {
+    padding-right: 15px;
+    margin: 0;
+  }
 }

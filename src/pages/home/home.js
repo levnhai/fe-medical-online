@@ -24,17 +24,17 @@ const cx = classNames.bind(style);
 
 function Home() {
   return (
-    <div className={cx('home')}>
-      <div className={cx('home_header')}>
-        <div className={cx('home_header_banner')}>
-          <div className={cx('banner_wrapper')}>
-            <div className={cx('banner_content')}>
+    <div className={cx('home','container mx-auto w-full px-4 md:px-6 lg:px-8 overflow-x-hidden')}>
+      <div className={cx('home_header','mb-8')}>
+        <div className={cx('home_header_banner', 'bg-gray-100 rounded-lg p-6 md:p-10')}>
+          <div className={cx('banner_wrapper', 'sm:flex sm:flex-col')}>
+            <div className={cx('banner_content', 'sm:w-full')}>
               <div className={cx('content_tag')}>Nền tảng công nghệ</div>
-              <div className={cx('content_title')}>
+              <div className={cx('content_title', 'text-2xl sm:text-6xl')}>
                 <div>Kết nối người dân với </div>
                 <div>Cơ sở - dịch vụ y tế</div>
               </div>
-              <div className={cx('content_des')}>
+              <div className={cx('content_des', 'w-full sm:w-auto')}>
                 Đặt khám nhanh - Lấy số thứ tự trực tuyến - Tư vấn khám sức khỏe từ xa
               </div>
               <div>
@@ -52,18 +52,19 @@ function Home() {
       </div>
       <div className={cx('home_container')}>
         <div className={cx('home_info')}>
-          <div className={cx('info_header')}>
-            <div className={cx('info_header_title')}>
-              <div className={cx('info_header_text')}>MEDICAL</div>
-              <div className={cx('info_header_tag')}>Đặt lịch khám bệnh</div>
-            </div>
-            <div className={cx('info_header_des')}>
-              <b>Medical </b>
-              cung cấp dịch vụ đặt khám nhan, lấy số thứ tự trực tuyến và tư vấn sức khỏe từ xa tại các cơ sở hàng đầu
-              Việt Nam như bệnh viện đại học y dưỡng Tp. Hồ Chí Minh, bệnh viện Chợ Rẩy, bệnh viện Nhi Đồng...
-            </div>
-          </div>
-          <div className={cx('home_card')}>
+        <div className={cx('info_header', 'flex', 'flex-col', 'md:flex-row', 'md:items-center')}>
+        <div className={cx('info_header_title', 'md:w-1/2')}>
+          <div className={cx('info_header_text')}>MEDICAL</div>
+          <div className={cx('info_header_tag')}>Đặt lịch khám bệnh</div>
+        </div>
+        <div className={cx('info_header_des', 'mt-4', 'md:mt-0', 'md:w-1/2')}>
+          <b>Medical </b>
+          cung cấp dịch vụ đặt khám nhanh, lấy số thứ tự trực tuyến và tư vấn sức khỏe từ xa tại các cơ sở hàng đầu
+          Việt Nam như bệnh viện đại học y dược Tp. Hồ Chí Minh, bệnh viện Chợ Rẫy, bệnh viện Nhi Đồng...
+        </div>
+      </div>
+
+          <div className={cx('home_card', 'grid', 'grid-cols-1', 'sm:grid-cols-2', 'md:grid-cols-3', 'gap-4')}>
             <div className={cx('home_cardTitle')}>
               <div className={cx('cardTitle_img')}></div>
               <div className={cx('cardTitle_title')}>Đặt khám nhanh</div>
@@ -116,8 +117,8 @@ function Home() {
         </div>
         <div className={cx('home_statistic')}>
           <h1 className={cx('statistic_title')}>Số liệu thống kê</h1>
-          <ul className={cx('statistic_list')}>
-            <li className={cx('statistic_item')}>
+          <ul className={cx('statistic_list', 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 justify-items-center sm:justify-items-start')}>
+            <li className={cx('statistic_item', 'w-full max-w-[150px] sm:max-w-none')}>
               <div className={cx('statistic_image')}>
                 <VisitsIcon />
               </div>
@@ -126,8 +127,7 @@ function Home() {
                 <div className={cx('statistic_tag')}>Lượt khám</div>
               </div>
             </li>
-
-            <li className={cx('statistic_item')}>
+            <li className={cx('statistic_item', 'w-full max-w-[150px] sm:max-w-none')}>
               <div className={cx('statistic_image')}>
                 <HospitalIcon />
               </div>
@@ -136,8 +136,7 @@ function Home() {
                 <div className={cx('statistic_tag')}>Bệnh viện</div>
               </div>
             </li>
-
-            <li className={cx('statistic_item')}>
+            <li className={cx('statistic_item', 'w-full max-w-[150px] sm:max-w-none')}>
               <div className={cx('statistic_image')}>
                 <HealthIcon />
               </div>
@@ -146,8 +145,7 @@ function Home() {
                 <div className={cx('statistic_tag')}>Cơ sở y tế</div>
               </div>
             </li>
-
-            <li className={cx('statistic_item')}>
+            <li className={cx('statistic_item', 'w-full max-w-[150px] sm:max-w-none')}>
               <div className={cx('statistic_image')}>
                 <DocterIcon />
               </div>
@@ -156,8 +154,7 @@ function Home() {
                 <div className={cx('statistic_tag')}>Bác sĩ</div>
               </div>
             </li>
-
-            <li className={cx('statistic_item')}>
+            <li className={cx('statistic_item', 'w-full max-w-[150px] sm:max-w-none')}>
               <div className={cx('statistic_image')}>
                 <ArowIcon />
               </div>
@@ -166,8 +163,7 @@ function Home() {
                 <div className={cx('statistic_tag')}>Lượt truy cập tháng</div>
               </div>
             </li>
-
-            <li className={cx('statistic_item')}>
+            <li className={cx('statistic_item', 'w-full max-w-[150px] sm:max-w-none')}>
               <div className={cx('statistic_image')}>
                 <EyeIcon />
               </div>
@@ -186,15 +182,15 @@ function Home() {
         </div>
         <HospitalServices />
       </div>
-      <div className={cx('home_bookingInfo')}>
-        <div className={cx('bookingInfo_image')}></div>
-        <div className={cx('bookingInfo_content')}>
+      <div className={cx('home_bookingInfo', 'flex flex-col sm:flex-row')}>
+        <div className={cx('bookingInfo_image', 'w-full sm:w-1/2 mb-4 sm:mb-0')}></div>
+        <div className={cx('bookingInfo_content', 'w-full sm:w-1/2')}>
           <div className={cx('bookingInfo_title')}>Đặt khám nhanh - lấy số thứ tự trực tuyến</div>
           <div className={cx('bookingInfo_des')}>
             Bệnh nhân chủ động chọn thông tin đặt khám nhanh(ngày tháng, giờ khám và cơ sở y tế) . Bệnh nhân sẽ nhận số
             thứ tự trực tuyến ngay trên phần mềm
           </div>
-          <Button className={cx('bookingInfo_btn')} rounded>
+          <Button className={cx('bookingInfo_btn', 'w-full sm:w-auto')} rounded>
             Đặt khám ngay
           </Button>
         </div>
@@ -357,10 +353,10 @@ function Home() {
       </div>
       <div className={cx('home_news')}>
         <h2 className={cx('new_title')}>Tin tức y tế</h2>
-        <div className={cx('new_card')}>
-          <div className={cx('new_cardLeft')}>
-            <div className={cx('cardLeft_image')}></div>
-            <div className={cx('cardLeft_title')}>
+        <div className={cx('new_card', )}>
+          <div className={cx('new_cardLeft', )}>
+            <div className={cx('cardLeft_image', )}></div>
+            <div className={cx('cardLeft_title', )}>
               Khám bệnh tâm thần online - hỗ trợ tâm lý chất lượng không lo quá tải
             </div>
             <div className={cx('cardLeft_tag')}>05/09/2023, 17:50 - Hải lê </div>

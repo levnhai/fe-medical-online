@@ -1,11 +1,21 @@
 import Button from '~/components/Button';
 import classNames from 'classnames/bind';
-import React from 'react';
-
+import React, { useState } from 'react';
+//language
+import { useTranslation } from 'react-i18next';
+import '~/translation/i18n';
 import styles from './footer.module.scss';
 const cx = classNames.bind(styles);
 
 function Footer() {
+  const { t, i18n } = useTranslation();
+const [currentLanguages, setCurrentLanguages] = useState(i18n.language);
+
+// handle onchange language
+const handleLanguageChange = (language) => {
+  i18n.changeLanguage(language);
+  setCurrentLanguages(language);
+}
   return (
     <div className={cx('footer')}>
       <div className={cx('footer_container')}>
@@ -15,147 +25,110 @@ function Footer() {
           </a>
           <ul>
             <li className={cx('footer_infoItem')}>
-              <b>Địa chỉ: </b> 97 Trần Quang Diệu, PHường 14, Quận 3, Tp Hồ Chí Minh
+            <b>{t('footer.address')}: </b> {t('footer.addresss')}:
             </li>
             <li className={cx('footer_infoItem')}>
-              <b>Website: </b>
+              <b>{t('footer.website')}: </b>
               https://pkh.vn
             </li>
             <li className={cx('footer_infoItem')}>
-              <b>Email: </b>
+              <b>{t('footer.email')}: </b>
               cskh@medical.vn
             </li>
-
             <li className={cx('footer_infoItem')}>
-              <b>Điện thoại: </b>
+              <b>{t('footer.phone')}: </b>
               (028) 710 78098
             </li>
           </ul>
         </div>
         <div className={cx('footer_menu')}>
           <div className={cx('footer_menuWapper')}>
-            <h3 className={cx('footer_title')}>Dịch vụ y tế</h3>
+            <h3 className={cx('footer_title')}>{t('footer.medicalServices')}</h3>
             <ul className={cx('footer_listMenu')}>
               <li className={cx('footer_itemMenu')}>
-                <Button to="#">Đặt khám tại cơ sở</Button>
+                <Button to="#">{t('footer.bookAtFacility')}</Button>
               </li>
               <li className={cx('footer_itemMenu')}>
-                <Button to="#">Đặt khám theo bác sỉ</Button>
+                <Button to="#">{t('footer.bookByDoctor')}</Button>
               </li>
               <li className={cx('footer_itemMenu')}>
-                <Button to="#">Tư vấn khám bệnh từ xa</Button>
+                <Button to="#">{t('footer.remoteConsultation')}</Button>
               </li>
               <li className={cx('footer_itemMenu')}>
-                <Button to="#">Đặt lịch xét nghiệm</Button>
+                <Button to="#">{t('footer.bookLabTest')}</Button>
               </li>
               <li className={cx('footer_itemMenu')}>
-                <Button to="#">y tế tại nhà</Button>
+                <Button to="#">{t('footer.homeHealthcare')}</Button>
               </li>
               <li className={cx('footer_itemMenu')}>
-                <Button to="#">Thanh toán tại nhà</Button>
+                <Button to="#">{t('footer.homePayment')}</Button>
               </li>
             </ul>
           </div>
           <div className={cx('footer_menuWapper')}>
-            <h3 className={cx('footer_title')}>Cơ sở y tế</h3>
+            <h3 className={cx('footer_title')}>{t('footer.medicalFacilities')}</h3>
             <ul className={cx('footer_listMenu')}>
               <li className={cx('footer_itemMenu')}>
-                <Button to="#">Bệnh viện công</Button>
+                <Button to="#">{t('footer.publicHospital')}</Button>
               </li>
               <li className={cx('footer_itemMenu')}>
-                <Button to="#">Bệnh viện tư</Button>
+                <Button to="#">{t('footer.privateHospital')}</Button>
               </li>
               <li className={cx('footer_itemMenu')}>
-                <Button to="#">Phòng khám</Button>
+                <Button to="#">{t('footer.clinic')}</Button>
               </li>
               <li className={cx('footer_itemMenu')}>
-                <Button to="#">Phòng mạch</Button>
+                <Button to="#">{t('footer.privateClinic')}</Button>
               </li>
             </ul>
           </div>
           <div className={cx('footer_menuWapper')}>
-            <h3 className={cx('footer_title')}>Hướng dẫn</h3>
+            <h3 className={cx('footer_title')}>{t('footer.guide')}</h3>
             <ul className={cx('footer_listMenu')}>
               <li className={cx('footer_itemMenu')}>
-                <Button to="/huong-dan/cai-dat-ung-dung">Cài đặt ứng dụng</Button>
+                <Button to="/huong-dan/cai-dat-ung-dung">{t('footer.appInstallation')}</Button>
               </li>
               <li className={cx('footer_itemMenu')}>
-                <Button to="/huong-dan/dat-lich-kham">Đặt khám</Button>
+                <Button to="/huong-dan/dat-lich-kham">{t('footer.booking')}</Button>
               </li>
               <li className={cx('footer_itemMenu')}>
-                <Button to="/huong-dan/quy-trinh-hoan-phi">Quy trình hoàn phí</Button>
+                <Button to="/huong-dan/quy-trinh-hoan-phi">{t('footer.refundProcess')}</Button>
               </li>
               <li className={cx('footer_itemMenu')}>
-                <Button to="/huong-dan/cau-hoi-thuong-gap">Câu hỏi thường gặp</Button>
+                <Button to="/huong-dan/cau-hoi-thuong-gap">{t('footer.faq')}</Button>
               </li>
             </ul>
           </div>
           <div className={cx('footer_menuWapper')}>
-            <h3 className={cx('footer_title')}>Tin tức</h3>
+            <h3 className={cx('footer_title')}>{t('footer.news')}</h3>
             <ul className={cx('footer_listMenu')}>
               <li className={cx('footer_itemMenu')}>
-                <Button to="#">Tin dịch vụ</Button>
+                <Button to="#">{t('footer.serviceNews')}</Button>
               </li>
               <li className={cx('footer_itemMenu')}>
-                <Button to="#">Tin y tế</Button>
+                <Button to="#">{t('footer.medicalNews')}</Button>
               </li>
               <li className={cx('footer_itemMenu')}>
-                <Button to="#">Y học thường thức</Button>
+                <Button to="#">{t('footer.generalMedicine')}</Button>
               </li>
             </ul>
           </div>
           <div className={cx('footer_menuWapper')}>
-            <h3 className={cx('footer_title')}>Về chúng tôi</h3>
+            <h3 className={cx('footer_title')}>{t('footer.aboutUs')}</h3>
             <ul className={cx('footer_listMenu')}>
               <li className={cx('footer_itemMenu')}>
-                <Button to="#">Giới thiệu</Button>
+                <Button to="#">{t('footer.introduction')}</Button>
               </li>
               <li className={cx('footer_itemMenu')}>
-                <Button to="#">Điều khoản và dịch vụ</Button>
+                <Button to="#">{t('footer.termsOfService')}</Button>
               </li>
               <li className={cx('footer_itemMenu')}>
-                <Button to="#">Chính sách bảo mật</Button>
+                <Button to="#">{t('footer.privacyPolicy')}</Button>
               </li>
               <li className={cx('footer_itemMenu')}>
-                <Button to="#">Quy định sử dụng</Button>
+                <Button to="#">{t('footer.usagePolicy')}</Button>
               </li>
             </ul>
-          </div>
-          <div className={cx('footer_menuWapper')}>
-            <div className={cx('footer_oder')}>
-              <a href="https://apps.apple.com/us/app/id1481561748">
-                <img
-                  src="https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdadangky.a0a8489c.png&w=256&q=75"
-                  alt=""
-                  width="97px"
-                  height="30px"
-                />
-              </a>
-              <a href="http://online.gov.vn/Home/WebDetails/44209?AspxAutoDetectCookieSupport=1">
-                <img
-                  src="https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbocongthuong.53714ee6.png&w=128&q=75"
-                  alt=""
-                  width="97px"
-                  height="30px"
-                />
-              </a>
-              <a href="https://apps.apple.com/us/app/id1481561748">
-                <img
-                  src="https://medpro.vn/_next/image?url=https%3A%2F%2Fbo-api.medpro.com.vn%2Fstatic%2Fimages%2Fmedpro%2Fweb%2Ficon_ios.svg%3Ft%3DFri%2520Aug%252004%25202023%252013%3A03%3A00%2520GMT%2B0700%2520(Indochina%2520Time)&w=96&q=75"
-                  alt=""
-                  width="97px"
-                  height="30px"
-                />
-              </a>
-              <a href="https://play.google.com/store/apps/details?id=vn.com.medpro">
-                <img
-                  src="https://medpro.vn/_next/image?url=https%3A%2F%2Fbo-api.medpro.com.vn%2Fstatic%2Fimages%2Fmedpro%2Fweb%2Ficon_google_play.svg%3Ft%3DFri%2520Aug%252004%25202023%252013%3A03%3A00%2520GMT%2B0700%2520(Indochina%2520Time)&w=96&q=75"
-                  alt=""
-                  width="97px"
-                  height="30px"
-                />
-              </a>
-            </div>
           </div>
         </div>
       </div>

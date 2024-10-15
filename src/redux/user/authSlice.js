@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from '~/axios';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 // check phone number
 export const fetchCheckPhone = createAsyncThunk('authSlice/fetchCheckPhone', async (phoneNumber) => {
   try {
@@ -71,6 +73,25 @@ export const fetchForgotPassword = createAsyncThunk('authSlice/fetchForgotPasswo
   }
 });
 
+// google login
+export const googleLogin = createAsyncThunk('authSlice/googleLogin', async (token) => {
+  try {
+    const response = await axios.post(`${API_URL}/google-login`, { token });
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data?.message || 'An error occurred');
+  }
+});
+//fb login
+export const facebookLogin = createAsyncThunk('authSlice/facebookLogin', async (accessToken) => {
+  try {
+    const response = await axios.post(`${API_URL}/facebook-login`, { accessToken });
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response?.data?.message || 'An error occurred');
+  }
+});
+
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
@@ -93,7 +114,39 @@ const authSlice = createSlice({
       state.phoneNumber = action.payload;
     },
   },
-  extraReducers: (builder) => {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(googleLogin.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(googleLogin.fulfilled, (state, action) => {
+        state.loading = false;
+        state.isLoggedIn = true;
+        state.user = action.payload.data;
+        // Lưu token vào localStorage hoặc nơi khác nếu cần
+        localStorage.setItem('token', action.payload.token);
+      })
+      .addCase(googleLogin.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
+    builder
+      .addCase(facebookLogin.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(facebookLogin.fulfilled, (state, action) => {
+        state.loading = false;
+        state.isLoggedIn = true;
+        state.user = action.payload.data;
+        localStorage.setItem('token', action.payload.token);
+      })
+      .addCase(facebookLogin.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
+  },
 });
 
 export const { loginUser, logoutUser, phoneNumber } = authSlice.actions;

@@ -2,6 +2,7 @@ import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 import 'react-toastify/dist/ReactToastify.css';
 import reportWebVitals from './reportWebVitals';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 // redux
 import Store from './redux/store';
@@ -12,13 +13,16 @@ import { PersistGate } from 'redux-persist/integration/react';
 import App from './App';
 import GlobalStyles from './components/globalStyles';
 
+const clientId = process.env.REACT_APP_GG_CLIENT_ID;
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={Store}>
     <GlobalStyles>
       <PersistGate loading={null} persistor={persistor}>
         <StrictMode>
-          <App />
+          <GoogleOAuthProvider clientId={clientId}>
+            <App />
+          </GoogleOAuthProvider>
         </StrictMode>
       </PersistGate>
     </GlobalStyles>

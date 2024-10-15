@@ -1,44 +1,44 @@
 export const menu = [
   {
-    label: 'Cơ sở y tế',
+    labelKey: 'medical_facilities',
     href: '/co-so-y-te',
     children: [
-      { label: 'Bệnh viện công', href: '/' },
-      { label: 'Bệnh viện tư', href: '/' },
-      { label: 'Phòng khám', href: '/' },
-      { label: 'Phòng mạch', href: '/' },
-      { label: 'Xét nghiệm', href: '/' },
+      { labelKey: 'public_hospitals', href: '/' },
+      { labelKey: 'private_hospitals', href: '/' },
+      { labelKey: 'clinics', href: '/' },
+      { labelKey: 'medical_offices', href: '/' },
+      { labelKey: 'laboratory', href: '/' },
     ],
   },
   {
-    label: 'Dịch vụ y tế',
+    labelKey: 'medical_services',
     href: '/#',
     children: [
-      { label: 'Đặt khám tại cơ sở ', href: '/dich-vu-y-te/dat-kham-tai-co-so' },
-      { label: 'Đặt khám theo bác sĩ', href: '/dich-vu-y-te/dat-kham-theo-bac-si' },
+      { labelKey: 'book_at_facility', href: '/dich-vu-y-te/dat-kham-tai-co-so' },
+      { labelKey: 'book_with_doctor', href: '/dich-vu-y-te/dat-kham-theo-bac-si' },
     ],
   },
   {
-    label: 'Tin tức',
+    labelKey: 'news',
     href: '/tin-tuc',
     children: [
-      { label: 'Tin dịch vụ', href: '/tin-tuc/tin-dich-vu' },
-      { label: 'Tin y Tiếng', href: '/tin-tuc/tin-y-te' },
-      { label: 'Y học thường thức', href: '/tin-tuc/y-hoc-thuong-thuc' },
+      { labelKey: 'service_news', href: '/tin-tuc/tin-dich-vu' },
+      { labelKey: 'medical_news', href: '/tin-tuc/tin-y-te' },
+      { labelKey: 'health_knowledge', href: '/tin-tuc/y-hoc-thuong-thuc' },
     ],
   },
   {
-    label: 'Hướng dẫn',
+    labelKey: 'guide',
     href: '/huong-dan/cai-dat-ung-dung',
     children: [
-      { label: 'Cài đặt ứng dụng', href: '/huong-dan/cai-dat-ung-dung' },
-      { label: 'Đặt lịch khám', href: '/huong-dan/dat-lich-kham' },
-      { label: 'Quy trình hoàn phí', href: '/huong-dan/quy-trinh-hoan-phi' },
-      { label: 'Câu hỏi thường gặp', href: '/huong-dan/cau-hoi-thuong-gap' },
+      { labelKey: 'app_installation', href: '/huong-dan/cai-dat-ung-dung' },
+      { labelKey: 'appointment_booking', href: '/huong-dan/dat-lich-kham' },
+      { labelKey: 'refund_process', href: '/huong-dan/quy-trinh-hoan-phi' },
+      { labelKey: 'faq', href: '/huong-dan/cau-hoi-thuong-gap' },
     ],
   },
   {
-    label: 'Về chúng tôi',
+    labelKey: 'about_us',
     href: '/about',
   },
 ];

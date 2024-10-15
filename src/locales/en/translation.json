@@ -15,7 +15,8 @@
     "logout": "Logout",
     "logout_success": "Logged out successfully",
     "last_update": "Last update: {{date}}",
-    "support_title": "Appointment Support"
+    "support_title": "Appointment Support",
+    "recruitment": "Recruitment"
   },
   "menu": {
     "medical_facilities": "Medical Facilities",
@@ -67,26 +68,26 @@
     "dailyVisits": "Daily Visits"
   },
   "hospitalDeployment": {
-      "title": "Hospital System Deployment",
-      "description": "Schedule appointments with over 50 patients nationwide"
-    },
-    "bookingInfo": {
-      "title": "Quick Booking - Get Online Queue Number",
-      "description": "Patients can actively choose quick booking information (date, time, and medical facility). Patients will receive an online queue number directly on the software",
-      "button": "Book Now"
-    },
-    "downloadApp": {
-      "title": "Download the MEDICAL Quick Booking App"
-    },
-    "serviceInfo": {
-      "title": "Get online queue number quickly",
-      "description": [
-        "Register for the exam/retake by the deadline",
-        "By specialist doctor",
-        "Re-examination by appointment"
-      ]
-    },
-    "services": {
+    "title": "Hospital System Deployment",
+    "description": "Schedule appointments with over 50 patients nationwide"
+  },
+  "bookingInfo": {
+    "title": "Quick Booking - Get Online Queue Number",
+    "description": "Patients can actively choose quick booking information (date, time, and medical facility). Patients will receive an online queue number directly on the software",
+    "button": "Book Now"
+  },
+  "downloadApp": {
+    "title": "Download the MEDICAL Quick Booking App"
+  },
+  "serviceInfo": {
+    "title": "Get online queue number quickly",
+    "description": [
+      "Register for the exam/retake by the deadline",
+      "By specialist doctor",
+      "Re-examination by appointment"
+    ]
+  },
+  "services": {
     "hospitalFee": "Pay hospital fees",
     "homeHealthcare": "Home healthcare",
     "healthCheckup": "Health checkup package",
@@ -128,7 +129,7 @@
     "privacyPolicy": "Privacy policy",
     "usagePolicy": "Usage policy"
   },
-  "doctor":{
+  "doctor": {
     "featured_doctor": "Featured doctor of the week"
   }
 }

@@ -40,5 +40,9 @@ export const menu = [
   {
     labelKey: 'about_us',
     href: '/about',
+    children: [
+      { labelKey: 'about_us', href: '/about' },
+      { labelKey: 'recruitment', href: '/#' },
+    ],
   },
 ];

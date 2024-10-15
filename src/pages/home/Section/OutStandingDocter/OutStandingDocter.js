@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import Slider from 'react-slick';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 import { Buffer } from 'buffer';
@@ -9,7 +9,9 @@ import LazyLoad from 'react-lazyload';
 import Button from '~/components/Button';
 import { fetchTopDoctors } from '~/redux/docter/docterSlice';
 import style from './OutStandingDocter.module.scss';
-
+//language
+import { useTranslation } from 'react-i18next';
+import '~/translation/i18n';
 const cx = classNames.bind(style);
 
 const Loading = () => <div className={cx('loader')}></div>;
@@ -64,6 +66,14 @@ function SamplePrevArrow(props) {
 }
 
 function OutStandingDocter() {
+  const { t, i18n } = useTranslation();
+  const [currentLanguages, setCurrentLanguages] = useState(i18n.language);
+  
+  // handle onchange language
+  const handleLanguageChange = (language) => {
+    i18n.changeLanguage(language);
+    setCurrentLanguages(language);
+  }
   const dispatch = useDispatch();
   const topDoctors = useSelector((state) => state.docter.topDoctors);
   var settings = {
@@ -84,9 +94,9 @@ function OutStandingDocter() {
     <div className={cx('wapper')}>
       <div className={cx('container')}>
         <div className={cx('header')}>
-          <div className={cx('header-title')}>Bác sỹ nổi bật trong tuần qua</div>
+          <div className={cx('header-title')}>{t('doctor.featured_doctor')}</div>
           <div className={cx('header-seeMoreBtn')}>
-            <Button>Xem thêm</Button>
+            <Button>{t('home.show_more')}</Button>
           </div>
         </div>
 

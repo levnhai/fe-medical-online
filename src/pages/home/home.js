@@ -1,11 +1,14 @@
 import classNames from 'classnames/bind';
-
+import React, { useState } from 'react';
 import HospitalServices from './Section/HospitalServices';
 import HealthServices from './Section/HealthServices';
 import Button from '~/components/Button';
 import Support from '~/layouts/components/support';
 import OutStandingDocter from './Section/OutStandingDocter';
 import { ImageMedia } from './Section/ImageMediaData';
+//language
+import { useTranslation } from 'react-i18next';
+import '~/translation/i18n';
 
 import {
   VisitsIcon,
@@ -22,27 +25,36 @@ import { PiCaretDoubleRightThin } from 'react-icons/pi';
 import style from './home.module.scss';
 const cx = classNames.bind(style);
 
+
 function Home() {
+const { t, i18n } = useTranslation();
+const [currentLanguages, setCurrentLanguages] = useState(i18n.language);
+
+// handle onchange language
+const handleLanguageChange = (language) => {
+  i18n.changeLanguage(language);
+  setCurrentLanguages(language);
+};
   return (
     <div className={cx('home','container mx-auto w-full px-4 md:px-6 lg:px-8 overflow-x-hidden')}>
       <div className={cx('home_header','mb-8')}>
         <div className={cx('home_header_banner', 'bg-gray-100 rounded-lg p-6 md:p-10')}>
           <div className={cx('banner_wrapper', 'sm:flex sm:flex-col')}>
-            <div className={cx('banner_content', 'sm:w-full')}>
-              <div className={cx('content_tag')}>Nền tảng công nghệ</div>
+          <div className={cx('banner_content', 'sm:w-full')}>
+            <div className={cx('content_tag')}>{t('home.tech_platform')}</div>
               <div className={cx('content_title', 'text-2xl sm:text-6xl')}>
-                <div>Kết nối người dân với </div>
-                <div>Cơ sở - dịch vụ y tế</div>
+                <div>{t('home.connect_people')}</div>
+                <div>{t('home.healthcare_facilities')}</div>
               </div>
               <div className={cx('content_des', 'w-full sm:w-auto')}>
-                Đặt khám nhanh - Lấy số thứ tự trực tuyến - Tư vấn khám sức khỏe từ xa
+                {t('home.services_description')}
               </div>
-              <div>
-                <Button className={cx('content_btn')} rounded>
-                  Đặt khám ngay
-                </Button>
-              </div>
+            <div>
+              <Button className={cx('content_btn')} rounded>
+                {t('home.book_appointment')}
+              </Button>
             </div>
+          </div>
           </div>
           <div></div>
         </div>
@@ -55,21 +67,20 @@ function Home() {
         <div className={cx('info_header', 'flex', 'flex-col', 'md:flex-row', 'md:items-center')}>
         <div className={cx('info_header_title', 'md:w-1/2')}>
           <div className={cx('info_header_text')}>MEDICAL</div>
-          <div className={cx('info_header_tag')}>Đặt lịch khám bệnh</div>
+          <div className={cx('info_header_tag')}>{t('home.book_appointment')}</div>
         </div>
         <div className={cx('info_header_des', 'mt-4', 'md:mt-0', 'md:w-1/2')}>
           <b>Medical </b>
-          cung cấp dịch vụ đặt khám nhanh, lấy số thứ tự trực tuyến và tư vấn sức khỏe từ xa tại các cơ sở hàng đầu
-          Việt Nam như bệnh viện đại học y dược Tp. Hồ Chí Minh, bệnh viện Chợ Rẫy, bệnh viện Nhi Đồng...
+          {t('home.medical_description')}
         </div>
       </div>
 
           <div className={cx('home_card', 'grid', 'grid-cols-1', 'sm:grid-cols-2', 'md:grid-cols-3', 'gap-4')}>
             <div className={cx('home_cardTitle')}>
               <div className={cx('cardTitle_img')}></div>
-              <div className={cx('cardTitle_title')}>Đặt khám nhanh</div>
+              <div className={cx('cardTitle_title')}>{t('home.quick_booking')}</div>
               <div className={cx('cardTitle_des')}>
-                Đặt khám nhanh, thanh toán, lấy số thứ tự trực tuyến tiết kiệm thời gian và công sức
+              {t('home.quick_booking_description')}
               </div>
               <div className={cx('cardTitle_btn')}>
                 <Button
@@ -77,15 +88,15 @@ function Home() {
                   rightIcon={<GoArrowRight style={{ width: '1.8rem', height: '1.8rem' }} />}
                   className={cx('seeMore_btn')}
                 >
-                  Xem thêm
+                  {t('home.show_more')}
                 </Button>
               </div>
             </div>
             <div className={cx('home_cardTitle')}>
               <div className={cx('cardTitle_img')}></div>
-              <div className={cx('cardTitle_title')}>Đặt khám nhanh</div>
+              <div className={cx('cardTitle_title')}>{t('home.quick_booking')}</div>
               <div className={cx('cardTitle_des')}>
-                Đặt khám nhanh, thanh toán, lấy số thứ tự trực tuyến tiết kiệm thời gian và công sức
+              {t('home.quick_booking_description')}
               </div>
               <div className={cx('cardTitle_btn')}>
                 <Button
@@ -93,15 +104,15 @@ function Home() {
                   rightIcon={<GoArrowRight style={{ width: '1.8rem', height: '1.8rem' }} />}
                   className={cx('seeMore_btn')}
                 >
-                  Xem thêm
+                  {t('home.show_more')}
                 </Button>
               </div>
             </div>
             <div className={cx('home_cardTitle')}>
               <div className={cx('cardTitle_img')}></div>
-              <div className={cx('cardTitle_title')}>Đặt khám nhanh</div>
+              <div className={cx('cardTitle_title')}>{t('home.quick_booking')}</div>
               <div className={cx('cardTitle_des')}>
-                Đặt khám nhanh, thanh toán, lấy số thứ tự trực tuyến tiết kiệm thời gian và công sức
+              {t('home.quick_booking_description')}
               </div>
               <div className={cx('cardTitle_btn')}>
                 <Button
@@ -109,96 +120,95 @@ function Home() {
                   rightIcon={<GoArrowRight style={{ width: '1.8rem', height: '1.8rem' }} />}
                   className={cx('seeMore_btn')}
                 >
-                  Xem thêm
+                  {t('home.show_more')}
                 </Button>
               </div>
             </div>
           </div>
         </div>
         <div className={cx('home_statistic')}>
-          <h1 className={cx('statistic_title')}>Số liệu thống kê</h1>
-          <ul className={cx('statistic_list', 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 justify-items-center sm:justify-items-start')}>
-            <li className={cx('statistic_item', 'w-full max-w-[150px] sm:max-w-none')}>
-              <div className={cx('statistic_image')}>
-                <VisitsIcon />
-              </div>
-              <div className={cx('statistic_content')}>
-                <div className={cx('statistic_number')}>2.2M+</div>
-                <div className={cx('statistic_tag')}>Lượt khám</div>
-              </div>
-            </li>
-            <li className={cx('statistic_item', 'w-full max-w-[150px] sm:max-w-none')}>
-              <div className={cx('statistic_image')}>
-                <HospitalIcon />
-              </div>
-              <div className={cx('statistic_content')}>
-                <div className={cx('statistic_number')}>30+</div>
-                <div className={cx('statistic_tag')}>Bệnh viện</div>
-              </div>
-            </li>
-            <li className={cx('statistic_item', 'w-full max-w-[150px] sm:max-w-none')}>
-              <div className={cx('statistic_image')}>
-                <HealthIcon />
-              </div>
-              <div className={cx('statistic_content')}>
-                <div className={cx('statistic_number')}>50+</div>
-                <div className={cx('statistic_tag')}>Cơ sở y tế</div>
-              </div>
-            </li>
-            <li className={cx('statistic_item', 'w-full max-w-[150px] sm:max-w-none')}>
-              <div className={cx('statistic_image')}>
-                <DocterIcon />
-              </div>
-              <div className={cx('statistic_content')}>
-                <div className={cx('statistic_number')}>200+</div>
-                <div className={cx('statistic_tag')}>Bác sĩ</div>
-              </div>
-            </li>
-            <li className={cx('statistic_item', 'w-full max-w-[150px] sm:max-w-none')}>
-              <div className={cx('statistic_image')}>
-                <ArowIcon />
-              </div>
-              <div className={cx('statistic_content')}>
-                <div className={cx('statistic_number')}>25.4k+</div>
-                <div className={cx('statistic_tag')}>Lượt truy cập tháng</div>
-              </div>
-            </li>
-            <li className={cx('statistic_item', 'w-full max-w-[150px] sm:max-w-none')}>
-              <div className={cx('statistic_image')}>
-                <EyeIcon />
-              </div>
-              <div className={cx('statistic_content')}>
-                <div className={cx('statistic_number')}>823</div>
-                <div className={cx('statistic_tag')}>Lượt truy cập ngày</div>
-              </div>
-            </li>
-          </ul>
+        <h1 className={cx('statistic_title')}>{t('statistics.title')}</h1>
+        <ul className={cx('statistic_list', 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 justify-items-center sm:justify-items-start')}>
+          <li className={cx('statistic_item', 'w-full max-w-[150px] sm:max-w-none')}>
+            <div className={cx('statistic_image')}>
+              <VisitsIcon />
+            </div>
+            <div className={cx('statistic_content')}>
+              <div className={cx('statistic_number')}>2.2M+</div>
+              <div className={cx('statistic_tag')}>{t('statistics.visits')}</div>
+            </div>
+          </li>
+          <li className={cx('statistic_item', 'w-full max-w-[150px] sm:max-w-none')}>
+            <div className={cx('statistic_image')}>
+              <HospitalIcon />
+            </div>
+            <div className={cx('statistic_content')}>
+              <div className={cx('statistic_number')}>30+</div>
+              <div className={cx('statistic_tag')}>{t('statistics.hospitals')}</div>
+            </div>
+          </li>
+          <li className={cx('statistic_item', 'w-full max-w-[150px] sm:max-w-none')}>
+            <div className={cx('statistic_image')}>
+              <HealthIcon />
+            </div>
+            <div className={cx('statistic_content')}>
+              <div className={cx('statistic_number')}>50+</div>
+              <div className={cx('statistic_tag')}>{t('statistics.healthcareFacilities')}</div>
+            </div>
+          </li>
+          <li className={cx('statistic_item', 'w-full max-w-[150px] sm:max-w-none')}>
+            <div className={cx('statistic_image')}>
+              <DocterIcon />
+            </div>
+            <div className={cx('statistic_content')}>
+              <div className={cx('statistic_number')}>200+</div>
+              <div className={cx('statistic_tag')}>{t('statistics.doctors')}</div>
+            </div>
+          </li>
+          <li className={cx('statistic_item', 'w-full max-w-[150px] sm:max-w-none')}>
+            <div className={cx('statistic_image')}>
+              <ArowIcon />
+            </div>
+            <div className={cx('statistic_content')}>
+              <div className={cx('statistic_number')}>25.4k+</div>
+              <div className={cx('statistic_tag')}>{t('statistics.monthlyVisits')}</div>
+            </div>
+          </li>
+          <li className={cx('statistic_item', 'w-full max-w-[150px] sm:max-w-none')}>
+            <div className={cx('statistic_image')}>
+              <EyeIcon />
+            </div>
+            <div className={cx('statistic_content')}>
+              <div className={cx('statistic_number')}>823</div>
+              <div className={cx('statistic_tag')}>{t('statistics.dailyVisits')}</div>
+            </div>
+          </li>
+        </ul>
         </div>
       </div>
       <div className={cx('home_hospitalDeloy')}>
         <div className={cx('home_hospotalContent')}>
-          <h1 className={cx('hospotalContent_title')}>Hệ thống bệnh viện triển khai</h1>
-          <span className={cx('hospotalContent_des')}>Đặt lịch khám với hơn 50 bệnh nhân trên khắp cả nước</span>
+          <h1 className={cx('hospotalContent_title')}>{t('hospitalDeployment.title')}</h1>
+          <span className={cx('hospotalContent_des')}>{t('hospitalDeployment.description')}</span>
         </div>
         <HospitalServices />
       </div>
       <div className={cx('home_bookingInfo', 'flex flex-col sm:flex-row')}>
         <div className={cx('bookingInfo_image', 'w-full sm:w-1/2 mb-4 sm:mb-0')}></div>
         <div className={cx('bookingInfo_content', 'w-full sm:w-1/2')}>
-          <div className={cx('bookingInfo_title')}>Đặt khám nhanh - lấy số thứ tự trực tuyến</div>
+          <div className={cx('bookingInfo_title')}>{t('bookingInfo.title')}</div>
           <div className={cx('bookingInfo_des')}>
-            Bệnh nhân chủ động chọn thông tin đặt khám nhanh(ngày tháng, giờ khám và cơ sở y tế) . Bệnh nhân sẽ nhận số
-            thứ tự trực tuyến ngay trên phần mềm
+          {t('bookingInfo.description')}
           </div>
           <Button className={cx('bookingInfo_btn', 'w-full sm:w-auto')} rounded>
-            Đặt khám ngay
+          {t('home.book_appointment')}
           </Button>
         </div>
       </div>
       <div id="downloadBtn" className={cx('home_download')}>
         <div className={cx('download_header')}>
           <h1 className={cx('download_title')}>
-            Tải ứng dụng đặt khám nhanh <span>MEDICAL</span>
+          {t('downloadApp.title')} <span>MEDICAL</span>
           </h1>
           <div className={cx('download_groupBtn')}>
             <div>
@@ -229,40 +239,40 @@ function Home() {
           <div className={cx('download_serviceInfo')}>
             <ul className={cx('serviceInfo_list')}>
               <li className={cx('service_item')}>
-                <div className={cx('service_content')}>
-                  <h3 className={cx('service_title')}>lấy số thứ tự khám nhanh trực tuyến</h3>
-                  <div className={cx('service_des')}>
-                    <p> Đăng ký khám/ Tái khám nhanh theo ngày đăng ký</p>
-                    <p> Theo bác sĩ chuyên khoa</p>
-                    <p>Tái khám theo lịch hẹn</p>
-                  </div>
-                </div>
+              <div className={cx('service_content')}>
+          <h3 className={cx('service_title')}>{t('serviceInfo.title')}</h3>
+          <div className={cx('service_des')}>
+            <p>{t('serviceInfo.description.0')}</p>
+            <p>{t('serviceInfo.description.1')}</p>
+            <p>{t('serviceInfo.description.2')}</p>
+          </div>
+        </div>
                 <div className={cx('service_image')}>
                   <DocterServiceIcon />
                 </div>
               </li>
               <li className={cx('service_item')}>
-                <div className={cx('service_content')}>
-                  <h3 className={cx('service_title')}>lấy số thứ tự khám nhanh trực tuyến</h3>
-                  <div className={cx('service_des')}>
-                    <p> Đăng ký khám/ Tái khám nhanh theo ngày đăng ký</p>
-                    <p> Theo bác sĩ chuyên khoa</p>
-                    <p>Tái khám theo lịch hẹn</p>
-                  </div>
-                </div>
+              <div className={cx('service_content')}>
+          <h3 className={cx('service_title')}>{t('serviceInfo.title')}</h3>
+          <div className={cx('service_des')}>
+            <p>{t('serviceInfo.description.0')}</p>
+            <p>{t('serviceInfo.description.1')}</p>
+            <p>{t('serviceInfo.description.2')}</p>
+          </div>
+        </div>
                 <div className={cx('service_image')}>
                   <DocterServiceIcon />
                 </div>
               </li>
               <li className={cx('service_item')}>
-                <div className={cx('service_content')}>
-                  <h3 className={cx('service_title')}>lấy số thứ tự khám nhanh trực tuyến</h3>
-                  <div className={cx('service_des')}>
-                    <p> Đăng ký khám/ Tái khám nhanh theo ngày đăng ký</p>
-                    <p> Theo bác sĩ chuyên khoa</p>
-                    <p>Tái khám theo lịch hẹn</p>
-                  </div>
-                </div>
+              <div className={cx('service_content')}>
+          <h3 className={cx('service_title')}>{t('serviceInfo.title')}</h3>
+          <div className={cx('service_des')}>
+            <p>{t('serviceInfo.description.0')}</p>
+            <p>{t('serviceInfo.description.1')}</p>
+            <p>{t('serviceInfo.description.2')}</p>
+          </div>
+        </div>
                 <div className={cx('service_image')}>
                   <DocterServiceIcon />
                 </div>
@@ -280,39 +290,39 @@ function Home() {
                   <DocterServiceIcon />
                 </div>
                 <div className={cx('service_content')}>
-                  <h3 className={cx('service_title')}>lấy số thứ tự khám nhanh trực tuyến</h3>
-                  <div className={cx('service_des')}>
-                    <p> Đăng ký khám/ Tái khám nhanh theo ngày đăng ký</p>
-                    <p> Theo bác sĩ chuyên khoa</p>
-                    <p>Tái khám theo lịch hẹn</p>
-                  </div>
-                </div>
+          <h3 className={cx('service_title')}>{t('serviceInfo.title')}</h3>
+          <div className={cx('service_des')}>
+            <p>{t('serviceInfo.description.0')}</p>
+            <p>{t('serviceInfo.description.1')}</p>
+            <p>{t('serviceInfo.description.2')}</p>
+          </div>
+        </div>
               </li>
               <li className={cx('service_item', 'service_itemRight')}>
                 <div className={cx('service_image')}>
                   <DocterServiceIcon />
                 </div>
                 <div className={cx('service_content')}>
-                  <h3 className={cx('service_title')}>lấy số thứ tự khám nhanh trực tuyến</h3>
-                  <div className={cx('service_des')}>
-                    <p> Đăng ký khám/ Tái khám nhanh theo ngày đăng ký</p>
-                    <p> Theo bác sĩ chuyên khoa</p>
-                    <p>Tái khám theo lịch hẹn</p>
-                  </div>
-                </div>
+          <h3 className={cx('service_title')}>{t('serviceInfo.title')}</h3>
+          <div className={cx('service_des')}>
+            <p>{t('serviceInfo.description.0')}</p>
+            <p>{t('serviceInfo.description.1')}</p>
+            <p>{t('serviceInfo.description.2')}</p>
+          </div>
+        </div>
               </li>
               <li className={cx('service_item', 'service_itemRight')}>
                 <div className={cx('service_image')}>
                   <DocterServiceIcon />
                 </div>
                 <div className={cx('service_content')}>
-                  <h3 className={cx('service_title')}>lấy số thứ tự khám nhanh trực tuyến</h3>
-                  <div className={cx('service_des')}>
-                    <p> Đăng ký khám/ Tái khám nhanh theo ngày đăng ký</p>
-                    <p> Theo bác sĩ chuyên khoa</p>
-                    <p>Tái khám theo lịch hẹn</p>
-                  </div>
-                </div>
+          <h3 className={cx('service_title')}>{t('serviceInfo.title')}</h3>
+          <div className={cx('service_des')}>
+            <p>{t('serviceInfo.description.0')}</p>
+            <p>{t('serviceInfo.description.1')}</p>
+            <p>{t('serviceInfo.description.2')}</p>
+          </div>
+        </div>
               </li>
             </ul>
           </div>
@@ -320,8 +330,8 @@ function Home() {
       </div>
       <div className={cx('home_media')}>
         <div className={cx('media_header')}>
-          <h2>Ghi nhận từ truyền thông</h2>
-          <span>Sự lợi ích của ứng dụng đặt khám nhanh Medpro đã được ghi nhận rộng rãi</span>
+          <h2>{t('home.media_recognition')}</h2>
+          <span>{t('home.media_recognition_decrip')}</span>
         </div>
         <div className={cx('media_listLogo')}>
           {ImageMedia &&
@@ -352,7 +362,7 @@ function Home() {
         <OutStandingDocter />
       </div>
       <div className={cx('home_news')}>
-        <h2 className={cx('new_title')}>Tin tức y tế</h2>
+        <h2 className={cx('new_title')}>{t('home.new_title')}</h2>
         <div className={cx('new_card', )}>
           <div className={cx('new_cardLeft', )}>
             <div className={cx('cardLeft_image', )}></div>
@@ -392,7 +402,7 @@ function Home() {
         </div>
         <div className={cx('new_viewMore')}>
           <Button rounded rightIcon={<PiCaretDoubleRightThin />}>
-            Xem thêm
+            {t('home.show_more')}
           </Button>
         </div>
       </div>

@@ -42,5 +42,94 @@
     "add": "Thêm",
     "edit": "Sửa",
     "delete": "Xóa"
+  },
+  "home": {
+    "tech_platform": "Nền tảng công nghệ",
+    "connect_people": "Kết nối người dân với",
+    "healthcare_facilities": "Cơ sở - dịch vụ y tế",
+    "services_description": "Đặt khám nhanh - Lấy số thứ tự trực tuyến - Tư vấn khám sức khỏe từ xa",
+    "book_appointment": "Đặt khám ngay",
+    "medical_description": "Cung cấp dịch vụ đặt khám nhanh, lấy số thứ tự trực tuyến và tư vấn sức khỏe từ xa tại các cơ sở hàng đầu Việt Nam như bệnh viện đại học y dược Tp. Hồ Chí Minh, bệnh viện Chợ Rẫy, bệnh viện Nhi Đồng...",
+    "quick_booking": "Đặt khám nhanh",
+    "quick_booking_description": "Đặt khám nhanh, thanh toán, lấy số thứ tự trực tuyến tiết kiệm thời gian và công sức",
+    "show_more": "xem thêm",
+    "new_title": "Tin tức y tế",
+    "media_recognition": "Ghi nhận từ truyền thông",
+    "media_recognition_decrip": "Sự lợi ích của ứng dụng đặt khám nhanh Medpro đã được ghi nhận rộng rãi"
+    
+  },
+  "statistics": {
+    "title": "Số liệu thống kê",
+    "visits": "Lượt khám",
+    "hospitals": "Bệnh viện",
+    "healthcareFacilities": "Cơ sở y tế",
+    "doctors": "Bác sĩ",
+    "monthlyVisits": "Lượt truy cập tháng",
+    "dailyVisits": "Lượt truy cập ngày"
+  },
+  "hospitalDeployment": {
+      "title": "Hệ thống bệnh viện triển khai",
+      "description": "Đặt lịch khám với hơn 50 bệnh nhân trên khắp cả nước"
+    },
+    "bookingInfo": {
+      "title": "Đặt khám nhanh - lấy số thứ tự trực tuyến",
+      "description": "Bệnh nhân chủ động chọn thông tin đặt khám nhanh(ngày tháng, giờ khám và cơ sở y tế) . Bệnh nhân sẽ nhận số thứ tự trực tuyến ngay trên phần mềm",
+      "button": "Đặt khám ngay"
+    },
+    "downloadApp": {
+      "title": "Tải ứng dụng đặt khám nhanh MEDICAL"
+    },
+    "serviceInfo": {
+    "title": "Lấy số thứ tự khám nhanh trực tuyến",
+    "description": [
+      "Đăng ký khám/ Tái khám nhanh theo ngày đăng ký",
+      "Theo bác sĩ chuyên khoa",
+      "Tái khám theo lịch hẹn"
+    ]
+  },
+  "services": {
+    "hospitalFee": "Thanh toán viện phí",
+    "homeHealthcare": "Y tế tại nhà",
+    "healthCheckup": "Gói khám sức khỏe",
+    "labTest": "Đặt lịch xét nghiệm",
+    "telehealth": "Tư vấn khám bệnh từ xa",
+    "doctorAppointment": "Đặt khám theo bác sĩ",
+    "facilityAppointment": "Đặt khám tại cơ sở"
+  },
+  "footer": {
+    "address": "Địa chỉ:",
+    "addresss": "97 Trần Quang Diệu, PHường 14, Quận 3, Tp Hồ Chí Minh",
+    "website": "Website",
+    "email": "Email",
+    "phone": "Điện thoại",
+    "medicalServices": "Dịch vụ y tế",
+    "bookAtFacility": "Đặt khám tại cơ sở",
+    "bookByDoctor": "Đặt khám theo bác sĩ",
+    "remoteConsultation": "Tư vấn khám bệnh từ xa",
+    "bookLabTest": "Đặt lịch xét nghiệm",
+    "homeHealthcare": "Y tế tại nhà",
+    "homePayment": "Thanh toán tại nhà",
+    "medicalFacilities": "Cơ sở y tế",
+    "publicHospital": "Bệnh viện công",
+    "privateHospital": "Bệnh viện tư",
+    "clinic": "Phòng khám",
+    "privateClinic": "Phòng mạch",
+    "guide": "Hướng dẫn",
+    "appInstallation": "Cài đặt ứng dụng",
+    "booking": "Đặt khám",
+    "refundProcess": "Quy trình hoàn phí",
+    "faq": "Câu hỏi thường gặp",
+    "news": "Tin tức",
+    "serviceNews": "Tin dịch vụ",
+    "medicalNews": "Tin y tế",
+    "generalMedicine": "Y học thường thức",
+    "aboutUs": "Về chúng tôi",
+    "introduction": "Giới thiệu",
+    "termsOfService": "Điều khoản và dịch vụ",
+    "privacyPolicy": "Chính sách bảo mật",
+    "usagePolicy": "Quy định sử dụng"
+  },
+  "doctor":{
+    "featured_doctor": "Bác sĩ nổi bật tuần qua"
   }
 }

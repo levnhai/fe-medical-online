@@ -36,7 +36,8 @@
     "appointment_booking": "Đặt lịch khám",
     "refund_process": "Quy trình hoàn phí",
     "faq": "Câu hỏi thường gặp",
-    "about_us": "Về chúng tôi"
+    "about_us": "Về chúng tôi",
+    "recruitment": "Tuyển dụng"
   },
   "actions": {
     "add": "Thêm",
@@ -56,7 +57,6 @@
     "new_title": "Tin tức y tế",
     "media_recognition": "Ghi nhận từ truyền thông",
     "media_recognition_decrip": "Sự lợi ích của ứng dụng đặt khám nhanh Medpro đã được ghi nhận rộng rãi"
-    
   },
   "statistics": {
     "title": "Số liệu thống kê",
@@ -68,18 +68,18 @@
     "dailyVisits": "Lượt truy cập ngày"
   },
   "hospitalDeployment": {
-      "title": "Hệ thống bệnh viện triển khai",
-      "description": "Đặt lịch khám với hơn 50 bệnh nhân trên khắp cả nước"
-    },
-    "bookingInfo": {
-      "title": "Đặt khám nhanh - lấy số thứ tự trực tuyến",
-      "description": "Bệnh nhân chủ động chọn thông tin đặt khám nhanh(ngày tháng, giờ khám và cơ sở y tế) . Bệnh nhân sẽ nhận số thứ tự trực tuyến ngay trên phần mềm",
-      "button": "Đặt khám ngay"
-    },
-    "downloadApp": {
-      "title": "Tải ứng dụng đặt khám nhanh MEDICAL"
-    },
-    "serviceInfo": {
+    "title": "Hệ thống bệnh viện triển khai",
+    "description": "Đặt lịch khám với hơn 50 bệnh nhân trên khắp cả nước"
+  },
+  "bookingInfo": {
+    "title": "Đặt khám nhanh - lấy số thứ tự trực tuyến",
+    "description": "Bệnh nhân chủ động chọn thông tin đặt khám nhanh(ngày tháng, giờ khám và cơ sở y tế) . Bệnh nhân sẽ nhận số thứ tự trực tuyến ngay trên phần mềm",
+    "button": "Đặt khám ngay"
+  },
+  "downloadApp": {
+    "title": "Tải ứng dụng đặt khám nhanh MEDICAL"
+  },
+  "serviceInfo": {
     "title": "Lấy số thứ tự khám nhanh trực tuyến",
     "description": [
       "Đăng ký khám/ Tái khám nhanh theo ngày đăng ký",
@@ -129,7 +129,7 @@
     "privacyPolicy": "Chính sách bảo mật",
     "usagePolicy": "Quy định sử dụng"
   },
-  "doctor":{
+  "doctor": {
     "featured_doctor": "Bác sĩ nổi bật tuần qua"
   }
 }

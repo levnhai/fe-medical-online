@@ -8,7 +8,14 @@ import { LogoIcon, SupportIcon } from '~/components/Icon';
 import { FaTiktok, FaFacebookF, FaYoutube } from 'react-icons/fa';
 import { MdOutlinePhoneAndroid } from 'react-icons/md';
 import { IoPersonSharp } from 'react-icons/io5';
-import { IoMdArrowDropdown,  IoIosArrowUp, IoIosArrowDown, IoMdMenu, IoIosSearch, IoIosNotificationsOutline } from 'react-icons/io';
+import {
+  IoMdArrowDropdown,
+  IoIosArrowUp,
+  IoIosArrowDown,
+  IoMdMenu,
+  IoIosSearch,
+  IoIosNotificationsOutline,
+} from 'react-icons/io';
 import { GoPerson } from 'react-icons/go';
 import { CiCalendar } from 'react-icons/ci';
 import { IoMdClose } from 'react-icons/io';
@@ -17,7 +24,7 @@ import { IoMdClose } from 'react-icons/io';
 import { useTranslation } from 'react-i18next';
 import '~/translation/i18n';
 
-import { menu } from './menu';
+import { menu } from '../menu';
 
 import style from './header.module.scss';
 import Button from '~/components/Button';
@@ -49,9 +56,9 @@ function Header() {
     setMobileMenuOpen(!mobileMenuOpen);
   };
   const toggleSubmenu = (menuItemHref) => {
-    setOpenSubmenus(prev => ({
+    setOpenSubmenus((prev) => ({
       ...prev,
-      [menuItemHref]: !prev[menuItemHref]
+      [menuItemHref]: !prev[menuItemHref],
     }));
   };
   // bắt sự kiện click show modal
@@ -71,8 +78,8 @@ function Header() {
     setLanguageMenuOpen(!languageMenuOpen);
   };
   const languages = [
-    { code: 'vi', name: 'Tiếng Việt', flag: require('~/assets/images/flag/Vn.png') },
-    { code: 'en', name: 'English', flag: require('~/assets/images/flag/Us.png') },
+    { code: 'vi', name: 'Tiếng Việt', flag: require('~/assets/images/flag/Vn.png'), alt: 'flag vietnam' },
+    { code: 'en', name: 'English', flag: require('~/assets/images/flag/Us.png'), alt: 'flag english' },
   ];
   // rút gọn name
   const handleshortName = () => {
@@ -96,10 +103,8 @@ function Header() {
     }
   };
 
-  /* eslint-disable-next-line react-hooks/exhaustive-deps */
   useEffect(() => {
     handleshortName();
-
     document.addEventListener('click', handleClickOusideModal);
     return () => {
       document.removeEventListener('click', handleClickOusideModal);
@@ -136,7 +141,7 @@ function Header() {
         <div className={cx('logo')}>
           <a href="/">
             {/* <LogoIcon className={cx('icon')} /> */}
-            {/* <img src={require()} alt="" width="5rem" height="5rem" /> */}
+            <img src={require('~/assets/images/logo.png')} alt="" width="5rem" height="5rem" />
           </a>
         </div>
         <div className={cx('body')}>
@@ -191,7 +196,7 @@ function Header() {
                         ? require('~/assets/images/flag/Vn.png')
                         : require('~/assets/images/flag/Us.png')
                     }
-                    alt="flag image vn"
+                    alt="flag"
                     className={cx('flag-image')}
                   />
                 </span>
@@ -199,26 +204,17 @@ function Header() {
                   <IoMdArrowDropdown style={{ width: '1.5rem', height: '1.5rem' }} />
                 </span>
                 <ul className={cx('menu')}>
-                  <li className={cx('item')} onClick={() => handleLanguageChange('vi')}>
-                    <span>
-                      <img
-                        src={require('~/assets/images/flag/Vn.png')}
-                        alt="flag image vn"
-                        className={cx('flag-image')}
-                      />
-                    </span>
-                    Tiếng việt
-                  </li>
-                  <li className={cx('item')} onClick={() => handleLanguageChange('en')}>
-                    <span>
-                      <img
-                        src={require('~/assets/images/flag/Us.png')}
-                        alt="flag image vn"
-                        className={cx('flag-image')}
-                      />
-                    </span>
-                    Tiếng anh
-                  </li>
+                  {languages &&
+                    languages.map((item, index) => {
+                      return (
+                        <li className={cx('item')} onClick={() => handleLanguageChange(item.code)} key={index}>
+                          <span>
+                            <img src={item.flag} alt={item.alt} className={cx('flag-image')} />
+                          </span>
+                          {item.name}
+                        </li>
+                      );
+                    })}
                 </ul>
               </div>
             </div>
@@ -228,7 +224,7 @@ function Header() {
                   <div className={cx('profile-header')}>
                     <div className={cx('profile-avata')}></div>
                     <div className={cx('profile-info')}>
-                      <span> Xin chào </span>
+                      <span>{t('header.greeting')}</span>
                       <h5> {`${user.user.fullName}`}</h5>
                     </div>
                   </div>
@@ -244,7 +240,7 @@ function Header() {
                     <li className={cx('information-item')}>
                       <div>
                         <span className={cx('icon')}>
-                          <i className="fa-regular fa-note-sticky"></i>
+                          <CiCalendar />
                         </span>
                         <span className={cx('title')}>{t('header.medical_record')}</span>
                       </div>
@@ -252,7 +248,7 @@ function Header() {
                     <li className={cx('information-item')}>
                       <div>
                         <span className={cx('icon')}>
-                          <i className="fa-regular fa-bell"></i>
+                          <IoIosNotificationsOutline />
                         </span>
                         <span className={cx('title')}>{t('header.notifications')}</span>
                       </div>
@@ -273,7 +269,7 @@ function Header() {
                     </li>
                     <li className={cx('information-item')} disabled>
                       <div>
-                      <span>{t('header.last_update', { date: '29/12/2023' })}</span>
+                        <span>{t('header.last_update', { date: '29/12/2023' })}</span>
                       </div>
                     </li>
                   </ul>
@@ -290,164 +286,164 @@ function Header() {
                   <SupportIcon />
                 </div>
                 <div className={cx('suportTitle')}>
-                {t('header.support_title')}
+                  {t('header.support_title')}
                   <div>1900 1211</div>
                 </div>
               </div>
             </a>
             <div className={cx('navbar')}>
-      <ul className={cx('navbarList')}>
-        {menu.map((menuItem) => (
-          <li key={menuItem.href} className={cx('navbarItem')}>
-            <Link className={cx('navbarLink')} to={menuItem.href}>
-              {t(`menu.${menuItem.labelKey}`)}
-            </Link>
-            {menuItem.children && (
-              <>
-                <span>
-                  <IoMdArrowDropdown style={{ width: '1.5rem', height: '1.5rem' }} />
-                </span>
-                <div className={cx('menu')}>
-                  <ul>
-                    {menuItem.children.map((childItem) => (
-                      <li key={childItem.href} className={cx('menuItem')}>
-                        <Link className={cx('menuLink')} to={childItem.href}>
-                          {t(`menu.${childItem.labelKey}`)}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </>
-            )}
-          </li>
-        ))}
-      </ul>
-    </div>
+              <ul className={cx('navbarList')}>
+                {menu.map((menuItem) => (
+                  <li key={menuItem.href} className={cx('navbarItem')}>
+                    <Link className={cx('navbarLink')} to={menuItem.href}>
+                      {t(`menu.${menuItem.labelKey}`)}
+                    </Link>
+                    {menuItem.children && (
+                      <>
+                        <span>
+                          <IoMdArrowDropdown style={{ width: '1.5rem', height: '1.5rem' }} />
+                        </span>
+                        <div className={cx('menu')}>
+                          <ul>
+                            {menuItem.children.map((childItem) => (
+                              <li key={childItem.href} className={cx('menuItem')}>
+                                <Link className={cx('menuLink')} to={childItem.href}>
+                                  {t(`menu.${childItem.labelKey}`)}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </div>
       <div className={cx('header-mobile', 'flex items-center justify-between p-4 bg-white shadow-md lg:hidden')}>
-  <div className={cx('logo')}>
-    <a href="/">
-      <LogoIcon className={cx('icon')} />
-    </a>
-  </div>
-  
-  <div className={cx('buttonbar-mobile', 'flex items-center space-x-4')}>
-    <div className={cx('language', 'relative')}>
-      <button onClick={toggleLanguageMenu} className={cx('language-button', 'flex items-center space-x-2')}>
-        <img
-          src={currentLanguages === 'vi' ? languages[0].flag : languages[1].flag}
-          alt={`Current language: ${currentLanguages}`}
-          className={cx('flag-image', 'w-6 h-6 rounded-full')}
-        />
-        <IoMdArrowDropdown className="w-6 h-6" />
-      </button>
-      {languageMenuOpen && (
-        <ul className={cx('menu', 'absolute bg-white border rounded-md shadow-lg mt-2 w-48 p-2')}> {/* Thêm w-48 và p-2 */}
-          {languages.map((lang) => (
-            <li
-              key={lang.code}
-              className={cx('item', 'flex items-center p-2 hover:bg-gray-100 cursor-pointer')}
-              onClick={() => handleLanguageChange(lang.code)}
-            >
+        <div className={cx('logo')}>
+          <a href="/">
+            <LogoIcon className={cx('icon')} />
+          </a>
+        </div>
+
+        <div className={cx('buttonbar-mobile', 'flex items-center space-x-4')}>
+          <div className={cx('language', 'relative')}>
+            <button onClick={toggleLanguageMenu} className={cx('language-button', 'flex items-center space-x-2')}>
               <img
-                src={lang.flag}
-                alt={`${lang.name} flag`}
-                className={cx('flag-image', 'w-5 h-5 mr-2')}
+                src={currentLanguages === 'vi' ? languages[0].flag : languages[1].flag}
+                alt={`Current language: ${currentLanguages}`}
+                className={cx('flag-image', 'w-6 h-6 rounded-full')}
               />
-              {lang.name}
-            </li>
-          ))}
-        </ul>
-      )}
-
-    </div>
-    <div>
-      <Button className={cx('btn-menu', 'btn_headermobile')} onClick={toggleMobileMenu}>
-        <IoMdMenu className="w-6 h-6" />
-      </Button>
-    </div>
-  </div>
-</div>
-
-{mobileMenuOpen && (
-  <div className="fixed inset-0 z-50 bg-white shadow-lg overflow-y-auto">
-    <div className="p-4 border-b border-gray-200 flex justify-between items-center">
-      <div className="flex items-center">
-        <a href="/" className="text-lg font-bold">
-          <LogoIcon className={cx('icon')} />
-        </a>
+              <IoMdArrowDropdown className="w-6 h-6" />
+            </button>
+            {languageMenuOpen && (
+              <ul className={cx('menu', 'absolute bg-white border rounded-md shadow-lg mt-2 w-48 p-2')}>
+                {' '}
+                {/* Thêm w-48 và p-2 */}
+                {languages.map((lang) => (
+                  <li
+                    key={lang.code}
+                    className={cx('item', 'flex items-center p-2 hover:bg-gray-100 cursor-pointer')}
+                    onClick={() => handleLanguageChange(lang.code)}
+                  >
+                    <img src={lang.flag} alt={`${lang.name} flag`} className={cx('flag-image', 'w-5 h-5 mr-2')} />
+                    {lang.name}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+          <div>
+            <Button className={cx('btn-menu', 'btn_headermobile')} onClick={toggleMobileMenu}>
+              <IoMdMenu className="w-6 h-6" />
+            </Button>
+          </div>
+        </div>
       </div>
-      <div className="flex items-center space-x-4">
-        <button className="p-2 text-gray-600 hover:text-indigo-600">
-          <IoIosSearch className="h-6 w-6" />
-        </button>
-        <button className="p-2 text-gray-600 hover:text-indigo-600" onClick={toggleMobileMenu}>
-          <IoMdClose className="h-6 w-6" />
-        </button>
-      </div>
-    </div>
-    <div className="p-4 overflow-y-auto h-screen">
-      <div className="mb-4">
-        {/* <button className="w-full text-left px-4 py-2 bg-indigo-500 text-white rounded-lg flex items-center">
+
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-50 bg-white shadow-lg overflow-y-auto">
+          <div className="p-4 border-b border-gray-200 flex justify-between items-center">
+            <div className="flex items-center">
+              <a href="/" className="text-lg font-bold">
+                <LogoIcon className={cx('icon')} />
+              </a>
+            </div>
+            <div className="flex items-center space-x-4">
+              <button className="p-2 text-gray-600 hover:text-indigo-600">
+                <IoIosSearch className="h-6 w-6" />
+              </button>
+              <button className="p-2 text-gray-600 hover:text-indigo-600" onClick={toggleMobileMenu}>
+                <IoMdClose className="h-6 w-6" />
+              </button>
+            </div>
+          </div>
+          <div className="p-4 overflow-y-auto h-screen">
+            <div className="mb-4">
+              {/* <button className="w-full text-left px-4 py-2 bg-indigo-500 text-white rounded-lg flex items-center">
           <GoPerson className="mr-2" />
           {isLoggedIn ? shortName : t('header.account')}
         </button> */}
-        <div ref={btnLoginRef}>
+              <div ref={btnLoginRef}>
                 <Button
                   to={isLoggedIn ? '#' : '/check-phone'}
                   rounded
                   leftIcon={<IoPersonSharp style={{ width: '1.7rem', height: '1.7rem' }} />}
-                  className={cx('accountBtn', 'w-full text-left px-4 py-2 bg-indigo-500 text-white rounded-lg flex items-center')}
+                  className={cx(
+                    'accountBtn',
+                    'w-full text-left px-4 py-2 bg-indigo-500 text-white rounded-lg flex items-center',
+                  )}
                   onClick={handleShowModalProfile}
                 >
                   {/* {isLoggedIn && user.userData && `${user.userData.fullName}` ? shortName : t('header.account')}/ */}
-                   {t('header.account')}
+                  {t('header.account')}
                 </Button>
               </div>
-      </div>
-      <ul className="space-y-4">
-      {menu.map((menuItem) => (
-            <li key={menuItem.href}>
-              <div className="flex items-center justify-between">
-                <button 
-                  className="w-full text-left px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg flex items-center justify-between"
-                  onClick={() => menuItem.children && toggleSubmenu(menuItem.href)}
-                >
-                  <span className="flex items-center">
-                    {menuItem.icon && <menuItem.icon className="mr-2" />}
-                    <span>{t(`menu.${menuItem.labelKey}`)}</span>
-                  </span>
-                  {menuItem.children && (
-                    openSubmenus[menuItem.href] ? 
-                      <IoIosArrowUp className="ml-2" /> : 
-                      <IoIosArrowDown className="ml-2" />
+            </div>
+            <ul className="space-y-4">
+              {menu.map((menuItem) => (
+                <li key={menuItem.href}>
+                  <div className="flex items-center justify-between">
+                    <button
+                      className="w-full text-left px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg flex items-center justify-between"
+                      onClick={() => menuItem.children && toggleSubmenu(menuItem.href)}
+                    >
+                      <span className="flex items-center">
+                        {menuItem.icon && <menuItem.icon className="mr-2" />}
+                        <span>{t(`menu.${menuItem.labelKey}`)}</span>
+                      </span>
+                      {menuItem.children &&
+                        (openSubmenus[menuItem.href] ? (
+                          <IoIosArrowUp className="ml-2" />
+                        ) : (
+                          <IoIosArrowDown className="ml-2" />
+                        ))}
+                    </button>
+                  </div>
+                  {menuItem.children && openSubmenus[menuItem.href] && (
+                    <ul className="pl-6 mt-2 space-y-2">
+                      {menuItem.children.map((childItem) => (
+                        <li key={childItem.href}>
+                          <Link
+                            to={childItem.href}
+                            className="block px-4 py-2 text-gray-700 hover:bg-indigo-500 hover:text-white rounded-lg"
+                          >
+                            {t(`menu.${childItem.labelKey}`)}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
                   )}
-                </button>
-              </div>
-              {menuItem.children && openSubmenus[menuItem.href] && (
-                <ul className="pl-6 mt-2 space-y-2">
-                  {menuItem.children.map((childItem) => (
-                    <li key={childItem.href}>
-                      <Link
-                        to={childItem.href}
-                        className="block px-4 py-2 text-gray-700 hover:bg-indigo-500 hover:text-white rounded-lg"
-                      >
-                        {t(`menu.${childItem.labelKey}`)}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </li>
-          ))}
-      </ul>
-    </div>
-  </div>
-)}
-
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

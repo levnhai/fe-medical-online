@@ -131,5 +131,39 @@
   },
   "doctor": {
     "featured_doctor": "Bác sĩ nổi bật tuần qua"
+  },
+  "about":{
+    "about_title": "Chào mừng bạn đến với",
+    "about_name": "CÔNG TY CỔ PHẦN ỨNG DỤNG PKH",
+    "about": "Giới thiệu về PKH",
+    "option": [
+      "Đăng ký chọn ngày,",
+      "giờ khám bệnh",
+      "Thanh toán chi phí",
+      "không dùng tiền mặt",
+      "Quản lý thông tin",
+      "khám bệnh và tái khám",
+      "Quản lý cuộc hẹn ",
+      "dữ liệu của người bệnh"
+    ],
+    "vision":"Tầm nhìn",
+    "vision_description": "PKH trở thành công ty cung cấp giải pháp công nghệ hàng đầu tại Việt Nam và khu vực Đông Nam Á giúp kết nối các dịch vụ y tế đến rộng rãi người dân, mang lại hiệu quả đột phá cho đơn vị y tế, cũng như những trải nghiệm tiện nghi, hài lòng cho bệnh nhân trong khám chữa bệnh và chăm sóc sức khỏe cá nhân.",
+    "mission": "Sứ mệnh",
+    "mission_description":"PKH cung cấp nền tảng Medpro - giải pháp tiếp cận y tế thông minh mang đến cho người dùng những phương thức chăm sóc sức khỏe mới, ở bất cứ không gian - thời gian nào thông qua nền tảng trực tuyến  tương tác cao, kết nối với các cơ sở y tế hàng đầu cùng đội ngũ chuyên gia y tế đông đảo, tận tình, giàu kinh nghiệm.",
+    "about_description": "Ứng dụng này giúp người bệnh và thân nhân người bệnh có thể thực hiện trực tuyến quá trình đăng ký khám bệnh tại bệnh viện ở mọi lúc mọi nơi mà không cần tới bệnh viện.",
+    "product_service": "Triết lý sản phẩm - dịch vụ",
+    "product_service_description": "Với triết lý người dùng làm trung tâm, giải pháp Medpro được thiết kế mang trải nghiệm tốt nhất cho người dùng thông qua việc sử dụng các tài nguyên và đặc điểm nhiều công nghệ số",
+    "app_option": [
+      "Vì sức khỏe cộng đồng",
+      "Mục đích chăm sóc sức khỏe là mang lại cho mỗi người lối sống lành mạnh, sức khỏe tốt",
+      "Rộng mở",
+      "Mọi người đều có quyền bình đẳng về tiếp cận dịch vụ chăm sóc sức khỏe",
+      "Thực hiện",
+      "Người dùng được tiếp cận với các dịch vụ chăm sóc sức khỏe phù hợp",
+      "Hợp tác",
+      "Trong tiến trinh chuyển đổi số hiện nay các CSYT cần hợp tác, mở rộng dịch vụ tiện ích phục vụ người dùng"
+    ],
+    "hospital": "Các bệnh viện tiêu biểu",
+    "hotline" : "CÁC HÌNH THỨC HỖ TRỢ"
   }
 }

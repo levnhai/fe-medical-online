@@ -425,9 +425,10 @@ function Header() {
                     </button>
                   </div>
                   {menuItem.children && openSubmenus[menuItem.href] && (
-                    <ul className="pl-6 mt-2 space-y-2">
+                    <ul className="pl-6 mt-2 space-y-2" >
+                      
                       {menuItem.children.map((childItem) => (
-                        <li key={childItem.href}>
+                        <li key={childItem.href} onClick={toggleMobileMenu}>
                           <Link
                             to={childItem.href}
                             className="block px-4 py-2 text-gray-700 hover:bg-indigo-500 hover:text-white rounded-lg"

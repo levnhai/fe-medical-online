@@ -2,10 +2,14 @@ import classNames from 'classnames/bind';
 
 import style from './support.module.scss';
 import { PhoneIcon } from '~/components/Icon';
+import { useTranslation } from 'react-i18next';
+
+import '~/translation/i18n';
 
 const cx = classNames.bind(style);
 
 function Support() {
+  const { t } = useTranslation();
   return (
     <div className={cx('support')}>
       <div className={cx('support_image')}></div>
@@ -16,7 +20,7 @@ function Support() {
             <PhoneIcon />
           </div>
           <div>
-            <div className={cx('support_infoTitle')}>CÁC HÌNH THỨC HỖ TRỢ</div>
+            <div className={cx('support_infoTitle')}>{t('about.hotline')}</div>
             <div className={cx('support_infoPhone')}>1900-2115</div>
           </div>
         </div>

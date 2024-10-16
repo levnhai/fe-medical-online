@@ -1,6 +1,9 @@
 .about {
   width: 100vw;
   background: var(--white-color);
+  @media (max-width: 1024px) {
+    margin-top: -100px;
+  }
 }
 
 .bannerWrapper {

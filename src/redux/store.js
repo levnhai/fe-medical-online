@@ -9,7 +9,7 @@ import { encryptTransform } from 'redux-persist-transform-encrypt';
 const persistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['isLoggedIn', 'user'],
+  whitelist: ['isLoggedIn', 'user', 'phoneNumber'],
   transforms: [encryptTransform({ secretKey: 'lvhai-16072002' })],
 };
 

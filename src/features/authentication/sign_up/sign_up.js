@@ -13,12 +13,16 @@ import Button from '~/components/Button';
 import Auth from '../auth';
 import { Input } from '~/components/input/input';
 import { password_validation, name_validation } from '~/utils/inputValidations';
+import { useTranslation } from 'react-i18next';
 
+import '~/translation/i18n';
 import styles from './sign_up.module.scss';
 import classNames from 'classnames/bind';
+
 const cx = classNames.bind(styles);
 
 function SingUp() {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const methods = useForm();
@@ -58,7 +62,7 @@ function SingUp() {
       <Auth>
         <div className={cx('register-body')}>
           <div className={cx('register-form_content')}>
-            <div className={cx('content-title_section')}>Vui lòng nhập đầy đủ thông tin</div>
+            <div className={cx('content-title_section')}>{t('register.title')}</div>
             <div className={cx('wrapper-input')}>
               <FormProvider {...methods}>
                 <form onSubmit={(e) => e.preventDefault()} noValidate className="container">
@@ -117,19 +121,19 @@ function SingUp() {
                 </form>
               </FormProvider>
               <p className={cx('customFont')}>
-                Bằng việc đăng ký, bạn đã đồng ý với Medpro về
+              {t('register.des')}
                 <br />
                 <a href="https://medpro.vn/quy-dinh-su-dung" target="_blank" rel="noreferrer">
-                  Quy định sử dụng
+                {t('register.des1')}
                 </a>
-                &nbsp; và &nbsp;
+                &nbsp; {t('register.and')} &nbsp;
                 <a href="https://medpro.vn/chinh-sach-bao-mat" target="_blank" rel="noreferrer">
-                  chính sách bảo mật
+                {t('register.des2')}
                 </a>
               </p>
               <div>
                 <Button type="submit" onClick={handleSubmitCreateUser} className={cx('register-btn')}>
-                  Hoàn tất đăng kí
+                  {t('register.comlate')}
                 </Button>
               </div>
             </div>

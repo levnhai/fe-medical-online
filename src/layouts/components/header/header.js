@@ -67,7 +67,12 @@ function Header() {
       setShowModal(!showModal);
     }
   };
-
+  const handleLogout = () => {
+    dispatch(logoutUser());
+    setShowModal(false);
+    setMobileMenuOpen(false);
+    toast.success(t('header.logout_success'));
+  };
   // handle onchange language
   const handleLanguageChange = (language) => {
     i18n.changeLanguage(language);
@@ -324,15 +329,15 @@ function Header() {
         </div>
       </div>
       <div className={cx('header-mobile', 'flex items-center justify-between p-4 bg-white shadow-md lg:hidden')}>
-        <div className={cx('logo')}>
+        <div className={cx('logo','w-5 h-5')}>
           <a href="/">
-            <LogoIcon className={cx('icon')} />
+          <img src={require('~/assets/images/logo.png')}/>
           </a>
         </div>
 
-        <div className={cx('buttonbar-mobile', 'flex items-center space-x-4')}>
+        <div className={cx('buttonbar-mobile', 'flex items-center space-x-0')}>
           <div className={cx('language', 'relative')}>
-            <button onClick={toggleLanguageMenu} className={cx('language-button', 'flex items-center space-x-2')}>
+            <button onClick={toggleLanguageMenu} className={cx('language-button', 'flex items-center space-x-0')}>
               <img
                 src={currentLanguages === 'vi' ? languages[0].flag : languages[1].flag}
                 alt={`Current language: ${currentLanguages}`}
@@ -357,9 +362,9 @@ function Header() {
               </ul>
             )}
           </div>
-          <div>
+          <div style={{ marginRight: '-22px', marginLeft: '-22px' }}>
             <Button className={cx('btn-menu', 'btn_headermobile')} onClick={toggleMobileMenu}>
-              <IoMdMenu className="w-6 h-6" />
+              <IoMdMenu className="w-12 h-12" />
             </Button>
           </div>
         </div>
@@ -368,17 +373,17 @@ function Header() {
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-50 bg-white shadow-lg overflow-y-auto">
           <div className="p-4 border-b border-gray-200 flex justify-between items-center">
-            <div className="flex items-center">
+          <div className={cx('logo','w-5 h-5')}>
               <a href="/" className="text-lg font-bold">
-                <LogoIcon className={cx('icon')} />
+              <img src={require('~/assets/images/logo.png')}/>
               </a>
             </div>
             <div className="flex items-center space-x-4">
               <button className="p-2 text-gray-600 hover:text-indigo-600">
-                <IoIosSearch className="h-6 w-6" />
+                <IoIosSearch className="h-10 w-10" />
               </button>
               <button className="p-2 text-gray-600 hover:text-indigo-600" onClick={toggleMobileMenu}>
-                <IoMdClose className="h-6 w-6" />
+                <IoMdClose className="h-12 w-12" />
               </button>
             </div>
           </div>
@@ -389,19 +394,18 @@ function Header() {
           {isLoggedIn ? shortName : t('header.account')}
         </button> */}
               <div ref={btnLoginRef}>
-                <Button
-                  to={isLoggedIn ? '#' : '/check-phone'}
-                  rounded
-                  leftIcon={<IoPersonSharp style={{ width: '1.7rem', height: '1.7rem' }} />}
-                  className={cx(
-                    'accountBtn',
-                    'w-full text-left px-4 py-2 bg-indigo-500 text-white rounded-lg flex items-center',
-                  )}
-                  onClick={handleShowModalProfile}
-                >
-                  {/* {isLoggedIn && user.userData && `${user.userData.fullName}` ? shortName : t('header.account')}/ */}
-                  {t('header.account')}
-                </Button>
+              <Button
+            to={isLoggedIn ? '#' : '/check-phone'}
+            rounded
+            leftIcon={<IoPersonSharp style={{ width: '1.7rem', height: '1.7rem' }} />}
+            className={cx(
+              'accountBtn',
+              'w-full text-left px-4 py-2 bg-indigo-500 text-white rounded-lg flex items-center',
+            )}
+            onClick={handleShowModalProfile}
+          >
+            {isLoggedIn ? `${user.user.fullName}` : t('header.account')}
+          </Button>
               </div>
             </div>
             <ul className="space-y-4">
@@ -442,6 +446,17 @@ function Header() {
                 </li>
               ))}
             </ul>
+            {isLoggedIn && (
+          <div className="mt-4">
+            <button
+              onClick={handleLogout}
+              className="w-full text-left px-4 py-2 bg-red-500 text-white rounded-lg flex items-center"
+            >
+              <i className="fa-solid fa-right-from-bracket mr-2"></i>
+              {t('header.logout')}
+            </button>
+          </div>
+        )}
           </div>
         </div>
       )}

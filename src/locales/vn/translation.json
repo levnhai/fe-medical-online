@@ -165,5 +165,41 @@
     ],
     "hospital": "Các bệnh viện tiêu biểu",
     "hotline" : "CÁC HÌNH THỨC HỖ TRỢ"
+  },
+  "check-phone":{
+    "title": "Vui lòng nhập số điện thoại để tiếp tục",
+    "login_title": "Đăng nhập bằng tài khoản",
+    "btn_gg_login": "Đăng nhập với Google",
+    "btn_fb_login": "Đăng nhập với Facebook",
+    "continu": "Tiếp tục"
+  },
+  "login":{
+    "title": "Vui lòng đăng nhập để tiếp tục",
+    "fogot_pas": "Quên mật khẩu"
+  },
+  "register":{
+    "title": "Vui lòng nhập thông tin để tiếp tục",
+    "des": " Bằng việc đăng ký, bạn đã đồng ý với Medpro về",
+    "des1": "Quy định sử dụng",
+    "and": "và",
+    "des2": "chính sách bảo mật",
+    "comlate":"Hoàn tất đăng kí"
+  },
+  "forgot":{
+    
+  },
+  "opt":{
+    "title": "XIN CHÀO!",
+    "fogot_pas": "Vui lòng nhập mã 6 số đã gửi cho bạn qua số điện thoại.",
+    "auth": "Xác thực",
+    "not_get": " Bạn không nhận được mã xác nhận?",
+    "if_you": "Nếu bạn không nhận được mã:",
+    "auth_phone": "Xác minh số điện thoại của bạn:",
+    "sms": "Kiểm tra hộp thư SMS của bạn",
+    "resend": "Gửi lại mã xác nhận",
+    "not_phone": "Đây không phải là số điện thoại của tôi"
+  },
+  "validation":{
+    "name": "Vui lòng nhập tên của bạn..."
   }
 }

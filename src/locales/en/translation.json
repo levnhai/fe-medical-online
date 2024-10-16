@@ -166,5 +166,38 @@
     ],
     "hospital": "Prominent Hospitals",
     "hotline": "SUPPORT METHODS"
+  },
+  "check-phone": {
+  "title": "Please enter your phone number to continue",
+  "login_title": "Log in with your account",
+  "btn_gg_login": "Log in with Google",
+  "btn_fb_login": "Log in with Facebook",
+  "continu": "Continue"
+},
+"login":{
+    "title": "Please login to continue",
+    "fogot_pas": "Forgot Password"
+  },
+  "register":{
+"title": "Please enter information to continue",
+"des": "By registering, you agree to Medpro's terms of use",
+"des1": "Terms of Use",
+"and": "and",
+"des2": "privacy policy",
+"comlate":"Complete registration"
+},
+  "opt": {
+    "title": "HELLO!",
+    "fogot_pas": "Please enter the 6-digit code sent to you via phone.",
+    "auth": "Authenticate",
+    "not_get": " Didn't receive the confirmation code?",
+    "if_you": "If you didn't receive the code:",
+    "auth_phone": "Verify your phone number:",
+    "sms": "Check your SMS inbox",
+    "resend": "Resend the confirmation code",
+    "not_phone": "This is not my phone number"
+},
+  "validation":{
+    "name": "Please enter your name..."
   }
 }

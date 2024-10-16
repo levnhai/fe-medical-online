@@ -200,22 +200,23 @@ function HealthServices() {
       </Slider>
       </div>
       {/* Mobile Grid */}
-      <div className="w-full sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto bg-white rounded-lg shadow-md overflow-hidden md:hidden">
-        <div className="grid grid-cols-4 gap-1 p-2">
-        {services.map((service, index) => (
-          <div key={index} className="flex flex-col items-center justify-center p-1">
-            <img
-              src={service.img}
-              alt={t(`services.${service.text}`)}
-              className="w-10 h-10 object-contain mb-1"
-            />
-            <span className="text-center text-[9px] leading-tight">
-              {t(`services.${service.text}`)}
-            </span>
-          </div>
-        ))}
-        </div>
+<div className="w-full sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto bg-white rounded-lg shadow-md overflow-hidden md:hidden">
+  <div className="grid grid-cols-4 gap-1 p-2">
+    {services.map((service, index) => (
+      <div key={index} className="flex flex-col items-center justify-between p-1 h-full"> {/* Thiết lập chiều cao đầy đủ */}
+        <img
+          src={service.img}
+          alt={t(`services.${service.text}`)}
+          className="w-10 h-10 object-contain mb-1"
+        />
+        <span className="text-center text-[9px] leading-tight flex-grow"> {/* flex-grow để phần tử chữ có thể mở rộng */}
+          {t(`services.${service.text}`)}
+        </span>
       </div>
+    ))}
+  </div>
+</div>
+
     </div>
   );
 }

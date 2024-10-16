@@ -5,7 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { FormProvider, useForm } from 'react-hook-form';
 import { unwrapResult } from '@reduxjs/toolkit';
+import { useTranslation } from 'react-i18next';
 
+import '~/translation/i18n';
 // icon
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 
@@ -20,6 +22,7 @@ import Auth from '../auth';
 const cx = classNames.bind(style);
 
 function SingIn() {
+  const { t } = useTranslation();
   const phoneNumber = useSelector((state) => state.auth.phoneNumber);
 
   const methods = useForm();
@@ -61,7 +64,7 @@ function SingIn() {
     <>
       <Auth>
         <div className={cx('login-wrapper')}>
-          <p className={cx('text-center')}>Vui lòng đăng nhập để tiếp tục</p>
+          <p className={cx('text-center')}>{t('login.title')}</p>
           <div className={cx('wrapper-input')}>
             <div className={cx('tel-input')}>
               <input onDoubleClick={null} className={cx('form-control')} value={phoneNumber} disabled />
@@ -100,7 +103,7 @@ function SingIn() {
               handleLogin();
             }}
           >
-            Tiếp tục
+            {t('check-phone.continu')}
           </Button>
           <div className={cx('text-right')}>
             <p
@@ -110,7 +113,7 @@ function SingIn() {
               }}
               className={cx('forgot-password')}
             >
-              Quên mật khẩu ?
+             {t('login.fogot_pas')}
             </p>
           </div>
         </div>

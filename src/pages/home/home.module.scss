@@ -1,6 +1,9 @@
 .home {
   width: 100vw;
   background: #e8f2f7;
+  @media (max-width: 1024px) {
+    margin-top: -100px;
+  }
 }
 
 .home_header {
@@ -104,6 +107,7 @@
 }
 .info_header_title {
   min-width: 440px;
+
 }
 .info_header_text {
   background: linear-gradient(83.63deg, var(--blue-color) 33.34%, #00e0ff 113.91%);
@@ -183,17 +187,50 @@
 .cardTitle_title {
   width: 100%;
   font-weight: 600;
-  font-size: 25px;
+  font-size: 25px; /* Kích thước mặc định */
   padding: 24px 0px 12px;
   line-height: 29px;
 }
+
 .cardTitle_des {
   margin-bottom: 24px;
   color: #858585;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 16px; /* Kích thước mặc định */
   line-height: 19px;
 }
+
+/* Media queries cho màn hình nhỏ */
+@media (max-width: 767px) {
+  .info_header_text{
+    font-size: 40px; /* Giảm kích thước cho màn hình nhỏ */
+    line-height: 44px; /* Cập nhật line-height */
+  }
+  .info_header_tag {
+    font-size: 24px; /* Giảm kích thước cho màn hình nhỏ */
+    line-height: 27px; /* Cập nhật line-height */
+  }
+  .info_header_des {
+    font-size: 20px; /* Giảm kích thước cho màn hình nhỏ */
+    line-height: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .info_header_text{
+    font-size: 28px; /* Giảm thêm cho màn hình nhỏ hơn */
+    line-height: 32px; /* Cập nhật line-height */
+  }
+  .info_header_tag {
+    font-size: 24px; /* Giảm kích thước cho màn hình nhỏ */
+    line-height: 27px; /* Cập nhật line-height */
+  }
+  .info_header_des {
+    font-size: 15px; /* Giảm kích thước cho màn hình nhỏ */
+    line-height: 17px;
+  }
+}
+
 .cardTitle_btn {
   width: 100%;
   color: var(--blue-color);
@@ -323,11 +360,17 @@
   font-size: 39px;
   line-height: 48px;
   font-weight: 700;
+  @media (max-width : 768px) {
+    font-size: 29px;
+  }
 }
 .bookingInfo_des {
   margin-top: 8px;
   font-size: 20px;
   font-weight: 500;
+  @media (max-width : 768px) {
+    font-size: 15px;
+  }
 }
 .bookingInfo_btn {
   margin-top: 30px;
@@ -361,6 +404,9 @@
   line-height: 46px;
   color: #12263f;
   font-family: Montserrat, sans-serif !important;
+  @media (max-width : 768px) {
+    font-size: 29px;  
+  }
 }
 
 .download_title span {
@@ -486,6 +532,9 @@
   font-weight: 700;
   font-size: 39px;
   line-height: 48px;
+  @media (max-width : 768px) {
+    font-size: 29px;
+  }
 }
 
 .home_media span {
@@ -494,6 +543,9 @@
   font-size: 20px;
   line-height: 23px;
   font-family: Roboto, sans-serif !important;
+  @media (max-width : 768px) {
+    font-size: 15px;
+  }
 }
 .media_listLogo {
   margin-top: 50px;
@@ -508,17 +560,70 @@
   height: 52px;
   padding: 0px 30px;
 }
+.media_listLogo {
+  margin-top: 50px;
+  padding: 0 36px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  row-gap: 40px;
+}
+
+@media (max-width: 768px) {
+  .media_listLogo {
+    width: 100%; /* Có thể để 100% để các logo chiếm toàn bộ chiều rộng */
+    justify-content: center; /* Căn giữa logo trong màn hình nhỏ hơn */
+  }
+
+  .media_logo {
+    height: 40px; /* Giảm chiều cao cho logo trên màn hình nhỏ */
+    padding: 0 20px; /* Giảm padding nếu cần */
+  }
+}
 
 .media_video {
   margin-top: 60px;
   border-radius: 20px;
   width: 100%;
+  
   iframe {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .media_video {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 992px) {
+  .media_video {
+    width: 90%;
+    margin-top: 50px;
+    border-radius: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .media_video {
+    width: 95%;
+    margin-top: 40px;
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .media_video {
+    width: 100%;
+    margin-top: 30px;
+    border-radius: 5px;
   }
 }
 .home_news {

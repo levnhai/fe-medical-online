@@ -4,6 +4,9 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from 'react-redux';
 import { unwrapResult } from '@reduxjs/toolkit';
+import { useTranslation } from 'react-i18next';
+
+import '~/translation/i18n';
 
 // icon
 import { FaAngleDown, FaAngleRight } from 'react-icons/fa';
@@ -18,6 +21,7 @@ import style from './otp_input.module.scss';
 const cx = classNames.bind(style);
 
 function OtpInput() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
@@ -96,10 +100,10 @@ function OtpInput() {
 
   return (
     <Auth>
-      <div className={cx('wrapper-otp')}>
+      <div className={cx('wrapper-otp', 'container mx-auto w-full px-4 md:px-6 lg:px-8 overflow-x-hidden')}>
         <div className={cx('otp-content')}>
-          <h4 className={cx('tag-header')}>XIN CHÀO!</h4>
-          <p className={cx('customFotnSize')}>Vui lòng nhập mã 6 số đã gửi cho bạn qua số điện thoại.</p>
+          <h4 className={cx('tag-header')}>{t('opt.title')}</h4>
+          <p className={cx('customFotnSize')}>{t('opt.fogot_pas')}</p>
           <div className={cx('tel-input')}>
             <input className={cx('form-control', 'disable-form')} value={phoneNumber} disabled />
             <div className={cx('selected-flag')}>
@@ -140,7 +144,7 @@ function OtpInput() {
               handleverifyOtp();
             }}
           >
-            Xác thực
+            {t('opt.auth')}
           </Button>
 
           <div className={cx('card')}>
@@ -152,20 +156,20 @@ function OtpInput() {
                 className={cx('resendCode')}
               >
                 {showAccordion ? <FaAngleDown /> : <FaAngleRight />}
-                Bạn không nhận được mã xác nhận?
+                {t('opt.not_get')}
               </div>
             </div>
             {showAccordion && (
               <div className={cx('collapse')}>
                 <div className={cx('wrapper--collapse__content')}>
-                  <p className={cx('collapse--title')}>Nếu bạn không nhận được mã: </p>
+                  <p className={cx('collapse--title')}>{t('opt.if_you')} </p>
                   <p className={cx('collapse--des')}>
                     <i className="fa-solid fa-mobile-screen-button"></i>
-                    Xác minh số điện thoại của bạn: <strong>{phoneNumber}</strong>
+                    {t('opt.auth_phone')} <strong>{phoneNumber}</strong>
                   </p>
                   <p className={cx('collapse--des')}>
                     <i className="fa-solid fa-comment-sms"></i>
-                    Kiểm tra hộp thư SMS của bạn
+                    {t('opt.sms')}
                   </p>
                   <div>
                     <Button
@@ -174,10 +178,10 @@ function OtpInput() {
                         dispatch(fetchOtpInput(phoneNumber));
                       }}
                     >
-                      Gửi lại mã xác nhận
+                     {t('opt.resend')}
                     </Button>
                     <Button className={cx('collapseBtn')} to={'/check-phone'}>
-                      Đây không phải là số điện thoại của tôi
+                    {t('opt.not_phone')}
                     </Button>
                   </div>
                 </div>

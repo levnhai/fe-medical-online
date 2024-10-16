@@ -81,3 +81,64 @@
   font-size: 14px;
   cursor: pointer;
 }
+/* Responsive for smaller screens */
+@media (max-width: 768px) {
+  .login-wrapper {
+    max-width: 350px; /* Giảm chiều rộng khung */
+    padding: 8px 20px; /* Điều chỉnh padding */
+  }
+
+  .tel-input .form-control {
+    font-size: 13px; /* Nhỏ hơn một chút */
+    padding-left: 40px; /* Điều chỉnh khoảng cách bên trong */
+  }
+
+  .passwordIcon {
+    font-size: 18px; /* Giảm kích thước icon */
+  }
+
+  .loginBtn {
+    height: 45px; /* Giảm chiều cao nút đăng nhập */
+    font-size: 14px; /* Giảm kích thước chữ trên nút */
+  }
+
+  .text-center {
+    font-size: 14px; /* Giảm kích thước chữ tiêu đề */
+  }
+
+  .forgot-password {
+    font-size: 12px; /* Giảm kích thước chữ "quên mật khẩu" */
+  }
+}
+
+@media (max-width: 480px) {
+  .login-wrapper {
+    max-width: 300px; /* Giảm hơn nữa cho màn hình rất nhỏ */
+  }
+
+  .tel-input {
+    height: 45px; /* Điều chỉnh chiều cao input */
+  }
+
+  .tel-input .form-control {
+    font-size: 12px; /* Font chữ nhỏ hơn cho input */
+    padding-left: 35px;
+  }
+
+  .loginBtn {
+    height: 40px; /* Giảm chiều cao nút đăng nhập */
+    font-size: 13px; /* Giảm kích thước chữ */
+  }
+
+  .passwordIcon {
+    font-size: 16px; /* Giảm kích thước icon */
+  }
+
+  .text-center {
+    font-size: 13px; /* Giảm kích thước chữ cho màn hình nhỏ hơn */
+  }
+
+  .forgot-password {
+    font-size: 11px; /* Chữ nhỏ hơn cho "quên mật khẩu" */
+  }
+}

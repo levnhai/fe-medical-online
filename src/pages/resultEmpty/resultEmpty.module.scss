@@ -1,0 +1,25 @@
+.empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  width: 100%;
+  gap: 50px;
+}
+
+.title {
+  color: #ffb54a;
+  font-size: 25px;
+  font-weight: 600;
+  line-height: normal;
+  margin-top: 45px;
+}
+
+.image {
+  background-image: url('../../assets/images/Empty.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 200px;
+  height: 200px;
+}

@@ -11,10 +11,18 @@ import OtpInput from '~/features/authentication/otp-input';
 import SingUp from '~/features/authentication/sign_up';
 import ForgotPassword from '~/features/authentication/forgot_password';
 import About from '~/pages/about';
+import News from '~/pages/news';
+import NewsService from '~/pages/news/news_service';
+import NewsMedical from '~/pages/news/news_medical';
+import NewsKnowlage from '~/pages/news/news_knowlage';
 
 const publicRoutes = [
   { path: config.routers.home, component: Home },
   { path: config.routers.about, component: About },
+  { path: config.routers.news, component: News },
+  { path: config.routers.newsService, component: NewsService },
+  { path: config.routers.newsMedical, component: NewsMedical },
+  { path: config.routers.newsKnowlage, component: NewsKnowlage },
 
   // layout header only
   { path: config.routers.checkPhone, component: CheckPhone, layout: HeaderOnly },

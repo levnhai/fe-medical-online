@@ -17,6 +17,7 @@ import NewsKnowlage from '~/pages/news/news_knowlage';
 // guide
 // import Question from '~/pages/guide/question';
 import Refunds from '~/pages/guide/refunds';
+import DownApp from '~/pages/guide/downApp';
 
 // page
 import Home from '~/pages/home';
@@ -35,6 +36,7 @@ const publicRoutes = [
   // guide
   // { path: config.routers.question, component: Question },
   { path: config.routers.refunds, component: Refunds },
+  { path: config.routers.downLoadApp, component: DownApp },
 
   // layout header only
   { path: config.routers.checkPhone, component: CheckPhone, layout: HeaderOnly },

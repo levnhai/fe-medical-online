@@ -9,6 +9,9 @@ const cx = classNames.bind(style);
 
 function Header({ title, des }) {
   const location = useLocation();
+  const isActive = (path) => {
+    return location.path === path;
+  };
 
   const path = location.pathname;
   console.log('check path', path);
@@ -28,9 +31,15 @@ function Header({ title, des }) {
       </div>
       <div className={cx('btnGroup')}>
         {menus &&
-          menus.map((item) => {
+          menus.map((item, index) => {
             return (
-              <Button key={item.href} className={cx('giude_btn')} rounded to={item.href} end>
+              <Button
+                key={index}
+                className={isActive(item.href) ? cx('guide_btn', 'active') : cx('giude_btn')}
+                rounded
+                to={item.href}
+                end
+              >
                 {item.title}
               </Button>
             );
@@ -39,5 +48,6 @@ function Header({ title, des }) {
     </div>
   );
 }
+//className={cx('giude_btn')}
 
 export default Header;

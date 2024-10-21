@@ -9,6 +9,10 @@ import SingIn from '~/features/authentication/sign_in';
 import OtpInput from '~/features/authentication/otp-input';
 import SingUp from '~/features/authentication/sign_up';
 import ForgotPassword from '~/features/authentication/forgot_password';
+import News from '~/pages/news';
+import NewsService from '~/pages/news/news_service';
+import NewsMedical from '~/pages/news/news_medical';
+import NewsKnowlage from '~/pages/news/news_knowlage';
 
 // guide
 // import Question from '~/pages/guide/question';
@@ -17,10 +21,20 @@ import Refunds from '~/pages/guide/refunds';
 // page
 import Home from '~/pages/home';
 import About from '~/pages/about';
+import Facilitie from '~/pages/facilitie';
 
 const publicRoutes = [
   { path: config.routers.home, component: Home },
   { path: config.routers.about, component: About },
+  { path: config.routers.news, component: News },
+  { path: config.routers.newsService, component: NewsService },
+  { path: config.routers.newsMedical, component: NewsMedical },
+  { path: config.routers.newsKnowlage, component: NewsKnowlage },
+  { path: config.routers.facilitie, component: Facilitie },
+
+  // guide
+  // { path: config.routers.question, component: Question },
+  { path: config.routers.refunds, component: Refunds },
 
   // layout header only
   { path: config.routers.checkPhone, component: CheckPhone, layout: HeaderOnly },

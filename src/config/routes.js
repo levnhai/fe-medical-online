@@ -7,5 +7,12 @@ const routes = {
   singIn: '/login',
   singUp: '/register-account',
   newPassword: '/new-password',
+  facilitie: '/co-so-y-te',
+
+  // guide
+  question: '/huong-dan/cau-hoi-thuong-gap',
+  downLoadApp: '/huong-dan/cai-dat-ung-dung',
+  appointment: '/huong-dan/dat-lich-kham',
+  refunds: '/huong-dan/quy-trinh-hoan-phi',
 };
 export default routes;

@@ -21,7 +21,7 @@ import Refunds from '~/pages/guide/refunds';
 // page
 import Home from '~/pages/home';
 import About from '~/pages/about';
-import Facilitie from '~/pages/facilitie';
+// import Facilitie from '~/pages/facilitie';
 
 const publicRoutes = [
   { path: config.routers.home, component: Home },
@@ -30,7 +30,7 @@ const publicRoutes = [
   { path: config.routers.newsService, component: NewsService },
   { path: config.routers.newsMedical, component: NewsMedical },
   { path: config.routers.newsKnowlage, component: NewsKnowlage },
-  { path: config.routers.facilitie, component: Facilitie },
+  // { path: config.routers.facilitie, component: Facilitie },
 
   // guide
   // { path: config.routers.question, component: Question },

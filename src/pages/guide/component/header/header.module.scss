@@ -18,7 +18,7 @@
       font-family: Montserrat, sans-serif !important;
     }
 
-    .des {
+    .description {
       font-weight: 400;
       font-size: 16px;
       line-height: 19px;
@@ -30,25 +30,101 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
     padding: 24px;
 
-    .giude_btn {
-      padding: 10px 16px;
+    &.slider,
+    &.three,
+    &.two,
+    &.one {
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+      padding: 24px 16px;
+      justify-content: flex-start;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .guide_btn {
+      padding: 10px 20px;
       background: #ebf9fd;
       border-radius: 50px;
       color: #11a2f3;
       font-weight: 500;
-      font-size: 20px;
-      line-height: 23px;
+      font-size: 16px;
+      line-height: 20px;
       cursor: pointer;
       border: none;
       outline: none;
+      white-space: nowrap;
+      display: inline-block;
+      text-align: center;
+
+      &.active {
+        background: linear-gradient(84.69deg, var(--blue-color) 33.56%, #00e0ff 111.25%);
+        color: #fff;
+      }
+    }
+  }
+}
+
+@media (max-width: 1023px) {
+  .guide_header {
+    .content {
+      .title {
+        font-size: 32px;
+        line-height: 40px;
+      }
     }
 
-    .active {
-      background: linear-gradient(84.69deg, var(--blue-color) 33.56%, #00e0ff 111.25%);
-      color: #fff;
+    .btnGroup {
+      .guide_btn {
+        font-size: 14px;
+        padding: 8px 16px;
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .guide_header {
+    .btnGroup {
+      &.three {
+        .guide_btn {
+          flex: 0 0 auto;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 424px) {
+  .guide_header {
+    .btnGroup {
+      &.two {
+        .guide_btn {
+          flex: 0 0 auto;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 319px) {
+  .guide_header {
+    .btnGroup {
+      &.one {
+        .guide_btn {
+          flex: 0 0 auto;
+        }
+      }
     }
   }
 }

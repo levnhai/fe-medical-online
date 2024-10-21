@@ -199,5 +199,34 @@
 },
   "validation":{
     "name": "Please enter your name..."
+  },
+  "guide":{
+    "set_app": "Install the app",
+    "appointment": "Make an appointment",
+    "refund_process": "Refund process",
+    "faq" : "Frequently Asked Questions"
+  },
+  "refund_process": {
+    "header": {
+      "title": "Safe & Transparent Refund Process",
+      "description": "Details on how we ensure customer rights"
+    },
+    "conditions": {
+      "title": "CONDITIONS FOR A REFUND",
+      "item": "You can only receive a refund when successfully canceling a medical examination request on the software as per the requirements."
+    },
+    "steps": {
+      "title": "REFUND STEPS",
+      "item": "When you make a payment using any method, the software will refund you using the same method and for the exact amount previously paid."
+    },
+    "time": {
+      "title": "REFUND TIME",
+      "items": [
+        "Medical examination card: 1 - 30 working days.",
+        "Domestic ATM card: 1 - 30 working days.",
+        "VISA, MasterCard credit cards: 1 - 45 working days.",
+        "From the time you successfully cancel the medical examination request, if the above timeframe has passed and you have not received the refund, please contact our hotline at 1900 2115 for support."
+      ]
+    }
   }
 }

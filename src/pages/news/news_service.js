@@ -186,7 +186,7 @@ function NewsService() {
             <img src={item.imageUrl} alt={item.title} className="w-full h-auto" />
             <div className="p-2 bg-white transition-transform duration-300 transform hover:-translate-y-1">
               <span className="text-gray-500">{item.category?.name}</span>
-              <h3 className={cx('article_title', 'text-3xl')}>{item.title}</h3>
+              <h3 className={cx('article_title')}>{item.title}</h3>
               <p className={cx('article_content')}>{item.content}</p>
               <p className="text-sm text-gray-400 inline-flex">
                 <FaCalendarAlt />&nbsp;{new Date(item.createdAt).toLocaleDateString()}

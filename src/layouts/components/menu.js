@@ -20,11 +20,11 @@ export const menu = [
   },
   {
     labelKey: 'news',
-    href: '/tin-tuc',
+    href: '/news',
     children: [
-      { labelKey: 'service_news', href: '/tin-tuc/tin-dich-vu' },
-      { labelKey: 'medical_news', href: '/tin-tuc/tin-y-te' },
-      { labelKey: 'health_knowledge', href: '/tin-tuc/y-hoc-thuong-thuc' },
+      { labelKey: 'service_news', href: '/news/news-service' },
+      { labelKey: 'medical_news', href: '/news/news-medical' },
+      { labelKey: 'health_knowledge', href: '/news/news-knowlage' },
     ],
   },
   {

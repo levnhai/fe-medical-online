@@ -1,16 +1,12 @@
 import React, { useRef, useEffect, useState } from 'react';
-import React, { useRef, useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import { useLocation } from 'react-router-dom';
-import Button from '~/components/Button';
-import styles from './header.module.scss';
 import { useTranslation } from 'react-i18next';
-import '~/translation/i18n';
-import styles from './header.module.scss';
-import { useTranslation } from 'react-i18next';
-import '~/translation/i18n';
 
-const cx = classNames.bind(styles);
+import Button from '~/components/Button';
+import '~/translation/i18n';
+import styles from './header.module.scss';
+
 const cx = classNames.bind(styles);
 
 function Header({ title, des }) {
@@ -125,6 +121,7 @@ function Header({ title, des }) {
           </Button>
         ))}
       </div>
+    </div>
     </div>
   );
 }

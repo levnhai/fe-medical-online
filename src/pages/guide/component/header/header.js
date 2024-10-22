@@ -108,19 +108,7 @@ function Header({ title, des }) {
             {item.title}
           </Button>
         ))}
-      <div className={cx('btnGroup', sliderMode)} ref={sliderRef}>
-        {menus.map((item) => (
-          <Button
-            key={item.href}
-            className={cx('guide_btn', { active: item.href === path })}
-            rounded
-            to={item.href}
-            end
-          >
-            {item.title}
-          </Button>
-        ))}
-      </div>
+    
     </div>
     </div>
   );

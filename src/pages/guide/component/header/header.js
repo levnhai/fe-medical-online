@@ -2,8 +2,9 @@ import React, { useRef, useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import { useLocation } from 'react-router-dom';
 import Button from '~/components/Button';
-import styles from './header.module.scss';
 import { useTranslation } from 'react-i18next';
+import '~/translation/i18n';
+import styles from './header.module.scss';
 import '~/translation/i18n';
 
 const cx = classNames.bind(styles);
@@ -106,7 +107,20 @@ function Header({ title, des }) {
             {item.title}
           </Button>
         ))}
+      <div className={cx('btnGroup', sliderMode)} ref={sliderRef}>
+        {menus.map((item) => (
+          <Button
+            key={item.href}
+            className={cx('guide_btn', { active: item.href === path })}
+            rounded
+            to={item.href}
+            end
+          >
+            {item.title}
+          </Button>
+        ))}
       </div>
+    </div>
     </div>
   );
 }

@@ -8,16 +8,16 @@
 }
 
 .refunds_container {
-  width: 100%;
-  margin: 40px 0px;
+  margin: 40px 0;
   padding-top: 40px;
   padding-bottom: 58px;
   background-color: #fff;
   border-radius: 20px;
+  width: 100%;
+
   animation-name: movement;
   animation-duration: 2s;
 }
-
 .refunds_header {
   max-width: 766px;
   margin: auto;
@@ -101,9 +101,14 @@
 }
 
 .content_detail li {
-  margin-bottom: 10px;
   display: flex;
+  margin-bottom: 10px;
 }
+
+// .content_item ul li {
+//   display: flex;
+//   gap: 10px;
+// }
 
 .content_title {
   font-family: Roboto, sans-serif !important;
@@ -111,6 +116,51 @@
   font-size: 16px;
   line-height: 12px;
   color: #12263f;
+}
+
+.check-icon {
+  color: #116bea;
+  width: 14px;
+  height: 14px;
+}
+
+.refunds_cardBottom {
+  margin-top: 40px;
+  padding: 40px 114px 0;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 70%;
+    height: 1px;
+    background-color: #c6c6c6;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.refunds__cardBottom--title {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+  background: linear-gradient(83.63deg, var(--blue-color) 33.34%, #00e0ff 113.91%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.refunds__cardBottom--content {
+  margin-top: 16px;
+  font-weight: 400;
+  font-size: 16px;
+  color: #003553;
+  font-family: Roboto, sans-serif !important;
+}
+
+.refunds__cardBottom--content li {
+  margin-bottom: 8px;
 }
 
 @keyframes movement {
@@ -121,123 +171,5 @@
   to {
     opacity: 1;
     margin-top: 40px;
-  }
-}
-
-.check-icon {
-  color: #116bea;
-  width: 14px;
-  height: 14px;
-}
-
-
-/* Responsive styles */
-@media screen and (max-width: 1200px) {
-  .refunds_wapper {
-    max-width: 90%;
-  }
-}
-
-@media screen and (max-width: 992px) {
-  .refunds_container {
-    margin: 30px 0;
-    padding-top: 30px;
-    padding-bottom: 48px;
-  }
-
-  .refunds_header h1 {
-    font-size: 28px;
-    line-height: 32px;
-  }
-
-  .header_tag {
-    font-size: 16px;
-  }
-
-  .refunds_card {
-    padding: 0 50px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .refunds_container {
-    margin: 20px 0;
-    padding-top: 20px;
-    padding-bottom: 38px;
-  }
-
-  .refunds_header h1 {
-    font-size: 24px;
-    line-height: 28px;
-  }
-
-  .header_tag {
-    font-size: 14px;
-  }
-
-  .refunds_card {
-    padding: 0 30px;
-  }
-
-  .content_item {
-    padding-left: 40px;
-  }
-
-  .content_item::before {
-    width: 20px;
-    left: 12px;
-  }
-
-  .content_title {
-    font-size: 14px;
-  }
-
-  .content_detail ul {
-    font-size: 14px;
-    line-height: 17px;
-  }
-}
-
-@media screen and (max-width: 576px) {
-  .refunds_container {
-    margin: 15px 0;
-    padding-top: 15px;
-    padding-bottom: 28px;
-  }
-
-  .refunds_header h1 {
-    font-size: 20px;
-    line-height: 24px;
-  }
-
-  .header_tag {
-    font-size: 12px;
-  }
-
-  .refunds_card {
-    padding: 0 20px;
-  }
-
-  .content_item {
-    padding-left: 30px;
-  }
-
-  .content_item::before {
-    width: 15px;
-    left: 8px;
-  }
-
-  .content_title {
-    font-size: 12px;
-  }
-
-  .content_detail ul {
-    font-size: 12px;
-    line-height: 15px;
-  }
-
-  .check-icon {
-    width: 12px;
-    height: 12px;
   }
 }

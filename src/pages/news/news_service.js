@@ -143,7 +143,7 @@ function NewsService() {
                   <p className={cx('article_content')}>{mainNews[0].content}</p>
                   <p className={cx('article_meta', 'inline-flex')}><FaCalendarAlt />&nbsp;{new Date(mainNews[0].createdAt).toLocaleDateString()} - {mainNews[0].author}</p>
                   <p className={cx('article_excerpt')}>{mainNews[0].excerpt}</p>
-                  <a href="#" className={cx('news_link')}>Xem tiếp →</a>
+                  <a href="/#" className={cx('news_link')}>Xem tiếp →</a>
                 </div>
               </>
             )}
@@ -191,7 +191,7 @@ function NewsService() {
               <p className="text-sm text-gray-400 inline-flex">
                 <FaCalendarAlt />&nbsp;{new Date(item.createdAt).toLocaleDateString()}
               </p>
-              <a href="#" className="text-blue-500">
+              <a href="/#" className="text-blue-500">
                 <p>Xem tiếp →</p>
               </a>
             </div>

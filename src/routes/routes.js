@@ -15,8 +15,10 @@ import NewsMedical from '~/pages/news/news_medical';
 import NewsKnowlage from '~/pages/news/news_knowlage';
 
 // guide
-// import Question from '~/pages/guide/question';
+import Question from '~/pages/guide/question';
 import Refunds from '~/pages/guide/refunds';
+import DownApp from '~/pages/guide/downApp';
+import Appointment from '~/pages/guide/appointment';
 
 // page
 import Home from '~/pages/home';
@@ -33,8 +35,10 @@ const publicRoutes = [
   // { path: config.routers.facilitie, component: Facilitie },
 
   // guide
-  // { path: config.routers.question, component: Question },
+  { path: config.routers.question, component: Question },
   { path: config.routers.refunds, component: Refunds },
+  { path: config.routers.downLoadApp, component: DownApp },
+  { path: config.routers.appointment, component: Appointment },
 
   // layout header only
   { path: config.routers.checkPhone, component: CheckPhone, layout: HeaderOnly },

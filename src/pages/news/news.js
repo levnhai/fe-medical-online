@@ -156,7 +156,7 @@ function News() {
                   <p className={cx('article_content')}>{mainNews[0].content}</p>
                   <p className={cx('article_meta', 'inline-flex')}><FaCalendarAlt />&nbsp;{new Date(mainNews[0].createdAt).toLocaleDateString()} - {mainNews[0].author}</p>
                   <p className={cx('article_excerpt')}>{mainNews[0].excerpt}</p>
-                  <a href="#" className={cx('news_link')}>Xem tiếp →</a>
+                  <a href="/#" className={cx('news_link')}>Xem tiếp →</a>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {mainNews.slice(1, 3).map((news, index) => (
@@ -170,7 +170,7 @@ function News() {
                       <span className="text-lg">{news.category?.name}</span>
                         <h1 font-bold>{news.title}</h1>
                         <p className="text-sm">{news.content}</p>
-                        <a href="#" className={cx('news_link', 'text-sm')}>Xem tiếp →</a>
+                        <a href="/#" className={cx('news_link', 'text-sm')}>Xem tiếp →</a>
                       </div>
                     </div>
                   ))}
@@ -218,7 +218,7 @@ function News() {
                     <span className="text-gray-500">{item.category?.name}</span>
                     <h3 className="font-bold">{item.title}</h3>
                     <p className="text-sm text-gray-400 inline-flex"><FaCalendarAlt />&nbsp;{new Date(item.createdAt).toLocaleDateString()}</p>
-                    <a href="#" className="text-blue-500"><p>Xem tiếp →</p></a>
+                    <a href="/#" className="text-blue-500"><p>Xem tiếp →</p></a>
                   </div>
                 </div>
               ))}
@@ -295,7 +295,7 @@ function News() {
                   <h3 className={cx('news_title')}>{item.title}</h3>
                   <p className={cx('article_content')}>{item.content}</p>
                   <span className={cx('news_date','inline-flex')}><FaCalendarAlt />&nbsp;{new Date(item.createdAt).toLocaleDateString()}</span>
-                  <a href="#" className={cx('news_link')}>Xem tiếp →</a>
+                  <a href="/#" className={cx('news_link')}>Xem tiếp →</a>
                 </div>
               </div>
             ))}
@@ -327,7 +327,7 @@ function News() {
                     <span className="text-lg">{commonMedicalNews[0].category?.name}</span>
                     <h2 className={cx('article_title','text-white')}>{commonMedicalNews[0].title}</h2>
                     <p className={cx('article_content')}>{commonMedicalNews[0].content}</p>
-                    <a href="#" className={cx('news_link')}>Xem tiếp →</a>
+                    <a href="/#" className={cx('news_link')}>Xem tiếp →</a>
                     </div>
                   </div>
                 </div>

@@ -143,7 +143,7 @@ function NewsService() {
                   <p className={cx('article_content')}>{mainNews[0].content}</p>
                   <p className={cx('article_meta', 'inline-flex')}><FaCalendarAlt />&nbsp;{new Date(mainNews[0].createdAt).toLocaleDateString()} - {mainNews[0].author}</p>
                   <p className={cx('article_excerpt')}>{mainNews[0].excerpt}</p>
-                  <a href="#" className={cx('news_link')}>Xem tiếp →</a>
+                  <a href="/#" className={cx('news_link')}>Xem tiếp →</a>
                 </div>
               </>
             )}
@@ -186,12 +186,12 @@ function NewsService() {
             <img src={item.imageUrl} alt={item.title} className="w-full h-auto" />
             <div className="p-2 bg-white transition-transform duration-300 transform hover:-translate-y-1">
               <span className="text-gray-500">{item.category?.name}</span>
-              <h3 className={cx('article_title', 'text-3xl')}>{item.title}</h3>
+              <h3 className={cx('article_title')}>{item.title}</h3>
               <p className={cx('article_content')}>{item.content}</p>
               <p className="text-sm text-gray-400 inline-flex">
                 <FaCalendarAlt />&nbsp;{new Date(item.createdAt).toLocaleDateString()}
               </p>
-              <a href="#" className="text-blue-500">
+              <a href="/#" className="text-blue-500">
                 <p>Xem tiếp →</p>
               </a>
             </div>

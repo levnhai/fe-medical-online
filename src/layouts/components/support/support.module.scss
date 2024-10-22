@@ -16,6 +16,7 @@
   border-radius: 20px;
   border: 1px solid #fff;
   box-shadow: 0 4px 20px hsla(220, 8%, 55%, 0.2);
+  margin-top: 64px;
 }
 
 .support_method {
@@ -28,11 +29,13 @@
   right: 0;
   padding: 0px 30px;
 }
+
 .support_info {
   display: flex;
   gap: 20px;
   flex: 2.4;
-  justify-content: flex-end;
+  justify-content: center; /* Căn giữa nội dung */
+  text-align: center; /* Căn giữa nội dung */
 }
 
 .info_phoneIcon {
@@ -49,13 +52,13 @@
   font-weight: 400;
   font-size: 30px;
   line-height: 28px;
-  color: #fff;
+  color: #000; /* Thay đổi màu chữ thành đen */
   white-space: nowrap;
   text-transform: uppercase;
 }
 
 .support_infoPhone {
-  color: #fff;
+  color: #000; /* Thay đổi màu chữ thành đen */
   margin-top: 8px;
   font-weight: 700;
   font-size: 49px;
@@ -77,9 +80,96 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
 
-  img {
-    width: 80px;
-    height: 80px;
+.support_qr img {
+  width: 80px;
+  height: 80px;
+}
+/* Responsive styles */
+@media screen and (max-width: 1024px) {
+  .support_image {
+    padding: 200px 15px; /* Increased height */
+  }
+
+  .support_infoTitle {
+    font-size: 24px; /* Smaller font size */
+    line-height: 24px;
+    color: #000; /* Đảm bảo màu chữ là đen */
+  }
+
+  .support_infoPhone {
+    font-size: 40px; /* Smaller font size */
+    line-height: 48px;
+    color: #000; /* Đảm bảo màu chữ là đen */
+  }
+
+  .info_phoneIcon {
+    width: 70px; /* Smaller icon */
+    height: 70px;
+  }
+
+  .support_qr img {
+    width: 60px; /* Smaller QR code */
+    height: 60px;
+  }
+
+  .support_method {
+    flex-direction: column;
+    align-items: center; /* Căn giữa */
+    top: 80px;
+  }
+
+  .support_info {
+    margin-bottom: 20px;
+    justify-content: center; /* Căn giữa */
+    text-align: center; /* Căn giữa */
+  }
+
+  .support_qrCard {
+    justify-content: center; /* Căn giữa */
+  }
+}
+@media screen and (max-width: 768px) {
+  .support_image {
+    padding: 200px 15px; /* Increased height */
+  }
+
+  .support_infoTitle {
+    font-size: 14px; /* Smaller font size */
+    line-height: 24px;
+    color: #000; /* Đảm bảo màu chữ là đen */
+  }
+
+  .support_infoPhone {
+    font-size: 25px; /* Smaller font size */
+    line-height: 48px;
+    color: #000; /* Đảm bảo màu chữ là đen */
+  }
+
+  .info_phoneIcon {
+    width: 70px; /* Smaller icon */
+    height: 70px;
+  }
+
+  .support_qr img {
+    width: 60px; /* Smaller QR code */
+    height: 60px;
+  }
+
+  .support_method {
+    flex-direction: column;
+    align-items: center; /* Căn giữa */
+    top: 80px;
+  }
+
+  .support_info {
+    margin-bottom: 20px;
+    justify-content: center; /* Căn giữa */
+    text-align: center; /* Căn giữa */
+  }
+
+  .support_qrCard {
+    justify-content: center; /* Căn giữa */
   }
 }

@@ -65,17 +65,17 @@ function NewsService() {
         setLoading(true);
 
         // Fetch service news (category = dich-vu)
-        const mainResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/news/category/dich-vu?_sort=createdAt:DESC&_limit=1`);
+        const mainResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/news/category/tin-dich-vu?_sort=createdAt:DESC&_limit=1`);
         const mainData = await mainResponse.json();
         setMainNews(mainData);
 
        // Fetch side news (exactly 6 articles after the first 1)
-       const sideResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/news/category/dich-vu?_sort=createdAt:DESC&_start=1&_limit=6`);
+       const sideResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/news/category/tin-dich-vu?_sort=createdAt:DESC&_start=1&_limit=7`);
        const sideData = await sideResponse.json();
        setSideNews(sideData);
 
        // Fetch service news (category = dich-vu)
-       const serviceResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/news/category/dich-vu`);
+       const serviceResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/news/category/tin-dich-vu`);
        const serviceData = await serviceResponse.json();
        setServiceNews(serviceData);
 
@@ -151,7 +151,7 @@ function NewsService() {
 
           {/* Side articles */}
         <div className="space-y-12">
-          {sideNews.slice(0, 6).map((article) => (
+          {sideNews.slice(1, 7).map((article) => (
             <div key={article.id} className={cx('side_article')}>
               <img 
                 src={article.imageUrl} 

@@ -29,7 +29,7 @@ function About() {
   }, []);
 
   return ( 
-    <div className={cx('about','container mx-auto w-full px-4 md:px-6 lg:px-8 overflow-x-hidden')}>
+    <div className={cx('about')}>
       <div className={cx('about_body')}>
         <div className={cx('bannerWrapper')}>
           <div className={cx('banner_container')}>

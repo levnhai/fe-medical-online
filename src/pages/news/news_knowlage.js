@@ -72,12 +72,10 @@ function NewsKnowlage() {
         const mainData = await mainResponse.json();
         setMainNews(mainData);
 
-        // Fetch side news (exactly 6 articles after the first 1)
-        const sideResponse = await fetch(
-          `${process.env.REACT_APP_BACKEND_URL}/news/category/thuong-thuc-y-te?_sort=createdAt:DESC&_start=1&_limit=6`,
-        );
-        const sideData = await sideResponse.json();
-        setSideNews(sideData);
+       // Fetch side news (exactly 6 articles after the first 1)
+       const sideResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/news/category/thuong-thuc-y-te?_sort=createdAt:DESC&_start=1&_limit=7`);
+       const sideData = await sideResponse.json();
+       setSideNews(sideData);
 
         // Fetch service news (category = dich-vu)
         const serviceResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/news/category/thuong-thuc-y-te`);
@@ -162,22 +160,27 @@ function NewsKnowlage() {
           </div>
 
           {/* Side articles */}
-          <div className="space-y-12">
-            {sideNews.slice(0, 6).map((article) => (
-              <div key={article.id} className={cx('side_article')}>
-                <img src={article.imageUrl} alt={article.title} className="w-1/3 h-32 object-cover" />
-                <div className="w-2/3 p-4 flex flex-col">
-                  <span className="text-lg">{article.category?.name}</span>
-                  <h3 className={cx('side_article_title')}>{article.title}</h3>
-                  <p className={cx('side_article_excerpt', 'text-xs')}>{article.excerpt}</p>
-                  <p className="text-sm text-gray-400 inline-flex">
-                    <FaCalendarAlt />
-                    &nbsp;{new Date(article.createdAt).toLocaleDateString()}
-                  </p>
-                </div>
+        <div className="space-y-12">
+          {sideNews.slice(1, 7).map((article) => (
+            <div key={article.id} className={cx('side_article')}>
+              <img 
+                src={article.imageUrl} 
+                alt={article.title} 
+                className="w-1/3 h-32 object-cover" 
+              />
+              <div className="w-2/3 p-4 flex flex-col">
+              <span className="text-lg">{article.category?.name}</span>
+                <h3 className={cx('side_article_title')}>
+                  {article.title}
+                </h3>
+                <p className={cx('side_article_excerpt', 'text-xs')}>
+                  {article.excerpt}
+                </p>
+                <p className="text-sm text-gray-400 inline-flex"><FaCalendarAlt />&nbsp;{new Date(article.createdAt).toLocaleDateString()}</p>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
+        </div>
         </div>
       </div>
 

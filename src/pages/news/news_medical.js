@@ -71,7 +71,7 @@ function NewsMedical() {
         setMainNews(mainData);
 
        // Fetch side news (exactly 6 articles after the first 1)
-       const sideResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/news/category/tin-y-te?_sort=createdAt:DESC&_start=1&_limit=6`);
+       const sideResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/news/category/tin-y-te?_sort=createdAt:DESC&_start=1&_limit=7`);
        const sideData = await sideResponse.json();
        setSideNews(sideData);
 
@@ -152,7 +152,7 @@ function NewsMedical() {
 
           {/* Side articles */}
         <div className="space-y-12">
-          {sideNews.slice(0, 6).map((article) => (
+          {sideNews.slice(1, 7).map((article) => (
             <div key={article.id} className={cx('side_article')}>
               <img 
                 src={article.imageUrl} 

@@ -73,12 +73,12 @@ function News() {
         setMainNews(mainData);
 
         // Fetch side news (exactly 8 articles after the first 3)
-        const sideResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/news?_sort=createdAt:DESC&_start=3&_limit=8`);
+        const sideResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/news?_sort=createdAt:DESC&_start=3&_limit=10`);
         const sideData = await sideResponse.json();
         setSideNews(sideData);
 
         // Fetch service news (category = dich-vu)
-        const serviceResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/news/category/dich-vu`);
+        const serviceResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/news/category/tin-dich-vu`);
         const serviceData = await serviceResponse.json();
         setServiceNews(serviceData);
 
@@ -181,7 +181,7 @@ function News() {
 
           {/* Side articles */}
         <div className="space-y-12">
-          {sideNews.slice(0, 8).map((article) => (
+          {sideNews.slice(3, 10).map((article) => (
             <div key={article.id} className={cx('side_article')}>
               <img 
                 src={article.imageUrl} 

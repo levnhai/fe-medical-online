@@ -12,7 +12,7 @@ const cx = classNames.bind(styles);
 function Refunds() {
   const { t } = useTranslation();
   return (
-    <div className={cx('guide_refunds', 'container mx-auto w-full px-4 md:px-6 lg:px-8 overflow-x-hidden')}>
+    <div className={cx('guide_refunds')}>
     <Header
       title={t('refund_process.header.title')}
       des={t('refund_process.header.description')}

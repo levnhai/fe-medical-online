@@ -6,18 +6,19 @@ import { Link, useLocation } from 'react-router-dom';
 import styles from './news.module.scss';
 import { useState, useEffect } from 'react';
 import { FaCalendarAlt, FaBars } from 'react-icons/fa';
-import { newsKnowlage } from '~/redux/news/newsSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchKnowlageNews } from '~/redux/news/newsSlice';
 const cx = classNames.bind(styles);
 
 function NewsKnowlage() {
   const { t } = useTranslation();
   const location = useLocation();
+  const dispatch = useDispatch();
 
-  // State for different news sections
-  const [mainNews, setMainNews] = useState([]);
-  const [sideNews, setSideNews] = useState([]);
-  const [serviceNews, setServiceNews] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const newData = useSelector((state) => state.new.newData);
+  const isLoading = useSelector((state) => state.new.loading);
+  console.log('check newData', newData)
+  
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedMenuItem, setSelectedMenuItem] = useState(null);
 
@@ -54,35 +55,19 @@ function NewsKnowlage() {
     setIsMenuOpen(false); // Đóng menu khi đã chọn
   };
   const menuItems = [
-    { title: 'Tin dịch vụ', path: '/news/news-service' },
-    { title: 'Tin y tế', path: '/news/news-medical' },
-    { title: 'Y học thường thức', path: '/news/news-knowlage' },
+    { title: 'Tin dịch vụ', path: '/tin-tuc/dich-vu' },
+    { title: 'Tin y tế', path: '/tin-tuc/y-te' },
+    { title: 'Y học thường thức', path: '/tin-tuc/y-hoc-thuong-thuc' },
   ];
 
   useEffect(() => {
-    document.title = 'Tin tức y khoa || Medical';
-    
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const data = await newsKnowlage.getAllNews();
-        
-        setMainNews(data.mainNews);
-        setSideNews(data.sideNews);
-        setServiceNews(data.serviceNews);
-        
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching news:', error);
-        setLoading(false);
-      }
-    };
+    document.title = 'Tin dịch vụ || Medical';
+    dispatch(fetchKnowlageNews());
 
-    fetchData();
   }, []);
 
-  if (loading) {
-    return <p>Loading...</p>;
+  if (isLoading) {
+    return <p>Loading nè...</p>;
   }
 
   return (
@@ -129,17 +114,17 @@ function NewsKnowlage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Main news article */}
           <div className="md:col-span-2 bg-white rounded-lg shadow-md overflow-hidden">
-            {mainNews.length > 0 && (
+            {newData && newData?.news?.length > 0 && (
               <>
-                <img src={mainNews[0].imageUrl} alt={mainNews[0].title} className="w-full h-58 object-cover" />
+                <img src={newData?.news[0].imageUrl} alt={newData?.news[0].title} className="w-full h-58 object-cover" />
                 <div className="p-4 mb-20">
-                  <h2 className={cx('article_title')}>{mainNews[0].title}</h2>
-                  <p className={cx('article_content')}>{mainNews[0].content}</p>
+                  <h2 className={cx('article_title')}>{newData?.news[0].title}</h2>
+                  <p className={cx('article_content')}>{newData?.news[0].content}</p>
                   <p className={cx('article_meta', 'inline-flex')}>
                     <FaCalendarAlt />
-                    &nbsp;{new Date(mainNews[0].createdAt).toLocaleDateString()} - {mainNews[0].author}
+                    &nbsp;{new Date(newData?.news[0].createdAt).toLocaleDateString()} - {newData?.news[0].author}
                   </p>
-                  <p className={cx('article_excerpt')}>{mainNews[0].excerpt}</p>
+                  <p className={cx('article_excerpt')}>{newData?.news[0].excerpt}</p>
                   <a href="/#" className={cx('news_link')}>
                     Xem tiếp →
                   </a>
@@ -150,7 +135,7 @@ function NewsKnowlage() {
 
           {/* Side articles */}
         <div className="space-y-12">
-          {sideNews.slice(1, 7).map((article) => (
+          {newData?.news?.slice(1, 7).map((article) => (
             <div key={article.id} className={cx('side_article')}>
               <img 
                 src={article.imageUrl} 
@@ -174,11 +159,10 @@ function NewsKnowlage() {
       </div>
 
       {/* Service News Section */}
-      {/* Service News Section */}
       <div className="hidden md:block">
         <div className={cx('news_wapper', 'overflow-hidden')}>
           <div className="grid grid-cols-3 gap-4">
-            {serviceNews.map((item) => (
+            {newData?.news?.map((item) => (
               <div
                 key={item.id}
                 className="relative transition-transform duration-300 transform hover:scale-105 hover:shadow-lg p-5"
@@ -203,7 +187,7 @@ function NewsKnowlage() {
       </div>
       <div className="block md:hidden space-y-12">
         <h2 className={cx('service_title')}>Tin Y tế</h2>
-        {serviceNews.slice(0, 8).map((article) => (
+        {newData?.news?.slice(0, 8).map((article) => (
           <div key={article.id} className={cx('side_article')}>
             <img src={article.imageUrl} alt={article.title} className="w-1/3 h-32 object-cover" />
             <div className="w-2/3 p-4 flex flex-col">
@@ -223,3 +207,4 @@ function NewsKnowlage() {
 }
 
 export default NewsKnowlage;
+

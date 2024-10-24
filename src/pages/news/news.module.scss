@@ -4,6 +4,9 @@
     margin: 0 auto; // Căn giữa container
     padding: 0 20px; // Thêm padding ở hai bên
     background: var(--white-color);
+    @media (max-width: 1024px) {
+      margin-top: -50px;
+    }
     .news_main {
         max-width: 1200px;
         margin: 0 auto;
@@ -119,6 +122,10 @@
   border-radius: 8px;
   overflow: hidden;
   width: 100%;
+  margin-top: -10px;
+}
+.side_article img {
+  margin-top: 10px; /* Chỉ chỉnh margin-top cho hình ảnh */
 }
 
 .side_article_title {

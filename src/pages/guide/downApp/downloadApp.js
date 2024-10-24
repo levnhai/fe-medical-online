@@ -5,15 +5,18 @@ import { BsCheckLg } from 'react-icons/bs';
 
 import Support from '~/layouts/components/support';
 import styles from './downloadApp.module.scss';
+import { useTranslation } from 'react-i18next';
+import '~/translation/i18n';
 
 const cx = classNames.bind(styles);
 
 function DownApp() {
+  const { t } = useTranslation();
   return (
     <div className={cx('guide_downApp')}>
       <Header
-        title={'Hướng dẫn cài đặt ứng dụng'}
-        des={'Khám phá đơn giản và nhanh chóng để cài đặt ứng dụng y tế, trải nghiệm ngay những lợi ích việt.'}
+        title={t('download_app.header.title')}
+        des={t('download_app.header.description')}
       />
       <div className={cx('downApp_container')}>
         <div className={cx('downApp_install')}>
@@ -22,24 +25,24 @@ function DownApp() {
               <li className={cx('content_item')}>
                 <strong>
                   <BsCheckLg style={{ color: '#116bea' }} />
-                  Cách 1:
+                  {t('download_app.steps.title.0')}
                 </strong>
-                <h3> Tải ứng dụng:</h3>
+                <h3>{t('download_app.steps.item.0')}</h3>
               </li>
               <li className={cx('content_item')}>
                 <strong>
                   <BsCheckLg style={{ color: '#116bea' }} />
-                  Cách 2:
+                  {t('download_app.steps.title.1')}
                 </strong>
-                <h3> Tìm kiếm theo từ khóa "Medical" trên App Store(IOS) hoặc Google Play(Android)</h3>
+                <h3>{t('download_app.steps.item.1')}</h3>
               </li>
               <li className={cx('content_item')}>
                 <strong>
                   <BsCheckLg style={{ color: '#116bea' }} />
-                  Cách 3:
+                  {t('download_app.steps.title.2')}
                 </strong>
                 <div className={cx('content_Qr')}>
-                  <h3> Quét mã QR:</h3>
+                  <h3>{t('download_app.steps.item.2')}</h3>
                   <img src={require('~/assets/images/qr_code.png')} alt="qr download app" />
                 </div>
               </li>
@@ -52,6 +55,6 @@ function DownApp() {
       </div>
     </div>
   );
-}
+};
 
 export default DownApp;

@@ -1,10 +1,6 @@
 const routes = {
   home: '/',
   about: '/about',
-  news: '/news',
-  newsService: '/news/news-service',
-  newsMedical: '/news/news-medical',
-  newsKnowlage: '/news/news-knowlage',
   checkPhone: '/check-phone',
   otpInput: '/otp-input',
   otpInputForgot: '/otp-input-forgot',
@@ -18,5 +14,11 @@ const routes = {
   downLoadApp: '/huong-dan/cai-dat-ung-dung',
   appointment: '/huong-dan/dat-lich-kham',
   refunds: '/huong-dan/quy-trinh-hoan-phi',
+
+  // new
+  news: '/tin-tuc',
+  newsService: '/tin-tuc/dich-vu',
+  newsMedical: '/tin-tuc/y-te',
+  newsKnowlage: '/tin-tuc/y-hoc-thuong-thuc',
 };
 export default routes;

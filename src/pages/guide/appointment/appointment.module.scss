@@ -1,5 +1,8 @@
 .guide_refunds {
   background-color: #e8f2f7;
+  @media (max-width: 1024px) {
+    margin-top: -80px;
+  }
 }
 
 .refunds_wapper {
@@ -14,7 +17,6 @@
   background-color: #fff;
   border-radius: 20px;
   width: 100%;
-
   animation-name: movement;
   animation-duration: 2s;
 }

@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import authReducer from '../redux/user/authSlice';
-import { persistStore, persistReducer } from 'redux-persist';
-import docterSlice from './docter/docterSlice';
-import storage from 'redux-persist/lib/storage';
-import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import { encryptTransform } from 'redux-persist-transform-encrypt';
+import { persistStore, persistReducer } from 'redux-persist';
+import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+
+import docterSlice from './docter/docterSlice';
+import authReducer from '../redux/user/authSlice';
+import newReducer from '../redux/news/newsSlice'
 
 const persistConfig = {
   key: 'auth',
@@ -19,6 +21,7 @@ const Store = configureStore({
   reducer: {
     auth: persistedReducer,
     docter: docterSlice,
+    new: newReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

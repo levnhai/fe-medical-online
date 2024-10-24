@@ -206,7 +206,7 @@
     "set_app": "Cài đặt ứng dụng",
     "appointment": "Đặt lịch khám",
     "refund_process": "Quy trình hoàn phí",
-    "faq" : "Quy trình hoàn phí"
+    "faq" : "Câu hỏi thường gặp"
   },
   "refund_process": {
     "header": {
@@ -229,6 +229,207 @@
         "Thẻ tín dụng VISA, MasterCard: 1 - 45 ngày làm việc.",
         "Tính từ thời điểm bạn thực hiện hủy phiếu khám bệnh thành công, nếu quá thời gian công trên bạn vẫn chưa nhận được tiền hoàn, vui lòng liên hệ tổng đài 1900 2115 chúng tôi sẽ hổ trợ bạn."
       ]
+    }
+  },
+  "download_app": {
+    "header": {
+      "title": "Hướng dẫn cài đặt ứng dụng",
+      "description": "Khám phá đơn giản và nhanh chóng để cài đặt ứng dụng y tế, trải nghiệm ngay những lợi ích việt."
+    },
+    "steps": {
+      "title": [
+        "Cách 1:",
+        "Cách 2:",
+        "Cách 3:"
+      ],
+      "item":[
+        "Tải ứng dụng:",
+        "Tìm kiếm theo từ khóa \"Medical\" trên App Store(IOS) hoặc Google Play(Android)",
+        "Quét mã QR:"
+      ]
+    }
+  },
+  "appointment": {
+    "header": {
+      "title": "Hướng dẫn đặt khám nhanh",
+      "description": "Trải nghiệm dịch vụ chăm sóc sức khỏe tối ưu và đặt lịch khám một cách dễ dàng, nhanh chóng"
+    },
+    "step1": {
+      "title": "Chọn thông tin đặt khám",
+      "items": [
+        "Đăng nhập phần mềm trên web hoặc ứng dụng di động",
+        "Chọn Đặt khám tại cơ sở hoặc Đặt khám theo bác sĩ",
+        "Chọn thông tin khám: Chuyên khoa, bác sĩ, ngày khám, giờ khám và có BHYT hay không",
+        "Nhập thông tin bệnh nhân: Chọn hồ sơ sẵn có hoặc tạo mới hồ sơ"
+      ]
+    },
+    "step2": {
+      "title": "CHỌN/ TẠO MỚI HỒ SƠ BỆNH NHÂN (Bạn được phép tạo tối đa 10 hồ sơ)",
+      "items": [
+        "Cách 1: Quét mã BHYT",
+        "Cách 2: Nếu đã từng khám ở bệnh viện, nhập số hồ sơ",
+        "Cách 3: Chưa từng khám, đăng ký mới (nhập đầy đủ các thông tin: Họ và tên; Ngày sinh; Giới tính; Mã bảo hiểm y tế; CMND/Passport; Dân tộc; Nghề nghiệp; Số điện thoại; Email; Địa chỉ)"
+      ]
+    },
+    "step3": {
+      "title": "THANH TOÁN PHÍ KHÁM",
+      "items": [
+        "Chọn phương thức thanh toán: Quét mã QR, Chuyển khoản 24/7, Thẻ khám bệnh, Thẻ thanh toán quốc tế hoặc thẻ ATM nội địa hoặc Ví điện tử",
+        "Kiểm tra thông tin thanh toán (phí khám bệnh, phí tiện ích và tổng tiền) và Xác nhận thanh toán",
+        "Thực hiện thanh toán trên Ví điện tử hoặc Ứng dụng Ngân hàng hoặc Cổng thanh toán"
+      ]
+    },
+    "step4": {
+      "title": "NHẬN PHIẾU KHÁM ĐIỆN TỬ",
+      "items": [
+        "Sau khi thanh toán thành công, bạn sẽ nhận được ngay phiếu khám bệnh điện tử trên ứng dụng (và qua email). Trường hợp đặt khám qua Tổng đài 19002115, vui lòng xem phiếu khám được gửi qua tin nhắn SMS"
+      ]
+    },
+    "examination": {
+      "title": "Khám và thực hiện cận lâm sàng",
+      "items": [
+        "Đến ngày khám, người bệnh vui lòng đến trực tiếp phòng khám hoặc quầy tiếp nhận theo như hướng dẫn trên phiếu khám",
+        "Người bệnh được khám lâm sàng theo quy trình của Bệnh viện",
+        "Nếu có chỉ định cận lâm sàng của bác sĩ, người bệnh thanh toán phí trực tuyến hoặc tại quầy thu ngân của bệnh viện và vào phòng cận lâm sàng để được thực hiện",
+        "Người bệnh quay lại phòng khám ban đầu, sau khi nhận đầy đủ kết quả cận lâm sàng, để được bác sĩ khám, tư vấn và trả kết quả khám (toa thuốc, giấy hẹn khám,...)"
+      ]
+    }
+  },
+  "question": {
+    "header": {
+      "title": "Chúng tôi có thể giúp gì cho bạn?",
+      "description": "Giải đáp câu hỏi nhanh giúp quý khách hiểu rõ hơn về sản phẩm, dịch vụ chúng tôi."
+    },
+    "tabList": {
+      "title": "Danh sách câu hỏi",
+      "tabs": {
+        "general": {
+          "title": "Vấn đề chung",
+          "questions": {
+            "q1": {
+              "question": "Đăng kí khám bệnh online có mất phí không?",
+              "answer": "Bạn chỉ cần thanh toán phí khi việc đặt lịch khám của bạn được xác nhận. Các tính năng khác của ứng dụng, bao gồm việc sử dụng ứng dụng và truy cập vào các thông tin khác, thì hoàn toàn miễn phí."
+            },
+            "q2": {
+              "question": "Làm sao để sử dụng được ứng dụng đăng kí khám bệnh trực tuyến",
+              "answer": {
+                "intro": "Đặt lịch khám bệnh theo hẹn, mọi lúc mọi nơi, mà không cần đến bệnh viện:",
+                "benefits": [
+                  "Không xếp hàng chờ đợi để lấy số tiếp nhận khám bệnh",
+                  "Giảm thời gian chờ khám tại bệnh viện"
+                ]
+              }
+            },
+            "q3": {
+              "question": "Sau khi đã đăng ký khám thành công qua ứng dụng, có thể hủy phiếu khám không?",
+              "answer": [
+                "Có, bạn có thể chủ động hủy phiếu khám đã đăng ký thành công, nếu kế hoạch khám chữa bệnh có sự thay đổi. Phí khám sẽ được hoàn trả theo đúng thời gian quy định.",
+                "Hoặc trong một số trường hợp, bệnh viện có quyền từ chối phiếu khám, chẳng hạn như: sai lệch thông tin bệnh nhân, sai thông tin phiếu khám, hay vấn đề phát sinh bất khả kháng từ phía bệnh viện.",
+                "Khi đó, bạn sẽ được hoàn tiền sau khi xác thực tình trạng sử dụng của phiếu khám, đảm bảo tuân thủ theo quy định của ứng dụng và bệnh viện."
+              ]
+            },
+            "q4": {
+              "question": "Tôi đến bệnh viện trễ hơn so với giờ khám đã đăng ký, vậy tôi có được khám hay không?",
+              "answer": [
+                "Có, bạn có thể chủ động hủy phiếu khám đã đăng ký thành công, nếu kế hoạch khám chữa bệnh có sự thay đổi. Phí khám sẽ được hoàn trả theo đúng thời gian quy định.",
+                "Hoặc trong một số trường hợp, bệnh viện có quyền từ chối phiếu khám, chẳng hạn như: sai lệch thông tin bệnh nhân, sai thông tin phiếu khám, hay vấn đề phát sinh bất khả kháng từ phía bệnh viện.",
+                "Khi đó, bạn sẽ được hoàn tiền sau khi xác thực tình trạng sử dụng của phiếu khám, đảm bảo tuân thủ theo quy định của ứng dụng và bệnh viện."
+              ]
+            },
+            "q5": {
+              "question": "Tôi có thể dùng ứng dụng để đăng ký và lấy số thứ tự khám cho bệnh nhân khác không?",
+              "answer": [
+                "Có, bạn có thể chủ động hủy phiếu khám đã đăng ký thành công, nếu kế hoạch khám chữa bệnh có sự thay đổi. Phí khám sẽ được hoàn trả theo đúng thời gian quy định.",
+                "Hoặc trong một số trường hợp, bệnh viện có quyền từ chối phiếu khám, chẳng hạn như: sai lệch thông tin bệnh nhân, sai thông tin phiếu khám, hay vấn đề phát sinh bất khả kháng từ phía bệnh viện.",
+                "Khi đó, bạn sẽ được hoàn tiền sau khi xác thực tình trạng sử dụng của phiếu khám, đảm bảo tuân thủ theo quy định của ứng dụng và bệnh viện."
+              ]
+            }
+          }
+        },
+        "account": {
+          "title": "Vấn đề tài khoản",
+          "questions": {
+            "q1": {
+              "question": "Tôi quên số bệnh nhân thì làm phải làm sao?",
+              "answer": [
+                "Để tìm lại mã số bệnh nhân, bạn có thể xem qua gợi ý về cách tìm lại mã số bệnh nhân, và tìm lại trong các loại giấy tờ khám chữa bệnh của mình.",
+                "Hoặc mở tính năng \"Tôi quên mã số bệnh nhân\" > nhập chính xác các thông tin yêu cầu > bấm \"Xác nhận\" > và chọn hồ sơ của mình trong danh sách kết quả."
+              ]
+            },
+            "q2": {
+              "question": "Làm sao tôi biết bên mình đã có mã bệnh nhân hay chưa?",
+              "answer": [
+                "Để tìm lại mã số bệnh nhân, bạn có thể xem qua gợi ý về cách tìm lại mã số bệnh nhân, và tìm lại trong các loại giấy tờ khám chữa bệnh của mình.",
+                "Hoặc mở tính năng \"Tôi quên mã số bệnh nhân\" > nhập chính xác các thông tin yêu cầu > bấm \"Xác nhận\" > và chọn hồ sơ của mình trong danh sách kết quả."
+              ]
+            },
+            "q3": {
+              "question": "Tôi có thể chọn tùy ý một hồ sơ bệnh nhân của người khác để đăng ký khám bệnh cho mình không?",
+              "answer": [
+                "Để tìm lại mã số bệnh nhân, bạn có thể xem qua gợi ý về cách tìm lại mã số bệnh nhân, và tìm lại trong các loại giấy tờ khám chữa bệnh của mình.",
+                "Hoặc mở tính năng \"Tôi quên mã số bệnh nhân\" > nhập chính xác các thông tin yêu cầu > bấm \"Xác nhận\" > và chọn hồ sơ của mình trong danh sách kết quả."
+              ]
+            },
+            "q4": {
+              "question": "Mã số bệnh nhân là gì ? Làm sao tôi có thể biết được mã số bệnh nhân của mình?",
+              "answer": [
+                "Để tìm lại mã số bệnh nhân, bạn có thể xem qua gợi ý về cách tìm lại mã số bệnh nhân, và tìm lại trong các loại giấy tờ khám chữa bệnh của mình.",
+                "Hoặc mở tính năng \"Tôi quên mã số bệnh nhân\" > nhập chính xác các thông tin yêu cầu > bấm \"Xác nhận\" > và chọn hồ sơ của mình trong danh sách kết quả."
+              ]
+            }
+          }
+        },
+        "procedure": {
+          "title": "Vấn đề về quy trình đặt khám",
+          "questions": {
+            "q1": {
+              "question": "Có thể đăng ký khám bệnh trong ngày bằng phần mềm không?",
+              "answer": "Hiện tại bệnh viện hỗ trợ cả đặt khám đăng ký trong ngày, cho phép đặt khám trước 30 phút. Nhưng bạn không được huỷ phiếu khám trong ngày."
+            },
+            "q2": {
+              "question": "Khi khám bệnh tôi cần chuẩn bị gì?",
+              "answer": "Hiện tại bệnh viện hỗ trợ cả đặt khám đăng ký trong ngày, cho phép đặt khám trước 30 phút. Nhưng bạn không được huỷ phiếu khám trong ngày."
+            },
+            "q3": {
+              "question": "Nếu bác sĩ thay đổi lịch khám, tôi phải làm sao?",
+              "answer": "Hiện tại bệnh viện hỗ trợ cả đặt khám đăng ký trong ngày, cho phép đặt khám trước 30 phút. Nhưng bạn không được huỷ phiếu khám trong ngày."
+            },
+            "q4": {
+              "question": "Tôi sẽ được khám bệnh vào đúng thời gian đã chọn, sau khi đăng ký khám qua phần mềm đúng không?",
+              "answer": "Hiện tại bệnh viện hỗ trợ cả đặt khám đăng ký trong ngày, cho phép đặt khám trước 30 phút. Nhưng bạn không được huỷ phiếu khám trong ngày."
+            },
+            "q5": {
+              "question": "Tôi đã đăng ký thành công vậy khi đi khám tôi có phải xếp hàng gì không?",
+              "answer": "Hiện tại bệnh viện hỗ trợ cả đặt khám đăng ký trong ngày, cho phép đặt khám trước 30 phút. Nhưng bạn không được huỷ phiếu khám trong ngày."
+            }
+          }
+        },
+        "payment": {
+          "title": "Vấn đề thanh toán",
+          "questions": {
+            "q1": {
+              "question": "Phí tiện ích là gì?",
+              "answer": "Khi sử dụng các dịch vụ hỗ trợ do Medpro cung cấp, người dùng sẽ thanh toán phí sử dụng dịch vụ tiện ích của Medpro sau đây gọi là \"Phí tiện ích Medpro\", bên cạnh phí dịch vụ y tế được công bố bởi Bệnh viện/Cơ sở y tế và phí xử lý giao dịch thanh toán trực tuyến \"Phí dịch vụ thanh toán\" (nếu có). \"Phí tiện ích\" là loại phí phát sinh khi người dùng sử dụng dịch vụ hỗ trợ của Medpro để đem lại các lợi ích thiết thực cho người dùng so với việc không sử dụng."
+            },
+            "q2": {
+              "question": "Điều kiện để được hoàn tiền là gì?",
+              "answer": "When using support services provided by Medpro, users will pay for Medpro's utility service fee hereinafter referred to as \"Medpro Utility Fee\", in addition to medical service fees announced by the Hospital/Medical Facility and online payment transaction processing fees \"Payment Service Fee\" (if any). \"Utility Fee\" is a type of fee incurred when users use Medpro's support services to bring practical benefits to users compared to not using them."
+            },
+            "q3": {
+              "question": "Cách tính phí tiện ích",
+              "answer": "When using support services provided by Medpro, users will pay for Medpro's utility service fee hereinafter referred to as \"Medpro Utility Fee\", in addition to medical service fees announced by the Hospital/Medical Facility and online payment transaction processing fees \"Payment Service Fee\" (if any). \"Utility Fee\" is a type of fee incurred when users use Medpro's support services to bring practical benefits to users compared to not using them."
+            },
+            "q4": {
+              "question": "Tôi muốn đăng ký khám online nhưng đến trực tiếp bệnh viện để thanh toán được không?",
+              "answer": "When using support services provided by Medpro, users will pay for Medpro's utility service fee hereinafter referred to as \"Medpro Utility Fee\", in addition to medical service fees announced by the Hospital/Medical Facility and online payment transaction processing fees \"Payment Service Fee\" (if any). \"Utility Fee\" is a type of fee incurred when users use Medpro's support services to bring practical benefits to users compared to not using them."
+            },
+            "q5": {
+              "question": "Tôi nhập tài khoản thẻ nhưng bấm xác thực hoài không được?",
+              "answer": "When using support services provided by Medpro, users will pay for Medpro's utility service fee hereinafter referred to as \"Medpro Utility Fee\", in addition to medical service fees announced by the Hospital/Medical Facility and online payment transaction processing fees \"Payment Service Fee\" (if any). \"Utility Fee\" is a type of fee incurred when users use Medpro's support services to bring practical benefits to users compared to not using them."
+            }
+          }
+        }
+      }
     }
   }
 }

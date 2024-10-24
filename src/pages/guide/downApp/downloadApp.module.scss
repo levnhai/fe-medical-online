@@ -1,6 +1,9 @@
 .guide_downApp {
   background-color: #e3edf2;
   width: 100%;
+  @media (max-width: 1024px) {
+    margin-top: -80px;
+  }
 }
 
 .downApp_container {

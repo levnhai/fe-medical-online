@@ -228,5 +228,206 @@
         "From the time you successfully cancel the medical examination request, if the above timeframe has passed and you have not received the refund, please contact our hotline at 1900 2115 for support."
       ]
     }
+  },
+  "download_app": {
+    "header": {
+      "title": "Application Installation Guide",
+      "description": "A simple and quick way to install the healthcare application, experience the benefits immediately."
+    },
+    "steps": {
+      "title": [
+        "Step 1:",
+        "Step 2:",
+        "Step 3:"
+      ],
+      "item": [
+        "Download the application:",
+        "Search for the keyword \"Medical\" on the App Store (iOS) or Google Play (Android)",
+        "Scan the QR code:"
+      ]
+    }
+  },
+  "appointment": {
+    "header": {
+      "title": "Quick Appointment Booking Guide",
+      "description": "Experience optimal healthcare service and book appointments easily and quickly"
+    },
+    "step1": {
+      "title": "Select Appointment Information",
+      "items": [
+        "Log in to the software on web or mobile app",
+        "Choose Booking at facility or Booking by doctor",
+        "Select appointment details: Specialty, doctor, date, time and insurance status",
+        "Enter patient information: Choose existing profile or create new one"
+      ]
+    },
+    "step2": {
+      "title": "SELECT/CREATE PATIENT PROFILE (You can create up to 10 profiles)",
+      "items": [
+        "Method 1: Scan health insurance card",
+        "Method 2: If previously visited the hospital, enter medical record number",
+        "Method 3: For first-time visits, register new profile (enter full information: Full name; Date of birth; Gender; Health insurance number; ID/Passport; Ethnicity; Occupation; Phone number; Email; Address)"
+      ]
+    },
+    "step3": {
+      "title": "PAY EXAMINATION FEE",
+      "items": [
+        "Choose payment method: QR code, 24/7 bank transfer, Medical card, International payment card or domestic ATM card or E-wallet",
+        "Review payment information (examination fee, service fee and total amount) and Confirm payment",
+        "Complete payment via E-wallet or Banking App or Payment Gateway"
+      ]
+    },
+    "step4": {
+      "title": "RECEIVE ELECTRONIC MEDICAL SLIP",
+      "items": [
+        "After successful payment, you will immediately receive an electronic medical slip on the app (and via email). If booking through Hotline 19002115, please check the medical slip sent via SMS"
+      ]
+    },
+    "examination": {
+      "title": "Examination and Clinical Tests",
+      "items": [
+        "On the appointment date, please go directly to the clinic or reception desk as instructed on the medical slip",
+        "Patients will receive clinical examination according to Hospital procedures",
+        "If clinical tests are prescribed by the doctor, patients can pay fees online or at the hospital's cashier and proceed to the clinical testing room",
+        "Patients return to the initial examination room, after receiving all clinical test results, for doctor's examination, consultation and results (prescription, follow-up appointment,...)"
+      ]
+    }
+  },
+  "question": {
+    "header": {
+      "title": "How can we help you?",
+      "description": "Quick answers to help you better understand our products and services."
+    },
+    "tabList": {
+      "title": "Question List",
+      "tabs": {
+        "general": {
+          "title": "General Issues",
+          "questions": {
+            "q1": {
+              "question": "Is there a fee for online medical registration?",
+              "answer": "You only need to pay the fee when your appointment booking is confirmed. Other features of the application, including using the app and accessing other information, are completely free."
+            },
+            "q2": {
+              "question": "How can I use the online medical registration application?",
+              "answer": {
+                "intro": "Book medical appointments anytime, anywhere, without going to the hospital:",
+                "benefits": [
+                  "No queuing for medical examination registration numbers",
+                  "Reduced waiting time at the hospital"
+                ]
+              }
+            },
+            "q3": {
+              "question": "After successfully registering through the application, can I cancel the medical examination slip?",
+              "answer": [
+                "Yes, you can actively cancel the successfully registered medical examination slip if your medical examination plan changes. The examination fee will be refunded according to the specified time.",
+                "Or in some cases, the hospital has the right to refuse the examination slip, such as: patient information mismatch, wrong examination slip information, or force majeure issues from the hospital.",
+                "In that case, you will be refunded after verifying the usage status of the examination slip, ensuring compliance with the regulations of the application and hospital."
+              ]
+            },
+            "q4": {
+              "question": "I arrived at the hospital later than the registered examination time, so can I still be examined?",
+              "answer": [
+                "Yes, you can actively cancel the successfully registered medical examination slip if your medical examination plan changes. The examination fee will be refunded according to the specified time.",
+                "Or in some cases, the hospital has the right to refuse the examination slip, such as: patient information mismatch, wrong examination slip information, or force majeure issues from the hospital.",
+                "In that case, you will be refunded after verifying the usage status of the examination slip, ensuring compliance with the regulations of the application and hospital."
+              ]
+            },
+            "q5": {
+              "question": "Can I use the app to register and get an appointment number for another patient?",
+              "answer": [
+                "Yes, you can actively cancel the successfully registered medical examination slip if your medical examination plan changes. The examination fee will be refunded according to the specified time.",
+                "Or in some cases, the hospital has the right to refuse the examination slip, such as: patient information mismatch, wrong examination slip information, or force majeure issues from the hospital.",
+                "In that case, you will be refunded after verifying the usage status of the examination slip, ensuring compliance with the regulations of the application and hospital."
+              ]
+            }
+          }
+        },
+        "account": {
+          "title": "Account Issues",
+          "questions": {
+            "q1": {
+              "question": "What should I do if I forget my patient number?",
+              "answer": [
+                "To find your patient ID, you can look through suggestions on how to find your patient ID, and look back in your medical examination documents.",
+                "Or open the \"I forgot my patient ID\" feature > enter the required information accurately > click \"Confirm\" > and select your profile from the results list."
+              ]
+            },
+            "q2": {
+              "question": "How do I know if I have a patient code?",
+              "answer": [
+                "To find your patient ID, you can look through suggestions on how to find your patient ID, and look back in your medical examination documents.",
+                "Or open the \"I forgot my patient ID\" feature > enter the required information accurately > click \"Confirm\" > and select your profile from the results list."
+              ]
+            },
+            "q3": {
+              "question": "Can I arbitrarily select another person's patient record to register for my examination?",
+              "answer": [
+                "To find your patient ID, you can look through suggestions on how to find your patient ID, and look back in your medical examination documents.",
+                "Or open the \"I forgot my patient ID\" feature > enter the required information accurately > click \"Confirm\" > and select your profile from the results list."
+              ]
+            },
+            "q4": {
+              "question": "What is a patient number? How can I find out my patient number?",
+              "answer": [
+                "To find your patient ID, you can look through suggestions on how to find your patient ID, and look back in your medical examination documents.",
+                "Or open the \"I forgot my patient ID\" feature > enter the required information accurately > click \"Confirm\" > and select your profile from the results list."
+              ]
+            }
+          }
+        },
+        "procedure": {
+          "title": "Booking Procedure Issues",
+          "questions": {
+            "q1": {
+              "question": "Can I register for same-day medical examination through the software?",
+              "answer": "Currently, the hospital supports same-day registration booking, allowing booking 30 minutes in advance. However, you cannot cancel the examination slip on the same day."
+            },
+            "q2": {
+              "question": "What do I need to prepare when I go for an examination?",
+              "answer": "Hiện tại bệnh viện hỗ trợ cả đặt khám đăng ký trong ngày, cho phép đặt khám trước 30 phút. Nhưng bạn không được huỷ phiếu khám trong ngày."
+            },
+            "q3": {
+              "question": "If the doctor changes the examination schedule, what should I do?",
+              "answer": "Hiện tại bệnh viện hỗ trợ cả đặt khám đăng ký trong ngày, cho phép đặt khám trước 30 phút. Nhưng bạn không được huỷ phiếu khám trong ngày."
+            },
+            "q4": {
+              "question": "Will I be examined at the exact time I chose, after registering for an examination through the software?",
+              "answer": "Hiện tại bệnh viện hỗ trợ cả đặt khám đăng ký trong ngày, cho phép đặt khám trước 30 phút. Nhưng bạn không được huỷ phiếu khám trong ngày."
+            },
+            "q5": {
+              "question": "I have successfully registered, so when I go for a medical examination, do I have to queue?",
+              "answer": "Hiện tại bệnh viện hỗ trợ cả đặt khám đăng ký trong ngày, cho phép đặt khám trước 30 phút. Nhưng bạn không được huỷ phiếu khám trong ngày."
+            }
+          }
+        },
+        "payment": {
+          "title": "Payment Issues",
+          "questions": {
+            "q1": {
+              "question": "What is the convenience fee?",
+              "answer": "When using support services provided by Medpro, users will pay for Medpro's utility service fee hereinafter referred to as \"Medpro Utility Fee\", in addition to medical service fees announced by the Hospital/Medical Facility and online payment transaction processing fees \"Payment Service Fee\" (if any). \"Utility Fee\" is a type of fee incurred when users use Medpro's support services to bring practical benefits to users compared to not using them."
+            },
+            "q2": {
+              "question": "What are the conditions for a refund?",
+              "answer": "When using support services provided by Medpro, users will pay for Medpro's utility service fee hereinafter referred to as \"Medpro Utility Fee\", in addition to medical service fees announced by the Hospital/Medical Facility and online payment transaction processing fees \"Payment Service Fee\" (if any). \"Utility Fee\" is a type of fee incurred when users use Medpro's support services to bring practical benefits to users compared to not using them."
+            },
+            "q3": {
+              "question": "How to calculate the utility fee",
+              "answer": "When using support services provided by Medpro, users will pay for Medpro's utility service fee hereinafter referred to as \"Medpro Utility Fee\", in addition to medical service fees announced by the Hospital/Medical Facility and online payment transaction processing fees \"Payment Service Fee\" (if any). \"Utility Fee\" is a type of fee incurred when users use Medpro's support services to bring practical benefits to users compared to not using them."
+            },
+            "q4": {
+              "question": "I want to register for an online examination but can I go directly to the hospital to pay?",
+              "answer": "When using support services provided by Medpro, users will pay for Medpro's utility service fee hereinafter referred to as \"Medpro Utility Fee\", in addition to medical service fees announced by the Hospital/Medical Facility and online payment transaction processing fees \"Payment Service Fee\" (if any). \"Utility Fee\" is a type of fee incurred when users use Medpro's support services to bring practical benefits to users compared to not using them."
+            },
+            "q5": {
+              "question": "I entered my card account but couldn't confirm it?",
+              "answer": "When using support services provided by Medpro, users will pay for Medpro's utility service fee hereinafter referred to as \"Medpro Utility Fee\", in addition to medical service fees announced by the Hospital/Medical Facility and online payment transaction processing fees \"Payment Service Fee\" (if any). \"Utility Fee\" is a type of fee incurred when users use Medpro's support services to bring practical benefits to users compared to not using them."
+            }
+          }
+        }
+      }
+    }
   }
 }

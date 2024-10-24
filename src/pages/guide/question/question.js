@@ -8,32 +8,35 @@ import { MdOutlineKeyboardArrowRight, MdOutlineKeyboardArrowDown } from 'react-i
 import { RiArrowDropRightFill } from 'react-icons/ri';
 import Support from '~/layouts/components/support';
 import classNames from 'classnames/bind';
+import { useTranslation } from 'react-i18next';
+import '~/translation/i18n';
 
 const cx = classNames.bind(style);
 
 function Question() {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState(0);
   const [activeContent, setActiveContent] = useState(null);
 
   const tabs = [
     {
-      title: 'Vấn đề chung',
+      title: t('question.tabList.tabs.general.title'), 
       contents: [
-        { subtitle: 'Đăng kí khám bệnh online có mất phí không?', 
+        { subtitle: t('question.tabList.tabs.general.questions.q1.question'), 
           description:(
           <div>
               <p className={cx('collapse__content--title')}>
-              Bạn chỉ cần thanh toán phí khi việc đặt lịch khám của bạn được xác nhận. Các tính năng khác của ứng dụng, bao gồm việc sử dụng ứng dụng và truy cập vào các thông tin khác, thì hoàn toàn miễn phí.
+              {t('question.tabList.tabs.general.questions.q1.answer')}
               </p>
               </div>
           )
         },
         {
-          subtitle: 'Làm sao để sử dụng được ứng dụng đăng kí khám bệnh trực tuyến',
+          subtitle: t('question.tabList.tabs.general.questions.q2.question'),
           description: (
             <div>
               <p className={cx('collapse__content--title')}>
-                Đặt lịch khám bệnh theo hẹn, mọi lúc mọi nơi, mà không cần đến bệnh viện:
+              {t('question.tabList.tabs.general.questions.q2.answer.intro')}
               </p>
               <ul className={cx('collapse__content--title')}>
                 <li>Không xếp hàng chờ đợi để lấy số tiếp nhận khám bệnh</li>
@@ -48,7 +51,7 @@ function Question() {
           ),
         },
         {
-          subtitle: 'Sau khi đã đăng ký khám thành công qua ứng dụng, có thể hủy phiếu khám không?',
+          subtitle: t('question.tabList.tabs.general.questions.q3.question'),
           description: (
             <div>
               <p className={cx('collapse__content--title')}>
@@ -62,7 +65,7 @@ function Question() {
           ),
         },
         {
-          subtitle: 'Tôi đến bệnh viện trễ hơn so với giờ khám đã đăng ký, vậy tôi có được khám hay không?',
+          subtitle: t('question.tabList.tabs.general.questions.q4.question'),
           description: (
             <div>
               <p className={cx('collapse__content--title')}>
@@ -72,7 +75,7 @@ function Question() {
           ),
         },
         {
-          subtitle: 'Tôi có thể dùng ứng dụng để đăng ký và lấy số thứ tự khám cho bệnh nhân khác không?',
+          subtitle: t('question.tabList.tabs.general.questions.q5.question'),
           description: (
             <div>
               <p className={cx('collapse__content--title')}>
@@ -92,9 +95,9 @@ function Question() {
       ],
     },
     {
-      title: 'Vấn đề tài khoản',
+      title: t('question.tabList.tabs.account.title'), 
       contents: [
-        { subtitle: 'Tôi quên số bệnh nhân thì làm phải làm sao?', 
+        { subtitle: t('question.tabList.tabs.account.questions.q1.question'),
           description: (
             <div>
               <p className={cx('collapse__content--title')}>
@@ -106,7 +109,7 @@ function Question() {
           ),
         },
         {
-          subtitle: 'Làm sao tôi biết bên mình đã có mã bệnh nhân hay chưa?',
+          subtitle: t('question.tabList.tabs.account.questions.q2.question'),
           description: (
             <div>
               <p className={cx('collapse__content--title')}>
@@ -118,7 +121,7 @@ function Question() {
           ),
         },
         {
-          subtitle: 'Tôi có thể chọn tùy ý một hồ sơ bệnh nhân của người khác để đăng ký khám bệnh cho mình không?',
+          subtitle: t('question.tabList.tabs.account.questions.q3.question'),
           description: (
             <div>
               <p className={cx('collapse__content--title')}>
@@ -134,7 +137,7 @@ function Question() {
           ),
         },
         {
-          subtitle: 'Mã số bệnh nhân là gì ? Làm sao tôi có thể biết được mã số bệnh nhân của mình?',
+          subtitle: t('question.tabList.tabs.account.questions.q4.question'),
           description: (
             <ul className={cx('collapse__content--title')}>
              <li>Mã số bệnh nhân là số hồ sơ mà bệnh viện dùng để quản lý thông tin của bạn trên hệ thống dữ liệu của bệnh viện.</li>
@@ -145,10 +148,10 @@ function Question() {
       ],
     },
     {
-      title: 'Vấn đề về quy trình đặt khám',
+      title: t('question.tabList.tabs.procedure.title'), 
       contents: [
         {
-          subtitle: 'Có thể đăng ký khám bệnh trong ngày bằng phần mềm không?',
+          subtitle: t('question.tabList.tabs.procedure.questions.q1.question'),
           description: 
           <div>
               <p className={cx('collapse__content--title')}>
@@ -156,7 +159,7 @@ function Question() {
               </p>
             </div>
         },
-        { subtitle: 'Khi khám bệnh tôi cần chuẩn bị gì?', 
+        { subtitle: t('question.tabList.tabs.procedure.questions.q2.question'),
         description: 
         <div>
           <p className={cx('collapse__content--title-b')}>
@@ -169,7 +172,7 @@ function Question() {
           <p className={cx('collapse__content--title')}>Bệnh nhân vui lòng đến trước giờ hẹn 15 phút, xuất trình phiếu khám bệnh điện tử và giấy tờ tùy thân để được hướng dẫn vào phòng khám bệnh.</p>
         </div> },
         {
-          subtitle: 'Nếu bác sĩ thay đổi lịch khám, tôi phải làm sao?',
+          subtitle: t('question.tabList.tabs.procedure.questions.q3.question'),
           description: (
             <div>
               <p className={cx('collapse__content--title')}>
@@ -184,7 +187,7 @@ function Question() {
           ),
         },
         {
-          subtitle: 'Tôi sẽ được khám bệnh vào đúng thời gian đã chọn, sau khi đăng ký khám qua phần mềm đúng không?',
+          subtitle: t('question.tabList.tabs.procedure.questions.q4.question'),
           description: (
             <div>
               <p className={cx('collapse__content--title')}>
@@ -197,7 +200,7 @@ function Question() {
           ),
         },
         {
-          subtitle: 'Tôi đã đăng ký thành công vậy khi đi khám tôi có phải xếp hàng gì không?',
+          subtitle: t('question.tabList.tabs.procedure.questions.q5.question'),
           description: (
             <div>
               <p className={cx('collapse__content--title')}>
@@ -209,9 +212,9 @@ function Question() {
       ],
     },
     {
-      title: 'Vấn đề thanh toán',
+      title: t('question.tabList.tabs.payment.title'), 
       contents: [
-        { subtitle: 'Phí tiện ích là gì?', 
+        { subtitle: t('question.tabList.tabs.payment.questions.q1.question'),
           description: (
           <div>
             <p className={cx('collapse__content--title')}>
@@ -220,7 +223,7 @@ function Question() {
           </div>
         ),
       },
-        { subtitle: 'Điều kiện để được hoàn tiền là gì?',  
+        { subtitle: t('question.tabList.tabs.payment.questions.q2.question'),
           description: (
             <div>
               <p className={cx('collapse__content--title')}>
@@ -229,7 +232,7 @@ function Question() {
             </div>
           ),
         },
-        { subtitle: 'Cách tính phí tiện ích',  
+        { subtitle: t('question.tabList.tabs.payment.questions.q3.question'),
           description: (
             <div>
               <p className={cx('collapse__content--title')}>
@@ -241,7 +244,7 @@ function Question() {
             </div>
           ),
         },
-        { subtitle: 'Tôi muốn đăng ký khám online nhưng đến trực tiếp bệnh viện để thanh toán được không?',  
+        { subtitle: t('question.tabList.tabs.payment.questions.q4.question'), 
           description: (
             <div>
               <p className={cx('collapse__content--title')}>
@@ -251,7 +254,7 @@ function Question() {
             </div>
           ),
         },
-        { subtitle: 'Tôi nhập tài khoản thẻ nhưng bấm xác thực hoài không được?',  
+        { subtitle: t('question.tabList.tabs.payment.questions.q5.question'),
           description: (
             <div>
               <p className={cx('collapse__content--title')}>
@@ -272,13 +275,13 @@ function Question() {
   return (
     <div className={cx('question')}>
       <Header
-        title={'Chúng tôi có thể giúp gì cho bạn?'}
-        des={'Giải đáp câu hỏi nhanh giúp quý khách hiểu rõ hơn về sản phẩm, dịch vụ chúng tôi.'}
+        title={t('question.header.title')}
+        des={t('question.header.description')}
       />
       <div className={cx('container')}>
         <div className={cx('list_question', 'my-10')}>
           <div className={cx('tab_nav')}>
-            <h4 className={cx('tab__nav--title')}>Danh sách câu hỏi</h4>
+            <h4 className={cx('tab__nav--title')}>{t('question.tabList.title')}</h4>
             {tabs?.map((tab, index) => {
               return (
                 <div

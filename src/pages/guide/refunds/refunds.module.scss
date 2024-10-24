@@ -1,5 +1,9 @@
 .guide_refunds {
   background-color: #e8f2f7;
+  @media (max-width: 1024px) {
+    margin-top: -80px;
+  }
+  
 }
 
 .refunds_wapper {

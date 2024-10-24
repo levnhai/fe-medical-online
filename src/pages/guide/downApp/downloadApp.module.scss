@@ -40,9 +40,6 @@
   color: #686868;
 }
 
-.install_content {
-}
-
 .content_item {
   display: flex;
   align-items: center;
@@ -83,6 +80,96 @@
   height: 250px;
   left: 90px;
   top: 30px;
+}
+
+@keyframes movement {
+  from {
+    opacity: 0;
+    margin-top: 300px;
+  }
+  to {
+    opacity: 1;
+    margin-top: 40px;
+  }
+}
+/* Màn hình lớn (Desktop) */
+@media screen and (max-width: 1200px) {
+  .downApp_container {
+    width: 90%;
+  }
+  
+  .downApp_install {
+    margin: 0px 100px;
+  }
+}
+
+/* Tablet */
+@media screen and (max-width: 768px) {
+  .downApp_container {
+    margin: 20px auto;
+    padding: 20px 15px 0px;
+  }
+
+  .downApp_install {
+    margin: 0px 50px;
+  }
+
+  .install_header {
+    padding: 0px 20px 20px;
+  }
+
+  .install_title {
+    font-size: 24px;
+    line-height: 30px;
+  }
+
+  .install_dess {
+    font-size: 16px;
+  }
+
+  .content_Qr img {
+    max-width: 200px;
+    height: 180px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 480px) {
+  .downApp_container {
+    margin: 15px auto;
+    padding: 15px 10px 0px;
+    min-height: 350px;
+  }
+
+  .downApp_install {
+    margin: 0px 20px;
+  }
+
+  .install_header {
+    padding: 0px 15px 15px;
+    margin-bottom: 20px;
+  }
+
+  .install_title {
+    font-size: 20px;
+    line-height: 26px;
+  }
+
+  .install_dess {
+    font-size: 14px;
+  }
+
+  .content_item strong,
+  .content_item h3 {
+    font-size: 14px;
+  }
+
+  .content_Qr img {
+    max-width: 150px;
+    height: 140px;
+  }
 }
 
 @keyframes movement {

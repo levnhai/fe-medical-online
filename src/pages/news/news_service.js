@@ -6,6 +6,7 @@ import { Link, useLocation } from 'react-router-dom';
 import styles from './news.module.scss';
 import { useState, useEffect } from 'react';
 import { FaCalendarAlt, FaBars } from 'react-icons/fa';
+import { newsService } from '~/redux/news/newsSlice';
 const cx = classNames.bind(styles);
 
 function NewsService() {
@@ -58,27 +59,17 @@ function NewsService() {
   ];
 
   useEffect(() => {
-    document.title = 'Tin tức dịch vụ || Medical';
+    document.title = 'Tin tức y khoa || Medical';
     
-    const fetchAllNews = async () => {
+    const fetchData = async () => {
       try {
         setLoading(true);
-
-        // Fetch service news (category = dich-vu)
-        const mainResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/news/category/tin-dich-vu?_sort=createdAt:DESC&_limit=1`);
-        const mainData = await mainResponse.json();
-        setMainNews(mainData);
-
-       // Fetch side news (exactly 6 articles after the first 1)
-       const sideResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/news/category/tin-dich-vu?_sort=createdAt:DESC&_start=1&_limit=7`);
-       const sideData = await sideResponse.json();
-       setSideNews(sideData);
-
-       // Fetch service news (category = dich-vu)
-       const serviceResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/news/category/tin-dich-vu`);
-       const serviceData = await serviceResponse.json();
-       setServiceNews(serviceData);
-
+        const data = await newsService.getAllNews();
+        
+        setMainNews(data.mainNews);
+        setSideNews(data.sideNews);
+        setServiceNews(data.serviceNews);
+        
         setLoading(false);
       } catch (error) {
         console.error('Error fetching news:', error);
@@ -86,7 +77,7 @@ function NewsService() {
       }
     };
 
-    fetchAllNews();
+    fetchData();
   }, []);
 
   if (loading) {

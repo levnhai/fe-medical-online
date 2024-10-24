@@ -6,6 +6,7 @@ import { Link, useLocation } from 'react-router-dom';
 import styles from './news.module.scss';
 import { useState, useEffect } from 'react';
 import { FaCalendarAlt , FaBars} from 'react-icons/fa';
+import { newsSlice } from '~/redux/news/newsSlice';
 const cx = classNames.bind(styles);
 
 function News() {
@@ -63,35 +64,17 @@ function News() {
   useEffect(() => {
     document.title = 'Tin tức y khoa || Medical';
 
-    const fetchAllNews = async () => {
+    const fetchData = async () => {
       try {
         setLoading(true);
+        const data = await newsSlice.getAllNews();
         
-        // Fetch main news (3 latest articles)
-        const mainResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/news?_sort=createdAt:DESC&_limit=3`);
-        const mainData = await mainResponse.json();
-        setMainNews(mainData);
-
-        // Fetch side news (exactly 8 articles after the first 3)
-        const sideResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/news?_sort=createdAt:DESC&_start=3&_limit=10`);
-        const sideData = await sideResponse.json();
-        setSideNews(sideData);
-
-        // Fetch service news (category = dich-vu)
-        const serviceResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/news/category/tin-dich-vu`);
-        const serviceData = await serviceResponse.json();
-        setServiceNews(serviceData);
-
-        // Fetch medical news (category = y-te)
-        const medicalResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/news/category/tin-y-te`);
-        const medicalData = await medicalResponse.json();
-        setMedicalNews(medicalData);
-
-        // Fetch common medical news (category = y-hoc-thuong-thuc)
-        const commonMedicalResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/news/category/thuong-thuc-y-te`);
-        const commonMedicalData = await commonMedicalResponse.json();
-        setCommonMedicalNews(commonMedicalData);
-
+        setMainNews(data.mainNews);
+        setSideNews(data.sideNews);
+        setServiceNews(data.serviceNews);
+        setMedicalNews(data.medicalNews);
+        setCommonMedicalNews(data.commonMedicalNews);
+        
         setLoading(false);
       } catch (error) {
         console.error('Error fetching news:', error);
@@ -99,8 +82,9 @@ function News() {
       }
     };
 
-    fetchAllNews();
+    fetchData();
   }, []);
+
 
   if (loading) {
     return <p>Loading...</p>;

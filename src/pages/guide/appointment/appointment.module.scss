@@ -173,3 +173,139 @@
     margin-top: 40px;
   }
 }
+/* Desktop lớn */
+@media screen and (max-width: 1200px) {
+  .refunds_wapper {
+    width: 90%;
+  }
+  
+  .refunds_card {
+    padding: 0 60px;
+  }
+  
+  .refunds_cardBottom {
+    padding: 40px 80px 0;
+  }
+}
+
+/* Tablet */
+@media screen and (max-width: 768px) {
+  .refunds_container {
+    margin: 30px 0;
+    padding: 30px 0 40px;
+  }
+
+  .refunds_header {
+    padding: 0 20px 24px;
+  }
+
+  .refunds_header h1 {
+    font-size: 24px;
+    line-height: 30px;
+  }
+
+  .header_tag {
+    font-size: 16px;
+  }
+
+  .refunds_card {
+    padding: 0 40px;
+  }
+
+  .content_item {
+    padding-left: 40px;
+  }
+
+  .content_title {
+    margin-left: 10px;
+    font-size: 15px;
+  }
+
+  .content_detail ul {
+    font-size: 15px;
+  }
+
+  .refunds_cardBottom {
+    padding: 30px 50px 0;
+  }
+
+  .refunds__cardBottom--title {
+    font-size: 18px;
+  }
+
+  .refunds__cardBottom--content {
+    font-size: 15px;
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 480px) {
+  .refunds_container {
+    margin: 20px 0;
+    padding: 20px 0 30px;
+  }
+
+  .refunds_header h1 {
+    font-size: 20px;
+    line-height: 26px;
+  }
+
+  .header_tag {
+    font-size: 14px;
+  }
+
+  .refunds_card {
+    padding: 0 20px;
+  }
+
+  .content_item {
+    padding-left: 30px;
+    margin-top: 24px;
+  }
+
+  .content_item::before {
+    width: 20px;
+    left: 12px;
+  }
+
+  .content_title {
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  .content_detail ul {
+    font-size: 14px;
+    margin-top: 15px;
+  }
+
+  .refunds_cardBottom {
+    margin-top: 30px;
+    padding: 20px 25px 0;
+  }
+
+  .refunds__cardBottom--title {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .refunds__cardBottom--content {
+    font-size: 14px;
+    margin-top: 12px;
+  }
+
+  .check-icon {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+@keyframes movement {
+  from {
+    opacity: 0;
+    margin-top: 300px;
+  }
+  to {
+    opacity: 1;
+    margin-top: 40px;
+  }
+}

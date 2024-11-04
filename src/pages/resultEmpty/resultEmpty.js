@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import style from './ResultEmpty.module.scss';
+import style from './resultEmpty.module.scss';
 
 const cx = classNames.bind(style);
 

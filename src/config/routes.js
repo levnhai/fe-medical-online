@@ -8,6 +8,7 @@ const routes = {
   singUp: '/register-account',
   newPassword: '/new-password',
   facilitie: '/co-so-y-te',
+  facilitieType: '/co-so-y-te/:type/',
 
   // guide
   question: '/huong-dan/cau-hoi-thuong-gap',

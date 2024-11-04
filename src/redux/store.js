@@ -6,7 +6,8 @@ import storage from 'redux-persist/lib/storage';
 
 import docterSlice from './docter/docterSlice';
 import authReducer from '../redux/user/authSlice';
-import newReducer from '../redux/news/newsSlice'
+import newSlice from '../redux/news/newsSlice';
+import hospitalSlice from '../redux/hospital/hospitalSilder';
 
 const persistConfig = {
   key: 'auth',
@@ -21,7 +22,8 @@ const Store = configureStore({
   reducer: {
     auth: persistedReducer,
     docter: docterSlice,
-    new: newReducer,
+    new: newSlice,
+    hospital: hospitalSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

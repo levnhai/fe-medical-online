@@ -3,11 +3,11 @@ export const menu = [
     labelKey: 'medical_facilities',
     href: '/co-so-y-te',
     children: [
-      { labelKey: 'public_hospitals', href: '/' },
-      { labelKey: 'private_hospitals', href: '/' },
-      { labelKey: 'clinics', href: '/' },
-      { labelKey: 'medical_offices', href: '/' },
-      { labelKey: 'laboratory', href: '/' },
+      { labelKey: 'public_hospitals', href: '/co-so-y-te/benh-vien-cong' },
+      { labelKey: 'private_hospitals', href: '/co-so-y-te/benh-vien-tu' },
+      { labelKey: 'clinics', href: '/co-so-y-te/phong-kham' },
+      { labelKey: 'medical_offices', href: '/co-so-y-te/phong-mach' },
+      { labelKey: 'laboratory', href: '/co-so-y-te/xet-nghiem' },
     ],
   },
   {

@@ -83,7 +83,7 @@ function News() {
     <div className={cx('news', 'w-full overflow-x-hidden')}>
       <div className={cx('news_main')}>
         <div className={cx('news_header')}>
-        <Link to="/news">
+        <Link to="/tin-tuc">
           <h1 className={cx('header_title')}>TIN TỨC Y KHOA</h1>
         </Link>
 
@@ -226,9 +226,9 @@ function News() {
         ))}
       </div>
       <div className={cx('view-all')}>
-          <a href="/tin-tuc/dich-vu" className={cx('view-all-button')}>
-            Xem tất cả »
-          </a>
+      <Link to="/tin-tuc/y-hoc-thuong-thuc">
+          <a className={cx('view-all-button')}> Xem tất cả »</a>
+        </Link>
       </div> 
 
       {/* Medical News Section */}
@@ -279,9 +279,9 @@ function News() {
         ))}
       </div>
       <div className={cx('view-all')}>
-          <a href="/tin-tuc/y-te" className={cx('view-all-button')}>
-            Xem tất cả »
-          </a>
+      <Link to="/tin-tuc/y-hoc-thuong-thuc">
+          <a className={cx('view-all-button')}> Xem tất cả »</a>
+        </Link>
       </div>
 
       {/* Common Medical Knowledge Section */}
@@ -334,9 +334,9 @@ function News() {
         </div>
       </div>
       <div className={cx('view-all')}>
-          <a href="/tin-tuc/y-hoc-thuong-thuc" className={cx('view-all-button')}>
-            Xem tất cả »
-          </a>
+          <Link to="/tin-tuc/y-hoc-thuong-thuc">
+          <a className={cx('view-all-button')}> Xem tất cả »</a>
+        </Link>
       </div>
     </div>
   );

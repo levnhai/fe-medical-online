@@ -428,6 +428,33 @@
           }
         }
       }
+    },
+  "facilities": {
+    "publicHospital": {
+      "label": "Public Hospital",
+      "href": "benh-vien-cong",
+      "subTitle": "Easy appointment booking, no waiting at Vietnam's leading public hospitals"
+    },
+    "privateHospital": {
+      "label": "Private Hospital",
+      "href": "benh-vien-tu", 
+      "subTitle": "Enjoy private healthcare services, professional healthcare"
+    },
+    "clinic": {
+      "label": "Clinic",
+      "href": "phong-kham",
+      "subTitle": "Experience focused and personalized medical care at specialized clinics"
+    },
+    "medicalOffice": {
+      "label": "Medical Office",
+      "href": "phong-mach",
+      "subTitle": "Quality diagnosis and treatment with trusted specialist doctors"
+    },
+    "laboratory": {
+      "label": "Laboratory",
+      "href": "xet-nghiem",
+      "subTitle": "Accurate, quick testing and effective diagnostic support with leading trusted facilities"
     }
+  }
   }
 }

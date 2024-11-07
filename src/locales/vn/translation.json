@@ -430,6 +430,33 @@
           }
         }
       }
+    },
+  "facilities": {
+    "publicHospital": {
+      "label": "Bệnh viện công",
+      "href": "benh-vien-cong",
+      "subTitle": "Đặt khám dễ dàng, không lo chờ đợi tại các bệnh viện công hàng đầu Việt Nam"
+    },
+    "privateHospital": {
+      "label": "Bệnh viện tư",
+      "href": "benh-vien-tu",
+      "subTitle": "Tận hưởng dịch vụ y tế tư nhân, chăm sóc sức khỏe chuyên nghiệp"
+    },
+    "clinic": {
+      "label": "Phòng khám",
+      "href": "phong-kham",
+      "subTitle": "Trải nghiệm chăm sóc y tế tập trung và gần gũi tại phòng khám chuyên khoa"
+    },
+    "medicalOffice": {
+      "label": "Phòng mạch",
+      "href": "phong-mach",
+      "subTitle": "Chẩn đoán và điều trị chất lượng với bác sĩ chuyên khoa được nhiều người tin tưởng"
+    },
+    "laboratory": {
+      "label": "Xét nghiệm",
+      "href": "xet-nghiem",
+      "subTitle": "Xét nghiệm chính xác, nhanh chóng và hỗ trợ chẩn đoán hiệu quả với các cơ sở uy tín hàng đầu"
     }
+  }
   }
 }

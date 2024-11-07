@@ -100,7 +100,7 @@ function OtpInput() {
 
   return (
     <Auth>
-      <div className={cx('wrapper-otp', 'container mx-auto w-full px-4 md:px-6 lg:px-8 overflow-x-hidden')}>
+      <div className={cx('wrapper-otp')}>
         <div className={cx('otp-content')}>
           <h4 className={cx('tag-header')}>{t('opt.title')}</h4>
           <p className={cx('customFotnSize')}>{t('opt.fogot_pas')}</p>

@@ -73,7 +73,7 @@ function NewsService() {
     <div className={cx('news', 'w-full overflow-x-hidden')}>
       <div className={cx('news_main')}>
       <div className={cx('news_header')}>
-      <Link to="/news">
+      <Link to="/tin-tuc">
         <h1 className={cx('header_title')}>TIN TỨC Y KHOA</h1>
       </Link>
 

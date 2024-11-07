@@ -1,9 +1,10 @@
 import classNames from 'classnames/bind';
 import { Buffer } from 'buffer';
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { List } from 'react-content-loader';
+import { useTranslation } from 'react-i18next';
 
 // icon
 import { MdKeyboardArrowRight } from 'react-icons/md';
@@ -20,37 +21,39 @@ import { createSlugName } from '~/utils/createSlug';
 
 import style from './facilitie.module.scss';
 const cx = classNames.bind(style);
+
 let PageSize = 4;
 
-let tabMenus = [
-  {
-    label: 'Bệnh viện công',
-    href: 'benh-vien-cong',
-    subTitle: 'Đặt khám dễ dàng, không lo chờ đợi tại các bệnh viện công hàng đầu Việt Nam',
-  },
-  {
-    label: 'Bệnh viện tư',
-    href: 'benh-vien-tu',
-    subTitle: 'Tận hưởng dịch vụ y tế tư nhân, chăm sóc sức khỏe chuyên nghiệp',
-  },
-  {
-    label: 'Phòng khám',
-    href: 'phong-kham',
-    subTitle: 'Trải nghiệm chăm sóc y tế tập trung và gần gũi tại phòng khám chuyên khoa',
-  },
-  {
-    label: 'Phòng mạch',
-    href: 'phong-mach',
-    subTitle: 'Chẩn đoán và điều trị chất lượng với bác sĩ chuyên khoa được nhiều người tin tưởng',
-  },
-  {
-    label: 'Xét nghiệm',
-    href: 'xet-nghiem',
-    subTitle: 'Xét nghiệm chính xác, nhanh chóng và hỗ trợ chẩn đoán hiệu quả với các cơ sở uy tín hàng đầu',
-  },
-];
+// let tabMenus = [
+//   {
+//     label: 'Bệnh viện công',
+//     href: 'benh-vien-cong',
+//     subTitle: 'Đặt khám dễ dàng, không lo chờ đợi tại các bệnh viện công hàng đầu Việt Nam',
+//   },
+//   {
+//     label: 'Bệnh viện tư',
+//     href: 'benh-vien-tu',
+//     subTitle: 'Tận hưởng dịch vụ y tế tư nhân, chăm sóc sức khỏe chuyên nghiệp',
+//   },
+//   {
+//     label: 'Phòng khám',
+//     href: 'phong-kham',
+//     subTitle: 'Trải nghiệm chăm sóc y tế tập trung và gần gũi tại phòng khám chuyên khoa',
+//   },
+//   {
+//     label: 'Phòng mạch',
+//     href: 'phong-mach',
+//     subTitle: 'Chẩn đoán và điều trị chất lượng với bác sĩ chuyên khoa được nhiều người tin tưởng',
+//   },
+//   {
+//     label: 'Xét nghiệm',
+//     href: 'xet-nghiem',
+//     subTitle: 'Xét nghiệm chính xác, nhanh chóng và hỗ trợ chẩn đoán hiệu quả với các cơ sở uy tín hàng đầu',
+//   },
+// ];
 
 function Facilitie() {
+  const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedHospitalId, setSelectedHospitalId] = useState(null);
   const [search, setSearch] = useState('');
@@ -59,6 +62,8 @@ function Facilitie() {
   const [subLableTitle, setSubLableTitle] = useState(
     'Với những cơ sở Y Tế hàng đầu sẽ giúp trải nghiệm khám, chữa bệnh của bạn tốt hơn',
   );
+  const [sliderMode, setSliderMode] = useState('full');
+  const sliderRef = useRef(null);
 
   const { type } = useParams();
   const navigate = useNavigate();
@@ -71,24 +76,58 @@ function Facilitie() {
   const handleHospitalClick = (hospital) => {
     setSelectedHospitalId(hospital._id);
   };
+  const tabMenus = [
+    {
+      label: t('facilities.publicHospital.label', 'Bệnh viện công'),
+      href: 'benh-vien-cong',
+      subTitle: t('facilities.publicHospital.subTitle', 'Đặt khám dễ dàng, không lo chờ đợi tại các bệnh viện công hàng đầu Việt Nam'),
+    },
+    {
+      label: t('facilities.privateHospital.label', 'Bệnh viện tư'),
+      href: 'benh-vien-tu',
+      subTitle: t('facilities.privateHospital.subTitle', 'Tận hưởng dịch vụ y tế tư nhân, chăm sóc sức khỏe chuyên nghiệp'),
+    },
+    {
+      label: t('facilities.clinic.label', 'Phòng khám'),
+      href: 'phong-kham',
+      subTitle: t('facilities.clinic.subTitle', 'Trải nghiệm chăm sóc y tế tập trung và gần gũi tại phòng khám chuyên khoa'),
+    },
+    {
+      label: t('facilities.medicalOffice.label', 'Phòng mạch'),
+      href: 'phong-mach',
+      subTitle: t('facilities.medicalOffice.subTitle', 'Chẩn đoán và điều trị chất lượng với bác sĩ chuyên khoa được nhiều người tin tưởng'),
+    },
+    {
+      label: t('facilities.laboratory.label', 'Xét nghiệm'),
+      href: 'xet-nghiem',
+      subTitle: t('facilities.laboratory.subTitle', 'Xét nghiệm chính xác, nhanh chóng và hỗ trợ chẩn đoán hiệu quả với các cơ sở uy tín hàng đầu'),
+    },
+  ];
 
+  const [tabCounts, setTabCounts] = useState({});
   // count hospital type
   const countHospitalType = () => {
-    tabMenus = tabMenus.map((item) => {
-      console.log('check', countHospitalByType?.typeCounts?.hasOwnProperty(item.href));
-      if (countHospitalByType && countHospitalByType?.typeCounts?.hasOwnProperty(item.href)) {
-        return {
-          ...item,
-          count: countHospitalByType?.typeCounts[item.href],
-        };
-      } else {
-        return {
-          ...item,
-          count: 0,
-        };
-      }
+    const counts = {};
+    tabMenus.forEach((item) => {
+      counts[item.href] = countHospitalByType?.typeCounts?.[item.href] || 0;
     });
+    setTabCounts(counts);
   };
+// const countHospitalType = () => {
+//   tabMenus = tabMenus.map((item) => {
+//     console.log('check', countHospitalByType?.typeCounts?.hasOwnProperty(item.href));
+//     if (countHospitalByType && countHospitalByType?.typeCounts?.hasOwnProperty(item.href)) {
+//       return {
+//         ...item,
+//         count: countHospitalByType?.typeCounts[item.href],
+//       };
+//     } else {
+//       return {
+//         ...item,
+//         count: 0,
+//       };
+//     }
+//   });
 
   // convert image
   const image = (image) => {
@@ -113,8 +152,8 @@ function Facilitie() {
   }, [selectedHospitalId, hospitalDataByType?.data]);
 
   const handleClickType = (tab, index) => {
-    setLabelTitle(tab.label);
-    setSubLableTitle(tab.subTitle);
+    setLabelTitle(t(tab.label));
+    setSubLableTitle(t(tab.subTitle));
     if (activeMenu === index) {
       setActiveMenu(null);
       navigate('/co-so-y-te');
@@ -138,6 +177,70 @@ function Facilitie() {
     countHospitalType();
   }, [search, dispatch]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width < 320) setSliderMode('one');
+      else if (width < 425) setSliderMode('two');
+      else if (width < 768) setSliderMode('three');
+      else if (width < 1024) setSliderMode('slider');
+      else setSliderMode('full');
+    };
+  
+    handleResize();
+    window.addEventListener('resize', handleResize);
+  
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+  
+  useEffect(() => {
+    if (sliderMode !== 'full' && sliderRef.current) {
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+  
+      const slider = sliderRef.current;
+  
+      const onMouseDown = (e) => {
+        isDown = true;
+        slider.classList.add('active');
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+      };
+  
+      const onMouseLeave = () => {
+        isDown = false;
+        slider.classList.remove('active');
+      };
+  
+      const onMouseUp = () => {
+        isDown = false;
+        slider.classList.remove('active');
+      };
+  
+      const onMouseMove = (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - slider.offsetLeft;
+        const walk = (x - startX) * 2;
+        slider.scrollLeft = scrollLeft - walk;
+      };
+  
+      slider.addEventListener('mousedown', onMouseDown);
+      slider.addEventListener('mouseleave', onMouseLeave);
+      slider.addEventListener('mouseup', onMouseUp);
+      slider.addEventListener('mousemove', onMouseMove);
+  
+      return () => {
+        slider.removeEventListener('mousedown', onMouseDown);
+        slider.removeEventListener('mouseleave', onMouseLeave);
+        slider.removeEventListener('mouseup', onMouseUp);
+        slider.removeEventListener('mousemove', onMouseMove);
+      };
+    }
+  }, [sliderMode]);
   return (
     <>
       <div className={cx('facilitie')}>
@@ -184,19 +287,20 @@ function Facilitie() {
                 </div>
               </div>
             </div>
-            <div className={cx('facilitie__tag')}>
+            <div className={cx('btnGroup', sliderMode)} ref={sliderRef}>
               {tabMenus.map((tab, index) => {
                 return (
                   <Button
                     key={index}
                     rounded
-                    className={cx('facilitie__tag--btn', { active: activeMenu === index || tab.href === type })}
+                    className={cx('guide_btn', { active: activeMenu === index || tab.href === type })}
                     onClick={() => {
                       handleClickType(tab, index);
                     }}
                   >
                     {tab.label}
-                    <span> ( {tab.count} )</span>
+                    <span> ( {tabCounts[tab.href] || 0} )</span>
+                    {/* <span> ( {tab.count} )</span> */}
                   </Button>
                 );
               })}
@@ -204,7 +308,7 @@ function Facilitie() {
           </div>
           <div className={cx('facilitie__container')}>
             <div className={cx('list_hospital')}>
-              <div class="grid grid-cols-3 gap-6 w-full">
+            <div class="w-full grid lg:grid-cols-3 gap-6">
                 <div class="col-span-2">
                   {isLoading === true ? (
                     <>

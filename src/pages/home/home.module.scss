@@ -372,6 +372,23 @@
     font-size: 15px;
   }
 }
+.article_title {
+  font-size: 25px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+}
+
+.article_meta {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+}
+.article_excerpt {
+  font-size: 16px;
+  color: #444;
+  line-height: 1.5;
+}
 .bookingInfo_btn {
   margin-top: 30px;
   width: 161px;
@@ -695,27 +712,31 @@
 
 .new_cardRight {
   min-height: 150px;
-  width: 100%; /* Chiếm toàn bộ chiều rộng */
+  width: 100%;
   display: flex;
-  flex-wrap: wrap; /* Cho phép phần tử wrap cho các item */
+  flex-wrap: wrap;
   gap: 20px;
 }
 
 .cardRight_item {
-  width: calc(50% - 10px); /* Mỗi item chiếm 50% chiều rộng (2 cột) */
+  width: 100%; /* Default full width for mobile */
   padding: 14px;
   border-radius: 10px;
   background-color: var(--white-color);
-  box-sizing: border-box; /* Đảm bảo padding không làm tăng kích thước */
+  box-sizing: border-box;
+}
+
+@media (min-width: 1024px) {
+  .cardRight_item {
+    width: calc(50% - 10px);
+  }
 }
 
 .cardRight_image {
-  background-image: url(../../assets/images/new_2.webp);
-  background-size: cover; /* Thay đổi từ contain thành cover để hình ảnh chiếm toàn bộ chiều rộng */
-  background-repeat: no-repeat;
   width: 100%;
   height: 192px;
   border-radius: 10px;
+  object-fit: cover;
 }
 
 .cardRight_title {
@@ -733,7 +754,59 @@
   font-size: 13px;
   line-height: 15px;
 }
+.grid {
+  display: grid;
+  gap: 1rem;
+}
 
+/* Default 1 column for mobile */
+.grid {
+  grid-template-columns: 1fr;
+}
+
+/* 2 columns for screens larger than 564px */
+@media (min-width: 564px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.cardRight_item {
+  display: flex;
+  flex-direction: column;
+}
+
+.cardRight_image {
+  width: 100%;
+  height: 12rem;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.article_meta {
+  font-size: 0.875rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
+
+.cardRight_title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-top: 0.25rem;
+}
+
+.article_excerpt {
+  color: #444;
+  margin-top: 0.5rem;
+}
+
+.cardRight_tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.875rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
 /* Media query để xử lý trên màn hình lớn hơn 1024px */
 @media (min-width: 1024px) {
   .new_cardLeft {

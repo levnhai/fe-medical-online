@@ -1,11 +1,14 @@
 import classNames from 'classnames/bind';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import HospitalServices from './Section/HospitalServices';
 import HealthServices from './Section/HealthServices';
 import Button from '~/components/Button';
 import Support from '~/layouts/components/support';
 import OutStandingDocter from './Section/OutStandingDocter';
 import { ImageMedia } from './Section/ImageMediaData';
+import { fetchGetAllNew } from '~/redux/news/newsSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { FaCalendarAlt, FaBars } from 'react-icons/fa';
 //language
 import { useTranslation } from 'react-i18next';
 import '~/translation/i18n';
@@ -29,6 +32,15 @@ const cx = classNames.bind(style);
 function Home() {
 const { t, i18n } = useTranslation();
 const [currentLanguages, setCurrentLanguages] = useState(i18n.language);
+const dispatch = useDispatch();
+
+const newData = useSelector((state) => state.new.newData);
+const isLoading = useSelector((state) => state.new.loading);
+console.log('check newData', newData)
+
+useEffect(() => {
+  dispatch(fetchGetAllNew());
+}, [dispatch]);
 
 // handle onchange language
 const handleLanguageChange = (language) => {
@@ -365,38 +377,44 @@ const handleLanguageChange = (language) => {
         <h2 className={cx('new_title')}>{t('home.new_title')}</h2>
         <div className={cx('new_card', )}>
           <div className={cx('new_cardLeft', )}>
-            <div className={cx('cardLeft_image', )}></div>
             <div className={cx('cardLeft_title', )}>
-              Khám bệnh tâm thần online - hỗ trợ tâm lý chất lượng không lo quá tải
-            </div>
-            <div className={cx('cardLeft_tag')}>05/09/2023, 17:50 - Hải lê </div>
-            <div className={cx('cardLeft_des')}>
-              Tự động hóa và tiến bộ công nghệ đã mang lại sự phát triển đáng kể trong nhiều lĩnh vực , và lĩnh vực y tế
-              không phải là ngoại lệ. Ứng dụng công nghệ trong hoạt động khám chữa bệnh tâm thần, tâm lý trực tuyến ,
-              trung tâm y khoa Vạn Hạnh thu hút nhiều bệnh nhân ở xa, không tiện dị chuyển tới cở sở y tế đăng ký thăm
-              khám.
+            {newData && newData?.news?.length > 0 && (
+                <>
+                <img src={newData?.news[0].imageUrl} alt={newData?.news[0].title} className="w-full h-58 object-cover" />
+                <div className="p-4 mb-20">
+                  <h2 className={cx('article_title')}>{newData?.news[0].title}</h2>
+                  <p className={cx('article_content')}>{newData?.news[0].content}</p>
+                  <p className={cx('article_meta', 'inline-flex')}><FaCalendarAlt />&nbsp;{new Date(newData?.news[0].createdAt).toLocaleDateString()} - {newData?.news[0].author}</p>
+                  <p className={cx('article_excerpt')}>{newData?.news[0].excerpt}</p>
+                  <a href="/#" className={cx('news_link')}>Xem tiếp →</a>
+                </div>
+              </>
+            )}
             </div>
           </div>
           <div className={cx('new_cardRight')}>
-            <div className={cx('cardRight_item')}>
-              <div className={cx('cardRight_image')}></div>
-              <div className={cx('cardRight_title')}>Sổ tay đăng ký khám bệnh viện Từ Dủ</div>
-              <div className={cx('cardRight_tag')}>12/9/2023 - 12:00</div>
-            </div>
-            <div className={cx('cardRight_item')}>
-              <div className={cx('cardRight_image')}></div>
-              <div className={cx('cardRight_title')}>Sổ tay đăng ký khám bệnh viện Từ Dủ</div>
-              <div className={cx('cardRight_tag')}>12/9/2023 - 12:00</div>
-            </div>
-            <div className={cx('cardRight_item')}>
-              <div className={cx('cardRight_image')}></div>
-              <div className={cx('cardRight_title')}>Sổ tay đăng ký khám bệnh viện Từ Dủ</div>
-              <div className={cx('cardRight_tag')}>12/9/2023 - 12:00</div>
-            </div>
-            <div className={cx('cardRight_item')}>
-              <div className={cx('cardRight_image')}></div>
-              <div className={cx('cardRight_title')}>Sổ tay đăng ký khám bệnh viện Từ Dủ</div>
-              <div className={cx('cardRight_tag')}>12/9/2023 - 12:00</div>
+            <div className="grid grid-cols-2 gap-4">
+              {newData?.news?.slice(1, 5).map((article) => (
+                <div key={article.id} className={cx('cardRight_item')}>
+                  <img 
+                    src={article.imageUrl} 
+                    alt={article.title} 
+                    className={cx('cardRight_image')}
+                  />
+                  <div className="flex flex-col">
+                    <span className={cx('article_meta')}>{article.category?.name}</span>
+                    <h3 className={cx('cardRight_title')}>
+                      {article.title}
+                    </h3>
+                    <p className={cx('article_excerpt')}>
+                      {article.excerpt}
+                    </p>
+                    <p className={cx('cardRight_tag', 'inline-flex')}>
+                      <FaCalendarAlt />&nbsp;{new Date(article.createdAt).toLocaleDateString()}
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

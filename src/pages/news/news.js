@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 import { FaCalendarAlt , FaBars} from 'react-icons/fa';
 import { unwrapResult } from '@reduxjs/toolkit';
-
+import NewsSkeleton from './loading/news_skeleton';
 import { useDispatch, useSelector } from 'react-redux';
 
 // import { newsSlice } from '~/redux/news/newsSlice';
@@ -76,7 +76,7 @@ function News() {
   }, []);
 
   if (isLoading) {
-    return <p>Loading nè...</p>;
+    return <NewsSkeleton />;
   }
 
   return (

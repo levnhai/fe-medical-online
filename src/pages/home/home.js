@@ -9,6 +9,7 @@ import { ImageMedia } from './Section/ImageMediaData';
 import { fetchGetAllNew } from '~/redux/news/newsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaCalendarAlt, FaBars } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 //language
 import { useTranslation } from 'react-i18next';
 import '~/translation/i18n';
@@ -383,10 +384,9 @@ const handleLanguageChange = (language) => {
                 <img src={newData?.news[0].imageUrl} alt={newData?.news[0].title} className="w-full h-58 object-cover" />
                 <div className="p-4 mb-20">
                   <h2 className={cx('article_title')}>{newData?.news[0].title}</h2>
-                  <p className={cx('article_content')}>{newData?.news[0].content}</p>
-                  <p className={cx('article_meta', 'inline-flex')}><FaCalendarAlt />&nbsp;{new Date(newData?.news[0].createdAt).toLocaleDateString()} - {newData?.news[0].author}</p>
+                  <p className={cx('article_excerpt')}>{newData?.news[0].content}</p>
+                  <p className={cx('cardRight_tag', 'inline-flex')}><FaCalendarAlt />&nbsp;{new Date(newData?.news[0].createdAt).toLocaleDateString()} - {newData?.news[0].author}</p>
                   <p className={cx('article_excerpt')}>{newData?.news[0].excerpt}</p>
-                  <a href="/#" className={cx('news_link')}>Xem tiếp →</a>
                 </div>
               </>
             )}
@@ -407,7 +407,7 @@ const handleLanguageChange = (language) => {
                       {article.title}
                     </h3>
                     <p className={cx('article_excerpt')}>
-                      {article.excerpt}
+                      {article.content}
                     </p>
                     <p className={cx('cardRight_tag', 'inline-flex')}>
                       <FaCalendarAlt />&nbsp;{new Date(article.createdAt).toLocaleDateString()}
@@ -418,10 +418,10 @@ const handleLanguageChange = (language) => {
             </div>
           </div>
         </div>
-        <div className={cx('new_viewMore')}>
-          <Button rounded rightIcon={<PiCaretDoubleRightThin />}>
-            {t('home.show_more')}
-          </Button>
+        <div className={cx('view-all')}>
+          <Link to="/tin-tuc">
+            <a className={cx('view-all-button')}> Xem tất cả »</a>
+          </Link>
         </div>
       </div>
       <div className={cx('home-support')}>

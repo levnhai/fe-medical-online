@@ -1,6 +1,4 @@
-import Slider from 'react-slick';
 import classNames from 'classnames/bind';
-import { useTranslation } from 'react-i18next';
 import '~/translation/i18n';
 import { Link, useLocation } from 'react-router-dom';
 import styles from './news.module.scss';
@@ -8,10 +6,10 @@ import { useState, useEffect } from 'react';
 import { FaCalendarAlt, FaBars } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchServiceNews } from '~/redux/news/newsSlice';
+import NewsSkeleton from './loading/news_skeleton';
 const cx = classNames.bind(styles);
 
 function NewsService() {
-  const { t } = useTranslation();
   const location = useLocation();
   const dispatch = useDispatch();
 
@@ -21,31 +19,7 @@ function NewsService() {
   
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedMenuItem, setSelectedMenuItem] = useState(null);
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 4000,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        }
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
-  };
+  
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -66,7 +40,7 @@ function NewsService() {
   }, []);
 
   if (isLoading) {
-    return <p>Loading nè...</p>;
+    return <NewsSkeleton />;
   }
 
   return (

@@ -166,7 +166,28 @@
     background-color: var(--blue-color);
   }
 }
+.view-all {
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  height: 100px; 
+  margin-bottom: 20px;
+}
 
+.view-all-button {
+  background-color: #007bff; 
+  color: white; 
+  border: none; 
+  border-radius: 50px; 
+  padding: 10px 20px; 
+  font-size: 16px; 
+  cursor: pointer; 
+  transition: background-color 0.3s;
+}
+
+.view-all-button:hover {
+  background-color: #ff8c00;
+}
 .cardTitle_img {
   width: 288px;
   height: 260px;
@@ -378,7 +399,11 @@
   color: #1a1a1a;
   margin-bottom: 8px;
 }
-
+.article_content{
+  font-size: 15px;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+}
 .article_meta {
   font-size: 14px;
   color: #666;

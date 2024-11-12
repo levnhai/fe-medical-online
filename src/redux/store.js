@@ -8,6 +8,7 @@ import docterSlice from './docter/docterSlice';
 import authReducer from '../redux/user/authSlice';
 import newSlice from '../redux/news/newsSlice';
 import hospitalSlice from '../redux/hospital/hospitalSilder';
+import contactSlice from '../redux/contact/contactSlice';
 
 const persistConfig = {
   key: 'auth',
@@ -24,6 +25,7 @@ const Store = configureStore({
     docter: docterSlice,
     new: newSlice,
     hospital: hospitalSlice,
+    contact: contactSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

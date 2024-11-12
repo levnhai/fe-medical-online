@@ -1,76 +1,189 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import className from 'classnames/bind';
+import { toast } from 'react-toastify'; // Assuming you're using react-toastify
 import styles from './contact.module.scss';
 import Button from '~/components/Button';
+import { fetchcreateContact, resetContactState } from '~/redux/contact/contactSlice';
 
 const cx = className.bind(styles);
 
 function Contact() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+    const dispatch = useDispatch();
+    const { loading, error, success, message } = useSelector((state) => state.contact);
 
-  const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
-  };
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [formData, setFormData] = useState({
+        fullName: '',
+        email: '',
+        phoneNumber: '',
+        note: ''
+    });
+    const [formErrors, setFormErrors] = useState({});
 
-  return (
-    <>
-      {/* Mobile button */}
-      <div className={cx('mobile-contact')}>
-        <Button 
-          rounded 
-          className={cx('mobile-contact-btn')}
-          onClick={toggleModal}
-        >
-          Liên hệ hợp tác
-        </Button>
-      </div>
+    const toggleModal = () => {
+        setIsModalOpen(!isModalOpen);
+        if (!isModalOpen) {
+            setFormData({
+                fullName: '',
+                email: '',
+                phoneNumber: '',
+                note: ''
+            });
+            setFormErrors({});
+        }
+    };
 
-      {/* Contact form - desktop and modal */}
-      <div className={cx('facilitie__contact', { 'is-modal': isModalOpen })}>
-        <div className={cx('facilitie__contact--card')}>
-          {isModalOpen && (
-            <button 
-              className={cx('modal-close')}
-              onClick={toggleModal}
-              aria-label="Close modal"
-            >
-              ✕
-            </button>
-          )}
-          <div className={cx('facilitie__contact--header')}>
-            <div className={cx('facilitie__contact--title')}>Liên hệ hợp tác</div>
-          </div>
-          <div className={cx('facilitie__contact--fromContact')}>
-            <form className={cx('facilitie__contact--from')}>
-              <div className={cx('facilitie__contact--fromInputItem')}>
-                <input placeholder="Tên đơn vị/ Người liên hệ" />
-              </div>
-              <div className={cx('facilitie__contact--fromInputItem')}>
-                <input placeholder="Email" />
-              </div>
-              <div className={cx('facilitie__contact--fromInputItem')}>
-                <input placeholder="Số điện thoại" />
-              </div>
-              <div className={cx('facilitie__contact--fromInputItem')}>
-                <textarea placeholder="Ghi chú" />
-              </div>
-              <Button rounded className={cx('facilitie__contact--btn')}>
-                Gửi
-              </Button>
-            </form>
-          </div>
-        </div>
-      </div>
+    const validateForm = () => {
+        const errors = {};
+        if (!formData.fullName.trim()) {
+            errors.fullName = 'Vui lòng nhập tên';
+        }
+        if (!formData.phoneNumber.trim()) {
+            errors.phoneNumber = 'Vui lòng nhập số điện thoại';
+        } else if (!/^[0-9]{10}$/.test(formData.phoneNumber.trim())) {
+            errors.phoneNumber = 'Số điện thoại không hợp lệ';
+        }
+        if (formData.email && !/\S+@\S+\.\S+/.test(formData.email)) {
+            errors.email = 'Email không hợp lệ';
+        }
+        return errors;
+    };
 
-      {/* Modal overlay */}
-      {isModalOpen && (
-        <div 
-          className={cx('modal-overlay')}
-          onClick={toggleModal}
-        />
-      )}
-    </>
-  );
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+        // Clear error when user starts typing
+        if (formErrors[name]) {
+            setFormErrors(prev => ({
+                ...prev,
+                [name]: ''
+            }));
+        }
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        
+        const errors = validateForm();
+        if (Object.keys(errors).length > 0) {
+            setFormErrors(errors);
+            return;
+        }
+
+        await dispatch(fetchcreateContact(formData));
+    };
+
+    // Handle response
+    useEffect(() => {
+        if (success) {
+            toast.success(message || 'Gửi thông tin thành công');
+            toggleModal();
+            dispatch(resetContactState());
+        }
+        if (error) {
+            toast.error(error);
+            dispatch(resetContactState());
+        }
+    }, [success, error, message, dispatch]);
+
+    return (
+        <>
+            {/* Mobile button */}
+            <div className={cx('mobile-contact')}>
+                <Button
+                    rounded
+                    className={cx('mobile-contact-btn')}
+                    onClick={toggleModal}
+                >
+                    Liên hệ hợp tác
+                </Button>
+            </div>
+
+            {/* Contact form - desktop and modal */}
+            <div className={cx('facilitie__contact', { 'is-modal': isModalOpen })}>
+                <div className={cx('facilitie__contact--card')}>
+                    {isModalOpen && (
+                        <button
+                            className={cx('modal-close')}
+                            onClick={toggleModal}
+                            aria-label="Close modal"
+                        >
+                            ✕
+                        </button>
+                    )}
+                    <div className={cx('facilitie__contact--header')}>
+                        <div className={cx('facilitie__contact--title')}>Liên hệ hợp tác</div>
+                    </div>
+                    <div className={cx('facilitie__contact--fromContact')}>
+                        <form className={cx('facilitie__contact--from')} onSubmit={handleSubmit}>
+                            <div className={cx('facilitie__contact--fromInputItem')}>
+                                <input
+                                    name="fullName"
+                                    value={formData.fullName}
+                                    onChange={handleInputChange}
+                                    placeholder="Tên đơn vị/ Người liên hệ"
+                                />
+                                {formErrors.fullName && (
+                                    <span className={cx('error-message')}>{formErrors.fullName}</span>
+                                )}
+                            </div>
+                            <div className={cx('facilitie__contact--fromInputItem')}>
+                                <input
+                                    name="email"
+                                    type="email"
+                                    value={formData.email}
+                                    onChange={handleInputChange}
+                                    placeholder="Email"
+                                />
+                                {formErrors.email && (
+                                    <span className={cx('error-message')}>{formErrors.email}</span>
+                                )}
+                            </div>
+                            <div className={cx('facilitie__contact--fromInputItem')}>
+                                <input
+                                    name="phoneNumber"
+                                    value={formData.phoneNumber}
+                                    onChange={handleInputChange}
+                                    placeholder="Số điện thoại"
+                                />
+                                {formErrors.phoneNumber && (
+                                    <span className={cx('error-message')}>{formErrors.phoneNumber}</span>
+                                )}
+                            </div>
+                            <div className={cx('facilitie__contact--fromInputItem')}>
+                                <textarea
+                                    name="note"
+                                    value={formData.note}
+                                    onChange={handleInputChange}
+                                    placeholder="Ghi chú"
+                                />
+                            </div>
+                            <Button
+                                rounded
+                                className={cx('facilitie__contact--btn')}
+                                type="submit"
+                                disabled={loading}
+                            >
+                                {loading ? 'Đang gửi...' : 'Gửi'}
+                            </Button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            {/* Modal overlay */}
+            {isModalOpen && (
+                <div
+                    className={cx('modal-overlay')}
+                    onClick={toggleModal}
+                />
+            )}
+        </>
+    );
 }
 
 export default Contact;

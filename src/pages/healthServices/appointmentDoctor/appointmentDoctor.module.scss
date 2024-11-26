@@ -1,0 +1,168 @@
+.main {
+  height: auto;
+  width: 100%;
+}
+
+.body {
+  max-width: 1060px;
+  min-height: 45vh;
+  padding-bottom: 20px;
+  gap: 20px;
+  margin: 0 auto;
+}
+
+.tag {
+  list-style: none;
+  margin: 0 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  overflow: auto;
+}
+
+.tag-Btn {
+  color: var(--blue-color);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  padding: 10px 100px;
+  background: var(--white-color);
+  border-radius: 50px;
+  border: 1px solid transparent;
+  transition: all 0.15s ease;
+
+  &:hover {
+    color: var(--blue-color);
+    border: 1px solid var(--blue-color);
+  }
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.body-content {
+  width: 650px;
+  margin: 0 auto;
+  border: 1px solid #fff;
+  margin-bottom: 20px;
+  background: #fff;
+  border-radius: 16px;
+
+  &:hover {
+    box-shadow: none;
+    border: 1px solid var(--blue-color);
+    cursor: pointer;
+  }
+}
+
+.content {
+  padding: 20px;
+  min-height: 140px;
+}
+
+.content-title {
+  gap: 20px;
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.content-image {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 76px;
+  height: 76px;
+}
+
+.content-title-ini {
+  height: 100%;
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 23px;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+.content-address {
+  min-height: 50px;
+  padding-top: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0;
+  text-align: left;
+  flex-wrap: wrap;
+  color: #858585;
+  margin-bottom: 12px;
+}
+
+.content-groupBtn {
+  display: flex;
+  width: 100%;
+  gap: 12px;
+  height: 42px;
+  bottom: 0;
+}
+
+.content-btn {
+  padding: 0px 39px;
+  border-radius: 999px;
+}
+
+.content-btn:first-child {
+  background: linear-gradient(83.63deg, var(--blue-color) 33.34%, #00e0ff 113.91%);
+  color: #fff;
+
+  &:hover {
+    box-shadow: 0 4px 30px 0 rgba(116, 157, 206, 0.2);
+    color: #fff;
+    background: linear-gradient(83.63deg, #07aae0, #239ecd) !important;
+  }
+}
+
+.content-btn:last-child {
+  color: var(--blue-color);
+  border: 1px solid var(--blue-color);
+  background-color: #fff;
+  &:hover {
+    background: linear-gradient(83.63deg, #d5f3fd, #f0f2f2);
+  }
+}
+
+.banner {
+  background-image: url('https://medpro.vn/_next/image?url=https%3A%2F%2Fbo-api.medpro.com.vn%2Fstatic%2Fimages%2Fmedpro%2Fweb%2Fsalebooking.png&w=384&q=75');
+  width: 368px;
+  height: 588px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.active {
+  background: linear-gradient(84.69deg, var(--blue-color) 33.56%, #00e0ff 111.25%);
+  color: #fff;
+
+  &:hover {
+    color: #fff;
+  }
+}
+
+// docter view
+.frame {
+  display: flex;
+  align-items: center;
+  background-color: #eff6ff;
+  justify-content: space-between;
+  padding: 12px -34px;
+  width: 100%;
+  border-radius: 0 0 12px 12px;
+}

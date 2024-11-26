@@ -52,6 +52,8 @@ export const fetchLoginUser = createAsyncThunk('authSlice/fetchLoginUser', async
       phoneNumber,
       password,
     });
+
+    console.log('check reaction: ', response);
     return response.result;
   } catch (error) {
     throw new Error(error.message);

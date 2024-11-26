@@ -80,27 +80,42 @@ function Facilitie() {
     {
       label: t('facilities.publicHospital.label', 'Bệnh viện công'),
       href: 'benh-vien-cong',
-      subTitle: t('facilities.publicHospital.subTitle', 'Đặt khám dễ dàng, không lo chờ đợi tại các bệnh viện công hàng đầu Việt Nam'),
+      subTitle: t(
+        'facilities.publicHospital.subTitle',
+        'Đặt khám dễ dàng, không lo chờ đợi tại các bệnh viện công hàng đầu Việt Nam',
+      ),
     },
     {
       label: t('facilities.privateHospital.label', 'Bệnh viện tư'),
       href: 'benh-vien-tu',
-      subTitle: t('facilities.privateHospital.subTitle', 'Tận hưởng dịch vụ y tế tư nhân, chăm sóc sức khỏe chuyên nghiệp'),
+      subTitle: t(
+        'facilities.privateHospital.subTitle',
+        'Tận hưởng dịch vụ y tế tư nhân, chăm sóc sức khỏe chuyên nghiệp',
+      ),
     },
     {
       label: t('facilities.clinic.label', 'Phòng khám'),
       href: 'phong-kham',
-      subTitle: t('facilities.clinic.subTitle', 'Trải nghiệm chăm sóc y tế tập trung và gần gũi tại phòng khám chuyên khoa'),
+      subTitle: t(
+        'facilities.clinic.subTitle',
+        'Trải nghiệm chăm sóc y tế tập trung và gần gũi tại phòng khám chuyên khoa',
+      ),
     },
     {
       label: t('facilities.medicalOffice.label', 'Phòng mạch'),
       href: 'phong-mach',
-      subTitle: t('facilities.medicalOffice.subTitle', 'Chẩn đoán và điều trị chất lượng với bác sĩ chuyên khoa được nhiều người tin tưởng'),
+      subTitle: t(
+        'facilities.medicalOffice.subTitle',
+        'Chẩn đoán và điều trị chất lượng với bác sĩ chuyên khoa được nhiều người tin tưởng',
+      ),
     },
     {
       label: t('facilities.laboratory.label', 'Xét nghiệm'),
       href: 'xet-nghiem',
-      subTitle: t('facilities.laboratory.subTitle', 'Xét nghiệm chính xác, nhanh chóng và hỗ trợ chẩn đoán hiệu quả với các cơ sở uy tín hàng đầu'),
+      subTitle: t(
+        'facilities.laboratory.subTitle',
+        'Xét nghiệm chính xác, nhanh chóng và hỗ trợ chẩn đoán hiệu quả với các cơ sở uy tín hàng đầu',
+      ),
     },
   ];
 
@@ -113,21 +128,21 @@ function Facilitie() {
     });
     setTabCounts(counts);
   };
-// const countHospitalType = () => {
-//   tabMenus = tabMenus.map((item) => {
-//     console.log('check', countHospitalByType?.typeCounts?.hasOwnProperty(item.href));
-//     if (countHospitalByType && countHospitalByType?.typeCounts?.hasOwnProperty(item.href)) {
-//       return {
-//         ...item,
-//         count: countHospitalByType?.typeCounts[item.href],
-//       };
-//     } else {
-//       return {
-//         ...item,
-//         count: 0,
-//       };
-//     }
-//   });
+  // const countHospitalType = () => {
+  //   tabMenus = tabMenus.map((item) => {
+  //     console.log('check', countHospitalByType?.typeCounts?.hasOwnProperty(item.href));
+  //     if (countHospitalByType && countHospitalByType?.typeCounts?.hasOwnProperty(item.href)) {
+  //       return {
+  //         ...item,
+  //         count: countHospitalByType?.typeCounts[item.href],
+  //       };
+  //     } else {
+  //       return {
+  //         ...item,
+  //         count: 0,
+  //       };
+  //     }
+  //   });
 
   // convert image
   const image = (image) => {
@@ -186,40 +201,40 @@ function Facilitie() {
       else if (width < 1024) setSliderMode('slider');
       else setSliderMode('full');
     };
-  
+
     handleResize();
     window.addEventListener('resize', handleResize);
-  
+
     return () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-  
+
   useEffect(() => {
     if (sliderMode !== 'full' && sliderRef.current) {
       let isDown = false;
       let startX;
       let scrollLeft;
-  
+
       const slider = sliderRef.current;
-  
+
       const onMouseDown = (e) => {
         isDown = true;
         slider.classList.add('active');
         startX = e.pageX - slider.offsetLeft;
         scrollLeft = slider.scrollLeft;
       };
-  
+
       const onMouseLeave = () => {
         isDown = false;
         slider.classList.remove('active');
       };
-  
+
       const onMouseUp = () => {
         isDown = false;
         slider.classList.remove('active');
       };
-  
+
       const onMouseMove = (e) => {
         if (!isDown) return;
         e.preventDefault();
@@ -227,12 +242,12 @@ function Facilitie() {
         const walk = (x - startX) * 2;
         slider.scrollLeft = scrollLeft - walk;
       };
-  
+
       slider.addEventListener('mousedown', onMouseDown);
       slider.addEventListener('mouseleave', onMouseLeave);
       slider.addEventListener('mouseup', onMouseUp);
       slider.addEventListener('mousemove', onMouseMove);
-  
+
       return () => {
         slider.removeEventListener('mousedown', onMouseDown);
         slider.removeEventListener('mouseleave', onMouseLeave);
@@ -308,7 +323,7 @@ function Facilitie() {
           </div>
           <div className={cx('facilitie__container')}>
             <div className={cx('list_hospital')}>
-            <div class="w-full grid lg:grid-cols-3 gap-6">
+              <div class="w-full grid lg:grid-cols-3 gap-6">
                 <div class="col-span-2">
                   {isLoading === true ? (
                     <>

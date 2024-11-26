@@ -7,8 +7,14 @@ const routes = {
   singIn: '/login',
   singUp: '/register-account',
   newPassword: '/new-password',
+
+  //facilitie
   facilitie: '/co-so-y-te',
   facilitieType: '/co-so-y-te/:type/',
+
+  // health
+  appointmentDoctor: '/dich-vu-y-te/dat-kham-theo-bac-si',
+  appointmentFacility: '/dich-vu-y-te/dat-kham-tai-co-so',
 
   // guide
   question: '/huong-dan/cau-hoi-thuong-gap',

@@ -41,6 +41,21 @@ const hospitalSlice = createSlice({
     error: null,
   },
   extraReducers: (builder) => {
+    // get hospital data
+    builder
+      .addCase(fetchGetALlHospital.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchGetALlHospital.fulfilled, (state, action) => {
+        state.loading = false;
+        state.hospitalData = action.payload;
+      })
+      .addCase(fetchGetALlHospital.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
+
     // get hospital data by type
     builder
       .addCase(fetchGetHospitalByType.pending, (state) => {

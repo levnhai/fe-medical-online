@@ -52,6 +52,8 @@ function Header() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const user = useSelector((state) => state.auth.user?.payload);
 
+  console.log('check user', user);
+
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
@@ -329,9 +331,9 @@ function Header() {
         </div>
       </div>
       <div className={cx('header-mobile', 'flex items-center justify-between p-4 bg-white shadow-md lg:hidden')}>
-        <div className={cx('logo','w-5 h-5')}>
+        <div className={cx('logo', 'w-5 h-5')}>
           <a href="/">
-          <img src={require('~/assets/images/logo.png')}/>
+            <img src={require('~/assets/images/logo.png')} />
           </a>
         </div>
 
@@ -373,9 +375,9 @@ function Header() {
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-50 bg-white shadow-lg overflow-y-auto">
           <div className="p-4 border-b border-gray-200 flex justify-between items-center">
-          <div className={cx('logo','w-5 h-5')}>
+            <div className={cx('logo', 'w-5 h-5')}>
               <a href="/" className="text-lg font-bold">
-              <img src={require('~/assets/images/logo.png')}/>
+                <img src={require('~/assets/images/logo.png')} />
               </a>
             </div>
             <div className="flex items-center space-x-4">
@@ -394,18 +396,18 @@ function Header() {
           {isLoggedIn ? shortName : t('header.account')}
         </button> */}
               <div ref={btnLoginRef}>
-              <Button
-            to={isLoggedIn ? '#' : '/check-phone'}
-            rounded
-            leftIcon={<IoPersonSharp style={{ width: '1.7rem', height: '1.7rem' }} />}
-            className={cx(
-              'accountBtn',
-              'w-full text-left px-4 py-2 bg-indigo-500 text-white rounded-lg flex items-center',
-            )}
-            onClick={handleShowModalProfile}
-          >
-            {isLoggedIn ? `${user.user.fullName}` : t('header.account')}
-          </Button>
+                <Button
+                  to={isLoggedIn ? '#' : '/check-phone'}
+                  rounded
+                  leftIcon={<IoPersonSharp style={{ width: '1.7rem', height: '1.7rem' }} />}
+                  className={cx(
+                    'accountBtn',
+                    'w-full text-left px-4 py-2 bg-indigo-500 text-white rounded-lg flex items-center',
+                  )}
+                  onClick={handleShowModalProfile}
+                >
+                  {isLoggedIn ? `${user.user.fullName}` : t('header.account')}
+                </Button>
               </div>
             </div>
             <ul className="space-y-4">
@@ -429,8 +431,7 @@ function Header() {
                     </button>
                   </div>
                   {menuItem.children && openSubmenus[menuItem.href] && (
-                    <ul className="pl-6 mt-2 space-y-2" >
-                      
+                    <ul className="pl-6 mt-2 space-y-2">
                       {menuItem.children.map((childItem) => (
                         <li key={childItem.href} onClick={toggleMobileMenu}>
                           <Link
@@ -447,16 +448,16 @@ function Header() {
               ))}
             </ul>
             {isLoggedIn && (
-          <div className="mt-4">
-            <button
-              onClick={handleLogout}
-              className="w-full text-left px-4 py-2 bg-red-500 text-white rounded-lg flex items-center"
-            >
-              <i className="fa-solid fa-right-from-bracket mr-2"></i>
-              {t('header.logout')}
-            </button>
-          </div>
-        )}
+              <div className="mt-4">
+                <button
+                  onClick={handleLogout}
+                  className="w-full text-left px-4 py-2 bg-red-500 text-white rounded-lg flex items-center"
+                >
+                  <i className="fa-solid fa-right-from-bracket mr-2"></i>
+                  {t('header.logout')}
+                </button>
+              </div>
+            )}
           </div>
         </div>
       )}

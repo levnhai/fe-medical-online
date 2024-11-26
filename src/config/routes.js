@@ -27,5 +27,8 @@ const routes = {
   newsService: '/tin-tuc/dich-vu',
   newsMedical: '/tin-tuc/y-te',
   newsKnowlage: '/tin-tuc/y-hoc-thuong-thuc',
+
+  //contact
+  contact: '/lien-he',
 };
 export default routes;

@@ -5,6 +5,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { List } from 'react-content-loader';
 import { useTranslation } from 'react-i18next';
+import FacilitieSkeleton from './loading/facilitie_skeleton';
+import Skeleton from './loading/skeleton';
 
 // icon
 import { MdKeyboardArrowRight } from 'react-icons/md';
@@ -327,8 +329,7 @@ function Facilitie() {
                 <div class="col-span-2">
                   {isLoading === true ? (
                     <>
-                      <List />
-                      <List />
+                      <FacilitieSkeleton />
                     </>
                   ) : currentTableData?.length > 0 ? (
                     <div>
@@ -375,8 +376,7 @@ function Facilitie() {
                     <div>
                       {isLoading === true ? (
                         <>
-                          <List />
-                          <List />
+                          <Skeleton />
                         </>
                       ) : (
                         <>

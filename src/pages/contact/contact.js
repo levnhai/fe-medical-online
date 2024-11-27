@@ -44,7 +44,9 @@ function Contact() {
         } else if (!/^[0-9]{10}$/.test(formData.phoneNumber.trim())) {
             errors.phoneNumber = 'Số điện thoại không hợp lệ';
         }
-        if (formData.email && !/\S+@\S+\.\S+/.test(formData.email)) {
+        if (!formData.email.trim()) {
+            errors.email = 'Vui lòng nhập email';
+        }else if (!/\S+@\S+\.\S+/.test(formData.email.trim())) {
             errors.email = 'Email không hợp lệ';
         }
         return errors;
@@ -120,6 +122,9 @@ function Contact() {
                     </div>
                     <div className={cx('facilitie__contact--fromContact')}>
                         <form className={cx('facilitie__contact--from')} onSubmit={handleSubmit}>
+                            {formErrors.fullName && (
+                                <span className={cx('error-message')}>{formErrors.fullName}</span>
+                            )}
                             <div className={cx('facilitie__contact--fromInputItem')}>
                                 <input
                                     name="fullName"
@@ -127,11 +132,13 @@ function Contact() {
                                     onChange={handleInputChange}
                                     placeholder="Tên đơn vị/ Người liên hệ"
                                 />
-                                {formErrors.fullName && (
-                                    <span className={cx('error-message')}>{formErrors.fullName}</span>
-                                )}
+                                
                             </div>
+                            {formErrors.email && (
+                                <span className={cx('error-message')}>{formErrors.email}</span>
+                            )}
                             <div className={cx('facilitie__contact--fromInputItem')}>
+                                
                                 <input
                                     name="email"
                                     type="email"
@@ -139,20 +146,19 @@ function Contact() {
                                     onChange={handleInputChange}
                                     placeholder="Email"
                                 />
-                                {formErrors.email && (
-                                    <span className={cx('error-message')}>{formErrors.email}</span>
-                                )}
                             </div>
+                            {formErrors.phoneNumber && (
+                                <span className={cx('error-message')}>{formErrors.phoneNumber}</span>
+                            )}
                             <div className={cx('facilitie__contact--fromInputItem')}>
+                                
                                 <input
                                     name="phoneNumber"
                                     value={formData.phoneNumber}
                                     onChange={handleInputChange}
                                     placeholder="Số điện thoại"
                                 />
-                                {formErrors.phoneNumber && (
-                                    <span className={cx('error-message')}>{formErrors.phoneNumber}</span>
-                                )}
+                                
                             </div>
                             <div className={cx('facilitie__contact--fromInputItem')}>
                                 <textarea

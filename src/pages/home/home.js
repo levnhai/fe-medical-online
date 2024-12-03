@@ -380,21 +380,32 @@ const handleLanguageChange = (language) => {
           <div className={cx('new_cardLeft', )}>
             <div className={cx('cardLeft_title', )}>
             {newData && newData?.news?.length > 0 && (
+              <Link 
+              to={`/tin-tuc/${newData?.news[0]._id}`} 
+              className={cx('news_link')} 
+              key={newData?.news[0].id}
+              >
                 <>
                 <img src={newData?.news[0].imageUrl} alt={newData?.news[0].title} className="w-full h-58 object-cover" />
                 <div className="p-4 mb-20">
-                  <h2 className={cx('article_title')}>{newData?.news[0].title}</h2>
-                  <p className={cx('article_excerpt')}>{newData?.news[0].content}</p>
-                  <p className={cx('cardRight_tag', 'inline-flex')}><FaCalendarAlt />&nbsp;{new Date(newData?.news[0].createdAt).toLocaleDateString()} - {newData?.news[0].author}</p>
-                  <p className={cx('article_excerpt')}>{newData?.news[0].excerpt}</p>
+                  <h2 className={cx('article_title_main')}>{newData?.news[0].title}</h2>
+                  <p className={cx('article_excerpt_main')}>{newData?.news[0].subtitle.replace(/<\/?[^>]+(>|$)/g, '')}</p>
+                  <p className={cx('cardLeft_tag', 'inline-flex',)}><FaCalendarAlt />&nbsp;{new Date(newData?.news[0].createdAt).toLocaleDateString()} - {newData?.news[0]?.author?.fullName}</p>
+                  <p className={cx('article_excerpt_main')}>{newData?.news[0].excerpt}</p>
                 </div>
               </>
+              </Link>
             )}
             </div>
           </div>
           <div className={cx('new_cardRight')}>
             <div className="grid grid-cols-2 gap-4">
               {newData?.news?.slice(1, 5).map((article) => (
+                <Link 
+                to={`/tin-tuc/${article._id}`} 
+                className={cx('news_link')} 
+                key={article.id}
+                >
                 <div key={article.id} className={cx('cardRight_item')}>
                   <img 
                     src={article.imageUrl} 
@@ -407,13 +418,19 @@ const handleLanguageChange = (language) => {
                       {article.title}
                     </h3>
                     <p className={cx('article_excerpt')}>
-                      {article.content}
+                      {article.subtitle
+                        ?.replace(/<\/?[^>]+(>|$)/g, '')
+                        .split(' ')
+                        .slice(0, 20)
+                        .join(' ')
+                        .concat(article.subtitle.split(' ').length > 20 ? '...' : '')}
                     </p>
                     <p className={cx('cardRight_tag', 'inline-flex')}>
-                      <FaCalendarAlt />&nbsp;{new Date(article.createdAt).toLocaleDateString()}
+                      <FaCalendarAlt />&nbsp;{new Date(article.createdAt).toLocaleDateString()} - {newData?.news[0]?.author?.fullName}
                     </p>
                   </div>
                 </div>
+                </Link>
               ))}
             </div>
           </div>

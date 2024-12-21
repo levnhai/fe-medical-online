@@ -100,7 +100,7 @@ function News() {
         {/* Hiển thị icon menu khi màn hình nhỏ hơn 768px */}
         <div className="block md:hidden flex items-center">
           <FaBars className="text-2xl cursor-pointer" onClick={toggleMenu} />
-          {selectedMenuItem && <span className="ml-2">{selectedMenuItem}</span>} {/* Hiển thị lựa chọn bên cạnh */}
+          {selectedMenuItem && <span className="ml-2">{selectedMenuItem}</span>}
         </div>
 
         {/* Nếu muốn menu sổ xuống có nền trắng, thêm vào một div chứa */}
@@ -122,35 +122,56 @@ function News() {
           <div className="md:col-span-2 bg-white rounded-lg shadow-md overflow-hidden">
             {newData && newData?.news?.length > 0 && (
               <>
-                <img src={newData?.news[0].imageUrl} alt={newData?.news[0].title} className="w-full h-58 object-cover" />
-                <div className="p-4 mb-20">
-                  <h2 className={cx('article_title')}>{newData?.news[0].title}</h2>
-                  <p className={cx('article_content')}>{newData?.news[0]?.content.replace(/<\/?[^>]+(>|$)/g, '')}</p>
-                  <p className={cx('article_meta', 'inline-flex')}><FaCalendarAlt />&nbsp;{new Date(newData?.news[0].createdAt).toLocaleDateString()} - {newData?.news[0]?.author?.fullName}</p>
-                  <p className={cx('article_excerpt')}>{newData?.news[0].excerpt}</p>
-                  <Link to={`/tin-tuc/${newData?.news[0]._id}`} className={cx('news_link')}>Xem tiếp →</Link>
-                </div>
+                <Link
+                  to={`/tin-tuc/${newData?.news[0]._id}`}
+                  className="block"
+                  style={{ textDecoration: 'none' }}
+                >
+                  <img
+                    src={newData?.news[0].imageUrl}
+                    alt={newData?.news[0].title}
+                    className="w-full h-58 object-cover"
+                  />
+                  <div className="p-4 mb-20">
+                    <h2 className={cx('article_title')}>{newData?.news[0].title}</h2>
+                    <p className={cx('article_content')}>
+                      {newData?.news[0]?.content.replace(/<\/?[^>]+(>|$)/g, '')}
+                    </p>
+                    <p className={cx('article_meta', 'inline-flex')}>
+                      <FaCalendarAlt />
+                      &nbsp;{new Date(newData?.news[0].createdAt).toLocaleDateString()} -{' '}
+                      {newData?.news[0]?.author?.fullName}
+                    </p>
+                    <p className={cx('article_excerpt')}>{newData?.news[0].excerpt}</p>
+                  </div>
+                </Link>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {newData?.news?.slice(1, 3).map((item, index) => (
-                    <div 
-                      key={index} 
+                    <Link
+                      to={`/tin-tuc/${item._id}`}
+                      key={index}
                       className={cx('news_item', 'relative h-80 bg-cover bg-center')}
-                      style={{ backgroundImage: `url(${item.imageUrl})` }}
+                      style={{
+                        backgroundImage: `url(${item.imageUrl})`,
+                        textDecoration: 'none',
+                      }}
                     >
                       <div className="absolute inset-0 bg-black bg-opacity-50"></div>
                       <div className="absolute bottom-0 left-0 right-0 p-4 text-white z-10">
-                      <span className="text-lg">{item.category?.name}</span>
+                        <span className="text-lg">{item.category?.name}</span>
                         <h1 font-bold>{item.title}</h1>
-                        <p className="text-sm">{item.content.replace(/<\/?[^>]+(>|$)/g, '')}</p>
-                        <Link to={`/tin-tuc/${item._id}`} className={cx('news_link')}>Xem tiếp →</Link>
+                        <p className="text-sm">
+                          {item.content.replace(/<\/?[^>]+(>|$)/g, '')}
+                        </p>
                       </div>
-                    </div>
+                    </Link>
                   ))}
                 </div>
               </>
             )}
           </div>
-
+          
           {/* Side articles */}
         <div className="space-y-12">
           {newData?.news?.slice(3, 10).map((article) => (

@@ -94,14 +94,29 @@ function NewsMedical() {
           <div className="md:col-span-2 bg-white rounded-lg shadow-md overflow-hidden">
             {newData && newData?.news?.length > 0 && (
               <>
-                <img src={newData?.news[0].imageUrl} alt={newData?.news[0].title} className="w-full h-58 object-cover" />
-                <div className="p-4 mb-20">
-                  <h2 className={cx('article_title')}>{newData?.news[0].title}</h2>
-                  <p className={cx('article_content')}>{newData?.news[0].content.replace(/<\/?[^>]+(>|$)/g, '')}</p>
-                  <p className={cx('article_meta', 'inline-flex')}><FaCalendarAlt />&nbsp;{new Date(newData?.news[0].createdAt).toLocaleDateString()} - {newData?.news[0]?.author?.fullName}</p>
-                  <p className={cx('article_excerpt')}>{newData?.news[0].excerpt}</p>
-                  <Link to={`/tin-tuc/${newData?.news[0]._id}`} className={cx('news_link')}>Xem tiếp →</Link>
-                </div>
+                <Link
+                  to={`/tin-tuc/${newData?.news[0]._id}`}
+                  className="block"
+                  style={{ textDecoration: 'none' }}
+                >
+                  <img
+                    src={newData?.news[0].imageUrl}
+                    alt={newData?.news[0].title}
+                    className="w-full h-58 object-cover"
+                  />
+                  <div className="p-4 mb-20">
+                    <h2 className={cx('article_title')}>{newData?.news[0].title}</h2>
+                    <p className={cx('article_content')}>
+                      {newData?.news[0]?.content.replace(/<\/?[^>]+(>|$)/g, '')}
+                    </p>
+                    <p className={cx('article_meta', 'inline-flex')}>
+                      <FaCalendarAlt />
+                      &nbsp;{new Date(newData?.news[0].createdAt).toLocaleDateString()} -{' '}
+                      {newData?.news[0]?.author?.fullName}
+                    </p>
+                    <p className={cx('article_excerpt')}>{newData?.news[0].excerpt}</p>
+                  </div>
+                </Link>
               </>
             )}
           </div>

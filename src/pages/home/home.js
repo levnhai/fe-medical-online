@@ -9,6 +9,7 @@ import { ImageMedia } from './Section/ImageMediaData';
 import { fetchGetAllNew } from '~/redux/news/newsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaCalendarAlt, FaBars } from 'react-icons/fa';
+import NewsLoadingSkeleton from './loading/newsLoading'
 import { Link } from 'react-router-dom';
 //language
 import { useTranslation } from 'react-i18next';
@@ -374,6 +375,7 @@ const handleLanguageChange = (language) => {
       <div className={cx('outstanding-doctor')}>
         <OutStandingDocter />
       </div>
+      {isLoading ? <NewsLoadingSkeleton /> : (
       <div className={cx('home_news')}>
         <h2 className={cx('new_title')}>{t('home.new_title')}</h2>
         <div className={cx('new_card', )}>
@@ -441,6 +443,7 @@ const handleLanguageChange = (language) => {
           </Link>
         </div>
       </div>
+      )}
       <div className={cx('home-support')}>
         <Support />
       </div>

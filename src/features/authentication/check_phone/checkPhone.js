@@ -118,11 +118,10 @@ function CheckPhone() {
           <div className={cx('socialBtn')}>
             <ul className={cx('socialBtn-group')}>
               <li className={cx('socialBtn-item')}>
-                
                 <div
                   className={cx(
                     'socialBtn--btn__title',
-                    'flex items-center justify-center w-full px-4 py-2 text-white bg-[#1877F2] hover:bg-[#166fe5] transition-colors duration-300 rounded-md shadow-md',
+                    'flex items-center justify-center mt-4 w-full px-4 py-2 text-white bg-[#1877F2] hover:bg-[#166fe5] transition-colors duration-300 rounded-md shadow-md',
                   )}
                 >
                   <GoogleLogin onSuccess={handleBtnLoginGoogle}>
@@ -140,7 +139,12 @@ function CheckPhone() {
                 </div>
               </li>
               <li className={cx('socialBtn-item')}>
-                
+              <div
+                  className={cx(
+                    'socialBtn--btn__title',
+                    'flex items-center justify-center mt-8 w-full px-4 py-2 text-white bg-[#1877F2] hover:bg-[#166fe5] transition-colors duration-300 rounded-md shadow-md',
+                  )}
+                >
                 <ReactFacebookLogin
                   appId={process.env.REACT_APP_FB_CLIENT_ID}
                   autoLoad={false}
@@ -159,6 +163,7 @@ function CheckPhone() {
                   }
                   textButton={t('check-phone.btn_fb_login')}
                 />
+                </div>
               </li>
             </ul>
           </div>

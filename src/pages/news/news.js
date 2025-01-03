@@ -72,9 +72,8 @@ function News() {
   useEffect(() => {
     document.title = 'Tin tức y khoa || Medical';
     dispatch(fetchGetAllNew());
-
+    
   }, []);
-
   if (isLoading) {
     return <NewsSkeleton />;
   }
@@ -101,7 +100,7 @@ function News() {
         {/* Hiển thị icon menu khi màn hình nhỏ hơn 768px */}
         <div className="block md:hidden flex items-center">
           <FaBars className="text-2xl cursor-pointer" onClick={toggleMenu} />
-          {selectedMenuItem && <span className="ml-2">{selectedMenuItem}</span>} {/* Hiển thị lựa chọn bên cạnh */}
+          {selectedMenuItem && <span className="ml-2">{selectedMenuItem}</span>}
         </div>
 
         {/* Nếu muốn menu sổ xuống có nền trắng, thêm vào một div chứa */}
@@ -123,38 +122,64 @@ function News() {
           <div className="md:col-span-2 bg-white rounded-lg shadow-md overflow-hidden">
             {newData && newData?.news?.length > 0 && (
               <>
-                <img src={newData?.news[0].imageUrl} alt={newData?.news[0].title} className="w-full h-58 object-cover" />
-                <div className="p-4 mb-20">
-                  <h2 className={cx('article_title')}>{newData?.news[0].title}</h2>
-                  <p className={cx('article_content')}>{newData?.news[0].content}</p>
-                  <p className={cx('article_meta', 'inline-flex')}><FaCalendarAlt />&nbsp;{new Date(newData?.news[0].createdAt).toLocaleDateString()} - {newData?.news[0].author}</p>
-                  <p className={cx('article_excerpt')}>{newData?.news[0].excerpt}</p>
-                  <a href="/#" className={cx('news_link')}>Xem tiếp →</a>
-                </div>
+                <Link
+                  to={`/tin-tuc/${newData?.news[0]._id}`}
+                  className="block"
+                  style={{ textDecoration: 'none' }}
+                >
+                  <img
+                    src={newData?.news[0].imageUrl}
+                    alt={newData?.news[0].title}
+                    className="w-full h-58 object-cover"
+                  />
+                  <div className="p-4 mb-20">
+                    <h2 className={cx('article_title')}>{newData?.news[0].title}</h2>
+                    <p className={cx('article_content')}>
+                      {newData?.news[0]?.content.replace(/<\/?[^>]+(>|$)/g, '')}
+                    </p>
+                    <p className={cx('article_meta', 'inline-flex')}>
+                      <FaCalendarAlt />
+                      &nbsp;{new Date(newData?.news[0].createdAt).toLocaleDateString()} -{' '}
+                      {newData?.news[0]?.author?.fullName}
+                    </p>
+                    <p className={cx('article_excerpt')}>{newData?.news[0].excerpt}</p>
+                  </div>
+                </Link>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {newData?.news?.slice(1, 3).map((item, index) => (
-                    <div 
-                      key={index} 
+                    <Link
+                      to={`/tin-tuc/${item._id}`}
+                      key={index}
                       className={cx('news_item', 'relative h-80 bg-cover bg-center')}
-                      style={{ backgroundImage: `url(${item.imageUrl})` }}
+                      style={{
+                        backgroundImage: `url(${item.imageUrl})`,
+                        textDecoration: 'none',
+                      }}
                     >
                       <div className="absolute inset-0 bg-black bg-opacity-50"></div>
                       <div className="absolute bottom-0 left-0 right-0 p-4 text-white z-10">
-                      <span className="text-lg">{item.category?.name}</span>
+                        <span className="text-lg">{item.category?.name}</span>
                         <h1 font-bold>{item.title}</h1>
-                        <p className="text-sm">{item.content}</p>s
-                        <a href="/#" className={cx('news_link', 'text-sm')}>Xem tiếp →</a>
+                        <p className="text-sm">
+                          {item.content.replace(/<\/?[^>]+(>|$)/g, '')}
+                        </p>
                       </div>
-                    </div>
+                    </Link>
                   ))}
                 </div>
               </>
             )}
           </div>
-
+          
           {/* Side articles */}
         <div className="space-y-12">
           {newData?.news?.slice(3, 10).map((article) => (
+          <Link 
+             to={`/tin-tuc/${article._id}`} 
+             className={cx('news_link')} 
+             key={article.id}
+          >
             <div key={article.id} className={cx('side_article')}>
               <img 
                 src={article.imageUrl} 
@@ -172,6 +197,7 @@ function News() {
                 <p className="text-sm text-gray-400 inline-flex"><FaCalendarAlt />&nbsp;{new Date(article.createdAt).toLocaleDateString()}</p>
               </div>
             </div>
+            </Link>
           ))}
         </div>
         </div>
@@ -185,15 +211,20 @@ function News() {
             <h2 className={cx('service_title')}>Tin dịch vụ</h2>
             <Slider {...settings}>
               {newData?.news?.filter((article) => article.category?.slug === 'tin-dich-vu').map((item) => (
-                <div key={item.id} className="relative mx-2 transition-transform duration-300 transform hover:scale-105 hover:shadow-lg px-5">
+                <Link 
+                  to={`/tin-tuc/${item._id}`} 
+                  key={item.id} 
+                  className="block relative mx-2 transition-transform duration-300 transform hover:scale-105 hover:shadow-lg px-5"
+                >
                   <img src={item.imageUrl} alt={item.title} className="w-full h-auto" />
                   <div className="p-2 bg-white transition-transform duration-300 transform hover:-translate-y-1">
                     <span className="text-gray-500">{item.category?.name}</span>
                     <h3 className="font-bold">{item.title}</h3>
-                    <p className="text-sm text-gray-400 inline-flex"><FaCalendarAlt />&nbsp;{new Date(item.createdAt).toLocaleDateString()}</p>
-                    <a href="/#" className="text-blue-500"><p>Xem tiếp →</p></a>
+                    <p className="text-sm text-gray-400 inline-flex">
+                      <FaCalendarAlt />&nbsp;{new Date(item.createdAt).toLocaleDateString()}
+                    </p>
                   </div>
-                </div>
+                </Link>
               ))}
             </Slider>
           </div>
@@ -204,6 +235,11 @@ function News() {
       <div className="block md:hidden space-y-12">
       <h2 className={cx('service_title')}>Tin dịch vụ</h2>
         {newData?.news?.filter((article) => article.category?.slug === 'tin-dich-vu').slice(0, 8).map((article) => (
+          <Link 
+          to={`/tin-tuc/${article._id}`} 
+          key={article.id} 
+          className="block relative mx-2 transition-transform duration-300 transform hover:scale-105 hover:shadow-lg px-5"
+          >
           <div key={article.id} className={cx('side_article')}>
             <img 
               src={article.imageUrl} 
@@ -223,10 +259,11 @@ function News() {
               </p>
             </div>
           </div>
+          </Link>
         ))}
       </div>
       <div className={cx('view-all')}>
-      <Link to="/tin-tuc/y-hoc-thuong-thuc">
+      <Link to="/tin-tuc/tin-dich-vu">
           <a className={cx('view-all-button')}> Xem tất cả »</a>
         </Link>
       </div> 
@@ -238,16 +275,20 @@ function News() {
           <h2 className={cx('service_title')}>Tin Y tế</h2>
           <div className={cx('news_container')}>
             {newData?.news?.filter((article) => article.category?.slug === 'tin-y-te').map((item) => (
+              <Link 
+              to={`/tin-tuc/${item._id}`} 
+              key={item.id} 
+              >
               <div key={item.id} className={cx('news_item')}>
                 <img src={item.imageUrl} alt={item.title} />
                 <div className={cx('news_content')}>
                   <span className={cx('news_category')}>{item.category?.name}</span>
                   <h3 className={cx('news_title')}>{item.title}</h3>
-                  <p className={cx('article_content')}>{item.content}</p>
+                  <p className={cx('article_content')}>{item.content.replace(/<\/?[^>]+(>|$)/g, '')}</p>
                   <span className={cx('news_date','inline-flex')}><FaCalendarAlt />&nbsp;{new Date(item.createdAt).toLocaleDateString()}</span>
-                  <a href="/#" className={cx('news_link')}>Xem tiếp →</a>
                 </div>
               </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -257,6 +298,11 @@ function News() {
       <div className="block md:hidden space-y-12">
       <h2 className={cx('service_title')}>Tin Y tế</h2>
         {newData?.news?.filter((article) => article.category?.slug === 'tin-y-te').slice(0, 8).map((article) => (
+          <Link 
+          to={`/tin-tuc/${article._id}`} 
+          key={article.id} 
+          className="block relative mx-2 transition-transform duration-300 transform hover:scale-105 hover:shadow-lg px-5"
+          >
           <div key={article.id} className={cx('side_article')}>
             <img 
               src={article.imageUrl} 
@@ -276,10 +322,11 @@ function News() {
               </p>
             </div>
           </div>
+          </Link>
         ))}
       </div>
       <div className={cx('view-all')}>
-      <Link to="/tin-tuc/y-hoc-thuong-thuc">
+      <Link to="/tin-tuc/y-te">
           <a className={cx('view-all-button')}> Xem tất cả »</a>
         </Link>
       </div>
@@ -300,13 +347,18 @@ function News() {
                     <div className="absolute bottom-0 left-0 right-0 p-4 text-white z-10">
                     <span className="text-lg">{newData?.news[0].category?.name}</span>
                     <h2 className={cx('article_title','text-white')}>{newData?.news[0].title}</h2>
-                    <p className={cx('article_content')}>{newData?.news[0].content}</p>
-                    <a href="/#" className={cx('news_link')}>Xem tiếp →</a>
+                    <p className={cx('article_content')}>{newData?.news[0].content.replace(/<\/?[^>]+(>|$)/g, '')}</p>
+                    <Link to={`/tin-tuc/${newData?.news[0]._id}`} className={cx('news_link')}>Xem tiếp →</Link>
                     </div>
                   </div>
                 </div>
                 <div className="col-span-12 md:col-span-4 space-y-4">
                   {newData?.news?.filter((article) => article.category?.slug === 'thuong-thuc-y-te').slice(0, 6).map((news) => (
+                   <Link 
+                     to={`/tin-tuc/${news._id}`} 
+                     className={cx('news_link')} 
+                     key={news.id}
+                   >
                     <div 
                       key={news.id} 
                       className="bg-white rounded-lg shadow-md overflow-hidden flex h-32"
@@ -326,6 +378,7 @@ function News() {
                         <p className="text-sm text-gray-400 inline-flex"><FaCalendarAlt />&nbsp;{new Date(news.createdAt).toLocaleDateString()}</p>
                       </div>
                     </div>
+                    </Link>
                   ))}
                 </div>
               </>

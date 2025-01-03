@@ -399,6 +399,14 @@
   color: #1a1a1a;
   margin-bottom: 8px;
 }
+.article_title_main {
+  font-size: 30px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+  line-height: 1.25;
+}
+
 .article_content{
   font-size: 15px;
   color: #1a1a1a;
@@ -809,22 +817,30 @@
 }
 
 .article_meta {
-  font-size: 0.875rem;
+  font-size: 13px;
   color: #666;
   margin-top: 0.5rem;
 }
 
 .cardRight_title {
-  font-size: 1.125rem;
+  font-size: 18px;
   font-weight: 600;
-  margin-top: 0.25rem;
+  color: #1a1a1a;
 }
-
+.cardLeft_tag {
+  font-size: 12px;
+  color: #1a1a1a;
+}
 .article_excerpt {
   color: #444;
   margin-top: 0.5rem;
 }
-
+.article_excerpt_main {
+  font-size: 18px;
+  color: #444;
+  margin-top: 0.5rem;
+  line-height: 1.25;
+}
 .cardRight_tag {
   display: inline-flex;
   align-items: center;

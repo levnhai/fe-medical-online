@@ -1,32 +1,43 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { publicRoutes } from '~/routes';
 import { Fragment } from 'react';
 import { ToastContainer } from 'react-toastify';
 
 import DefaultLayout from './layouts/defaultLayout';
+import ProtectedRoute from './utils/protectedRoute';
+import { publicRoutes } from '~/routes';
+import ScrollToTop from './components/scroll';
 
 function App() {
   return (
     <>
       <Router>
+        <ScrollToTop />
         <Routes>
-          {publicRoutes.map((route, index) => {
+          {publicRoutes.map(({ path, layout, isPrivate, requiredRole, component: Component }, index) => {
             let Layout = DefaultLayout;
-            if (route.layout) {
-              Layout = route.layout;
-            } else if (route.layout === null) {
+            if (layout) {
+              Layout = layout;
+            } else if (layout === null) {
               Layout = Fragment;
             }
-            const Page = route.component;
             return (
               <Route
                 key={index}
-                path={route.path}
+                path={path}
                 element={
-                  <Layout>
-                    <Page />
-                    <ToastContainer />
-                  </Layout>
+                  isPrivate ? (
+                    <ProtectedRoute requiredRole={requiredRole}>
+                      <Layout>
+                        <Component />
+                        <ToastContainer />
+                      </Layout>
+                    </ProtectedRoute>
+                  ) : (
+                    <Layout>
+                      <Component />
+                      <ToastContainer />
+                    </Layout>
+                  )
                 }
               />
             );

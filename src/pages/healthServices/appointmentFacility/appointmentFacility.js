@@ -19,8 +19,6 @@ function AppointmentFacility() {
   const dispatch = useDispatch();
   const hospitalData = useSelector((state) => state.hospital.hospitalData);
 
-  console.log('check hospitalData', hospitalData);
-
   const [currentPage, setCurrentPage] = useState(1);
   const [activeTab, setActiveTab] = useState(0);
 

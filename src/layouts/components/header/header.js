@@ -52,8 +52,6 @@ function Header() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const user = useSelector((state) => state.auth.user?.payload);
 
-  console.log('check user', user);
-
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
@@ -90,7 +88,7 @@ function Header() {
   ];
   // rút gọn name
   const handleshortName = () => {
-    let fullName = isLoggedIn && user && `${user.user.fullName}`;
+    let fullName = isLoggedIn && user && `${user.userData.fullName}`;
     if (isLoggedIn && fullName) {
       let nameParts = fullName.split(' ');
       let shortName = '';
@@ -192,7 +190,7 @@ function Header() {
                   className={cx('accountBtn')}
                   onClick={handleShowModalProfile}
                 >
-                  {isLoggedIn && `${user.user.fullName}` ? shortName : t('header.account')}
+                  {isLoggedIn && `${user?.user?.fullName}` ? shortName : t('header.account')}
                 </Button>
               </div>
               <div className={cx('language')}>
@@ -232,7 +230,7 @@ function Header() {
                     <div className={cx('profile-avata')}></div>
                     <div className={cx('profile-info')}>
                       <span>{t('header.greeting')}</span>
-                      <h5> {`${user.user.fullName}`}</h5>
+                      <h5> {`${user.userData.fullName}`}</h5>
                     </div>
                   </div>
                   <ul className={cx('information-list')}>
@@ -377,7 +375,7 @@ function Header() {
           <div className="p-4 border-b border-gray-200 flex justify-between items-center">
             <div className={cx('logo', 'w-5 h-5')}>
               <a href="/" className="text-lg font-bold">
-                <img src={require('~/assets/images/logo.png')} />
+                <img alt="" src={require('~/assets/images/logo.png')} />
               </a>
             </div>
             <div className="flex items-center space-x-4">
@@ -406,7 +404,7 @@ function Header() {
                   )}
                   onClick={handleShowModalProfile}
                 >
-                  {isLoggedIn ? `${user.user.fullName}` : t('header.account')}
+                  {isLoggedIn ? `${user.userData.fullName}` : t('header.account')}
                 </Button>
               </div>
             </div>

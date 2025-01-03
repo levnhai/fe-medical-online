@@ -94,12 +94,24 @@ export const facebookLogin = createAsyncThunk('authSlice/facebookLogin', async (
   }
 });
 
+// get record user
+export const fetchRecordUser = createAsyncThunk('authSlice/fetchRecordUser', async (recordId) => {
+  try {
+    const response = await axios.post('record/get-record-by-id', recordId);
+    console.log('check response', response);
+    return response.result;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+});
+
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
     isLoggedIn: false,
     user: null,
     phoneNumber: null,
+    redirectPath: null,
     loading: false,
     error: null,
   },
@@ -111,9 +123,17 @@ const authSlice = createSlice({
     logoutUser: (state) => {
       state.isLoggedIn = false;
       state.user = null;
+      state.phoneNumber = null;
     },
     phoneNumber: (state, action) => {
       state.phoneNumber = action.payload;
+    },
+    setRedirectPath: (state, action) => {
+      state.redirectPath = action.payload;
+    },
+
+    clearRedirectPath: (state) => {
+      state.redirectPath = null;
     },
   },
   extraReducers: (builder) => {
@@ -151,6 +171,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { loginUser, logoutUser, phoneNumber } = authSlice.actions;
+export const { loginUser, logoutUser, phoneNumber, setRedirectPath, clearRedirectPath } = authSlice.actions;
 
 export default authSlice.reducer;

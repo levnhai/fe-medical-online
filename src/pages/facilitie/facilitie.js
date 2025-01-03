@@ -1,12 +1,8 @@
 import classNames from 'classnames/bind';
-import { Buffer } from 'buffer';
 import { useEffect, useState, useMemo, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
-import { List } from 'react-content-loader';
 import { useTranslation } from 'react-i18next';
-import FacilitieSkeleton from './loading/facilitie_skeleton';
-import Skeleton from './loading/skeleton';
 
 // icon
 import { MdKeyboardArrowRight } from 'react-icons/md';
@@ -14,49 +10,32 @@ import { CiLocationOn, CiSearch } from 'react-icons/ci';
 import { LuClock7 } from 'react-icons/lu';
 
 import Button from '~/components/Button';
-import { fetchGetHospitalByType, fetchGetCountHospitalByType } from '~/redux/hospital/hospitalSilder';
 import Pagination from '~/components/paination';
-// import Map from '~/components/Map';
 import Contact from '../contact';
 import ResultEmpty from '../resultEmpty';
 import { createSlugName } from '~/utils/createSlug';
+import FacilitieSkeleton from './loading/facilitie_skeleton';
+import Skeleton from './loading/skeleton';
+import { convertImage } from '~/utils/convertImage';
+import { SlideInFromBottom } from '~/components/animation';
+import { fetchGetHospitalByType, fetchGetCountHospitalByType } from '~/redux/hospital/hospitalSilder';
+import { updateBooking, clearBooking } from '~/redux/booking/bookingSlice';
 
 import style from './facilitie.module.scss';
 const cx = classNames.bind(style);
 
-let PageSize = 4;
-
-// let tabMenus = [
-//   {
-//     label: 'Bệnh viện công',
-//     href: 'benh-vien-cong',
-//     subTitle: 'Đặt khám dễ dàng, không lo chờ đợi tại các bệnh viện công hàng đầu Việt Nam',
-//   },
-//   {
-//     label: 'Bệnh viện tư',
-//     href: 'benh-vien-tu',
-//     subTitle: 'Tận hưởng dịch vụ y tế tư nhân, chăm sóc sức khỏe chuyên nghiệp',
-//   },
-//   {
-//     label: 'Phòng khám',
-//     href: 'phong-kham',
-//     subTitle: 'Trải nghiệm chăm sóc y tế tập trung và gần gũi tại phòng khám chuyên khoa',
-//   },
-//   {
-//     label: 'Phòng mạch',
-//     href: 'phong-mach',
-//     subTitle: 'Chẩn đoán và điều trị chất lượng với bác sĩ chuyên khoa được nhiều người tin tưởng',
-//   },
-//   {
-//     label: 'Xét nghiệm',
-//     href: 'xet-nghiem',
-//     subTitle: 'Xét nghiệm chính xác, nhanh chóng và hỗ trợ chẩn đoán hiệu quả với các cơ sở uy tín hàng đầu',
-//   },
-// ];
+let PageSize = 10;
 
 function Facilitie() {
   const { t } = useTranslation();
+  const { type } = useParams();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const sliderRef = useRef(null);
+
   const [currentPage, setCurrentPage] = useState(1);
+  const [tabCounts, setTabCounts] = useState({});
+
   const [selectedHospitalId, setSelectedHospitalId] = useState(null);
   const [search, setSearch] = useState('');
   const [activeMenu, setActiveMenu] = useState(null);
@@ -65,14 +44,9 @@ function Facilitie() {
     'Với những cơ sở Y Tế hàng đầu sẽ giúp trải nghiệm khám, chữa bệnh của bạn tốt hơn',
   );
   const [sliderMode, setSliderMode] = useState('full');
-  const sliderRef = useRef(null);
 
-  const { type } = useParams();
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
   const hospitalDataByType = useSelector((state) => state.hospital.hospitalDataByType);
   const countHospitalByType = useSelector((state) => state.hospital.countHospitalByType);
-
   const isLoading = useSelector((state) => state.hospital.loading);
 
   const handleHospitalClick = (hospital) => {
@@ -80,7 +54,7 @@ function Facilitie() {
   };
   const tabMenus = [
     {
-      label: t('facilities.publicHospital.label', 'Bệnh viện công'),
+      label: t('facilities.publicHospital.label'),
       href: 'benh-vien-cong',
       subTitle: t(
         'facilities.publicHospital.subTitle',
@@ -88,7 +62,7 @@ function Facilitie() {
       ),
     },
     {
-      label: t('facilities.privateHospital.label', 'Bệnh viện tư'),
+      label: t('facilities.privateHospital.label'),
       href: 'benh-vien-tu',
       subTitle: t(
         'facilities.privateHospital.subTitle',
@@ -96,7 +70,7 @@ function Facilitie() {
       ),
     },
     {
-      label: t('facilities.clinic.label', 'Phòng khám'),
+      label: t('facilities.clinic.label'),
       href: 'phong-kham',
       subTitle: t(
         'facilities.clinic.subTitle',
@@ -104,7 +78,7 @@ function Facilitie() {
       ),
     },
     {
-      label: t('facilities.medicalOffice.label', 'Phòng mạch'),
+      label: t('facilities.medicalOffice.label'),
       href: 'phong-mach',
       subTitle: t(
         'facilities.medicalOffice.subTitle',
@@ -112,7 +86,7 @@ function Facilitie() {
       ),
     },
     {
-      label: t('facilities.laboratory.label', 'Xét nghiệm'),
+      label: t('facilities.laboratory.label'),
       href: 'xet-nghiem',
       subTitle: t(
         'facilities.laboratory.subTitle',
@@ -121,8 +95,6 @@ function Facilitie() {
     },
   ];
 
-  const [tabCounts, setTabCounts] = useState({});
-  // count hospital type
   const countHospitalType = () => {
     const counts = {};
     tabMenus.forEach((item) => {
@@ -130,43 +102,12 @@ function Facilitie() {
     });
     setTabCounts(counts);
   };
-  // const countHospitalType = () => {
-  //   tabMenus = tabMenus.map((item) => {
-  //     console.log('check', countHospitalByType?.typeCounts?.hasOwnProperty(item.href));
-  //     if (countHospitalByType && countHospitalByType?.typeCounts?.hasOwnProperty(item.href)) {
-  //       return {
-  //         ...item,
-  //         count: countHospitalByType?.typeCounts[item.href],
-  //       };
-  //     } else {
-  //       return {
-  //         ...item,
-  //         count: 0,
-  //       };
-  //     }
-  //   });
-
-  // convert image
-  const image = (image) => {
-    if (image) {
-      return Buffer.from(image.data, 'base64').toString('binary');
-    }
-    return null;
-  };
 
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
     return hospitalDataByType && hospitalDataByType?.data?.slice(firstPageIndex, lastPageIndex);
   }, [currentPage, hospitalDataByType?.data]);
-
-  const hospitalDetail = useMemo(() => {
-    return selectedHospitalId
-      ? hospitalDataByType?.data.find((item) => item._id === selectedHospitalId)
-      : hospitalDataByType?.data?.length > 0
-      ? hospitalDataByType?.data[0]
-      : null;
-  }, [selectedHospitalId, hospitalDataByType?.data]);
 
   const handleClickType = (tab, index) => {
     setLabelTitle(t(tab.label));
@@ -179,6 +120,14 @@ function Facilitie() {
       navigate(`/co-so-y-te/${tab.href}`);
     }
   };
+
+  const hospitalDetail = useMemo(() => {
+    return selectedHospitalId
+      ? hospitalDataByType?.data.find((item) => item._id === selectedHospitalId)
+      : hospitalDataByType?.data?.length > 0
+      ? hospitalDataByType?.data[0]
+      : null;
+  }, [selectedHospitalId, hospitalDataByType?.data]);
 
   useEffect(() => {
     document.title = 'Cơ sở y tế || Medpro';
@@ -258,6 +207,10 @@ function Facilitie() {
       };
     }
   }, [sliderMode]);
+
+  useEffect(() => {
+    dispatch(clearBooking());
+  }, []);
   return (
     <>
       <div className={cx('facilitie')}>
@@ -317,7 +270,6 @@ function Facilitie() {
                   >
                     {tab.label}
                     <span> ( {tabCounts[tab.href] || 0} )</span>
-                    {/* <span> ( {tab.count} )</span> */}
                   </Button>
                 );
               })}
@@ -332,7 +284,7 @@ function Facilitie() {
                       <FacilitieSkeleton />
                     </>
                   ) : currentTableData?.length > 0 ? (
-                    <div>
+                    <SlideInFromBottom>
                       {currentTableData &&
                         currentTableData.map((item, index) => {
                           let address = `${item.address[0].street}, ${item.address[0].wardName}, ${item.address[0].districtName}, ${item.address[0].provinceName}`;
@@ -347,26 +299,57 @@ function Facilitie() {
                               <div className={cx('content-title')}>
                                 <div
                                   className={cx('content-image')}
-                                  style={{ backgroundImage: `url(${image(item.image)})` }}
+                                  style={{
+                                    backgroundImage:
+                                      item.image.data != []
+                                        ? `url(${convertImage(item.image)})`
+                                        : "url('https://s.net.vn/crl1')",
+                                  }}
+                                  // style={{"backgroundImage: url('https://www.citypng.com/public/')"}}
                                 ></div>
                                 <div className={cx('content-title-ini')}>
-                                  <div className={cx('content-name')}>{item.fullName}</div>
+                                  <div className={cx('content-name', 'capitalize')}>{item.fullName}</div>
                                   <div className={cx('content-address')}>{address}</div>
                                   <div className={cx('content-groupBtn')}>
                                     <Button
                                       className={cx('content-btn')}
-                                      to={`/${createSlugName(item.fullName)}?hptId=${item._id}`}
+                                      to={
+                                        (`/${createSlugName(item.fullName)}?hptId=${item._id}`,
+                                        { state: { hospital: item } })
+                                      }
                                     >
                                       Xem chi tiết
                                     </Button>
-                                    <Button className={cx('content-btn')}>Đặt khám ngay</Button>
+                                    <Button
+                                      className={cx('content-btn')}
+                                      onClick={() => {
+                                        dispatch(
+                                          updateBooking({
+                                            key: 'hospital',
+                                            value: {
+                                              fullName: item.fullName,
+                                              id: item._id,
+                                              address,
+                                            },
+                                          }),
+                                        );
+                                        navigate(
+                                          `/${createSlugName(item.fullName)}/hinh-thuc-dat-kham?partnerId=${item._id}`,
+                                          {
+                                            state: { hospital: item },
+                                          },
+                                        );
+                                      }}
+                                    >
+                                      Đặt khám ngay
+                                    </Button>
                                   </div>
                                 </div>
                               </div>
                             </div>
                           );
                         })}
-                    </div>
+                    </SlideInFromBottom>
                   ) : (
                     <ResultEmpty />
                   )}
@@ -385,7 +368,7 @@ function Facilitie() {
                               <div className={cx('header')}>
                                 <div
                                   className={cx('logo')}
-                                  style={{ backgroundImage: `url(${image(hospitalDetail?.image)})` }}
+                                  style={{ backgroundImage: `url(${convertImage(hospitalDetail?.image)})` }}
                                 ></div>
                                 <div className={cx('title')}>{hospitalDetail?.fullName}</div>
                                 <div className={cx('workingTime')}>

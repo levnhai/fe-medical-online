@@ -1,63 +1,14 @@
 .main {
   height: auto;
   width: 100%;
+  background-color: #e8f2f7;
 }
 
 .body {
-  max-width: 1060px;
-  min-height: 45vh;
-  padding-bottom: 20px;
-  gap: 20px;
+  width: 1060px;
   margin: 0 auto;
-}
-
-.tag {
-  list-style: none;
-  margin: 0 0 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  overflow: auto;
-}
-
-.tag-Btn {
-  color: var(--blue-color);
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 23px;
-  padding: 10px 100px;
-  background: var(--white-color);
-  border-radius: 50px;
-  border: 1px solid transparent;
-  transition: all 0.15s ease;
-
-  &:hover {
-    color: var(--blue-color);
-    border: 1px solid var(--blue-color);
-  }
-}
-
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: space-between;
-}
-
-.body-content {
-  width: 650px;
-  margin: 0 auto;
-  border: 1px solid #fff;
   margin-bottom: 20px;
-  background: #fff;
-  border-radius: 16px;
-
-  &:hover {
-    box-shadow: none;
-    border: 1px solid var(--blue-color);
-    cursor: pointer;
-  }
+  overflow: hidden;
 }
 
 .content {
@@ -65,58 +16,44 @@
   min-height: 140px;
 }
 
-.content-title {
-  gap: 20px;
-  display: flex;
-  width: 100%;
-  height: 100%;
-}
-
-.content-image {
+.image {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;
-  width: 76px;
-  height: 76px;
+  width: 100px;
+  height: 120px;
+  border-radius: 12px;
+  background-color: #eaeaea;
 }
 
-.content-title-ini {
-  height: 100%;
-  font-family: Roboto;
+.name {
+  color: #11a2f3;
   font-size: 20px;
-  font-weight: 700;
-  line-height: 23px;
-  letter-spacing: 0;
-  text-align: left;
-}
-
-.content-address {
-  min-height: 50px;
-  padding-top: 8px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-family: Roboto;
-  font-size: 16px;
+  font-style: normal;
   font-weight: 400;
-  line-height: 19px;
-  letter-spacing: 0;
-  text-align: left;
-  flex-wrap: wrap;
-  color: #858585;
-  margin-bottom: 12px;
+  line-height: normal;
+  margin-bottom: 8px;
 }
 
-.content-groupBtn {
-  display: flex;
-  width: 100%;
-  gap: 12px;
-  height: 42px;
-  bottom: 0;
+.treatment {
+  overflow: hidden;
+  color: var(--text-web, #003553);
+  text-overflow: ellipsis;
+  font-size: 16px;
+  font-style: normal;
+  font-family: Roboto, sans-serif !important;
+  line-height: normal;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  margin-bottom: 4px;
 }
 
 .content-btn {
-  padding: 0px 39px;
+  padding: 0px 30px;
   border-radius: 999px;
+  height: 36px;
+  color: #fff !important;
 }
 
 .content-btn:first-child {
@@ -139,14 +76,6 @@
   }
 }
 
-.banner {
-  background-image: url('https://medpro.vn/_next/image?url=https%3A%2F%2Fbo-api.medpro.com.vn%2Fstatic%2Fimages%2Fmedpro%2Fweb%2Fsalebooking.png&w=384&q=75');
-  width: 368px;
-  height: 588px;
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
 .active {
   background: linear-gradient(84.69deg, var(--blue-color) 33.56%, #00e0ff 111.25%);
   color: #fff;
@@ -162,7 +91,18 @@
   align-items: center;
   background-color: #eff6ff;
   justify-content: space-between;
-  padding: 12px -34px;
+  padding: 12px 14px;
   width: 100%;
-  border-radius: 0 0 12px 12px;
+}
+
+.frame-left-address {
+  color: var(--grey-text, #858585);
+}
+
+.banner {
+  background-image: url('https://medpro.vn/_next/image?url=https%3A%2F%2Fbo-api.medpro.com.vn%2Fstatic%2Fimages%2Fmedpro%2Fweb%2Fsalebooking.png&w=384&q=75');
+  width: 100%;
+  height: 588px;
+  background-repeat: no-repeat;
+  background-size: contain;
 }

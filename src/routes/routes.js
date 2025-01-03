@@ -26,6 +26,9 @@ import About from '~/pages/about';
 import Facilitie from '~/pages/facilitie';
 import AppointmentDoctor from '~/pages/healthServices/appointmentDoctor';
 import AppointmentFacility from '~/pages/healthServices/appointmentFacility';
+import AppointmentBooking from '~/pages/healthServices/appointmentBooking';
+import FormBooking from '~/pages/facilitie/formBooking/formBooking';
+import VisitDetail from '~/pages/healthServices/components/visitDetail';
 
 const publicRoutes = [
   { path: config.routers.home, component: Home },
@@ -38,6 +41,9 @@ const publicRoutes = [
   { path: config.routers.facilitieType, component: Facilitie },
   { path: config.routers.appointmentDoctor, component: AppointmentDoctor },
   { path: config.routers.appointmentFacility, component: AppointmentFacility },
+  { path: config.routers.appointmentBooking, component: AppointmentBooking },
+  { path: config.routers.formBooking, component: FormBooking },
+  { path: config.routers.visitDetail, component: VisitDetail, isPrivate: false },
 
   // guide
   { path: config.routers.question, component: Question },
@@ -54,7 +60,7 @@ const publicRoutes = [
   { path: config.routers.singIn, component: SingIn, layout: HeaderOnly },
   { path: config.routers.newPassword, component: ForgotPassword, layout: HeaderOnly },
 ];
-  
+
 const privateRoutes = [];
 
 export { publicRoutes, privateRoutes };

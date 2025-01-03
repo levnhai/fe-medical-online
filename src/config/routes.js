@@ -11,10 +11,13 @@ const routes = {
   //facilitie
   facilitie: '/co-so-y-te',
   facilitieType: '/co-so-y-te/:type/',
+  formBooking: '/:slug/hinh-thuc-dat-kham',
 
   // health
   appointmentDoctor: '/dich-vu-y-te/dat-kham-theo-bac-si',
   appointmentFacility: '/dich-vu-y-te/dat-kham-tai-co-so',
+  appointmentBooking: '/chon-lich-kham',
+  visitDetail: '/chi-tiet-phieu-kham-benh',
 
   // guide
   question: '/huong-dan/cau-hoi-thuong-gap',

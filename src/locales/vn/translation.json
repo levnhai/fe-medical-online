@@ -132,7 +132,7 @@
   "doctor": {
     "featured_doctor": "Bác sĩ nổi bật tuần qua"
   },
-  "about":{
+  "about": {
     "about_title": "Chào mừng bạn đến với",
     "about_name": "CÔNG TY CỔ PHẦN ỨNG DỤNG PKH",
     "about": "Giới thiệu về PKH",
@@ -146,10 +146,10 @@
       "Quản lý cuộc hẹn ",
       "dữ liệu của người bệnh"
     ],
-    "vision":"Tầm nhìn",
+    "vision": "Tầm nhìn",
     "vision_description": "PKH trở thành công ty cung cấp giải pháp công nghệ hàng đầu tại Việt Nam và khu vực Đông Nam Á giúp kết nối các dịch vụ y tế đến rộng rãi người dân, mang lại hiệu quả đột phá cho đơn vị y tế, cũng như những trải nghiệm tiện nghi, hài lòng cho bệnh nhân trong khám chữa bệnh và chăm sóc sức khỏe cá nhân.",
     "mission": "Sứ mệnh",
-    "mission_description":"PKH cung cấp nền tảng Medpro - giải pháp tiếp cận y tế thông minh mang đến cho người dùng những phương thức chăm sóc sức khỏe mới, ở bất cứ không gian - thời gian nào thông qua nền tảng trực tuyến  tương tác cao, kết nối với các cơ sở y tế hàng đầu cùng đội ngũ chuyên gia y tế đông đảo, tận tình, giàu kinh nghiệm.",
+    "mission_description": "PKH cung cấp nền tảng Medpro - giải pháp tiếp cận y tế thông minh mang đến cho người dùng những phương thức chăm sóc sức khỏe mới, ở bất cứ không gian - thời gian nào thông qua nền tảng trực tuyến  tương tác cao, kết nối với các cơ sở y tế hàng đầu cùng đội ngũ chuyên gia y tế đông đảo, tận tình, giàu kinh nghiệm.",
     "about_description": "Ứng dụng này giúp người bệnh và thân nhân người bệnh có thể thực hiện trực tuyến quá trình đăng ký khám bệnh tại bệnh viện ở mọi lúc mọi nơi mà không cần tới bệnh viện.",
     "product_service": "Triết lý sản phẩm - dịch vụ",
     "product_service_description": "Với triết lý người dùng làm trung tâm, giải pháp Medpro được thiết kế mang trải nghiệm tốt nhất cho người dùng thông qua việc sử dụng các tài nguyên và đặc điểm nhiều công nghệ số",
@@ -164,31 +164,29 @@
       "Trong tiến trinh chuyển đổi số hiện nay các CSYT cần hợp tác, mở rộng dịch vụ tiện ích phục vụ người dùng"
     ],
     "hospital": "Các bệnh viện tiêu biểu",
-    "hotline" : "CÁC HÌNH THỨC HỖ TRỢ"
+    "hotline": "CÁC HÌNH THỨC HỖ TRỢ"
   },
-  "check-phone":{
+  "check-phone": {
     "title": "Vui lòng nhập số điện thoại để tiếp tục",
     "login_title": "Đăng nhập bằng tài khoản",
     "btn_gg_login": "Đăng nhập với Google",
     "btn_fb_login": "Đăng nhập với Facebook",
     "continu": "Tiếp tục"
   },
-  "login":{
+  "login": {
     "title": "Vui lòng đăng nhập để tiếp tục",
     "fogot_pas": "Quên mật khẩu"
   },
-  "register":{
+  "register": {
     "title": "Vui lòng nhập thông tin để tiếp tục",
     "des": " Bằng việc đăng ký, bạn đã đồng ý với Medpro về",
     "des1": "Quy định sử dụng",
     "and": "và",
     "des2": "chính sách bảo mật",
-    "comlate":"Hoàn tất đăng kí"
+    "comlate": "Hoàn tất đăng kí"
   },
-  "forgot":{
-    
-  },
-  "opt":{
+  "forgot": {},
+  "opt": {
     "title": "XIN CHÀO!",
     "fogot_pas": "Vui lòng nhập mã 6 số đã gửi cho bạn qua số điện thoại.",
     "auth": "Xác thực",
@@ -199,14 +197,14 @@
     "resend": "Gửi lại mã xác nhận",
     "not_phone": "Đây không phải là số điện thoại của tôi"
   },
-  "validation":{
+  "validation": {
     "name": "Vui lòng nhập tên của bạn..."
   },
-  "guide":{
+  "guide": {
     "set_app": "Cài đặt ứng dụng",
     "appointment": "Đặt lịch khám",
     "refund_process": "Quy trình hoàn phí",
-    "faq" : "Câu hỏi thường gặp"
+    "faq": "Câu hỏi thường gặp"
   },
   "refund_process": {
     "header": {
@@ -237,12 +235,8 @@
       "description": "Khám phá đơn giản và nhanh chóng để cài đặt ứng dụng y tế, trải nghiệm ngay những lợi ích việt."
     },
     "steps": {
-      "title": [
-        "Cách 1:",
-        "Cách 2:",
-        "Cách 3:"
-      ],
-      "item":[
+      "title": ["Cách 1:", "Cách 2:", "Cách 3:"],
+      "item": [
         "Tải ứng dụng:",
         "Tìm kiếm theo từ khóa \"Medical\" trên App Store(IOS) hoặc Google Play(Android)",
         "Quét mã QR:"
@@ -430,33 +424,29 @@
           }
         }
       }
-    },
+    }
+  },
+
   "facilities": {
     "publicHospital": {
       "label": "Bệnh viện công",
-      "href": "benh-vien-cong",
       "subTitle": "Đặt khám dễ dàng, không lo chờ đợi tại các bệnh viện công hàng đầu Việt Nam"
     },
     "privateHospital": {
       "label": "Bệnh viện tư",
-      "href": "benh-vien-tu",
       "subTitle": "Tận hưởng dịch vụ y tế tư nhân, chăm sóc sức khỏe chuyên nghiệp"
     },
     "clinic": {
       "label": "Phòng khám",
-      "href": "phong-kham",
       "subTitle": "Trải nghiệm chăm sóc y tế tập trung và gần gũi tại phòng khám chuyên khoa"
     },
     "medicalOffice": {
       "label": "Phòng mạch",
-      "href": "phong-mach",
       "subTitle": "Chẩn đoán và điều trị chất lượng với bác sĩ chuyên khoa được nhiều người tin tưởng"
     },
     "laboratory": {
       "label": "Xét nghiệm",
-      "href": "xet-nghiem",
       "subTitle": "Xét nghiệm chính xác, nhanh chóng và hỗ trợ chẩn đoán hiệu quả với các cơ sở uy tín hàng đầu"
     }
-  }
   }
 }

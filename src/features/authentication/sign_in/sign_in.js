@@ -7,13 +7,13 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useTranslation } from 'react-i18next';
 
-import '~/translation/i18n';
 // icon
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 
-import { loginUser, fetchLoginUser, fetchOtpInput } from '~/redux/user/authSlice';
+import { loginUser, fetchLoginUser, fetchOtpInput, clearRedirectPath } from '~/redux/user/authSlice';
 import Button from '~/components/Button';
 import { Input } from '~/components/input/input';
+import '~/translation/i18n';
 import { password_validation } from '~/utils/inputValidations';
 
 import style from './sign_in.module.scss';
@@ -23,7 +23,11 @@ const cx = classNames.bind(style);
 
 function SingIn() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const phoneNumber = useSelector((state) => state.auth.phoneNumber);
+  const redirectPath = useSelector((state) => state.auth.redirectPath);
+
+  console.log('redirectPath', redirectPath);
 
   const methods = useForm();
   const dispatch = useDispatch();
@@ -48,6 +52,12 @@ function SingIn() {
       if (user?.status) {
         navigator('/');
         dispatch(loginUser(res));
+        if (redirectPath) {
+          navigate(`/${redirectPath}`);
+          dispatch(clearRedirectPath());
+        } else {
+          navigate('/');
+        }
       } else {
         toast.warning('Thông tin đăng nhập không chính xác');
       }
@@ -113,7 +123,7 @@ function SingIn() {
               }}
               className={cx('forgot-password')}
             >
-             {t('login.fogot_pas')}
+              {t('login.fogot_pas')}
             </p>
           </div>
         </div>

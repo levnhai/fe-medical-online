@@ -178,10 +178,10 @@ function OtpInput() {
                         dispatch(fetchOtpInput(phoneNumber));
                       }}
                     >
-                     {t('opt.resend')}
+                      {t('opt.resend')}
                     </Button>
                     <Button className={cx('collapseBtn')} to={'/check-phone'}>
-                    {t('opt.not_phone')}
+                      {t('opt.not_phone')}
                     </Button>
                   </div>
                 </div>

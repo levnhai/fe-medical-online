@@ -19,11 +19,11 @@ root.render(
   <Provider store={Store}>
     <GlobalStyles>
       <PersistGate loading={null} persistor={persistor}>
-        <StrictMode>
-          <GoogleOAuthProvider clientId={clientId}>
-            <App />
-          </GoogleOAuthProvider>
-        </StrictMode>
+        {/* <StrictMode> */}
+        <GoogleOAuthProvider clientId={clientId}>
+          <App />
+        </GoogleOAuthProvider>
+        {/* </StrictMode> */}
       </PersistGate>
     </GlobalStyles>
   </Provider>,

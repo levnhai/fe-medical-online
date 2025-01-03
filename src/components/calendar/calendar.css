@@ -1,0 +1,156 @@
+/* Container */
+.calendar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  color: #333;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.react-calendar__month-view__weekdays {
+  border-top: 1px solid #e4e7ee;
+  font-size: 1rem;
+  white-space: nowrap;
+  background: #f7f7f7;
+}
+.react-calendar__month-view__weekdays__weekday {
+  border-left: 1px solid #e4e7ee;
+  border-right: 1px solid #e4e7ee;
+  padding: 15px 0px;
+}
+
+.react-calendar__tile {
+  border: 1px solid #e4e7ee !important;
+  border-radius: inherit !important;
+
+  &:hover {
+    background-color: transparent !important;
+  }
+}
+
+.react-calendar {
+  width: 100%;
+}
+
+.react-calendar__tile abbr {
+  padding: 12px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  color: #525151;
+
+  &:hover {
+    background: linear-gradient(48deg, #00b5f1, #00e0ff) !important;
+    color: #e4e7ee;
+  }
+}
+
+.react-calendar__tile:disabled {
+  background-color: transparent !important;
+  pointer-events: none;
+  font-weight: 500;
+}
+
+.react-calendar__tile:disabled abbr {
+  pointer-events: none;
+  color: #b6b6b6;
+}
+
+.react-calendar__month-view__days .react-calendar__tile--active {
+  background: transparent !important;
+}
+
+.react-calendar__tile--active abbr {
+  background: linear-gradient(48deg, #00b5f1, #00e0ff) !important;
+  color: #e4e7ee;
+}
+
+.react-calendar__tile--active:disabled abbr {
+  color: #e4e7ee !important;
+}
+
+.react-calendar__tile--now {
+  background: transparent !important;
+}
+
+.react-calendar__tile--now abbr {
+  background-color: #f2f2f2 !important;
+  color: red;
+}
+
+/* .react-calendar__tile abbr {
+  background-color: red;
+} */
+
+/* Tiêu đề */
+h3 {
+  color: #008ffb;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Thanh điều hướng tháng */
+.calendar-navigation {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.nav-button {
+  background: linear-gradient(36deg, var(--blue-color), #00e0ff);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-button:disabled {
+  background-color: #d3d3d3;
+  cursor: not-allowed;
+}
+
+.current-month {
+  margin: 0 15px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #008ffb;
+}
+
+/* Tùy chỉnh ô ngày */
+.react-calendar__tile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.react-calendar__tile--active {
+  background: #008ffb !important;
+  color: #fff !important;
+  border-radius: 8px;
+}
+
+.react-calendar__month-view__days__day--weekend {
+}
+
+/* Custom highlight */
+.highlight-dot {
+  width: 6px;
+  height: 6px;
+  background-color: red;
+  border-radius: 50%;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}

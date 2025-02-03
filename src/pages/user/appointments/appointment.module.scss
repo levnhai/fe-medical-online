@@ -1,0 +1,30 @@
+.tab-btn {
+  display: flex;
+  padding: 6px 16px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 50px;
+  height: 39px;
+  font-weight: 500;
+  min-width: 145px;
+  background: #dcdddd;
+  border: 1px solid transparent;
+  &:hover {
+    border: 1px solid #11a2f3;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.24);
+  }
+}
+
+.tab-content {
+  margin: 16px 0;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #00e0ff;
+  cursor: pointer;
+}
+
+.active {
+  background: linear-gradient(83.63deg, #00b5f1 33.34%, #00e0ff 113.91%) !important;
+  color: #fff !important;
+}

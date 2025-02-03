@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 // icon
 import { LogoIcon, SupportIcon } from '~/components/Icon';
@@ -24,10 +25,9 @@ import { IoMdClose } from 'react-icons/io';
 import { useTranslation } from 'react-i18next';
 import '~/translation/i18n';
 
-import { menu } from '../menu';
-
 import style from './header.module.scss';
 import Button from '~/components/Button';
+import { menu } from '../menu';
 import { logoutUser } from '~/redux/user/authSlice';
 
 import classNames from 'classnames/bind';
@@ -35,7 +35,9 @@ const cx = classNames.bind(style);
 
 function Header() {
   const modalRef = useRef(null);
+  const dispatch = useDispatch();
   const btnLoginRef = useRef(null);
+  const navigate = useNavigate();
 
   const [showModal, setShowModal] = useState(false);
   const [shortName, setShortName] = useState('');
@@ -48,7 +50,6 @@ function Header() {
   const { t, i18n } = useTranslation();
   const [currentLanguages, setCurrentLanguages] = useState(i18n.language);
 
-  const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const user = useSelector((state) => state.auth.user?.payload);
 
@@ -234,7 +235,12 @@ function Header() {
                     </div>
                   </div>
                   <ul className={cx('information-list')}>
-                    <li className={cx('information-item')}>
+                    <li
+                      className={cx('information-item')}
+                      onClick={() => {
+                        navigate('/user?key=records');
+                      }}
+                    >
                       <div>
                         <span className={cx('icon')}>
                           <IoPersonSharp style={{ width: '1.7rem', height: '1.7rem' }} />
@@ -242,7 +248,12 @@ function Header() {
                         <span className={cx('title')}>{t('header.patient_profile')}</span>
                       </div>
                     </li>
-                    <li className={cx('information-item')}>
+                    <li
+                      className={cx('information-item')}
+                      onClick={() => {
+                        navigate('/user?key=bills');
+                      }}
+                    >
                       <div>
                         <span className={cx('icon')}>
                           <CiCalendar />
@@ -250,7 +261,12 @@ function Header() {
                         <span className={cx('title')}>{t('header.medical_record')}</span>
                       </div>
                     </li>
-                    <li className={cx('information-item')}>
+                    <li
+                      className={cx('information-item')}
+                      onClick={() => {
+                        navigate('/user?key=notifications');
+                      }}
+                    >
                       <div>
                         <span className={cx('icon')}>
                           <IoIosNotificationsOutline />
@@ -331,7 +347,7 @@ function Header() {
       <div className={cx('header-mobile', 'flex items-center justify-between p-4 bg-white shadow-md lg:hidden')}>
         <div className={cx('logo', 'w-5 h-5')}>
           <a href="/">
-            <img src={require('~/assets/images/logo.png')} />
+            <img src={require('~/assets/images/logo.png')} alt="logo" />
           </a>
         </div>
 
@@ -348,7 +364,6 @@ function Header() {
             {languageMenuOpen && (
               <ul className={cx('menu', 'absolute bg-white border rounded-md shadow-lg mt-2 w-48 p-2')}>
                 {' '}
-                {/* Thêm w-48 và p-2 */}
                 {languages.map((lang) => (
                   <li
                     key={lang.code}

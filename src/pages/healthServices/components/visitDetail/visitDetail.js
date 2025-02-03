@@ -1,12 +1,6 @@
-import { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { unwrapResult } from '@reduxjs/toolkit';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { useSelector } from 'react-redux';
 
 import Button from '~/components/Button';
-import { fetchRecordUser } from '~/redux/user/authSlice';
-import { useBooking } from '~/context/bookingContext';
 import { extractTime } from '~/utils/time';
 
 // icon
@@ -56,7 +50,7 @@ function VisitDetail() {
                     </div>
                     <div className="flex flex-col items-center relative border-t border-dashed border-slate-300 pt-4">
                       <div className="text-2xl font-semibold">Phiếu khám bệnh</div>
-                      <div className="text-2xl font-semibold pt-6">{bookingData?.hospital?.fullName.toUpperCase()}</div>
+                      <div className="text-2xl font-semibold pt-6 toUpperCase">{bookingData?.hospital?.fullName}</div>
                       <span className="text-xl text-stone-400 text-center">{bookingData?.hospital?.address}</span>
                     </div>
 
@@ -95,7 +89,7 @@ function VisitDetail() {
                       <li className="grid grid-cols-5 py-2 ">
                         <span className="col-span-2 text-lg">Thời gian khám:</span>
                         <span className="col-span-3 text-xl font-semibold">
-                          {extractTime(bookingData?.time?.start)} - {bookingData?.date.replace(/-/g, '/')}
+                          {extractTime(bookingData?.time?.start)} - {bookingData?.date?.replace(/-/g, '/')}
                         </span>
                       </li>
                     </ul>

@@ -28,6 +28,19 @@ export const fetchClinicPayment = createAsyncThunk('paymentSlice/fetchClinicPaym
   }
 });
 
+// lịch hẹn của bệnh nhân
+export const fetchGetAppointment = createAsyncThunk('paymentSlice/fetchClinicPayment', async (patientId) => {
+  try {
+    const response = await axios.post('/payment/get-appointment-by-userId', {
+      patientId,
+    });
+    console.log('check response', response);
+    return response;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+});
+
 const paymentSlice = createSlice({
   name: 'payment',
   initialState: {

@@ -15,6 +15,9 @@ import NewsMedical from '~/pages/news/news_medical';
 import NewsKnowlage from '~/pages/news/news_knowlage';
 import NewsDetails from '~/pages/news/news_details';
 
+// user
+import User from '~/pages/user/user';
+
 // guide
 import Question from '~/pages/guide/question';
 import Refunds from '~/pages/guide/refunds';
@@ -49,6 +52,7 @@ const publicRoutes = [
   { path: config.routers.appointmentBooking, component: AppointmentBooking },
   { path: config.routers.formBooking, component: FormBooking },
   { path: config.routers.visitDetail, component: VisitDetail, isPrivate: false },
+  { path: config.routers.user, component: User },
 
   // guide
   { path: config.routers.question, component: Question },

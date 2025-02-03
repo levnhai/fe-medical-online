@@ -1,4 +1,4 @@
-import NewsDetails from "~/pages/news/news_details";
+import NewsDetails from '~/pages/news/news_details';
 
 const routes = {
   home: '/',
@@ -9,6 +9,9 @@ const routes = {
   singIn: '/login',
   singUp: '/register-account',
   newPassword: '/new-password',
+
+  // User
+  user: '/user',
 
   //facilitie
   facilitie: '/co-so-y-te',
@@ -32,8 +35,8 @@ const routes = {
   newsService: '/tin-tuc/dich-vu',
   newsMedical: '/tin-tuc/y-te',
   newsKnowlage: '/tin-tuc/y-hoc-thuong-thuc',
-  newsDetails: '/tin-tuc/:id', 
-  
+  newsDetails: '/tin-tuc/:id',
+
   //contact
   contact: '/lien-he',
 };

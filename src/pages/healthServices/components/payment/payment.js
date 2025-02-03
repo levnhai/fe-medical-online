@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useNavigate } from 'react-router-dom';
 import className from 'classnames/bind';
 
-import { fetchPayment, fetchClinicPayment } from '~/redux/payment/paymentSlice';
+import { fetchClinicPayment } from '~/redux/payment/paymentSlice';
 import Sidebar from '../sidebar';
 import { extractTime } from '~/utils/time';
 import Modal from '~/components/modal';
@@ -88,7 +88,7 @@ function PaymentMethod() {
       hospitalId: bookingData.hospital.id,
       date: bookingData.date,
       price: bookingData.price,
-      status: bookingData.hospital.id,
+      status: 'pending',
       hours: bookingData.time,
       paymentMethod: selectedMethod,
       orderId: `ORDER_${Date.now()}`,

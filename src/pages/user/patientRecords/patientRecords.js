@@ -25,7 +25,7 @@ function PatientRecord() {
 
   useEffect(() => {
     const fetchRecords = async () => {
-      const res = await dispatch(fetchRecordUser(partnerId));
+      const res = await dispatch(fetchRecordUser({ recordId: partnerId }));
       const result = unwrapResult(res);
       setRecordData(result);
     };

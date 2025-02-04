@@ -8,6 +8,8 @@ import Button from '~/components/Button';
 import { fetchRecordUser } from '~/redux/user/authSlice';
 import { useBooking } from '~/context/bookingContext';
 import { updateBooking } from '~/redux/booking/bookingSlice';
+import { useTranslation } from 'react-i18next';
+import '~/translation/i18n';
 
 // icon
 import { MdKeyboardArrowRight, MdOutlineMail } from 'react-icons/md';
@@ -18,6 +20,8 @@ import { HiOutlineUserGroup, HiOutlineArrowUturnLeft } from 'react-icons/hi2';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 
 function ChooseRecord() {
+  const { t, i18n } = useTranslation();
+  const [currentLanguages, setCurrentLanguages] = useState(i18n.language);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.auth.user?.payload);
@@ -47,18 +51,18 @@ function ChooseRecord() {
     <div className="">
       <div className="max-w-screen-lg m-auto">
         <div className={'py-6'}>
-          <ul className="flex">
-            <li className="flex items-center">
+        <ul className={'flex flex-col sm:flex-row'}>
+          <li className={'flex items-center'}>
               <a href="#/" className="font-semibold">
-                Trang chủ
+              {t('header.home')}
               </a>
               <MdKeyboardArrowRight />
             </li>
-            <li className="flex items-center text-sky-500 font-semibold">Chọn hồ sơ bệnh nhân</li>
+            <li className="flex items-center text-sky-500 font-semibold">{t('appointments.date.chooseProfile')}</li>
           </ul>
         </div>
         <div className="flex justify-center items-center flex-col pb-20">
-          <h1 className="text-5xl font-bold text-sky-500">Chọn hồ sơ bệnh nhân</h1>
+          <h1 className="text-5xl font-bold text-sky-500">{t('appointments.date.chooseProfile')}</h1>
           <div className="mt-8 max-w-2xl">
             <div className="rounded-xl bg-white ">
               {records?.data?.map((item, index) => {
@@ -81,21 +85,21 @@ function ChooseRecord() {
                     <li className="grid grid-cols-3 gap-4">
                       <div className="flex gap-4 items-center">
                         <FaBirthdayCake className="text-2xl text-zinc-500" />
-                        <span className="text-2xl text-zinc-500">Ngày sinh: </span>
+                        <span className="text-2xl text-zinc-500">{t('patientRecords.list.date')}: </span>
                       </div>
                       <div className="col-span-2">16-02-03</div>
                     </li>
                     <li className="grid grid-cols-3 gap-4">
                       <div className="flex gap-4 items-center">
                         <FaPhoneAlt className="text-2xl text-zinc-500" />
-                        <span className="text-2xl text-zinc-500">Số điện thoại:</span>
+                        <span className="text-2xl text-zinc-500">{t('patientRecords.list.phone')}:</span>
                       </div>
                       <div className="col-span-2 ">{item?.phoneNumber}</div>
                     </li>
                     <li className="grid grid-cols-3 gap-4">
                       <div className="flex gap-4 items-center">
                         <GiPositionMarker className="text-2xl text-zinc-500" />
-                        <span className="text-2xl text-zinc-500">Địa chỉ: </span>
+                        <span className="text-2xl text-zinc-500">{t('patientRecords.list.address')}: </span>
                       </div>
                       <div className="col-span-2">{address}</div>
                     </li>
@@ -104,7 +108,7 @@ function ChooseRecord() {
                       <li className="grid grid-cols-3 gap-4">
                         <div className="flex gap-4 items-center">
                           <BsGenderTrans className="text-2xl text-zinc-500" />
-                          <span className="text-2xl text-zinc-500">Giới tính: </span>
+                          <span className="text-2xl text-zinc-500">{t('patientRecords.list.sex')}: </span>
                         </div>
                         <div className="col-span-2">{item?.gender}</div>
                       </li>
@@ -113,7 +117,7 @@ function ChooseRecord() {
                       <li className="grid grid-cols-3 gap-4">
                         <div className="flex gap-4 items-center">
                           <HiOutlineUserGroup className="text-2xl text-zinc-500" />
-                          <span className="text-2xl text-zinc-500">Dân tộc: </span>
+                          <span className="text-2xl text-zinc-500">{t('patientRecords.list.nation')}: </span>
                         </div>
                         <div className="col-span-2">{item?.ethnic}</div>
                       </li>
@@ -121,34 +125,33 @@ function ChooseRecord() {
                     <li className="grid grid-cols-3 gap-4 pb-4">
                       <div className="flex gap-4 items-center">
                         <MdOutlineMail className="text-2xl text-zinc-500" />
-                        <span className="text-2xl text-zinc-500">Địa chỉ email:</span>
+                        <span className="text-2xl text-zinc-500">{t('patientRecords.list.email')}:</span>
                       </div>
                       <div className="col-span-2">{item?.email}</div>
                     </li>
                     {showMore && (
                       <li className=" border-t border-slate-300 pt-10">
-                        <div className="grid grid-cols-5 gap-4">
-                          <div className="flex col-span-3 gap-6">
-                            <Button leftIcon={<RiDeleteBin6Line />} className="bg-red-100 text-rose-500 p-0 text-xl">
-                              Xóa
+                        <div className="grid grid-cols-1 sm:grid-cols-5 gap-4">
+                          <div className="flex flex-wrap sm:col-span-3 gap-4 w-full">
+                            <Button leftIcon={<RiDeleteBin6Line />} className="bg-red-100 text-rose-500 p-0 text-lg sm:text-xl">
+                              {t('appointments.action.delete')}
                             </Button>
-                            <Button leftIcon={<FaRegEdit />} className="bg-cyan-100 text-sky-500 text-xl">
-                              Sửa
+                            <Button leftIcon={<FaRegEdit />} className="bg-cyan-100 text-sky-500 text-lg sm:text-xl">
+                              {t('appointments.action.edit')}
                             </Button>
-                            <div></div>
                           </div>
                           <Button
                             rightIcon={<FaLongArrowAltRight />}
-                            className="col-span-2 text-xl text-white bg-cyan-400"
+                            className="w-full sm:w-auto text-lg sm:text-xl text-white bg-cyan-400"
                             onClick={() => {
-                              // updateBookingData('patientProfile', item);
                               dispatch(updateBooking({ key: 'patientProfile', value: item }));
                               navigate('/chon-lich-kham?feature=booking.doctor&stepName=confirm');
                             }}
                           >
-                            Tiếp tục
+                            {t('appointments.action.continue')}
                           </Button>
                         </div>
+
                       </li>
                     )}
                   </ul>
@@ -163,7 +166,7 @@ function ChooseRecord() {
                 className="bg-transparent font-medium
                   hover:bg-zinc-100"
               >
-                Quay lại
+                {t('appointments.form.back')}
               </Button>
               <Button
                 leftIcon={<FaUserPlus />}
@@ -173,7 +176,7 @@ function ChooseRecord() {
                 className="bg-transparent font-medium
                   hover:bg-zinc-100"
               >
-                Thêm hồ sơ
+                {t('patientRecords.sidebar.add')}
               </Button>
             </div>
           </div>

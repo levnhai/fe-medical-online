@@ -28,3 +28,20 @@
   background: linear-gradient(83.63deg, #00b5f1 33.34%, #00e0ff 113.91%) !important;
   color: #fff !important;
 }
+
+/* Kích thước nhỏ hơn 425px: nút thu nhỏ lại */
+@media (max-width: 425px) {
+  .tab-btn {
+    min-width: 110px; /* Giảm độ rộng */
+    font-size: 14px; /* Giảm cỡ chữ */
+    padding: 4px 10px;
+  }
+}
+
+/* Kích thước nhỏ hơn 375px: nút chiếm toàn bộ chiều rộng */
+@media (max-width: 375px) {
+  .tab-btn {
+    width: 100%; /* Nút full width */
+    min-width: unset;
+  }
+}

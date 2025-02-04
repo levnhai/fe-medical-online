@@ -241,7 +241,7 @@ function Facilitie() {
                   </div>
                   <div className={cx('facilitie__formcontent--input')}>
                     <input
-                      placeholder="Tìm kiếm cơ sở y tế ..."
+                      placeholder={t('home.search')}
                       value={search}
                       onChange={(e) => setSearch(e.target.value)}
                     />
@@ -252,7 +252,7 @@ function Facilitie() {
                     <CiLocationOn style={{ width: '2rem', height: '2rem' }} />
                   </div>
                   <div className={cx('facilitie__formcontent--input')}>
-                    <input placeholder="Chọn tỉnh thành ..." />
+                    <input placeholder={t('home.choose')}/>
                   </div>
                 </div>
               </div>
@@ -318,7 +318,7 @@ function Facilitie() {
                                         { state: { hospital: item } })
                                       }
                                     >
-                                      Xem chi tiết
+                                      {t('home.show_detail')}
                                     </Button>
                                     <Button
                                       className={cx('content-btn')}
@@ -341,7 +341,7 @@ function Facilitie() {
                                         );
                                       }}
                                     >
-                                      Đặt khám ngay
+                                      {t('home.book_appointment')}
                                     </Button>
                                   </div>
                                 </div>

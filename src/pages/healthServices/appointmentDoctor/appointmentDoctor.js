@@ -13,11 +13,15 @@ import { useEffect, useState, useMemo } from 'react';
 import { Buffer } from 'buffer';
 import Pagination from '~/components/paination';
 import { fetchAllDoctors } from '~/redux/doctor/doctorSlice';
+import { useTranslation } from 'react-i18next';
+import '~/translation/i18n';
 
 const cx = classNames.bind(style);
 let PageSize = 4;
 
 function AppointmentDoctor() {
+  const { t, i18n } = useTranslation();
+  const [currentLanguages, setCurrentLanguages] = useState(i18n.language);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
@@ -47,8 +51,8 @@ function AppointmentDoctor() {
     <div className={cx('main')}>
       <Header
         bannerImage="https://cdn-pkh.longvan.net/prod-partner/5723a272-a318-4b67-ba8d-af9d1d3d69b4-young-asian-female-dentist-white-coat-posing-clinic-equipment_1.png"
-        title="Đặt khám theo bác sỹ"
-        contentSpan="Chủ động chọn bác sỹ mà bạn tin tưởng nhất"
+        title={t('appointments.bookingDoctor.title')}
+        contentSpan={t('appointments.bookingDoctor.subTitle')}
       />
       <Search />
       <div className={cx('body')}>
@@ -71,18 +75,18 @@ function AppointmentDoctor() {
                         <div className={cx('image')} style={{ backgroundImage: `url(${image})` }}></div>
                         <div className="h-100">
                           <div className={cx('name')}>
-                            <h4>{item.fullName} | Tổng quát</h4>
+                            <h4>{item.fullName} | {t('appointments.bookingDoctor.all')}</h4>
                           </div>
                           <div className={cx('treatment')}>
-                            <strong>Chuyên trị: </strong>
+                            <strong>{t('appointments.bookingDoctor.job')}: </strong>
                             {item?.specialtyData?.fullName}
                           </div>
                           <div className={cx('treatment')}>
-                            <strong>Lịch khám: </strong>
+                            <strong>{t('appointments.bookingDoctor.appointment')}: </strong>
                             Thứ 2 3 4z
                           </div>
                           <div className={cx('treatment')}>
-                            <strong>Giá khám: </strong>
+                            <strong>{t('appointments.bookingDoctor.price')}: </strong>
                             {Number(item.price).toLocaleString('en-US')} đ
                           </div>
                         </div>
@@ -103,7 +107,7 @@ function AppointmentDoctor() {
                           className={cx('content-btn')}
                           onClick={() => navigate('/chon-lich-kham', { state: { doctorId: item._id } })}
                         >
-                          Đặt khám ngay
+                          {t('appointments.bookingDoctor.booking')}
                         </Button>
                       </div>
                     </div>

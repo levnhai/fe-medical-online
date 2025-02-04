@@ -20,11 +20,14 @@ import { FaCircleXmark, FaUserDoctor } from 'react-icons/fa6';
 import { GrSchedules } from 'react-icons/gr';
 import { BsGenderAmbiguous } from 'react-icons/bs';
 import { HiOutlineArrowUturnLeft } from 'react-icons/hi2';
-
+import { useTranslation } from 'react-i18next';
+import '~/translation/i18n';
 import styles from './appointmentDoctor.module.scss';
 const cx = className.bind(styles);
 
 const AppointmentDoctor = () => {
+  const { t, i18n } = useTranslation();
+  const [currentLanguages, setCurrentLanguages] = useState(i18n.language);
   const inputRef = useRef();
   const location = useLocation();
   const dispatch = useDispatch();
@@ -92,10 +95,10 @@ const AppointmentDoctor = () => {
     <div className={cx('appointment-doctor')}>
       <div className="max-w-screen-lg m-auto">
         <div className={cx('', 'py-6')}>
-          <ul className="flex">
-            <li className="flex items-center">
+        <ul className={cx('flex flex-col sm:flex-row')}>
+          <li className={cx('flex items-center')}>
               <a href="#/" className="font-semibold">
-                Trang chủ
+              {t('header.home')}
               </a>
               <MdKeyboardArrowRight />
             </li>
@@ -107,30 +110,30 @@ const AppointmentDoctor = () => {
             </li>
             <li className="flex items-center">
               <a href="#/" className="text-sky-500 font-semibold">
-                Chọn bác sĩ
+              {t('appointments.form.path2')}
               </a>
             </li>
           </ul>
         </div>
-        <div className={cx('grid grid-cols-4 gap-10 px-10 pb-18')}>
+        <div className={cx('grid grid-cols-1 md:grid-cols-4 gap-10 px-10 pb-18')}>
           <div>
             <Sidebar />
           </div>
           <div className="col-span-3">
             <div className="rounded-lg overflow-hidden">
               <div className={cx('bg-white')}>
-                <div className={cx('title')}>Vui lòng chọn bác sĩ</div>
+                <div className={cx('title', 'text-base sm:text-lg md:text-xl lg:text-xl')}>{t('appointments.doctor.title')}</div>
                 <div className={cx('content')}>
                   <div className={cx('card-body')}>
                     <div>
                       <div className={cx('search')}>
                         <div className={cx('search-wrapper')}>
-                          <div className={cx('search-input')}>
+                          <div className={cx('search-input', 'text-base sm:text-lg md:text-xl lg:text-2xl')}>
                             <input
                               ref={inputRef}
                               value={valueInputSearch}
                               onChange={(e) => setValueInputSearch(e.target.value)}
-                              placeholder="Tìm nhanh bác sỹ ..."
+                              placeholder={t('appointments.doctor.search')}
                             />
 
                             {valueInputSearch && valueInputSearch.length > 0 && (
@@ -144,18 +147,18 @@ const AppointmentDoctor = () => {
                           </div>
                         </div>
                       </div>
-                      <div className={cx('select-filter')}>
+                      <div className={cx('select-filter', 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6' ,'text-base sm:text-lg md:text-xl lg:text-2xl')}>
                         <div className={cx('filter-item')}>
-                          <Select className={cx('filter-item')} placeholder="Học hàm/học vị" options={options} />
+                          <Select className={cx('filter-item')} placeholder={t('appointments.doctor.edu')} options={options} />
                         </div>
                         <div className={cx('filter-item')}>
-                          <Select placeholder="Chuyên khoa" options={options} />
+                          <Select placeholder={t('appointments.doctor.specialist')} options={options} />
                         </div>
                         <div className={cx('filter-item')}>
                           <Select
                             value={filterParam}
                             onChange={setFilterParam}
-                            placeholder="Giới tính..."
+                            placeholder={t('appointments.doctor.sex')}
                             options={[
                               { value: 'All', label: 'Tất cả' },
                               { value: 'Nam', label: 'Nam' },
@@ -170,7 +173,7 @@ const AppointmentDoctor = () => {
                             doctorData?.map((item, index) => {
                               return (
                                 <SlideInFromBottom>
-                                  <div key={index} className={cx('docter-infor')} onClick={() => handleNext(item)}>
+                                  <div key={index} className={cx('docter-infor', 'text-base sm:text-lg md:text-xl lg:text-2xl')} onClick={() => handleNext(item)}>
                                     <div>
                                       <div className={cx('highlight', 'flex items-center gap-2.5 leading-10')}>
                                         <FaUserDoctor />
@@ -178,19 +181,19 @@ const AppointmentDoctor = () => {
                                       </div>
                                       <div className={cx('flex items-center gap-2.5 leading-10')}>
                                         <BsGenderAmbiguous />
-                                        Giới tính: {item?.gender}
+                                        {t('appointments.doctor.sex')}: {item?.gender}
                                       </div>
                                       <div className={cx('flex items-center gap-2.5 leading-10')}>
                                         <CiMedicalCross />
-                                        Chuyên khoa: {item?.specialty?.fullName}
+                                        {t('appointments.doctor.specialist')}: {item?.specialty?.fullName}
                                       </div>
                                       <div className={cx('flex items-center gap-2.5 leading-10')}>
                                         <GrSchedules />
-                                        Lịch khám: bổ sung sau
+                                        {t('appointments.doctor.date')}: bổ sung sau
                                       </div>
                                       <div className={cx('flex items-center gap-2.5 leading-10')}>
                                         <MdOutlinePriceChange />
-                                        Giá khám:{item?.price}
+                                        {t('appointments.doctor.price')}
                                       </div>
                                     </div>
                                   </div>
@@ -211,7 +214,7 @@ const AppointmentDoctor = () => {
                 className="bg-transparent font-medium
                   hover:bg-zinc-100"
               >
-                Quay lại
+                {t('appointments.form.back')}
               </Button>
             </div>
           </div>

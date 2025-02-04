@@ -9,12 +9,16 @@ import Search from '~/components/search';
 import Button from '~/components/Button';
 import Pagination from '~/components/paination';
 import { fetchGetALlHospital } from '~/redux/hospital/hospitalSilder';
+import { useTranslation } from 'react-i18next';
+import '~/translation/i18n';
 
 import style from './appointmentFacility.module.scss';
 const cx = classNames.bind(style);
 let PageSize = 4;
 
 function AppointmentFacility() {
+  const { t, i18n } = useTranslation();
+  const [currentLanguages, setCurrentLanguages] = useState(i18n.language);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const hospitalData = useSelector((state) => state.hospital.hospitalData);
@@ -43,25 +47,25 @@ function AppointmentFacility() {
     <div className={cx('main')}>
       <Header
         bannerImage="https://cdn-pkh.longvan.net/prod-partner/9cef9b69-60d6-4456-8c41-888198b7a81a-dna-genetic-biotechnology-science-with-scientist-rsquo-s-hands-disruptive-technology-remix_1.png"
-        title="Đặt khám theo cơ sở"
-        contentSpan="Đặt khám nhanh chóng, tiết kiệm thời gian, an toàn tiện lợi"
+        title={t('appointments.facility.title')}
+        contentSpan={t('appointments.facility.subTitle')}
       />
       <div className={cx('body')}>
         <Search />
         <ul className={cx('tag')}>
           <li>
             <Button className={cx('tag-Btn', { active: activeTab === 0 })} rounded onClick={() => setActiveTab(0)}>
-              Tất cả
+            {t('appointments.facility.all')}
             </Button>
           </li>
           <li>
             <Button className={cx('tag-Btn', { active: activeTab === 1 })} rounded onClick={() => setActiveTab(1)}>
-              Bệnh viện
+            {t('appointments.facility.hospital')}
             </Button>
           </li>
           <li>
             <Button className={cx('tag-Btn', { active: activeTab === 2 })} rounded onClick={() => setActiveTab(2)}>
-              Phòng khám/Phòng mạch/Xét nghiệm/khác
+            {t('appointments.facility.other')}
             </Button>
           </li>
         </ul>
@@ -81,8 +85,8 @@ function AppointmentFacility() {
                       <div className={cx('content-name')}>{item.fullName}</div>
                       <div className={cx('content-address')}>{address}</div>
                       <div className={cx('content-groupBtn')}>
-                        <Button className={cx('content-btn', 'text-lg')}>Xem chi tiết</Button>
-                        <Button className={cx('content-btn', 'text-lg')}>Đặt khám ngay</Button>
+                        <Button className={cx('content-btn', 'text-lg')}>{t('appointments.facility.detail')}</Button>
+                        <Button className={cx('content-btn', 'text-lg')}>{t('appointments.facility.booking')}</Button>
                       </div>
                     </div>
                   </div>

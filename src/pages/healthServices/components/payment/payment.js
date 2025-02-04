@@ -8,7 +8,8 @@ import { fetchClinicPayment } from '~/redux/payment/paymentSlice';
 import Sidebar from '../sidebar';
 import { extractTime } from '~/utils/time';
 import Modal from '~/components/modal';
-
+import { useTranslation } from 'react-i18next';
+import '~/translation/i18n';
 // icon
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import { FaUserDoctor } from 'react-icons/fa6';
@@ -21,6 +22,8 @@ import Button from '~/components/Button';
 const cx = className.bind(styles);
 
 function PaymentMethod() {
+  const { t, i18n } = useTranslation();
+  const [currentLanguages, setCurrentLanguages] = useState(i18n.language);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   // const { bookingData, updateBookingData } = useBooking();
@@ -33,36 +36,36 @@ function PaymentMethod() {
     {
       id: 'vietqr',
       name: 'VietQR',
-      description: 'Thanh toán chuyển khoản bằng ứng dụng ngân hàng/ Ví điện tử.',
+      description: t('appointments.payment.vietqr'),
       image: 'https://play.thinkmay.net/img/icon/payment.png',
       link: 'https://payment.example.com/vietqr',
     },
     {
       id: 'vnpay',
       name: 'VNPAY QR',
-      description: 'Ngân hàng có hỗ trợ VNPAY QR.',
+      description: t('appointments.payment.vnpay'),
       image: 'https://vinadesign.vn/uploads/images/2023/05/vnpay-logo-vinadesign-25-12-57-55.jpg',
       link: 'https://payment.example.com/vnpay',
     },
     {
       id: 'momo',
-      name: 'Ví Momo',
-      description: 'Thanh toán tiện lợi qua ví Momo.',
+      name: t('appointments.payment.momo'),
+      description: t('appointments.payment.momodes'),
       image: 'https://developers.momo.vn/v3/assets/images/icon-52bd5808cecdb1970e1aeec3c31a3ee1.png',
       link: 'https://payment.example.com/momo',
     },
 
     {
       id: 'atm',
-      name: 'Thẻ ATM nội địa/Internet Banking',
-      description: 'Thanh toán bằng ATM hoặc internet banking.',
+      name: t('appointments.payment.atm'),
+      description: t('appointments.payment.atmdes'),
       image: 'https://example.com/atm.png',
       link: 'https://payment.example.com/atm',
     },
     {
       id: 'cash',
-      name: 'Thanh toán tại phòng khám',
-      description: 'Thanh toán khi tới khám bệnh',
+      name: t('appointments.payment.cash'),
+      description: t('appointments.payment.cashdes'),
       image: 'https://medpro.vn/_next/static/media/payment.94293b0e.gif?w=128&q=75',
       link: 'https://payment.example.com/atm',
     },
@@ -111,10 +114,10 @@ function PaymentMethod() {
     <div className={cx('appointment-doctor')}>
       <div className="max-w-screen-lg m-auto">
         <div className={cx('', 'py-4')}>
-          <ul className="flex">
-            <li className="flex items-center">
+          <ul className={cx('flex flex-col sm:flex-row')}>
+            <li className={cx('flex items-center')}>
               <a href="#/" className="font-semibold">
-                Trang chủ
+              {t('header.home')}
               </a>
               <MdKeyboardArrowRight />
             </li>
@@ -126,25 +129,25 @@ function PaymentMethod() {
             </li>
             <li className="flex items-center">
               <a href="#/" className="text-sky-500 font-semibold">
-                Thanh toán
+              {t('appointments.payment.path')}
               </a>
             </li>
           </ul>
         </div>
-        <div className={cx('grid grid-cols-4 gap-10 px-10')}>
-          <div className="rounded-lg">
+        <div className={cx('grid grid-cols-1 md:grid-cols-4 gap-4')}>
+          <div className={cx('md:col-span-1')}>
             <Sidebar />
           </div>
           <div className="flex gap-10 flex-col col-span-3 rounded-lg overflow-hidden">
             <div className={cx('bg-white', 'rounded-lg')}>
               <div>
-                <div className={cx('title')}>Chọn phương thức thanh toán</div>
+                <div className={cx('title')}>{t('appointments.payment.title')}</div>
                 <div className={cx('content')}>
                   <div className="grid grid-cols-9 p-6 gap-8">
-                    <div className="col-span-5">
+                    <div className="col-span-9 md:col-span-5">
                       {paymentMethods.map((method) => (
                         <div key={method.id} className="mb-4">
-                          <label className="flex items-baseline gap-4 cursor-pointer">
+                          <label className="flex flex-col md:flex-row items-start md:items-baseline gap-4 cursor-pointer">
                             <input
                               type="radio"
                               name="paymentMethod"
@@ -157,15 +160,13 @@ function PaymentMethod() {
                               <span className="text-xl leading-none">{method.description}</span>
                             </div>
                           </label>
-
-                          {/* Hiển thị description và image */}
                           {selectedMethod === method.id && (
-                            <div style={{ marginTop: '10px' }}>
+                            <div className="mt-2">
                               {method.image && (
                                 <img
                                   src={method.image}
                                   alt={method.name}
-                                  style={{ width: '120px', height: 'auto', cursor: 'pointer' }}
+                                  className="w-32 h-auto cursor-pointer"
                                 />
                               )}
                             </div>
@@ -173,45 +174,58 @@ function PaymentMethod() {
                         </div>
                       ))}
                     </div>
-                    <div className="col-span-4">
+
+                    <div className="col-span-9 md:col-span-4">
                       <div className="flex items-center gap-4 py-4">
                         <CiCreditCard1 />
-                        <h2 className="text-sky-500 text-4xl font-semibold">Thông tin thanh toán</h2>
+                        <h2 className="text-sky-500 text-4xl font-semibold">
+                          {t('appointments.payment.subTitle')}
+                        </h2>
                       </div>
                       <div className="border border-cyan-400 rounded-lg">
                         <ul className="p-4">
                           <li className="flex p-3 justify-between">
                             <div className="flex items-center gap-4">
                               <MdAlternateEmail className="text-2xl text-gray-950" />
-                              <span className="text-2xl text-gray-950 font-medium">Chuyên khoa:</span>
+                              <span className="text-2xl text-gray-950 font-medium">
+                                {t('appointments.payment.specialist')}:
+                              </span>
                             </div>
                             <div>{bookingData?.doctor?.specialty}</div>
                           </li>
                           <li className="flex p-3 border-t justify-between">
                             <div className="flex items-center gap-4">
                               <FaUserDoctor className="text-2xl text-gray-950" />
-                              <span className="text-2xl text-gray-950">Bác sĩ:</span>
+                              <span className="text-2xl text-gray-950">
+                                {t('appointments.payment.doctor')}:
+                              </span>
                             </div>
-                            <div> {bookingData?.doctor?.fullName}</div>
+                            <div>{bookingData?.doctor?.fullName}</div>
                           </li>
                           <li className="flex p-3 border-t justify-between">
                             <div className="flex items-center gap-4">
                               <MdAlternateEmail className="text-2xl text-gray-950" />
-                              <span className="text-2xl text-gray-950">Dịch vụ:</span>
+                              <span className="text-2xl text-gray-950">
+                                {t('appointments.payment.service')}:
+                              </span>
                             </div>
                             <div>Khám dịch vụ</div>
                           </li>
                           <li className="flex p-3 border-t justify-between">
                             <div className="flex items-center gap-4">
                               <MdOutlineDateRange className="text-2xl text-gray-950" />
-                              <span className="text-2xl text-gray-950">Ngày khám:</span>
+                              <span className="text-2xl text-gray-950">
+                                {t('appointments.payment.date')}:
+                              </span>
                             </div>
-                            <div> {bookingData?.date}</div>
+                            <div>{bookingData?.date}</div>
                           </li>
                           <li className="flex p-3 border-t justify-between">
                             <div className="flex items-center gap-4">
                               <MdAccessTime className="text-2xl text-gray-950" />
-                              <span className="text-2xl text-gray-950">Giờ khám:</span>
+                              <span className="text-2xl text-gray-950">
+                                {t('appointments.payment.time')}:
+                              </span>
                             </div>
                             <div>
                               {extractTime(bookingData?.time.start)} - {extractTime(bookingData?.time.end)}
@@ -219,34 +233,29 @@ function PaymentMethod() {
                           </li>
                           <li className="flex p-3 border-t justify-between">
                             <div className="flex items-center gap-4">
-                              <span className="text-2xl text-gray-950">Tiền khám:</span>
+                              <span className="text-2xl text-gray-950">
+                                {t('appointments.payment.price')}:
+                              </span>
                             </div>
-                            <div> {bookingData?.price.toLocaleString('en-US')}</div>
+                            <div>{bookingData?.price.toLocaleString('en-US')}</div>
                           </li>
                         </ul>
                       </div>
                       <div>
                         <div className="flex justify-between my-6">
-                          <span className="text-2xl font-medium">Phí tiện ích + Phí TGTT :</span>
+                          <span className="text-2xl font-medium">{t('appointments.payment.fee')}:</span>
                           <span>1.000 đ</span>
                         </div>
                         <div className="flex justify-between mb-6">
-                          <span className="text-3xl font-medium">Tổng cộng:</span>
+                          <span className="text-3xl font-medium">{t('appointments.payment.sum')}:</span>
                           <span className="text-sky-500 text-3xl font-semibold">
                             {bookingData?.price.toLocaleString('en-US')}
                           </span>
                         </div>
-                        {/* <div>
-                          <p>
-                            <input type="checkbox" checked readOnly />
-                            Tôi đồng ý với Phí tiện ích Medical để sử dụng dịch vụ đặt khám, thanh toán viện phí, tra
-                            cứu kết quả khám và các tính năng tiện lợi khác trên nền tảng Medical.
-                          </p>
-                        </div> */}
                       </div>
                       <div className="flex justify-end w-full">
                         <Button className="bg-sky-400 text-white" disabled={!selectedMethod} onClick={handleOpenModal}>
-                          Thanh toán
+                          {t('appointments.payment.payment')}
                         </Button>
                       </div>
                     </div>
@@ -261,7 +270,7 @@ function PaymentMethod() {
                 className="bg-transparent font-medium
                 hover:bg-zinc-100"
               >
-                Quay lại
+                {t('appointments.form.back')}
               </Button>
             </div>
           </div>
@@ -271,20 +280,20 @@ function PaymentMethod() {
       <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        title="Xác nhận thanh toán"
+        title={t('appointments.payment.confirm')}
         // paymentName={paymentMethods.find((method) => method.id === selectedMethod).name}
       >
         <div>
           <div className="">
             <div className="p-8">
               <div>
-                Thanh toán số tiền
-                <strong className="font-semibold"> {bookingData?.price.toLocaleString('en-US')}</strong> bằng
-                <strong className="font-semibold"> Thanh toán tại Phòng Khám</strong>
+              {t('appointments.payment.q1')}
+                <strong className="font-semibold"> {bookingData?.price.toLocaleString('en-US')}</strong> {t('appointments.payment.q0')}
+                <strong className="font-semibold"> {t('appointments.payment.q2')}</strong>
               </div>
               <div className="rounded-lg p-8 mt-6 text-2xl" style={{ backgroundColor: '#cce5ff' }}>
-                Bạn sẽ nhận được phiếu khám bệnh ngay khi <span className="font-semibold">Thanh toán thành công </span>.
-                Trong trường hợp không nhận được phiếu khám bệnh, vui lòng liên hệ
+              {t('appointments.payment.q3')} <span className="font-semibold">{t('appointments.payment.q4')} </span>.
+              {t('appointments.payment.q5')}
                 <span className="font-semibold"> 1800 1234</span>
               </div>
             </div>
@@ -296,7 +305,7 @@ function PaymentMethod() {
                   }}
                   className="font-medium text-xl"
                 >
-                  Hủy
+                  {t('appointments.payment.quit')}
                 </Button>
                 <Button
                   style={{
@@ -305,7 +314,7 @@ function PaymentMethod() {
                   className="text-white p-4 text-xl"
                   onClick={handleConfirmPayment}
                 >
-                  Xác nhận
+                  {t('appointments.payment.ok')}
                 </Button>
               </div>
             </div>

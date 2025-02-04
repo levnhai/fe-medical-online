@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
 
 import Button from '~/components/Button';
 import { extractTime } from '~/utils/time';
@@ -7,26 +8,30 @@ import { extractTime } from '~/utils/time';
 import { MdKeyboardArrowRight, MdClear } from 'react-icons/md';
 import { MdOutlineStickyNote2 } from 'react-icons/md';
 import { PiWarningCircle } from 'react-icons/pi';
+import { useTranslation } from 'react-i18next';
+import '~/translation/i18n';
 
 function VisitDetail() {
+  const { t, i18n } = useTranslation();
+  const [currentLanguages, setCurrentLanguages] = useState(i18n.language);
   const bookingData = useSelector((state) => state.booking);
   return (
     <div className="">
       <div className="max-w-screen-lg m-auto">
         <div className={'py-6'}>
-          <ul className="flex">
-            <li className="flex items-center">
+          <ul className={'flex flex-col sm:flex-row'}>
+            <li className={'flex items-center'}>
               <a href="#/" className="font-semibold">
-                Trang chủ
+              {t('header.home')}
               </a>
               <MdKeyboardArrowRight />
             </li>
-            <li className="flex items-center text-sky-500 font-semibold">Thông tin phiếu khám bệnh</li>
+            <li className="flex items-center text-sky-500 font-semibold">{t('appointments.visit.path')}</li>
           </ul>
         </div>
         <div>
           <Button leftIcon={<MdOutlineStickyNote2 />} className=" text-sky-500 font-semibold">
-            Danh sách phiếu khám
+          {t('appointments.visit.list')}
           </Button>
         </div>
         <div className="mx-auto max-w-xl ">
@@ -42,52 +47,52 @@ function VisitDetail() {
                   <div className="">
                     <div className="pb-6">
                       <div className="text-center text-4xl text-sky-500 font-semibold">
-                        Chúc mừng đặt khám thành công
+                      {t('appointments.visit.title')}
                       </div>
                       <div className="text-center text-lg">
-                        Quý khách vui lòng cài đặt ứng dụng để xem chi tiết hướng dẫn và quản lý hồ sơ khám bệnh
+                      {t('appointments.visit.subTitle')}
                       </div>
                     </div>
                     <div className="flex flex-col items-center relative border-t border-dashed border-slate-300 pt-4">
-                      <div className="text-2xl font-semibold">Phiếu khám bệnh</div>
+                      <div className="text-2xl font-semibold">{t('appointments.visit.form')}</div>
                       <div className="text-2xl font-semibold pt-6 toUpperCase">{bookingData?.hospital?.fullName}</div>
                       <span className="text-xl text-stone-400 text-center">{bookingData?.hospital?.address}</span>
                     </div>
 
                     <div className="pt-10 pb-10 flex justify-center">
                       <div className="text-xl bg-orange-500 rounded-full text-center w-2/4 py-3 text-white">
-                        Đặt khám thành công
+                      {t('appointments.visit.complete')}
                       </div>
                     </div>
                     <div>
                       <div className="text-2xl font-semibold text-orange-500 text-center">
-                        Số tiền phải thanh toán: {bookingData?.price}
+                      {t('appointments.visit.fee')}: {bookingData?.price}
                       </div>
                       <div className="text-orange-500 text-lg text-center py-4">
-                        (Đã bao gồm phí khám + phí tiện ích)
+                      {t('appointments.visit.note')}
                       </div>
                     </div>
                   </div>
                   <div className="w-full border-t border-dashed border-slate-300 pt-4">
                     <ul className="mx-4">
                       <li className="grid grid-cols-5 py-2 ">
-                        <span className="col-span-2 text-lg">Mã phiếu:</span>
+                        <span className="col-span-2 text-lg">{t('appointments.visit.code')}:</span>
                         <span className="col-span-3 text-xl font-semibold">T241223U4C1UE</span>
                       </li>
                       <li className="grid grid-cols-5 py-2 ">
-                        <span className="col-span-2 text-lg">Bác sĩ:</span>
+                        <span className="col-span-2 text-lg">{t('appointments.visit.doctor')}:</span>
                         <span className="col-span-3 text-xl font-semibold">{bookingData?.doctor?.fullName}</span>
                       </li>
                       <li className="grid grid-cols-5 py-2 ">
-                        <span className="col-span-2 text-lg">Chuyên khoa:</span>
+                        <span className="col-span-2 text-lg">{t('appointments.visit.specialist')}:</span>
                         <span className="col-span-3 text-xl font-semibold">{bookingData?.hospital?.specialty}</span>
                       </li>
                       <li className="grid grid-cols-5 py-2 ">
-                        <span className="col-span-2 text-lg">Hình thức khám:</span>
+                        <span className="col-span-2 text-lg">{t('appointments.visit.method')}:</span>
                         <span className="col-span-3 text-xl font-semibold">Không có BHYT</span>
                       </li>
                       <li className="grid grid-cols-5 py-2 ">
-                        <span className="col-span-2 text-lg">Thời gian khám:</span>
+                        <span className="col-span-2 text-lg">{t('appointments.visit.time')}:</span>
                         <span className="col-span-3 text-xl font-semibold">
                           {extractTime(bookingData?.time?.start)} - {bookingData?.date?.replace(/-/g, '/')}
                         </span>
@@ -97,34 +102,30 @@ function VisitDetail() {
                   <div className="w-full border-t border-dashed border-slate-300 pt-4">
                     <div>
                       <p>
-                        <strong className="text-2xl font-semibold">Lưu ý:</strong>
+                        <strong className="text-2xl font-semibold">{t('appointments.visit.note2')}:</strong>
                       </p>
                       <p className="text-lg pt-2">
-                        Cắt giảm thủ tục, Lấy số trước, Thanh toán trước, Giảm xếp hàng chờ đợi
+                      {t('appointments.visit.q1')}
                       </p>
                       <p className="text-lg pt-2">
-                        1. Quý khách vui lòng giữ lại hoá đơn thanh toán tại Phòng khám Đa khoa Pháp Anh để tham gia
-                        chương trình ưu đãi hoàn tiền của Medical.
+                      {t('appointments.visit.q2')}
                       </p>
                       <p className="text-lg pt-2">
-                        2. Medical sẽ gửi thông báo về ưu đãi hoàn tiền qua App hoặc Zalo ngay sau khi quý khách sử dụng
-                        dịch vụ tại Phòng khám Đa khoa Pháp Anh
+                      {t('appointments.visit.q3')}
                       </p>
                       <p className="text-lg pt-2">
-                        3. Quý khách vui lòng đến trước 15 phút tại Quầy Tiếp Nhận để được kiểm tra thông tin đặt khám
-                        và hướng dẫn
+                      {t('appointments.visit.q4')}
                       </p>
                       <p className="text-lg pt-2">
-                        5. Vui lòng liên hệ 1900-2115 để được hỗ trợ thay đổi lịch hẹn hoặc giải đáp về các chương trình
-                        khuyến mãi trên Medical.
+                      {t('appointments.visit.q5')}
                       </p>
                     </div>
                     <div className="text-2xl text-center pt-6 text-sky-500">
-                      Bản quyền thuộc&nbsp;
+                    {t('appointments.visit.q6')}&nbsp;
                       <strong className="font-semibold">Medical</strong>
                     </div>
                     <div className="text-center text-lg pt-2">
-                      Đặt lịch khám tại bệnh viện-phòng khám hang đầu việt nam
+                    {t('appointments.visit.q7')}
                     </div>
                   </div>
                 </div>
@@ -135,14 +136,13 @@ function VisitDetail() {
                 className="w-full rounded-xl bg-red-100 font-medium text-2xl py-6"
                 leftIcon={<MdClear style={{ fontSize: '20px', color: 'red' }} />}
               >
-                Hủy phiếu
+                {t('appointments.visit.quit')}
               </Button>
             </div>
             <div className="flex gap-2 text-xl pt-6">
               <PiWarningCircle style={{ fontSize: '24px', backgroundColor: 'bg-red-500' }} />
               <p className="text-rose-600">
-                Trong thời gian quy định, nếu quý khách hủy phiếu khám sẽ được hoàn lại tiền khám và các dịch vụ đặt
-                thêm (không bao gồm phí tiện ích).
+                {t('appointments.visit.note3')}
               </p>
             </div>
           </div>

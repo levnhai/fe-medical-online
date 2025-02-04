@@ -1,12 +1,13 @@
 import { useState, useRef } from 'react';
 import HeadlessTippy from '@tippyjs/react/headless';
-
 //icon
 import { CiSearch } from 'react-icons/ci';
 import { GrLocation } from 'react-icons/gr';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 import { LiaSpinnerSolid } from 'react-icons/lia';
 import { MdOutlineCancel } from 'react-icons/md';
+import { useTranslation } from 'react-i18next';
+import '~/translation/i18n';
 
 import { Wrapper as PopperWrapper } from '~/components/popper';
 
@@ -21,6 +22,8 @@ import style from './search.module.scss';
 const cx = classNames.bind(style);
 
 function Search() {
+  const { t, i18n } = useTranslation();
+  const [currentLanguages, setCurrentLanguages] = useState(i18n.language);
   const [searchValueBasic, setsearchValueBasic] = useState('');
   const [searchValueProvince, setSearchValueProvince] = useState('');
   const [searchResult, setSearchResult] = useState([]);
@@ -99,7 +102,7 @@ function Search() {
                   ref={inputRef}
                   spellCheck={false}
                   value={searchValueBasic}
-                  placeholder="Tìm kiếm cơ sở y tế"
+                  placeholder={t('appointments.facility.search')}
                   onFocus={() => {
                     setShowResult(true);
                   }}
@@ -147,7 +150,7 @@ function Search() {
                   onFocus={() => {
                     setShowResult(true);
                   }}
-                  placeholder="Tất cả địa điểm"
+                  placeholder={t('appointments.facility.location')}
                   onClick={handleSearchProvince}
                 />
 

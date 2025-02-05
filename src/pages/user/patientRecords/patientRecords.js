@@ -62,9 +62,9 @@ function PatientRecord() {
             ${item?.address[0]?.wardName}`;
         return (
           <div>
-            <div key={index} className="border rounded-3xl border-cyan-400 overflow-hidden mb-6 sm:mb-8">
-              <ul className={'flex flex-col sm:flex-row'}>
-                <li className={'flex items-center'}>
+            <div className="border rounded-3xl border-cyan-400 overflow-hidden" key={index}>
+              <ul className="p-8">
+                <li className="flex items-center gap-3">
                   <span className="">
                     <FaUser className="text-zinc-400" />
                   </span>

@@ -2,6 +2,7 @@
   height: auto;
   width: 100%;
   background-color: #e8f2f7;
+  
 }
 
 .body {
@@ -44,7 +45,7 @@
     height: 100px;
   }
   @media (max-width: 480px) {
-    width: 70px;
+    width: 90px;
     height: 90px;
     margin: 0 auto;
   }
@@ -106,6 +107,7 @@
   @media (max-width: 480px) {
     width: 100%;
     margin-bottom: 8px;
+    margin-top: 10px;
   }
 }
 
@@ -153,7 +155,7 @@
 
   @media (max-width: 480px) {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: start;
   }
 }
 
@@ -182,6 +184,6 @@
   }
 
   @media (max-width: 768px) {
-    height: 350px;
+    display: none;
   }
 }

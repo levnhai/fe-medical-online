@@ -122,13 +122,13 @@ const AppointmentDoctor = () => {
           <div className="col-span-3">
             <div className="rounded-lg overflow-hidden">
               <div className={cx('bg-white')}>
-                <div className={cx('title', 'text-base sm:text-lg md:text-xl lg:text-xl')}>{t('appointments.doctor.title')}</div>
+                <div className={cx('title')}>{t('appointments.doctor.title')}</div>
                 <div className={cx('content')}>
                   <div className={cx('card-body')}>
                     <div>
                       <div className={cx('search')}>
                         <div className={cx('search-wrapper')}>
-                          <div className={cx('search-input', 'text-base sm:text-lg md:text-xl lg:text-2xl')}>
+                          <div className={cx('search-input')}>
                             <input
                               ref={inputRef}
                               value={valueInputSearch}
@@ -147,7 +147,7 @@ const AppointmentDoctor = () => {
                           </div>
                         </div>
                       </div>
-                      <div className={cx('select-filter', 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6' ,'text-base sm:text-lg md:text-xl lg:text-2xl')}>
+                      <div className={cx('select-filter', 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6')}>
                         <div className={cx('filter-item')}>
                           <Select className={cx('filter-item')} placeholder={t('appointments.doctor.edu')} options={options} />
                         </div>
@@ -173,7 +173,7 @@ const AppointmentDoctor = () => {
                             doctorData?.map((item, index) => {
                               return (
                                 <SlideInFromBottom>
-                                  <div key={index} className={cx('docter-infor', 'text-base sm:text-lg md:text-xl lg:text-2xl')} onClick={() => handleNext(item)}>
+                                  <div key={index} className={cx('docter-infor')} onClick={() => handleNext(item)}>
                                     <div>
                                       <div className={cx('highlight', 'flex items-center gap-2.5 leading-10')}>
                                         <FaUserDoctor />

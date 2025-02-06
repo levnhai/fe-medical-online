@@ -56,7 +56,7 @@ function AppointmentDoctor() {
       />
       <Search />
       <div className={cx('body')}>
-        <div className="grid grid-cols-3 gap-8">
+      <div class="grid grid-cols-2 gap-8 md:grid-cols-3 sm:grid-cols-2">
           <div className="col-span-2">
             {docterData &&
               docterData?.result?.data.map((item, index) => {

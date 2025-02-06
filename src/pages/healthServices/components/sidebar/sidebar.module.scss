@@ -1,3 +1,10 @@
+.container {
+  max-width: 100%;
+  
+  @media (max-width: 767px) {
+    margin-left: 50px;
+  }
+}
 .title {
   background: #1da1f2;
   color: #fff;
@@ -6,4 +13,13 @@
   font-size: 18px;
   font-weight: 500;
   text-align: center;
+}
+.name {
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 12px;
+  }
 }

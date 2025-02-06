@@ -23,7 +23,7 @@ function Sidebar() {
   // const { bookingData } = useBooking();
   const bookingData = useSelector((state) => state.booking);
   return (
-    <div className=" rounded-lg bg-white overflow-hidden">
+    <div className={cx('container', "rounded-lg bg-white overflow-hidden")}>
       <div className={cx('title')}>{t('appointments.doctor.subTitle')}</div>
       <div className={cx('body', 'p-5 mb-6')}>
         <div className={cx('hospital-info', 'flex mt-4')}>
@@ -32,7 +32,7 @@ function Sidebar() {
           </div>
           <div>
             <div className={cx('name', 'text-zinc-600 text-2xl capitalize')}>{bookingData?.hospital?.fullName}</div>
-            <div className={cx('des', 'text-neutral-400 text-xl')}>{bookingData?.hospital?.address}</div>
+            <div className={cx('name', 'text-neutral-400 text-xl')}>{bookingData?.hospital?.address}</div>
           </div>
         </div>
         {bookingData?.doctor?.specialty && (

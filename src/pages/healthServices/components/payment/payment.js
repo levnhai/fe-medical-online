@@ -83,9 +83,9 @@ function PaymentMethod() {
     // const selectedPayment = paymentMethods.find((method) => method.id === selectedMethod);
     setIsModalOpen(false); // Đóng Modal
     const formData = {
-      patientId: bookingData.patientProfile.userId,
-      doctorId: bookingData.doctor.id,
-      hospitalId: bookingData.hospital.id,
+      patientId: bookingData.patientProfile,
+      doctor: bookingData.doctor,
+      hospital: bookingData.hospital,
       date: bookingData.date,
       price: bookingData.price,
       status: 'pending',

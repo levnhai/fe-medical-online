@@ -1,13 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import className from 'classnames/bind';
-import { useDispatch, useSelector } from 'react-redux';
-import { unwrapResult } from '@reduxjs/toolkit';
-import { toast } from 'react-toastify';
+import { useSelector } from 'react-redux';
 
 import Sidebar from '../../components/sidebar';
 import Button from '~/components/Button';
 import { extractTime } from '~/utils/time';
-import { fetchcreateAppointment } from '~/redux/appointment/appointmentSlice';
 
 // icon
 import { MdKeyboardArrowRight } from 'react-icons/md';
@@ -25,10 +22,7 @@ const cx = className.bind(styles);
 
 function Confirm() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const bookingData = useSelector((state) => state.booking);
-
-  console.log('check booking data', bookingData);
 
   const goToPreviousStep = () => {
     navigate(`/chon-lich-kham?feature=booking.doctor&stepName=record`);
@@ -87,7 +81,9 @@ function Confirm() {
                           {extractTime(bookingData?.time.start)} - {extractTime(bookingData?.time.end)} <br />{' '}
                           {bookingData?.date}
                         </li>
-                        <li className="w-1/5 text-left">{bookingData?.price?.toLocaleString('en-US')} Vnđ</li>
+                        <li className="w-1/5 text-left">
+                          {bookingData?.price?.toLocaleString('en-US', { style: 'currency', currency: 'VND' })} Vnđ
+                        </li>
                         <li className="w-1/12 text-left">
                           <MdDelete style={{}} />
                         </li>
@@ -110,7 +106,7 @@ function Confirm() {
                               <FaUserCircle className="text-2xl  text-zinc-500" />
                               <span className="text-2xl text-zinc-500">Họ và tên: </span>
                             </div>
-                            <div className="text-2xl text-sky-500">
+                            <div className="col-span-3 text-2xl text-sky-500">
                               {bookingData?.patientProfile?.fullName.toUpperCase()}
                             </div>
                           </li>

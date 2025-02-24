@@ -7,12 +7,14 @@ import storage from 'redux-persist/lib/storage';
 import doctorSlice from './doctor/doctorSlice';
 import authReducer from '../redux/user/authSlice';
 import newSlice from '../redux/news/newsSlice';
-import hospitalSlice from '../redux/hospital/hospitalSilder';
+import hospitalSlice from './hospital/hospitalSlice';
 import contactSlice from '../redux/contact/contactSlice';
 import scheduleSlice from './schedule/scheduleSlice';
 import paymentSlice from './payment/paymentSlice';
 import appointmentSlice from './appointment/appointmentSlice';
 import bookingSlice from './booking/bookingSlice';
+import locationSlice from './location/locationSlice';
+import recordSlice from './record/recordSlice';
 
 const persistConfig = {
   key: 'auth',
@@ -41,6 +43,8 @@ const Store = configureStore({
     payment: paymentSlice,
     appointment: appointmentSlice,
     booking: bookingPersistReducer,
+    location: locationSlice,
+    record: recordSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

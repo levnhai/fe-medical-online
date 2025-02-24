@@ -17,6 +17,7 @@ import NewsDetails from '~/pages/news/news_details';
 
 // user
 import User from '~/pages/user/user';
+import NewRecord from '~/pages/user/newRecord';
 
 // guide
 import Question from '~/pages/guide/question';
@@ -28,6 +29,7 @@ import Appointment from '~/pages/guide/appointment';
 import Home from '~/pages/home';
 import About from '~/pages/about';
 import Facilitie from '~/pages/facilitie';
+import FacilitieDetail from '~/pages/facilitie/facilitieDetail';
 import AppointmentDoctor from '~/pages/healthServices/appointmentDoctor';
 import AppointmentFacility from '~/pages/healthServices/appointmentFacility';
 import AppointmentBooking from '~/pages/healthServices/appointmentBooking';
@@ -43,6 +45,7 @@ const publicRoutes = [
   { path: config.routers.newsKnowlage, component: NewsKnowlage },
   { path: config.routers.newsDetails, component: NewsDetails },
   { path: config.routers.facilitie, component: Facilitie },
+  { path: config.routers.facilitieDetail, component: FacilitieDetail },
   { path: config.routers.facilitieType, component: Facilitie },
   { path: config.routers.appointmentDoctor, component: AppointmentDoctor },
   { path: config.routers.appointmentFacility, component: AppointmentFacility },
@@ -53,6 +56,7 @@ const publicRoutes = [
   { path: config.routers.formBooking, component: FormBooking },
   { path: config.routers.visitDetail, component: VisitDetail, isPrivate: false },
   { path: config.routers.user, component: User },
+  { path: config.routers.newRecord, component: NewRecord },
 
   // guide
   { path: config.routers.question, component: Question },

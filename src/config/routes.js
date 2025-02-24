@@ -1,5 +1,3 @@
-import NewsDetails from '~/pages/news/news_details';
-
 const routes = {
   home: '/',
   about: '/about',
@@ -12,11 +10,13 @@ const routes = {
 
   // User
   user: '/user',
+  newRecord: '/tao-moi-ho-so',
 
   //facilitie
   facilitie: '/co-so-y-te',
   facilitieType: '/co-so-y-te/:type/',
   formBooking: '/:slug/hinh-thuc-dat-kham',
+  facilitieDetail: '/:slug',
 
   // health
   appointmentDoctor: '/dich-vu-y-te/dat-kham-theo-bac-si',

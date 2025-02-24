@@ -107,10 +107,7 @@ function OtpInput() {
           <div className={cx('tel-input')}>
             <input className={cx('form-control', 'disable-form')} value={phoneNumber} disabled />
             <div className={cx('selected-flag')}>
-              <img
-                src="https://cdn.icon-icons.com/icons2/4023/PNG/512/vietnam_vn_vnm_vietnamese_flag_icon_255804.png"
-                alt="vietnamese"
-              />
+              <img src={require('~/assets/images/flag/Vn.png')} alt="vietnamese" />
             </div>
           </div>
           <p className={cx('errorMessage')}></p>

@@ -8,7 +8,7 @@ import Header from '../components/header';
 import Search from '~/components/search';
 import Button from '~/components/Button';
 import Pagination from '~/components/paination';
-import { fetchGetALlHospital } from '~/redux/hospital/hospitalSilder';
+import { fetchGetALlHospital } from '~/redux/hospital/hospitalSlice';
 
 import style from './appointmentFacility.module.scss';
 const cx = classNames.bind(style);

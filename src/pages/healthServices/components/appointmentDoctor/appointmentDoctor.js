@@ -36,9 +36,6 @@ const AppointmentDoctor = () => {
   const [valueInputSearch, setValueInputSearch] = useState('');
   const [filterParam, setFilterParam] = useState('All');
 
-  const booking = useSelector((state) => state.booking);
-  console.log('check bookign 1', booking);
-
   const handleClear = () => {
     setValueInputSearch('');
     inputRef.current.focus();
@@ -49,6 +46,30 @@ const AppointmentDoctor = () => {
     { value: 'apricot', label: 'Apricot' },
     { value: 'mango', label: 'Mango' },
   ];
+
+  const removeAccents = (str) => {
+    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  };
+
+  const searchInput = (items) => {
+    console.log('check item ', items);
+    return items.filter((item) => {
+      if (item.gender === filterParam.value) {
+        return item?.fullName?.toString().toLowerCase().indexOf(valueInputSearch.toLowerCase()) > -1;
+      } else if (filterParam === 'All' || filterParam.value === 'All') {
+        return (
+          removeAccents(item?.fullName)
+            ?.toString()
+            .toLowerCase()
+            .indexOf(removeAccents(valueInputSearch).toLowerCase()) > -1
+        );
+      }
+      return null;
+    });
+  };
+
+  // const optionSpecialty = doctorData?.map((item) => item?.specialty?.fullName);
+  // console.log('optionSpecialty', optionSpecialty);
 
   const handleNext = (item) => {
     dispatch(
@@ -76,7 +97,6 @@ const AppointmentDoctor = () => {
       const partnerId = queryParams.get('partnerId');
       const res = await dispatch(fetchDoctorbyHospitalAndDoctor({ data: { hospitalId: partnerId } }));
       const result = unwrapResult(res);
-      console.log('check result doctor', result);
       updateBookingData('hospital', {
         fullName: result.data[0]?.hospital.fullName,
         address: result.data[0]?.hospital.address,
@@ -158,8 +178,8 @@ const AppointmentDoctor = () => {
                             placeholder="Giới tính..."
                             options={[
                               { value: 'All', label: 'Tất cả' },
-                              { value: 'Nam', label: 'Nam' },
-                              { value: 'Nữ', label: 'Nữ' },
+                              { value: 'male', label: 'Nam' },
+                              { value: 'female', label: 'Nữ' },
                             ]}
                           />
                         </div>
@@ -167,7 +187,7 @@ const AppointmentDoctor = () => {
                       <div className={cx('listDocter')}>
                         <>
                           {doctorData &&
-                            doctorData?.map((item, index) => {
+                            searchInput(doctorData)?.map((item, index) => {
                               return (
                                 <SlideInFromBottom>
                                   <div key={index} className={cx('docter-infor')} onClick={() => handleNext(item)}>
@@ -178,7 +198,7 @@ const AppointmentDoctor = () => {
                                       </div>
                                       <div className={cx('flex items-center gap-2.5 leading-10')}>
                                         <BsGenderAmbiguous />
-                                        Giới tính: {item?.gender}
+                                        Giới tính: {item?.gender === 'male' ? 'Nam' : 'Nữ'}
                                       </div>
                                       <div className={cx('flex items-center gap-2.5 leading-10')}>
                                         <CiMedicalCross />

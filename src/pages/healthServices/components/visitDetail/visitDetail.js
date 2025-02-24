@@ -25,23 +25,20 @@ function VisitDetail() {
           </ul>
         </div>
         <div>
-          <Button leftIcon={<MdOutlineStickyNote2 />} className=" text-sky-500 font-semibold">
+          <Button to="/user?key=bills" leftIcon={<MdOutlineStickyNote2 />} className=" text-sky-500 font-semibold">
             Danh sách phiếu khám
           </Button>
         </div>
         <div className="mx-auto max-w-xl ">
-          <div className="flex flex-col items-center relative">
+          <div className="flex flex-col items-center">
             <div
-              className=" before:bg-black before:content-[''] before:absolute before:top-3 before:w-10 before:h-10 before:left-2 before:rounded-full 
-
-              "
-              // style={{ backgroundColor: '#e8f2f7' }}
+            //style={{ backgroundColor: '#e8f2f7' }}
             >
-              <div className="flex flex-col items-center m-6">
-                <div className="bg-white p-6 flex flex-col items-center ">
+              <div className="flex flex-col items-center">
+                <div className="bg-white p-6 flex flex-col items-center rounded-xl">
                   <div className="">
                     <div className="pb-6">
-                      <div className="text-center text-4xl text-sky-500 font-semibold">
+                      <div className="text-center text-4xl py-6 text-sky-500 font-semibold">
                         Chúc mừng đặt khám thành công
                       </div>
                       <div className="text-center text-lg">
@@ -49,8 +46,10 @@ function VisitDetail() {
                       </div>
                     </div>
                     <div className="flex flex-col items-center relative border-t border-dashed border-slate-300 pt-4">
-                      <div className="text-2xl font-semibold">Phiếu khám bệnh</div>
-                      <div className="text-2xl font-semibold pt-6 toUpperCase">{bookingData?.hospital?.fullName}</div>
+                      <div className="text-2xl font-semibold pt-4 pb-2">Phiếu khám bệnh</div>
+                      <div className="text-3xl font-semibold text-sky-500 pt-6 pb-4 capitalize">
+                        {bookingData?.hospital?.fullName}
+                      </div>
                       <span className="text-xl text-stone-400 text-center">{bookingData?.hospital?.address}</span>
                     </div>
 
@@ -63,7 +62,7 @@ function VisitDetail() {
                       <div className="text-2xl font-semibold text-orange-500 text-center">
                         Số tiền phải thanh toán: {bookingData?.price}
                       </div>
-                      <div className="text-orange-500 text-lg text-center py-4">
+                      <div className="text-orange-500 text-lg text-center pt-2 pb-4">
                         (Đã bao gồm phí khám + phí tiện ích)
                       </div>
                     </div>
@@ -80,7 +79,7 @@ function VisitDetail() {
                       </li>
                       <li className="grid grid-cols-5 py-2 ">
                         <span className="col-span-2 text-lg">Chuyên khoa:</span>
-                        <span className="col-span-3 text-xl font-semibold">{bookingData?.hospital?.specialty}</span>
+                        <span className="col-span-3 text-xl font-semibold">{bookingData?.doctor?.specialty}</span>
                       </li>
                       <li className="grid grid-cols-5 py-2 ">
                         <span className="col-span-2 text-lg">Hình thức khám:</span>
@@ -132,14 +131,14 @@ function VisitDetail() {
             </div>
             <div className="w-full pt-10 overflow-hidden">
               <Button
-                className="w-full rounded-xl bg-red-100 font-medium text-2xl py-6"
+                className="w-full rounded-xl bg-red-200 font-medium text-2xl py-6"
                 leftIcon={<MdClear style={{ fontSize: '20px', color: 'red' }} />}
               >
                 Hủy phiếu
               </Button>
             </div>
-            <div className="flex gap-2 text-xl pt-6">
-              <PiWarningCircle style={{ fontSize: '24px', backgroundColor: 'bg-red-500' }} />
+            <div className="flex gap-2 text-xl pt-6 mb-20">
+              <PiWarningCircle className="text-red-600" />
               <p className="text-rose-600">
                 Trong thời gian quy định, nếu quý khách hủy phiếu khám sẽ được hoàn lại tiền khám và các dịch vụ đặt
                 thêm (không bao gồm phí tiện ích).

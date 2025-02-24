@@ -45,7 +45,7 @@ function SingUp() {
       const formData = { ...data, phoneNumber };
       const res = await dispatch(fetchCreateUser(formData));
       const userSelector = unwrapResult(res);
-      if (userSelector.user) {
+      if (userSelector.userData) {
         toast.success(userSelector.message);
         navigate('/');
         dispatch(loginUser(res));
@@ -121,14 +121,14 @@ function SingUp() {
                 </form>
               </FormProvider>
               <p className={cx('customFont')}>
-              {t('register.des')}
+                {t('register.des')}
                 <br />
                 <a href="https://medpro.vn/quy-dinh-su-dung" target="_blank" rel="noreferrer">
-                {t('register.des1')}
+                  {t('register.des1')}
                 </a>
                 &nbsp; {t('register.and')} &nbsp;
                 <a href="https://medpro.vn/chinh-sach-bao-mat" target="_blank" rel="noreferrer">
-                {t('register.des2')}
+                  {t('register.des2')}
                 </a>
               </p>
               <div>

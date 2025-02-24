@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 
 import Button from '~/components/Button';
 import { fetchRecordUser } from '~/redux/user/authSlice';
@@ -24,8 +23,8 @@ function ChooseRecord() {
   const userId = user?.userData._id;
   const { updateBookingData } = useBooking();
   const [records, setRecords] = useState([]);
-  const [showMore, setShowMore] = useState(false);
   const bookingData = useSelector((state) => state.booking);
+  const [selectedItem, setSelectedItem] = useState(null);
 
   const goToPreviousStep = () => {
     updateBookingData('doctor', { fullName: null, id: null, specialty: null });
@@ -34,12 +33,15 @@ function ChooseRecord() {
     );
   };
 
+  const handleClickShowMoreItem = (id) => {
+    setSelectedItem(selectedItem === id ? null : id);
+  };
+
   useEffect(() => {
     const fetchScheduleData = async () => {
       const res = await dispatch(fetchRecordUser({ recordId: userId }));
       const result = unwrapResult(res);
       setRecords(result);
-      console.log('check schedule data', result);
     };
     fetchScheduleData();
   }, []);
@@ -59,101 +61,121 @@ function ChooseRecord() {
         </div>
         <div className="flex justify-center items-center flex-col pb-20">
           <h1 className="text-5xl font-bold text-sky-500">Chọn hồ sơ bệnh nhân</h1>
-          <div className="mt-8 max-w-2xl">
-            <div className="rounded-xl bg-white ">
-              {records?.data?.map((item, index) => {
-                let address = `${item.address[0].street}, ${item.address[0].wardName}, ${item.address[0].districtName}, ${item.address[0].provinceName}`;
-                return (
-                  <ul
-                    key={index}
-                    className="flex flex-col gap-2 p-8 cursor-pointer"
-                    onClick={() => {
-                      setShowMore(!showMore);
-                    }}
-                  >
-                    <li className="grid grid-cols-3 gap-4">
-                      <div className="flex gap-4 items-center">
-                        <FaUserCircle className="text-2xl  text-zinc-500" />
-                        <span className="text-2xl text-sky-500">{item?.fullName.toUpperCase()}</span>
-                      </div>
-                      <div></div>
-                    </li>
-                    <li className="grid grid-cols-3 gap-4">
-                      <div className="flex gap-4 items-center">
-                        <FaBirthdayCake className="text-2xl text-zinc-500" />
-                        <span className="text-2xl text-zinc-500">Ngày sinh: </span>
-                      </div>
-                      <div className="col-span-2">16-02-03</div>
-                    </li>
-                    <li className="grid grid-cols-3 gap-4">
-                      <div className="flex gap-4 items-center">
-                        <FaPhoneAlt className="text-2xl text-zinc-500" />
-                        <span className="text-2xl text-zinc-500">Số điện thoại:</span>
-                      </div>
-                      <div className="col-span-2 ">{item?.phoneNumber}</div>
-                    </li>
-                    <li className="grid grid-cols-3 gap-4">
-                      <div className="flex gap-4 items-center">
-                        <GiPositionMarker className="text-2xl text-zinc-500" />
-                        <span className="text-2xl text-zinc-500">Địa chỉ: </span>
-                      </div>
-                      <div className="col-span-2">{address}</div>
-                    </li>
-
-                    {showMore && (
-                      <li className="grid grid-cols-3 gap-4">
-                        <div className="flex gap-4 items-center">
-                          <BsGenderTrans className="text-2xl text-zinc-500" />
-                          <span className="text-2xl text-zinc-500">Giới tính: </span>
-                        </div>
-                        <div className="col-span-2">{item?.gender}</div>
-                      </li>
-                    )}
-                    {showMore && (
-                      <li className="grid grid-cols-3 gap-4">
-                        <div className="flex gap-4 items-center">
-                          <HiOutlineUserGroup className="text-2xl text-zinc-500" />
-                          <span className="text-2xl text-zinc-500">Dân tộc: </span>
-                        </div>
-                        <div className="col-span-2">{item?.ethnic}</div>
-                      </li>
-                    )}
-                    <li className="grid grid-cols-3 gap-4 pb-4">
-                      <div className="flex gap-4 items-center">
-                        <MdOutlineMail className="text-2xl text-zinc-500" />
-                        <span className="text-2xl text-zinc-500">Địa chỉ email:</span>
-                      </div>
-                      <div className="col-span-2">{item?.email}</div>
-                    </li>
-                    {showMore && (
-                      <li className=" border-t border-slate-300 pt-10">
-                        <div className="grid grid-cols-5 gap-4">
-                          <div className="flex col-span-3 gap-6">
-                            <Button leftIcon={<RiDeleteBin6Line />} className="bg-red-100 text-rose-500 p-0 text-xl">
-                              Xóa
-                            </Button>
-                            <Button leftIcon={<FaRegEdit />} className="bg-cyan-100 text-sky-500 text-xl">
-                              Sửa
-                            </Button>
-                            <div></div>
+          <div className="w-full">
+            <div>
+              {records?.data?.length > 0 ? (
+                <div className="grid grid-cols-4 gap-10 mt-8">
+                  {records?.data?.map((item, index) => {
+                    let address = `${item.address[0].street}, ${item.address[0].wardName}, ${item.address[0].districtName}, ${item.address[0].provinceName}`;
+                    return (
+                      <ul
+                        key={index}
+                        className="col-span-2 flex flex-col gap-2 p-8 cursor-pointer bg-white rounded-xl"
+                        onClick={() => {
+                          handleClickShowMoreItem(index);
+                        }}
+                      >
+                        <li className="grid grid-cols-3 gap-4">
+                          <div className="flex gap-4 items-center">
+                            <FaUserCircle className="text-2xl  text-zinc-500" />
+                            <span className="text-2xl text-sky-500">{item?.fullName.toUpperCase()}</span>
                           </div>
-                          <Button
-                            rightIcon={<FaLongArrowAltRight />}
-                            className="col-span-2 text-xl text-white bg-cyan-400"
-                            onClick={() => {
-                              // updateBookingData('patientProfile', item);
-                              dispatch(updateBooking({ key: 'patientProfile', value: item }));
-                              navigate('/chon-lich-kham?feature=booking.doctor&stepName=confirm');
-                            }}
-                          >
-                            Tiếp tục
-                          </Button>
-                        </div>
-                      </li>
-                    )}
-                  </ul>
-                );
-              })}
+                          <div></div>
+                        </li>
+                        <li className="grid grid-cols-3 gap-4">
+                          <div className="flex gap-4 items-center">
+                            <FaBirthdayCake className="text-2xl text-zinc-500" />
+                            <span className="text-2xl text-zinc-500">Ngày sinh: </span>
+                          </div>
+                          <div className="col-span-2">16-02-03</div>
+                        </li>
+                        <li className="grid grid-cols-3 gap-4">
+                          <div className="flex gap-4 items-center">
+                            <FaPhoneAlt className="text-2xl text-zinc-500" />
+                            <span className="text-2xl text-zinc-500">Số điện thoại:</span>
+                          </div>
+                          <div className="col-span-2 ">{item?.phoneNumber}</div>
+                        </li>
+                        <li className="grid grid-cols-3 gap-4">
+                          <div className="flex gap-4 items-center">
+                            <GiPositionMarker className="text-2xl text-zinc-500" />
+                            <span className="text-2xl text-zinc-500">Địa chỉ: </span>
+                          </div>
+                          <div className="col-span-2">{address}</div>
+                        </li>
+
+                        {selectedItem === index && (
+                          <li className="grid grid-cols-3 gap-4">
+                            <div className="flex gap-4 items-center">
+                              <BsGenderTrans className="text-2xl text-zinc-500" />
+                              <span className="text-2xl text-zinc-500">Giới tính: </span>
+                            </div>
+                            <div className="col-span-2">{item?.gender}</div>
+                          </li>
+                        )}
+                        {selectedItem === index && (
+                          <li className="grid grid-cols-3 gap-4">
+                            <div className="flex gap-4 items-center">
+                              <HiOutlineUserGroup className="text-2xl text-zinc-500" />
+                              <span className="text-2xl text-zinc-500">Dân tộc: </span>
+                            </div>
+                            <div className="col-span-2">{item?.ethnic}</div>
+                          </li>
+                        )}
+                        <li className="grid grid-cols-3 gap-4 pb-4">
+                          <div className="flex gap-4 items-center">
+                            <MdOutlineMail className="text-2xl text-zinc-500" />
+                            <span className="text-2xl text-zinc-500">Địa chỉ email:</span>
+                          </div>
+                          <div className="col-span-2">{item?.email}</div>
+                        </li>
+                        {selectedItem === index && (
+                          <li className=" border-t border-slate-300 pt-10">
+                            <div className="grid grid-cols-5 gap-4">
+                              <div className="flex col-span-3 gap-6">
+                                <Button
+                                  leftIcon={<RiDeleteBin6Line />}
+                                  className="bg-red-100 text-rose-500 p-0 text-xl"
+                                >
+                                  Xóa
+                                </Button>
+                                <Button leftIcon={<FaRegEdit />} className="bg-cyan-100 text-sky-500 text-xl">
+                                  Sửa
+                                </Button>
+                                <div></div>
+                              </div>
+                              <Button
+                                rightIcon={<FaLongArrowAltRight />}
+                                className="col-span-2 text-xl text-white bg-cyan-400"
+                                onClick={() => {
+                                  // updateBookingData('patientProfile', item);
+                                  dispatch(updateBooking({ key: 'patientProfile', value: item }));
+                                  navigate('/chon-lich-kham?feature=booking.doctor&stepName=confirm');
+                                }}
+                              >
+                                Tiếp tục
+                              </Button>
+                            </div>
+                          </li>
+                        )}
+                      </ul>
+                    );
+                  })}
+                </div>
+              ) : (
+                <div className="flex flex-col items-center my-8">
+                  <p className="mb-6 text-center text-2xl font-semibold text-neutral-400">
+                    Bạn chưa có hồ sơ bệnh nhân. Vui lòng tạo mới hồ sơ để được đặt khám.
+                  </p>
+                  <img
+                    alt="empty"
+                    width="240px"
+                    height="240px"
+                    // src="https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fnull-data.b105c645.png&w=384&q=75"
+                    src={require('~/assets/images/Empty.webp')}
+                  />
+                </div>
+              )}
             </div>
 
             <div className="flex justify-between pt-12">
@@ -166,10 +188,8 @@ function ChooseRecord() {
                 Quay lại
               </Button>
               <Button
+                to="/tao-moi-ho-so"
                 leftIcon={<FaUserPlus />}
-                onClick={() => {
-                  toast.warning('Tính năng này đang phát triển!');
-                }}
                 className="bg-transparent font-medium
                   hover:bg-zinc-100"
               >

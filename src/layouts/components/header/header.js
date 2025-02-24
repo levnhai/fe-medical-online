@@ -51,7 +51,11 @@ function Header() {
   const [currentLanguages, setCurrentLanguages] = useState(i18n.language);
 
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
+  console.log('chekc isLoggedIn', isLoggedIn);
   const user = useSelector((state) => state.auth.user?.payload);
+
+  console.log('check user', user);
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -89,9 +93,9 @@ function Header() {
   ];
   // rút gọn name
   const handleshortName = () => {
-    let fullName = isLoggedIn && user && `${user.userData.fullName}`;
+    let fullName = isLoggedIn && user && `${user?.userData?.fullName}`;
     if (isLoggedIn && fullName) {
-      let nameParts = fullName.split(' ');
+      let nameParts = fullName?.split(' ');
       let shortName = '';
       if (nameParts.length > 1) {
         shortName = nameParts[nameParts.length - 2] + ' ' + nameParts[nameParts.length - 1];
@@ -191,7 +195,7 @@ function Header() {
                   className={cx('accountBtn')}
                   onClick={handleShowModalProfile}
                 >
-                  {isLoggedIn && `${user?.user?.fullName}` ? shortName : t('header.account')}
+                  {isLoggedIn && `${user?.userData?.fullName}` ? shortName : t('header.account')}
                 </Button>
               </div>
               <div className={cx('language')}>
@@ -231,7 +235,7 @@ function Header() {
                     <div className={cx('profile-avata')}></div>
                     <div className={cx('profile-info')}>
                       <span>{t('header.greeting')}</span>
-                      <h5> {`${user.userData.fullName}`}</h5>
+                      <h5> {`${user?.userData?.fullName}`}</h5>
                     </div>
                   </div>
                   <ul className={cx('information-list')}>
@@ -419,7 +423,7 @@ function Header() {
                   )}
                   onClick={handleShowModalProfile}
                 >
-                  {isLoggedIn ? `${user.userData.fullName}` : t('header.account')}
+                  {isLoggedIn ? `${user?.userData?.fullName}` : t('header.account')}
                 </Button>
               </div>
             </div>

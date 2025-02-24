@@ -18,13 +18,13 @@ import FacilitieSkeleton from './loading/facilitie_skeleton';
 import Skeleton from './loading/skeleton';
 import { convertImage } from '~/utils/convertImage';
 import { SlideInFromBottom } from '~/components/animation';
-import { fetchGetHospitalByType, fetchGetCountHospitalByType } from '~/redux/hospital/hospitalSilder';
+import { fetchGetHospitalByType, fetchGetCountHospitalByType } from '~/redux/hospital/hospitalSlice';
 import { updateBooking, clearBooking } from '~/redux/booking/bookingSlice';
 
 import style from './facilitie.module.scss';
 const cx = classNames.bind(style);
 
-let PageSize = 10;
+let PageSize = 2;
 
 function Facilitie() {
   const { t } = useTranslation();
@@ -46,6 +46,7 @@ function Facilitie() {
   const [sliderMode, setSliderMode] = useState('full');
 
   const hospitalDataByType = useSelector((state) => state.hospital.hospitalDataByType);
+
   const countHospitalByType = useSelector((state) => state.hospital.countHospitalByType);
   const isLoading = useSelector((state) => state.hospital.loading);
 
@@ -128,6 +129,17 @@ function Facilitie() {
       ? hospitalDataByType?.data[0]
       : null;
   }, [selectedHospitalId, hospitalDataByType?.data]);
+
+  const removeAccents = (str) => {
+    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  };
+
+  const searchInput = (items) => {
+    return items?.filter((item) => {
+      console.log('check item', item);
+      return removeAccents(item?.fullName)?.toString().toLowerCase().indexOf(removeAccents(search).toLowerCase()) > -1;
+    });
+  };
 
   useEffect(() => {
     document.title = 'Cơ sở y tế || Medpro';
@@ -247,14 +259,14 @@ function Facilitie() {
                     />
                   </div>
                 </div>
-                <div className={cx('facilitie__formcontent--item')}>
+                {/* <div className={cx('facilitie__formcontent--item')}>
                   <div className={cx('facilitie__formcontent--icon')}>
                     <CiLocationOn style={{ width: '2rem', height: '2rem' }} />
                   </div>
                   <div className={cx('facilitie__formcontent--input')}>
                     <input placeholder="Chọn tỉnh thành ..." />
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
             <div className={cx('btnGroup', sliderMode)} ref={sliderRef}>
@@ -277,8 +289,8 @@ function Facilitie() {
           </div>
           <div className={cx('facilitie__container')}>
             <div className={cx('list_hospital')}>
-              <div class="w-full grid lg:grid-cols-3 gap-6">
-                <div class="col-span-2">
+              <div className="w-full grid lg:grid-cols-3 gap-6">
+                <div className="col-span-2">
                   {isLoading === true ? (
                     <>
                       <FacilitieSkeleton />
@@ -286,7 +298,7 @@ function Facilitie() {
                   ) : currentTableData?.length > 0 ? (
                     <SlideInFromBottom>
                       {currentTableData &&
-                        currentTableData.map((item, index) => {
+                        searchInput(currentTableData).map((item, index) => {
                           let address = `${item.address[0].street}, ${item.address[0].wardName}, ${item.address[0].districtName}, ${item.address[0].provinceName}`;
                           return (
                             <div
@@ -301,9 +313,9 @@ function Facilitie() {
                                   className={cx('content-image')}
                                   style={{
                                     backgroundImage:
-                                      item.image.data != []
+                                      item.image.data.length > 0
                                         ? `url(${convertImage(item.image)})`
-                                        : "url('https://s.net.vn/crl1')",
+                                        : "url('https://img.freepik.com/premium-vector/drawing-building-with-bird-it_1065891-1524.jpg?semt=ais_hybrid')",
                                   }}
                                   // style={{"backgroundImage: url('https://www.citypng.com/public/')"}}
                                 ></div>
@@ -313,10 +325,12 @@ function Facilitie() {
                                   <div className={cx('content-groupBtn')}>
                                     <Button
                                       className={cx('content-btn')}
-                                      to={
-                                        (`/${createSlugName(item.fullName)}?hptId=${item._id}`,
-                                        { state: { hospital: item } })
-                                      }
+                                      // to={
+                                      //   (`/${createSlugName(item.fullName)}?hptId=${item._id}`,
+                                      //   { state: { hospital: item } })
+                                      // }
+                                      to={`/${createSlugName(item.fullName)}?hptId=${item._id}`}
+                                      state={{ hospital: item }}
                                     >
                                       Xem chi tiết
                                     </Button>
@@ -354,7 +368,7 @@ function Facilitie() {
                     <ResultEmpty />
                   )}
                 </div>
-                <div class="col-span-1">
+                <div className="col-span-1">
                   {currentTableData?.length > 0 && (
                     <div>
                       {isLoading === true ? (
@@ -369,11 +383,19 @@ function Facilitie() {
                                 <div
                                   className={cx('logo')}
                                   style={{ backgroundImage: `url(${convertImage(hospitalDetail?.image)})` }}
+                                  // style={{
+                                  //   backgroundImage:
+                                  //     hospitalDetail?.image.length > 0
+                                  //       ? `url(${hospitalDetail?.image})`
+                                  //       : "url('https://img.freepik.com/premium-vector/drawing-building-with-bird-it_1065891-1524.jpg?semt=ais_hybrid')",
+                                  // }}
                                 ></div>
                                 <div className={cx('title')}>{hospitalDetail?.fullName}</div>
                                 <div className={cx('workingTime')}>
                                   <LuClock7 className={cx('icon_clock')} />
-                                  {hospitalDetail?.workingTime ? hospitalDetail?.workingTime : 'Đang cập nhật'}
+                                  {hospitalDetail?.workingTime
+                                    ? hospitalDetail?.workingTime
+                                    : 'Thứ 2 - Chủ Nhật (07:00-16:00)'}
                                 </div>
                               </div>
                               <div className={cx('body')}>

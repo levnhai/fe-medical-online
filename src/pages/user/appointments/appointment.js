@@ -86,7 +86,15 @@ function Appointment() {
             })}
           </div>
         ) : (
-          <div>Bạn chưa có phiếu khám nào</div>
+          <div className="flex flex-col items-center my-12 ">
+            <p className="mb-6 text-4xl font-semibold text-neutral-400">Bạn chưa có phiếu khám nào</p>
+            <img
+              alt="empty"
+              width="302px"
+              height="298px"
+              src="https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fnull-data.b105c645.png&w=384&q=75"
+            />
+          </div>
         )}
       </>
     ),

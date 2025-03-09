@@ -15,7 +15,11 @@
     "logout": "Đăng xuất",
     "logout_success": "Đăng xuất thành công",
     "last_update": "Cập nhật mới nhất: {{date}}",
-    "support_title": "Hỗ trợ đặt khám"
+    "support_title": "Hỗ trợ đặt khám",
+    "home": "Trang chủ",
+    "profile": "Hồ sơ bệnh nhân",
+    "form": "Phiếu khám bệnh",
+    "notifi": "Thông báo"
   },
   "menu": {
     "medical_facilities": "Cơ sở y tế",
@@ -54,6 +58,9 @@
     "quick_booking": "Đặt khám nhanh",
     "quick_booking_description": "Đặt khám nhanh, thanh toán, lấy số thứ tự trực tuyến tiết kiệm thời gian và công sức",
     "show_more": "xem thêm",
+    "show_detail": "Xem chi tiết",
+    "search": "Tìm kiếm cơ sở y tế ...",
+    "choose": "Chọn tỉnh thành ...",
     "new_title": "Tin tức y tế",
     "media_recognition": "Ghi nhận từ truyền thông",
     "media_recognition_decrip": "Sự lợi ích của ứng dụng đặt khám nhanh Medpro đã được ghi nhận rộng rãi"
@@ -447,6 +454,177 @@
     "laboratory": {
       "label": "Xét nghiệm",
       "subTitle": "Xét nghiệm chính xác, nhanh chóng và hỗ trợ chẩn đoán hiệu quả với các cơ sở uy tín hàng đầu"
+    }
+  },
+  "patientRecords": {
+    "title": {
+      "label": "Danh sách hồ sơ bệnh nhân"
+    },
+    "modalTitle": "Chi tiết hồ sơ",
+    "list": {
+      "name": "Họ và tên",
+      "date": "Ngày sinh",
+      "phone": "Số điện thoại",
+      "sex": "Giới tính",
+      "address": "Địa chỉ",
+      "nation": "Dân tộc",
+      "CCCD": "CCCD",
+      "job": "Nghề nghiệp",
+      "email": "Địa chỉ Email",
+      "idbhyt": "Mã số BHYT"
+    },
+    "note": {
+      "q1": "Nam",
+      "q2": "Nữ",
+      "q3": "Bổ sung sau"
+    },
+    "action": {
+      "delete": "Xóa hồ sơ",
+      "edit": "Sửa hồ sơ",
+      "more": "Chi tiết"
+    },
+    "sidebar": {
+      "add": "Thêm hồ sơ",
+      "profile": "Hồ sơ bệnh nhân",
+      "form": "Phiếu khám bệnh",
+      "notifi": "Thông báo"
+    }
+  },
+  "appointments": {
+    "title": "Danh sách phiếu khám bệnh",
+    "tabs": {
+      "paid": "Đã thanh toán",
+      "pending": "Chưa thanh toán",
+      "completed": "Đã khám",
+      "canceled": "Đã hủy"
+    },
+    "noAppointment": "Bạn chưa có phiếu khám nào",
+    "details": {
+      "code": "Mã phiếu:",
+      "doctor": "Đang cập nhật",
+      "hospital": "Đang cập nhật",
+      "service": "Dịch vụ:",
+      "date": "Ngày khám:",
+      "time": "Giờ khám dự kiến:",
+      "success": "Đặt khám thành công"
+    },
+    "form": {
+      "title": "Các hình thức đặt khám",
+      "subTitle": "Đặt khám nhanh chóng, không phải chờ đợi với nhiều cơ sở y tế trên khắp các tỉnh thành",
+      "specialist": "Đặt khám theo chuyên khoa",
+      "doctor": "Đặt khám theo bác sĩ",
+      "back": "Quay lại",
+      "path": "Hình thức đặt khám",
+      "path2": "Chọn bác sĩ"
+    },
+    "doctor": {
+      "title": "Vui lòng chọn bác sĩ",
+      "subTitle": "Thông tin cơ sở y tế",
+      "search": "Tìm nhanh bác sĩ ...",
+      "edu": "Học hàm/học vị",
+      "specialist": "Chuyên khoa",
+      "sex": "Giới tính",
+      "date": "Lịch khám",
+      "price": "Giá khám",
+      "name": "Bác sĩ"
+    },
+    "date": {
+      "title": "Vui lòng chọn ngày khám",
+      "path": "Chọn ngày khám",
+      "time": "Vui lòng chọn giờ khám",
+      "date": "Ngày bạn đã chọn",
+      "chooseProfile": "Chọn hồ sơ bệnh nhân"
+    },
+    "action": {
+      "delete": "Xóa",
+      "edit": "Sửa",
+      "continue": "Tiếp tục"
+    },
+    "confirm": {
+      "path": "Xác nhận thông tin",
+      "title": "Xác nhận thông tin khám",
+      "title2": "Thông tin bệnh nhân",
+      "specialist": "Chuyên khoa",
+      "doctor": "Bác sĩ",
+      "time": "Thời gian khám",
+      "price": "Tiền khám",
+      "note": "Trong thời gian quy định, nếu quý khách hàng hủy phiếu khám sẽ được hoàn lại tiền khám và các dịch vụ đặt thêm (không bao gồm phí tiện ích)."
+    },
+    "payment": {
+      "title": "Chọn phương thức thanh toán",
+      "path": "Thanh toán",
+      "subTitle": "Thông tin thanh toán",
+      "specialist": "Chuyên khoa",
+      "doctor": "Bác sĩ",
+      "service": "Dịch vụ",
+      "date": "Ngày khám",
+      "time": "Giờ khám",
+      "price": "Tiền khám",
+      "fee": "Phí tiện ích + Phí TGTT",
+      "sum": "Tổng cộng",
+      "payment": "Thanh toán",
+      "confirm": "Xác nhận thanh toán",
+      "q1": "Thanh toán số tiền",
+      "q0": "bằng",
+      "q2": "Thanh toán tại Phòng Khám",
+      "q3": "Bạn sẽ nhận được phiếu khám bệnh ngay khi",
+      "q4": "Thanh toán thành công.",
+      "q5": "Trong trường hợp không nhận được phiếu khám bệnh, vui lòng liên hệ",
+      "quit": "Hủy",
+      "ok": "Xác nhận",
+      "vietqr": "Thanh toán chuyển khoản bằng ứng dụng ngân hàng/ Ví điện tử.",
+      "vnpay": "Ngân hàng có hỗ trợ VNPAY QR.",
+      "momo": "Ví Momo",
+      "momodes": "Thanh toán tiện lợi qua ví Momo.",
+      "atm": "Thẻ ATM nội địa/Internet Banking",
+      "atmdes": "Thanh toán bằng ATM hoặc internet banking.",
+      "cash": "Thanh toán tại phòng khám",
+      "cashdes": "Thanh toán khi tới khám bệnh"
+    },
+    "visit": {
+      "path": "Thông tin phiếu khám bệnh",
+      "list": "Danh sách phiếu khám",
+      "title": "Chúc mừng đặt khám thành công",
+      "subTitle": "Quý khách vui lòng cài đặt ứng dụng để xem chi tiết hướng dẫn và quản lý hồ sơ khám bệnh",
+      "form": "Phiếu khám bệnh",
+      "complete": "Đặt khám thành công",
+      "fee": "Số tiền phải thanh toán",
+      "note": "(Đã bao gồm phí khám + phí tiện ích)",
+      "code": "Mã phiếu",
+      "doctor": "Bác sĩ",
+      "specialist": "Chuyên khoa",
+      "method": "Hình thức khám",
+      "time": "Thời gian khám",
+      "note2": "Lưu ý",
+      "q1": "Cắt giảm thủ tục, Lấy số trước, Thanh toán trước, Giảm xếp hàng chờ đợi",
+      "q2": "1. Quý khách vui lòng giữ lại hoá đơn thanh toán tại Phòng khám Đa khoa Pháp Anh để tham gia chương trình ưu đãi hoàn tiền của Medical.",
+      "q3": "2. Medical sẽ gửi thông báo về ưu đãi hoàn tiền qua App hoặc Zalo ngay sau khi quý khách sử dụng dịch vụ tại Phòng khám Đa khoa Pháp Anh",
+      "q4": "3. Quý khách vui lòng đến trước 15 phút tại Quầy Tiếp Nhận để được kiểm tra thông tin đặt khám và hướng dẫn",
+      "q5": "4. Vui lòng liên hệ 1900-2115 để được hỗ trợ thay đổi lịch hẹn hoặc giải đáp về các chương trình khuyến mãi trên Medical.",
+      "q6": "Bản quyền thuộc",
+      "q7": "Đặt lịch khám tại bệnh viện-phòng khám hang đầu việt nam",
+      "quit": "Hủy phiếu",
+      "note3": "Trong thời gian quy định, nếu quý khách hàng hủy phiếu khám sẽ được hoàn lại tiền khám và các dịch vụ đặt thêm (không bao gồm phí tiện ích)."
+    },
+    "facility":{
+      "title": "Đặt khám theo cơ sở",
+      "subTitle": "Đặt khám nhanh chóng, tiết kiệm thời gian, an toàn tiện lợi",
+      "search": "Tìm kiếm cơ sở y tế ...",
+      "location": "Tất cả địa điểm",
+      "all": "Tất cả",
+      "hospital": "Bệnh viện",
+      "other": "Phòng khám/Phòng mạch/Xét nghiệm/khác",
+      "detail": "Xem chi tiết",
+      "booking": "Đặt khám ngay"
+    },
+    "bookingDoctor": {
+      "title": "Đặt khám theo bác sĩ",
+      "subTitle": "Chủ động chọn bác sĩ mà bạn tin tưởng nhất",
+      "all": "Tổng quát",
+      "job": "Chuyên trị",
+      "appointment": "Lịch khám",
+      "price": "Giá khám",
+      "booking": "Đặt khám ngay"
     }
   }
 }

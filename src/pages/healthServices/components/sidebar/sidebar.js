@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import classNames from 'classnames/bind';
 import style from './sidebar.module.scss';
 import { useSelector } from 'react-redux';
@@ -11,15 +12,19 @@ import { GiHospitalCross } from 'react-icons/gi';
 import { FaUserDoctor } from 'react-icons/fa6';
 import { BsFillCalendarDateFill } from 'react-icons/bs';
 import { TbClockHour4 } from 'react-icons/tb';
+import { useTranslation } from 'react-i18next';
+import '~/translation/i18n';
 
 const cx = classNames.bind(style);
 
 function Sidebar() {
+  const { t, i18n } = useTranslation();
+  const [currentLanguages, setCurrentLanguages] = useState(i18n.language);
   // const { bookingData } = useBooking();
   const bookingData = useSelector((state) => state.booking);
   return (
-    <div className=" rounded-lg bg-white overflow-hidden">
-      <div className={cx('title')}>Thông tin cơ sở y tế</div>
+    <div className={cx('container', "rounded-lg bg-white overflow-hidden")}>
+      <div className={cx('title')}>{t('appointments.doctor.subTitle')}</div>
       <div className={cx('body', 'p-5 mb-6')}>
         <div className={cx('hospital-info', 'flex mt-4')}>
           <div className={cx('icon', 'pr-4')}>
@@ -27,7 +32,7 @@ function Sidebar() {
           </div>
           <div>
             <div className={cx('name', 'text-zinc-600 text-2xl capitalize')}>{bookingData?.hospital?.fullName}</div>
-            <div className={cx('des', 'text-neutral-400 text-xl')}>{bookingData?.hospital?.address}</div>
+            <div className={cx('name', 'text-neutral-400 text-xl')}>{bookingData?.hospital?.address}</div>
           </div>
         </div>
         {bookingData?.doctor?.specialty && (
@@ -35,7 +40,7 @@ function Sidebar() {
             <div className={cx('icon', 'pr-4')}>
               <GiHospitalCross />
             </div>
-            <div className={cx('name', 'text-zinc-500 text-2xl')}>Chuyên khoa: {bookingData?.doctor?.specialty}</div>
+            <div className={cx('name', 'text-zinc-500 text-2xl')}>{t('appointments.doctor.specialist')}: {bookingData?.doctor?.specialty}</div>
           </div>
         )}
         {bookingData?.doctor?.fullName && (
@@ -43,7 +48,7 @@ function Sidebar() {
             <div className={cx('icon', 'pr-4')}>
               <FaUserDoctor />
             </div>
-            <div className={cx('name', 'text-zinc-500 text-2xl')}>Bác sĩ: {bookingData?.doctor?.fullName}</div>
+            <div className={cx('name', 'text-zinc-500 text-2xl')}>{t('appointments.doctor.name')}: {bookingData?.doctor?.fullName}</div>
           </div>
         )}
 
@@ -53,7 +58,7 @@ function Sidebar() {
               <BsFillCalendarDateFill />
             </div>
             <div>
-              <div className={cx('name', 'text-zinc-500 text-2xl')}>Ngày khám: {bookingData?.date}</div>
+              <div className={cx('name', 'text-zinc-500 text-2xl')}>{t('appointments.details.date')}: {bookingData?.date}</div>
             </div>
           </div>
         )}
@@ -64,7 +69,7 @@ function Sidebar() {
             </div>
             <div>
               <div className={cx('name', 'text-zinc-500 text-2xl')}>
-                Giờ khám :{extractTime(bookingData?.time.start)} - {extractTime(bookingData?.time.end)}
+              {t('appointments.details.time')}:{extractTime(bookingData?.time.start)} - {extractTime(bookingData?.time.end)}
               </div>
             </div>
           </div>

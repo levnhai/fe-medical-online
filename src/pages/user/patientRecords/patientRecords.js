@@ -20,6 +20,8 @@ import { fetchDeleteRecord } from '~/redux/record/recordSlice';
 import { formatDate } from '~/utils/time';
 
 function PatientRecord() {
+  const { t, i18n } = useTranslation();
+  const [currentLanguages, setCurrentLanguages] = useState(i18n.language);
   const dispatch = useDispatch();
   const [isModalDetailOpen, setIsModalDetailOpen] = useState(false);
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);

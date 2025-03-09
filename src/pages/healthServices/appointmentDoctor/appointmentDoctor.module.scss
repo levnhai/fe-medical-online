@@ -2,18 +2,33 @@
   height: auto;
   width: 100%;
   background-color: #e8f2f7;
+  
 }
 
 .body {
-  width: 1060px;
+  width: 100%;
+  max-width: 1060px;
   margin: 0 auto;
   margin-bottom: 20px;
   overflow: hidden;
+  padding: 0 15px;
+
+  @media (max-width: 1100px) {
+    max-width: 100%;
+  }
+  @media (max-width: 425px) {
+    max-width: 100%;
+  }
 }
 
 .content {
   padding: 20px;
   min-height: 140px;
+
+  @media (max-width: 768px) {
+    padding: 15px;
+    min-height: 120px;
+  }
 }
 
 .image {
@@ -24,6 +39,16 @@
   height: 120px;
   border-radius: 12px;
   background-color: #eaeaea;
+
+  @media (max-width: 768px) {
+    width: 80px;
+    height: 100px;
+  }
+  @media (max-width: 480px) {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto;
+  }
 }
 
 .name {
@@ -33,6 +58,15 @@
   font-weight: 400;
   line-height: normal;
   margin-bottom: 8px;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+    text-align: center;
+  }
 }
 
 .treatment {
@@ -47,6 +81,15 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   margin-bottom: 4px;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+
+  @media (max-width: 480px) {
+    text-align: center;
+    margin-bottom: 8px;
+  }
 }
 
 .content-btn {
@@ -54,6 +97,18 @@
   border-radius: 999px;
   height: 36px;
   color: #fff !important;
+
+  @media (max-width: 768px) {
+    padding: 0px 20px;
+    height: 32px;
+    font-size: 14px;
+  }
+
+  @media (max-width: 480px) {
+    width: 100%;
+    margin-bottom: 8px;
+    margin-top: 10px;
+  }
 }
 
 .content-btn:first-child {
@@ -93,10 +148,28 @@
   justify-content: space-between;
   padding: 12px 14px;
   width: 100%;
+
+  @media (max-width: 768px) {
+    padding: 10px;
+  }
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: start;
+  }
 }
 
 .frame-left-address {
   color: var(--grey-text, #858585);
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+
+  @media (max-width: 480px) {
+    width: 100%;
+    text-align: left;
+  }
 }
 
 .banner {
@@ -105,4 +178,12 @@
   height: 588px;
   background-repeat: no-repeat;
   background-size: contain;
+
+  @media (max-width: 1024px) {
+    height: 450px;
+  }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 }

@@ -43,7 +43,7 @@ function Facilitie() {
   const [subLableTitle, setSubLableTitle] = useState(
     'Với những cơ sở Y Tế hàng đầu sẽ giúp trải nghiệm khám, chữa bệnh của bạn tốt hơn',
   );
-  const [sliderMode, setSliderMode] = useState('full');
+  //const [sliderMode, setSliderMode] = useState('full');
 
   const hospitalDataByType = useSelector((state) => state.hospital.hospitalDataByType);
 
@@ -155,70 +155,70 @@ function Facilitie() {
     countHospitalType();
   }, [search, dispatch]);
 
-  useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-      if (width < 320) setSliderMode('one');
-      else if (width < 425) setSliderMode('two');
-      else if (width < 768) setSliderMode('three');
-      else if (width < 1024) setSliderMode('slider');
-      else setSliderMode('full');
-    };
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     const width = window.innerWidth;
+  //     if (width < 320) setSliderMode('one');
+  //     else if (width < 425) setSliderMode('two');
+  //     else if (width < 768) setSliderMode('three');
+  //     else if (width < 1024) setSliderMode('slider');
+  //     else setSliderMode('full');
+  //   };
 
-    handleResize();
-    window.addEventListener('resize', handleResize);
+  //   handleResize();
+  //   window.addEventListener('resize', handleResize);
 
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener('resize', handleResize);
+  //   };
+  // }, []);
 
-  useEffect(() => {
-    if (sliderMode !== 'full' && sliderRef.current) {
-      let isDown = false;
-      let startX;
-      let scrollLeft;
+  // useEffect(() => {
+  //   if (sliderMode !== 'full' && sliderRef.current) {
+  //     let isDown = false;
+  //     let startX;
+  //     let scrollLeft;
 
-      const slider = sliderRef.current;
+  //     const slider = sliderRef.current;
 
-      const onMouseDown = (e) => {
-        isDown = true;
-        slider.classList.add('active');
-        startX = e.pageX - slider.offsetLeft;
-        scrollLeft = slider.scrollLeft;
-      };
+  //     const onMouseDown = (e) => {
+  //       isDown = true;
+  //       slider.classList.add('active');
+  //       startX = e.pageX - slider.offsetLeft;
+  //       scrollLeft = slider.scrollLeft;
+  //     };
 
-      const onMouseLeave = () => {
-        isDown = false;
-        slider.classList.remove('active');
-      };
+  //     const onMouseLeave = () => {
+  //       isDown = false;
+  //       slider.classList.remove('active');
+  //     };
 
-      const onMouseUp = () => {
-        isDown = false;
-        slider.classList.remove('active');
-      };
+  //     const onMouseUp = () => {
+  //       isDown = false;
+  //       slider.classList.remove('active');
+  //     };
 
-      const onMouseMove = (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - slider.offsetLeft;
-        const walk = (x - startX) * 2;
-        slider.scrollLeft = scrollLeft - walk;
-      };
+  //     const onMouseMove = (e) => {
+  //       if (!isDown) return;
+  //       e.preventDefault();
+  //       const x = e.pageX - slider.offsetLeft;
+  //       const walk = (x - startX) * 2;
+  //       slider.scrollLeft = scrollLeft - walk;
+  //     };
 
-      slider.addEventListener('mousedown', onMouseDown);
-      slider.addEventListener('mouseleave', onMouseLeave);
-      slider.addEventListener('mouseup', onMouseUp);
-      slider.addEventListener('mousemove', onMouseMove);
+  //     slider.addEventListener('mousedown', onMouseDown);
+  //     slider.addEventListener('mouseleave', onMouseLeave);
+  //     slider.addEventListener('mouseup', onMouseUp);
+  //     slider.addEventListener('mousemove', onMouseMove);
 
-      return () => {
-        slider.removeEventListener('mousedown', onMouseDown);
-        slider.removeEventListener('mouseleave', onMouseLeave);
-        slider.removeEventListener('mouseup', onMouseUp);
-        slider.removeEventListener('mousemove', onMouseMove);
-      };
-    }
-  }, [sliderMode]);
+  //     return () => {
+  //       slider.removeEventListener('mousedown', onMouseDown);
+  //       slider.removeEventListener('mouseleave', onMouseLeave);
+  //       slider.removeEventListener('mouseup', onMouseUp);
+  //       slider.removeEventListener('mousemove', onMouseMove);
+  //     };
+  //   }
+  // }, [sliderMode]);
 
   useEffect(() => {
     dispatch(clearBooking());
@@ -253,7 +253,7 @@ function Facilitie() {
                   </div>
                   <div className={cx('facilitie__formcontent--input')}>
                     <input
-                      placeholder="Tìm kiếm cơ sở y tế ..."
+                      placeholder={t('home.search')}
                       value={search}
                       onChange={(e) => setSearch(e.target.value)}
                     />
@@ -264,12 +264,12 @@ function Facilitie() {
                     <CiLocationOn style={{ width: '2rem', height: '2rem' }} />
                   </div>
                   <div className={cx('facilitie__formcontent--input')}>
-                    <input placeholder="Chọn tỉnh thành ..." />
+                    <input placeholder={t('home.choose')}/>
                   </div>
                 </div> */}
               </div>
             </div>
-            <div className={cx('btnGroup', sliderMode)} ref={sliderRef}>
+            <div className={cx('btnGroup')} ref={sliderRef}>
               {tabMenus.map((tab, index) => {
                 return (
                   <Button
@@ -332,7 +332,7 @@ function Facilitie() {
                                       to={`/${createSlugName(item.fullName)}?hptId=${item._id}`}
                                       state={{ hospital: item }}
                                     >
-                                      Xem chi tiết
+                                      {t('home.show_detail')}
                                     </Button>
                                     <Button
                                       className={cx('content-btn')}
@@ -355,7 +355,7 @@ function Facilitie() {
                                         );
                                       }}
                                     >
-                                      Đặt khám ngay
+                                      {t('home.book_appointment')}
                                     </Button>
                                   </div>
                                 </div>

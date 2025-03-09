@@ -13,6 +13,9 @@ import { extractTime } from '~/utils/time';
 import { fetchScheduleByDoctor } from '~/redux/schedule/scheduleSlice';
 import { updateBooking } from '~/redux/booking/bookingSlice';
 
+import { useTranslation } from 'react-i18next';
+import '~/translation/i18n';
+
 //icon
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from 'react-icons/fa';
@@ -22,6 +25,8 @@ import styles from '../appointmentDoctor/appointmentDoctor.module.scss';
 const cx = className.bind(styles);
 
 function AppointmentDate() {
+  const { t, i18n } = useTranslation();
+  const [currentLanguages, setCurrentLanguages] = useState(i18n.language);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -101,10 +106,10 @@ function AppointmentDate() {
     <div className={cx('appointment-doctor')}>
       <div className="max-w-screen-lg m-auto">
         <div className={cx('', 'py-6')}>
-          <ul className="flex">
-            <li className="flex items-center">
+        <ul className={cx('flex flex-col sm:flex-row')}>
+          <li className={cx('flex items-center')}>
               <a href="#/" className="font-semibold">
-                Trang chủ
+              {t('header.home')}
               </a>
               <MdKeyboardArrowRight />
             </li>
@@ -116,18 +121,18 @@ function AppointmentDate() {
             </li>
             <li className="flex items-center">
               <a href="#/" className="text-sky-500 font-semibold">
-                Chọn ngày khám
+              {t('appointments.date.path')}
               </a>
             </li>
           </ul>
         </div>
-        <div className={cx('grid grid-cols-4 gap-10 px-10')}>
+        <div className={cx('grid grid-cols-1 md:grid-cols-4 gap-10 px-10 pb-18')}>
           <div className="">
             <Sidebar />
           </div>
           <div className="col-span-3 rounded-lg overflow-hidden">
             <div className={cx('bg-white', 'rounded-lg')}>
-              <div className={cx('title')}>{showCalendar ? 'Vui lòng chọn ngày khám ' : 'Vui lòng chọn giờ khám'}</div>
+              <div className={cx('title')}>{showCalendar ?  t('appointments.date.title') :  t('appointments.date.time')}</div>
               <div className="calendar-container mb-6">
                 {/* Thanh điều hướng tháng */}
                 {showCalendar && (
@@ -154,7 +159,7 @@ function AppointmentDate() {
                 )}
                 {!showCalendar && selectedDate && (
                   <div className="selected-date flex mb-6">
-                    <h2 className="font-semibold">Ngày bạn đã chọn:&nbsp;&nbsp; </h2>
+                    <h2 className="font-semibold"> {t('appointments.date.date')}:&nbsp;&nbsp; </h2>
                     <span className="text-sky-500 font-semibold">
                       {new Date(selectedDate).toLocaleDateString('vi-VN')}
                     </span>
@@ -224,7 +229,7 @@ function AppointmentDate() {
                 className="bg-transparent font-medium
                 hover:bg-zinc-100"
               >
-                Quay lại
+                {t('appointments.form.back')}
               </Button>
             </div>
           </div>

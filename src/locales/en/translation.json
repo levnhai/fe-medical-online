@@ -16,7 +16,11 @@
     "logout_success": "Logged out successfully",
     "last_update": "Last update: {{date}}",
     "support_title": "Appointment Support",
-    "recruitment": "Recruitment"
+    "recruitment": "Recruitment",
+    "home": "Home",
+    "profile": "Patient profile",
+    "form": "Medical examine form",
+    "notifi": "Notification"
   },
   "menu": {
     "medical_facilities": "Medical Facilities",
@@ -55,6 +59,9 @@
     "quick_booking": "Quick Booking",
     "quick_booking_description": "Quick booking, payment, and online queue number retrieval save time and effort",
     "show_more": "Show more",
+    "show_detail": "Show details",
+    "search": "Search for medical facilities ...",  
+    "choose": "Choose province, city ...",
     "new_title": "News medical",
     "media_recognition": "Media Recognition",
     "media_recognition_decrip": "The benefits of the Medpro quick appointment booking app have been widely recognized"
@@ -446,6 +453,177 @@
     "laboratory": {
       "label": "Laboratory",
       "subTitle": "Accurate, quick testing and effective diagnostic support with leading trusted facilities"
+    }
+  },
+  "patientRecords": {
+    "title": {
+      "label": "List of patient records"
+    },
+    "modalTitle": "Profile details",
+    "list": {
+      "name": "Full name",
+      "date": "Date of birth",
+      "phone": "Phone number",
+      "sex": "Gender",
+      "address": "Address",
+      "nation": "Ethnicity",
+      "CCCD": "ID Card",
+      "job": "Job",
+      "email": "Email address",
+      "idbhyt": "Health Insurance ID"
+    },
+    "note": {
+      "q1": "Male",
+      "q2": "Female",
+      "q3": "More later"
+    },
+    "action": {
+      "delete": "Delete profile",
+      "edit": "Edit profile",
+      "more": "Details"
+    },
+    "sidebar": {
+      "add": "Add profile",
+      "profile": "Patient profile",
+      "form": "Medical examine form",
+      "notifi": "Notification"
+    }
+  },
+  "appointments": {
+    "title": "Appointment List",
+    "tabs": {
+      "paid": "Paid",
+      "pending": "Pending",
+      "completed": "Completed",
+      "canceled": "Canceled"
+    },
+    "noAppointment": "You have no appointments",
+    "details": {
+      "code": "Code:",
+      "doctor": "Updating",
+      "hospital": "Updating",
+      "service": "Service:",
+      "date": "Date:",
+      "time": "Expected Time:",
+      "success": "Appointment booked successfully"
+    },
+    "form": {
+      "title": "Forms of appointment",
+      "subTitle": "Quick appointment, no waiting with many medical facilities across the provinces",
+      "specialist": "Order by specialty",
+      "doctor": "Order by doctor",
+      "back": "Back",
+      "path": "Forms of appointment",
+      "path2": "Choose doctor"
+    },
+    "doctor": {
+      "title": "Please select a doctor",
+      "subTitle": "Health facility information",
+      "search": "Quickly find a doctor ...",
+      "edu": "Academic title/degree",
+      "specialist": "Specialty",
+      "sex": "Gender",
+      "date": "Examination schedule",
+      "price": "Examination price",
+      "name": "Doctor"
+    },
+    "date": {
+      "title": "Please select a date",
+      "path": "Choose a date",
+      "time": "Please select a time",
+      "date": "The date you selected",
+      "chooseProfile": "Choose patient record"
+    },
+    "action": {
+      "delete": "Delete",
+      "edit": "Edit",
+      "continue": "Continue"
+    },
+    "confirm": {
+      "path": "Confirm information",
+      "title": "Confirm examination information",
+      "title2": "Patient information",
+      "specialist": "Specialty",
+      "doctor": "Doctor",
+      "time": "Examine time",
+      "price": "Examine fee",
+      "note": "Within the specified time, if you cancel your medical examination, you will be refunded the medical examination fee and additional services (excluding utility fees)."
+    },
+    "payment": {
+      "title": "Select payment method",
+      "path": "Payment",
+      "subTitle": "Payment information",
+      "specialist": "Specialty",
+      "doctor": "Doctor",
+      "service": "Service",
+      "date": "Examination date",
+      "time": "Examination time",
+      "price": "Examination fee",
+      "fee": "Utility fee + TGTT fee",
+      "sum": "Total",
+      "payment": "Payment",
+      "confirm": "Confirm payment",
+      "q1": "Pay the amount",
+      "q0": "by",
+      "q2": "Pay at the Clinic",
+      "q3": "You will receive the medical examination voucher immediately",
+      "q4": "Payment successful.",
+      "q5": "In case you do not receive the medical examination voucher, please contact",
+      "quit": "Cancel",
+      "ok": "Confirm",
+      "vietqr": "Pay by bank transfer using banking application/ E-wallet.",
+      "vnpay": "Banks supporting VNPAY QR.",
+      "momo": "Momo Wallet",
+      "momodes": "Convenient payment via Momo wallet.",
+      "atm": "Domestic ATM card/Internet Banking",
+      "atmdes": "Pay by ATM or internet banking.",
+      "cash": "Pay at the clinic",
+      "cashdes": "Pay when you come to see a doctor"
+    },
+    "visit": {
+      "path": "Medical examination form information",
+      "list": "List of examination forms",
+      "title": "Congratulations on your successful appointment",
+      "subTitle": "Please install the application to view detailed instructions and manage your medical records",
+      "form": "Medical examination form",
+      "complete": "Successful appointment",
+      "fee": "Amount to pay",
+      "note": "(Including examination fee + utility fee)",
+      "code": "Coupon code",
+      "doctor": "Doctor",
+      "specialist": "Specialty",
+      "method": "Examination form",
+      "time": "Examination time",
+      "note2": "Note",
+      "q1": "Reduce procedures, Get a number in advance, Pay in advance, Reduce waiting in line",
+      "q2": "1. Please keep the payment invoice at Phap Anh General Clinic to participate in Medical's cashback promotion program.",
+      "q3": "2. Medical will send a notification about the refund offer via App or Zalo immediately after you use the service at Phap Anh General Clinic",
+      "q4": "3. Please arrive 15 minutes in advance at the Reception Desk to check your appointment information and receive instructions",
+      "q5": "4. Please contact 1900-2115 for support in changing your appointment or answering questions about promotions on Medical.",
+      "q6": "Copyright belongs to",
+      "q7": "Make an appointment at the leading hospital-clinic in Vietnam",
+      "quit": "Cancel the voucher",
+      "note3": "Within the specified time, if you cancel the voucher, you will be refunded the examination fee and additional services (excluding utility fees)."
+    },
+    "facility":{
+      "title": "Book an appointment by facility",
+      "subTitle": "Book an appointment quickly, save time, safe and convenient",
+      "search": "Search for medical facilities ...",
+      "location": "All locations",
+      "all": "All",
+      "hospital": "Hospital",
+      "other": "Clinic/Pharmacy/Test/other",
+      "detail": "View details",
+      "booking": "Booking now"
+    },
+    "bookingDoctor": {
+      "title": "Book an appointment with a doctor",
+      "subTitle": "Actively choose the doctor you trust the most",
+      "all": "General",
+      "job": "Specialty",
+      "appointment": "Examination schedule",
+      "price": "Examination price",
+      "booking": "Booking now"
     }
   }
 }

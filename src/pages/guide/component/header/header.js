@@ -25,70 +25,70 @@ function Header({ title, des }) {
 ];
 
 
-  useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-      if (width < 320) setSliderMode('one');
-      else if (width < 425) setSliderMode('two');
-      else if (width < 768) setSliderMode('three');
-      else if (width < 1024) setSliderMode('slider');
-      else setSliderMode('full');
-    };
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     const width = window.innerWidth;
+  //     if (width < 320) setSliderMode('one');
+  //     else if (width < 425) setSliderMode('two');
+  //     else if (width < 768) setSliderMode('three');
+  //     else if (width < 1024) setSliderMode('slider');
+  //     else setSliderMode('full');
+  //   };
 
-    handleResize();
-    window.addEventListener('resize', handleResize);
+  //   handleResize();
+  //   window.addEventListener('resize', handleResize);
 
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener('resize', handleResize);
+  //   };
+  // }, []);
 
-  useEffect(() => {
-    if (sliderMode !== 'full' && sliderRef.current) {
-      let isDown = false;
-      let startX;
-      let scrollLeft;
+  // useEffect(() => {
+  //   if (sliderMode !== 'full' && sliderRef.current) {
+  //     let isDown = false;
+  //     let startX;
+  //     let scrollLeft;
 
-      const slider = sliderRef.current;
+  //     const slider = sliderRef.current;
 
-      const onMouseDown = (e) => {
-        isDown = true;
-        slider.classList.add('active');
-        startX = e.pageX - slider.offsetLeft;
-        scrollLeft = slider.scrollLeft;
-      };
+  //     const onMouseDown = (e) => {
+  //       isDown = true;
+  //       slider.classList.add('active');
+  //       startX = e.pageX - slider.offsetLeft;
+  //       scrollLeft = slider.scrollLeft;
+  //     };
 
-      const onMouseLeave = () => {
-        isDown = false;
-        slider.classList.remove('active');
-      };
+  //     const onMouseLeave = () => {
+  //       isDown = false;
+  //       slider.classList.remove('active');
+  //     };
 
-      const onMouseUp = () => {
-        isDown = false;
-        slider.classList.remove('active');
-      };
+  //     const onMouseUp = () => {
+  //       isDown = false;
+  //       slider.classList.remove('active');
+  //     };
 
-      const onMouseMove = (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - slider.offsetLeft;
-        const walk = (x - startX) * 2;
-        slider.scrollLeft = scrollLeft - walk;
-      };
+  //     const onMouseMove = (e) => {
+  //       if (!isDown) return;
+  //       e.preventDefault();
+  //       const x = e.pageX - slider.offsetLeft;
+  //       const walk = (x - startX) * 2;
+  //       slider.scrollLeft = scrollLeft - walk;
+  //     };
 
-      slider.addEventListener('mousedown', onMouseDown);
-      slider.addEventListener('mouseleave', onMouseLeave);
-      slider.addEventListener('mouseup', onMouseUp);
-      slider.addEventListener('mousemove', onMouseMove);
+  //     slider.addEventListener('mousedown', onMouseDown);
+  //     slider.addEventListener('mouseleave', onMouseLeave);
+  //     slider.addEventListener('mouseup', onMouseUp);
+  //     slider.addEventListener('mousemove', onMouseMove);
 
-      return () => {
-        slider.removeEventListener('mousedown', onMouseDown);
-        slider.removeEventListener('mouseleave', onMouseLeave);
-        slider.removeEventListener('mouseup', onMouseUp);
-        slider.removeEventListener('mousemove', onMouseMove);
-      };
-    }
-  }, [sliderMode]);
+  //     return () => {
+  //       slider.removeEventListener('mousedown', onMouseDown);
+  //       slider.removeEventListener('mouseleave', onMouseLeave);
+  //       slider.removeEventListener('mouseup', onMouseUp);
+  //       slider.removeEventListener('mousemove', onMouseMove);
+  //     };
+  //   }
+  // }, [sliderMode]);
 
   return (
     <div className={cx('guide_header')}>
@@ -96,7 +96,7 @@ function Header({ title, des }) {
         <h2 className={cx('title')}>{title}</h2>
         <p className={cx('description')}>{des}</p>
       </div>
-      <div className={cx('btnGroup', sliderMode)} ref={sliderRef}>
+      <div className={cx('btnGroup')} ref={sliderRef}>
         {menus.map((item) => (
           <Button
             key={item.href}

@@ -7,6 +7,8 @@ import Button from '~/components/Button';
 import { fetchRecordUser } from '~/redux/user/authSlice';
 import { useBooking } from '~/context/bookingContext';
 import { updateBooking } from '~/redux/booking/bookingSlice';
+import { useTranslation } from 'react-i18next';
+import '~/translation/i18n';
 
 // icon
 import { MdKeyboardArrowRight, MdOutlineMail } from 'react-icons/md';
@@ -17,6 +19,8 @@ import { HiOutlineUserGroup, HiOutlineArrowUturnLeft } from 'react-icons/hi2';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 
 function ChooseRecord() {
+  const { t, i18n } = useTranslation();
+  const [currentLanguages, setCurrentLanguages] = useState(i18n.language);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.auth.user?.payload);
@@ -49,14 +53,14 @@ function ChooseRecord() {
     <div className="">
       <div className="max-w-screen-lg m-auto">
         <div className={'py-6'}>
-          <ul className="flex">
-            <li className="flex items-center">
+          <ul className={'flex flex-col sm:flex-row'}>
+            <li className={'flex items-center'}>
               <a href="#/" className="font-semibold">
-                Trang chủ
+                {t('header.home')}
               </a>
               <MdKeyboardArrowRight />
             </li>
-            <li className="flex items-center text-sky-500 font-semibold">Chọn hồ sơ bệnh nhân</li>
+            <li className="flex items-center text-sky-500 font-semibold">{t('appointments.date.chooseProfile')}</li>
           </ul>
         </div>
         <div className="flex justify-center items-center flex-col pb-20">
@@ -185,7 +189,7 @@ function ChooseRecord() {
                 className="bg-transparent font-medium
                   hover:bg-zinc-100"
               >
-                Quay lại
+                {t('appointments.form.back')}
               </Button>
               <Button
                 to="/tao-moi-ho-so"
@@ -193,7 +197,7 @@ function ChooseRecord() {
                 className="bg-transparent font-medium
                   hover:bg-zinc-100"
               >
-                Thêm hồ sơ
+                {t('patientRecords.sidebar.add')}
               </Button>
             </div>
           </div>

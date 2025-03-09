@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { unwrapResult } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 
 //icon
 import { FaUser, FaBirthdayCake, FaPhoneAlt, FaAddressCard } from 'react-icons/fa';
@@ -15,23 +16,36 @@ import { RxCardStackMinus } from 'react-icons/rx';
 import Button from '~/components/Button';
 import Modal from '~/components/modal';
 import { fetchRecordUser } from '~/redux/user/authSlice';
+import { fetchDeleteRecord } from '~/redux/record/recordSlice';
+import { formatDate } from '~/utils/time';
 
 function PatientRecord() {
   const dispatch = useDispatch();
   const [isModalDetailOpen, setIsModalDetailOpen] = useState(false);
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
+  const [selectedPatientId, setSelectedPatientId] = useState(null);
   const [recordData, setRecordData] = useState([]);
+  console.log('check recordData', recordData);
 
   const partnerId = useSelector((state) => state.auth?.user.payload?.userData?._id);
 
-  useEffect(() => {
-    const fetchRecords = async () => {
-      const res = await dispatch(fetchRecordUser({ recordId: partnerId }));
-      const result = unwrapResult(res);
-      setRecordData(result);
-    };
+  const fetchRecords = async () => {
+    const res = await dispatch(fetchRecordUser({ recordId: partnerId }));
+    const result = unwrapResult(res);
+    setRecordData(result);
+  };
+
+  const handleDeleteRecord = async () => {
+    const res = await dispatch(fetchDeleteRecord({ recordId: selectedPatientId }));
+    const result = unwrapResult(res);
     fetchRecords();
-  }, [dispatch, partnerId]);
+    setIsModalDeleteOpen(false);
+    toast.success(result?.message);
+  };
+
+  useEffect(() => {
+    fetchRecords();
+  }, []);
 
   return (
     <div className="mx-10 mb-20">
@@ -61,7 +75,7 @@ function PatientRecord() {
                         <FaBirthdayCake className="text-zinc-400" />
                       </span>
                       <span className="text-zinc-700">Ngày sinh:</span>
-                      <span className="font-semibold text-gray-600">Bổ sung sau </span>
+                      <span className="font-semibold text-gray-600">{formatDate(item?.birthdate)}</span>
                     </li>
                     <li className="flex items-center gap-3">
                       <span>
@@ -98,7 +112,8 @@ function PatientRecord() {
                       text
                       leftIcon={<AiOutlineDelete />}
                       onClick={() => {
-                        alert('Tính năng này đang phát triển, vui lòng thử lại sau');
+                        setIsModalDeleteOpen(true);
+                        setSelectedPatientId(item._id);
                       }}
                     >
                       Xóa hồ sơ
@@ -194,7 +209,15 @@ function PatientRecord() {
                     </li>
                   </ul>
                 </Modal>
-                <Modal isOpen={isModalDeleteOpen} onClose={() => setIsModalDeleteOpen(false)} title="Thông báo"></Modal>
+                <Modal isOpen={isModalDeleteOpen} onClose={() => setIsModalDeleteOpen(false)} title="Thông báo">
+                  <p className="px-10 py-10 text-2xl ">Bạn có muốn chắc chắn xóa bệnh nhân này không?</p>
+                  <div className="flex justify-end border-t py-2 pr-6 gap-4">
+                    <Button onClick={() => setIsModalDeleteOpen(false)}>Đóng</Button>
+                    <Button className="bg-red-400" onClick={handleDeleteRecord}>
+                      Đồng ý
+                    </Button>
+                  </div>
+                </Modal>
               </div>
             );
           })}

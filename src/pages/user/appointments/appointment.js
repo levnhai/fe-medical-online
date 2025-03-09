@@ -18,7 +18,7 @@ const cx = classNames.bind(styles);
 function Appointment() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const partnerId = useSelector((state) => state.auth?.user.payload?.userData?._id);
+  const patientId = useSelector((state) => state.auth?.user.payload?.userData?._id);
 
   const [activeTab, setActiveTab] = useState('pending');
   const [appointmentData, setAppointmentData] = useState([]);
@@ -101,7 +101,63 @@ function Appointment() {
     paid: (
       <>
         {appointmentData?.paid?.length > 0 ? (
-          <div>đã thanh toán</div>
+          <div>
+            {appointmentData?.paid?.map((item, index) => {
+              return (
+                <div
+                  className={cx('tab-content', 'grid grid-cols-6 gap-6')}
+                  key={index}
+                  onClick={() => navigate(`/chi-tiet-phieu-kham-benh?transactionId=${item.orderId}`)}
+                >
+                  <div className="col-span-4">
+                    <div className="flex gap-4">
+                      <span className="text-xl">Mã phiếu:</span>
+                      <span className="font-bold text-2xl">{item.orderId}</span>
+                    </div>
+                    <div className="font-bold text-2xl toUpperCase mt-4 ">
+                      {item?.doctor?.fullName || 'Đang cập nhật'}
+                    </div>
+                    <hr className="mt-4 border-b border-dashed border-black" />
+                    <div className="mt-4 flex items-center gap-4">
+                      <FaHospitalAlt className="text-cyan-500" />
+                      <span className="font-medium text-3xl text-cyan-500 toUpperCase">
+                        {item.hospital?.fullName || 'Đang cập nhật'}
+                      </span>
+                    </div>
+                    <div className="mt-4 grid grid-cols-3">
+                      <div className="col-span-2">
+                        <div className="items-center grid grid-cols-2">
+                          <div className="flex items-center gap-4">
+                            <RiServiceLine />
+                            <span>Dịch vụ:</span>
+                          </div>
+                          <div>Nội tổng quát</div>
+                        </div>
+                        <div className="items-center grid grid-cols-2 mt-4 ">
+                          <div className="flex items-center gap-4">
+                            <MdCalendarMonth />
+                            <span>Ngày khám:</span>
+                          </div>
+                          <div className="text-cyan-500">{formatDate(item.date)}</div>
+                        </div>
+                        <div className="items-center grid grid-cols-2 mt-4 ">
+                          <div className="flex items-center gap-4">
+                            <MdOutlineAccessTimeFilled />
+                            <span>Giờ khám dự kiến:</span>
+                          </div>
+                          <div className="text-cyan-500">{extractTime(item?.hours[0]?.start)}</div>
+                        </div>
+                      </div>
+                      <div></div>
+                    </div>
+                  </div>
+                  <div className="flex items-end flex-col col-span-2">
+                    <Button className="bg-green-500 text-white text-xl font-bold py-2">Đặt khám thành công</Button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         ) : (
           <div className="flex flex-col items-center my-12 ">
             <p className="mb-6 text-4xl font-semibold text-neutral-400">Bạn chưa có phiếu khám nào</p>
@@ -117,7 +173,6 @@ function Appointment() {
     ),
     completed: (
       <>
-        {' '}
         {appointmentData?.completed?.length > 0 ? (
           <div>Đã khám</div>
         ) : (
@@ -155,12 +210,12 @@ function Appointment() {
 
   useEffect(() => {
     const fetchDoctordata = async () => {
-      const res = await dispatch(fetchGetAppointment(partnerId));
+      const res = await dispatch(fetchGetAppointment(patientId));
       const result = unwrapResult(res);
       setAppointmentData(result.data);
     };
     fetchDoctordata();
-  }, [dispatch, partnerId]);
+  }, [dispatch, patientId]);
   return (
     <div className="mx-6">
       <h1 className="font-bold text-3xl mb-6">Danh sách phiếu khám bệnh</h1>
@@ -190,7 +245,7 @@ function Appointment() {
           Đã hủy
         </Button>
       </div>
-      <div className={cx('')}>{tabContent[activeTab]}</div>
+      <div className="max-h-[500px] overflow-scroll">{tabContent[activeTab]}</div>
     </div>
   );
 }

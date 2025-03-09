@@ -4,7 +4,7 @@ import { unwrapResult } from '@reduxjs/toolkit';
 import { useNavigate } from 'react-router-dom';
 import className from 'classnames/bind';
 
-import { fetchClinicPayment } from '~/redux/payment/paymentSlice';
+import { fetchClinicPayment, fetchPayment, fetchCreateUrlMomo } from '~/redux/payment/paymentSlice';
 import Sidebar from '../sidebar';
 import { extractTime } from '~/utils/time';
 import Modal from '~/components/modal';
@@ -27,16 +27,17 @@ function PaymentMethod() {
   const [selectedMethod, setSelectedMethod] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const bookingData = useSelector((state) => state.booking);
+  console.log('check booking data', selectedMethod);
 
   // phương thức thanh toán
   const paymentMethods = [
-    {
-      id: 'vietqr',
-      name: 'VietQR',
-      description: 'Thanh toán chuyển khoản bằng ứng dụng ngân hàng/ Ví điện tử.',
-      image: 'https://play.thinkmay.net/img/icon/payment.png',
-      link: 'https://payment.example.com/vietqr',
-    },
+    // {
+    //   id: 'vietqr',
+    //   name: 'VietQR',
+    //   description: 'Thanh toán chuyển khoản bằng ứng dụng ngân hàng/ Ví điện tử.',
+    //   image: 'https://play.thinkmay.net/img/icon/payment.png',
+    //   link: 'https://payment.example.com/vietqr',
+    // },
     {
       id: 'vnpay',
       name: 'VNPAY QR',
@@ -52,13 +53,13 @@ function PaymentMethod() {
       link: 'https://payment.example.com/momo',
     },
 
-    {
-      id: 'atm',
-      name: 'Thẻ ATM nội địa/Internet Banking',
-      description: 'Thanh toán bằng ATM hoặc internet banking.',
-      image: 'https://example.com/atm.png',
-      link: 'https://payment.example.com/atm',
-    },
+    // {
+    //   id: 'atm',
+    //   name: 'Thẻ ATM nội địa/Internet Banking',
+    //   description: 'Thanh toán bằng ATM hoặc internet banking.',
+    //   image: 'https://example.com/atm.png',
+    //   link: 'https://payment.example.com/atm',
+    // },
     {
       id: 'cash',
       name: 'Thanh toán tại phòng khám',
@@ -80,7 +81,6 @@ function PaymentMethod() {
 
   // Xử lý xác nhận thanh toán
   const handleConfirmPayment = async () => {
-    // const selectedPayment = paymentMethods.find((method) => method.id === selectedMethod);
     setIsModalOpen(false); // Đóng Modal
     const formData = {
       patientId: bookingData.patientProfile,
@@ -93,18 +93,36 @@ function PaymentMethod() {
       paymentMethod: selectedMethod,
       orderId: `ORDER_${Date.now()}`,
     };
-    console.log('check form data', formData);
-    const res = await dispatch(fetchClinicPayment({ formData }));
-    const result = unwrapResult(res);
 
-    if (result?.status) {
-      console.log('hải kê');
-      navigate(`/chi-tiet-phieu-kham-benh?transactionId=${result?.appointment?.orderId}`);
+    switch (selectedMethod) {
+      case 'cash': {
+        const res = await dispatch(fetchClinicPayment({ formData }));
+        const result = unwrapResult(res);
+
+        if (result?.status) {
+          navigate(`/chi-tiet-phieu-kham-benh?transactionId=${result?.appointment?.orderId}`);
+        }
+        break;
+      }
+      case 'vnpay': {
+        const res = await dispatch(fetchPayment({ formData }));
+        if (res.payload) {
+          window.location.href = res.payload; // Chuyển hướng đến trang thanh toán VNPay
+        }
+        break;
+      }
+
+      case 'momo': {
+        const res = await dispatch(fetchCreateUrlMomo({ formData }));
+        if (res?.payload?.payUrl) {
+          window.location.href = res?.payload?.payUrl; // Chuyển hướng đến trang thanh toán VNPay
+        }
+        console.log('Thanh toán với ví momo');
+        break;
+      }
+      default: {
+      }
     }
-    console.log('chekc hair kee', result);
-    // if (result?.vnpUrl) {
-    //   window.location.href = result?.vnpUrl; // Redirect đến VNPay
-    // }
   };
 
   return (
@@ -143,14 +161,14 @@ function PaymentMethod() {
                   <div className="grid grid-cols-9 p-6 gap-8">
                     <div className="col-span-5">
                       {paymentMethods.map((method) => (
-                        <div key={method.id} className="mb-4">
+                        <div onClick={() => setSelectedMethod(method.id)} key={method.id} className="mb-4">
                           <label className="flex items-baseline gap-4 cursor-pointer">
                             <input
                               type="radio"
                               name="paymentMethod"
                               value={method.id}
                               checked={selectedMethod === method.id}
-                              onChange={() => setSelectedMethod(method.id)}
+                              // onChange={() => setSelectedMethod(method.id)}
                             />
                             <div className="flex flex-col">
                               <span>{method.name}</span>
@@ -279,8 +297,10 @@ function PaymentMethod() {
             <div className="p-8">
               <div>
                 Thanh toán số tiền
-                <strong className="font-semibold"> {bookingData?.price.toLocaleString('en-US')}</strong> bằng
-                <strong className="font-semibold"> Thanh toán tại Phòng Khám</strong>
+                <strong className="font-semibold"> {bookingData?.price.toLocaleString('en-US')}</strong>
+                <strong className="font-semibold">
+                  {selectedMethod === 'cash' ? 'tại phòng khám' : selectedMethod === 'momo' ? 'Với Momo' : 'VnPay'}
+                </strong>
               </div>
               <div className="rounded-lg p-8 mt-6 text-2xl" style={{ backgroundColor: '#cce5ff' }}>
                 Bạn sẽ nhận được phiếu khám bệnh ngay khi <span className="font-semibold">Thanh toán thành công </span>.

@@ -13,6 +13,18 @@ export const fetchCreateRecord = createAsyncThunk('record/fetchCreateRecord', as
   }
 });
 
+export const fetchDeleteRecord = createAsyncThunk('record/fetchDeleteRecord', async ({ recordId }) => {
+  try {
+    console.log('check recordId: ', recordId);
+    const response = await axios.delete(`/record/delete-record/${recordId}`);
+
+    console.log('check response docter', response);
+    return response.result;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+});
+
 const recordSlice = createSlice({
   name: 'record',
   initialState: {
@@ -24,4 +36,3 @@ const recordSlice = createSlice({
 });
 
 export default recordSlice.reducer;
-

@@ -14,7 +14,6 @@ import { generateYears, generateMonths, generateDays } from '~/utils/time';
 import { fetchAllProvinces, fetchDistrictsByProvince, fetchWardsByDistricts } from '~/redux/location/locationSlice';
 import Button from '~/components/Button';
 import { fetchCreateRecord } from '~/redux/record/recordSlice';
-import { useBooking } from '~/context/bookingContext';
 import { updateBooking } from '~/redux/booking/bookingSlice';
 
 import styles from './newRecord.module.scss';
@@ -28,6 +27,7 @@ function NewRecord() {
     handleSubmit,
     control,
     formState: { errors },
+    reset,
   } = useForm();
 
   const [provinceOptions, setProvinceOptions] = useState([]);
@@ -96,23 +96,6 @@ function NewRecord() {
       // toast.error(error);
     }
   };
-
-  // const handleSubmitCreateUser = methods.handleSubmit(async (data) => {
-  //   try {
-  //     const formData = { ...data, phoneNumber };
-  //     console.log('check form data', formData);
-  //     const res = await dispatch(fetchForgotPassword(formData));
-  //     const userSelector = unwrapResult(res);
-  //     if (userSelector.status) {
-  //       toast.success(userSelector.message);
-  //       navigate('/login');
-  //     } else {
-  //       toast.error(userSelector.message);
-  //     }
-  //   } catch (error) {
-  //     toast.error(error);
-  //   }
-  // });
 
   useEffect(() => {
     const fetchProvinces = async () => {
@@ -617,11 +600,11 @@ function NewRecord() {
                       <div className="mt-2">
                         <input
                           type="text"
-                          name="address"
-                          id="address"
+                          name="street"
+                          id="street"
                           className={cx('customInput')}
                           placeholder="Địa chỉ ..."
-                          {...register('address', { required: 'Vui lòng nhập địa chỉ!' })}
+                          {...register('street', { required: 'Vui lòng nhập địa chỉ!' })}
                         />
 
                         {errors.address && (
@@ -634,7 +617,9 @@ function NewRecord() {
                   </div>
                 </div>
                 <div className="flex justify-end gap-10 mt-10 mb-16">
-                  <Button className="bg-yellow-400 text-white px-10 hover:bg-yellow-500 ">Nhập lại</Button>
+                  <Button onClick={() => reset()} className="bg-yellow-400 text-white px-10 hover:bg-yellow-500 ">
+                    Nhập lại
+                  </Button>
                   <Button type="submit" className="bg-cyan-400 text-white px-16 hover:bg-cyan-500">
                     Tạo mới
                   </Button>

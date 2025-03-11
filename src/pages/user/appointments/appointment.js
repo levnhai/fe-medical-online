@@ -29,7 +29,6 @@ function Appointment() {
   const [activeTab, setActiveTab] = useState('pending');
   const [appointmentData, setAppointmentData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  console.log('check appointmentData', appointmentData);
 
   const tabContent = {
     pending: (

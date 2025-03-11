@@ -1,8 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { unwrapResult } from '@reduxjs/toolkit';
-import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 
 //icon
 import { FaUser, FaBirthdayCake, FaPhoneAlt, FaAddressCard } from 'react-icons/fa';

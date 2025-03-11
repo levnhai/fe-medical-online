@@ -414,16 +414,23 @@ function Header() {
         </button> */}
               <div ref={btnLoginRef}>
                 <Button
-                  to={isLoggedIn ? '#' : '/check-phone'}
+                  to={isLoggedIn ? '/user?key=records' : '/check-phone'}
                   rounded
                   leftIcon={<IoPersonSharp style={{ width: '1.7rem', height: '1.7rem' }} />}
                   className={cx(
                     'accountBtn',
                     'w-full text-left px-4 py-2 bg-indigo-500 text-white rounded-lg flex items-center',
                   )}
-                  onClick={handleShowModalProfile}
+                  onClick={() => {
+                    if (isLoggedIn) {
+                      navigate('/user?key=records');
+                      setMobileMenuOpen(false); // Close the mobile menu
+                    } else {
+                      handleShowModalProfile();
+                    }
+                  }}
                 >
-                  {isLoggedIn ? `${user?.userData?.fullName}` : t('header.account')}
+                  {isLoggedIn ? user?.userData?.fullName : t('header.account')}
                 </Button>
               </div>
             </div>

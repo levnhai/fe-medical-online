@@ -145,8 +145,8 @@ function NewRecord() {
     <div>
       <div className="">
         <div className="border-b border-neutral-300 pb-10">
-          <div className="max-w-screen-lg m-auto py-4">
-            <ul className="flex">
+          <div className={'-mt-20 mb-8 ms-8 md:mt-8'}>
+            <ul className={'flex text-xl'}>
               <li className="flex items-center">
                 <a href="#/" className="font-semibold">
                   Trang chủ
@@ -164,7 +164,7 @@ function NewRecord() {
           <h1 className="text-center text-5xl text-sky-500 font-bold uppercase">Tạo mới hồ sơ</h1>
         </div>
         <div className="">
-          <div className="max-w-7xl m-auto py-4">
+          <div className="max-w-7xl m-auto py-4 px-4">
             <h1 className="text-center text-4xl font-bold py-6">Nhập thông tin bệnh nhân</h1>
             <div className="bg-sky-200 rounded-lg border border-neutral-300 text-sky-500 p-4">
               Vui lòng cấp thông tin chính xác để được phục vụ tốt nhất. Trong trường hợp cung cấp sai thông tin bệnh
@@ -174,7 +174,7 @@ function NewRecord() {
             <div className="">
               <form onSubmit={handleSubmit(submitForm)}>
                 <div>
-                  <div className="grid grid-cols-2 gap-10">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 px-8">
                     <div className="col-span-1">
                       <div className="flex">
                         <h2 className="font-semibold">Họ và tên (Có dấu)</h2>
@@ -295,7 +295,7 @@ function NewRecord() {
                       </div>
                     </div>
                   </div>
-                  <div className="grid grid-cols-2 gap-10 mt-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 mt-4 px-8">
                     <div className="col-span-1">
                       <div className="flex">
                         <h2 className="font-semibold">Số điện thoại</h2>
@@ -360,7 +360,7 @@ function NewRecord() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-10 mt-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 mt-4 px-8">
                     <div className="col-span-1">
                       <div className="flex">
                         <h2 className="font-semibold">Nghề nghiệp</h2>
@@ -406,7 +406,7 @@ function NewRecord() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-10 mt-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 mt-4 px-8">
                     <div className="col-span-1">
                       <div className="flex">
                         <h2 className="font-semibold">Địa chỉ email</h2>
@@ -472,7 +472,7 @@ function NewRecord() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-10 mt-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 mt-4 px-8">
                     <div className="col-span-1">
                       <div className="flex">
                         <h2 className="font-semibold">Tỉnh / Thành</h2>
@@ -554,7 +554,7 @@ function NewRecord() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-10 mt-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 mt-4 px-8">
                     <div className="col-span-1">
                       <div className="flex">
                         <h2 className="font-semibold">Phường/ Xã</h2>
@@ -616,8 +616,8 @@ function NewRecord() {
                     </div>
                   </div>
                 </div>
-                <div className="flex justify-end gap-10 mt-10 mb-16">
-                  <Button onClick={() => reset()} className="bg-yellow-400 text-white px-10 hover:bg-yellow-500 ">
+                <div className="flex justify-center sm:justify-end gap-5 sm:gap-10 mt-10 mb-16">
+                  <Button onClick={() => reset()} className="bg-yellow-400 text-white px-10 hover:bg-yellow-500">
                     Nhập lại
                   </Button>
                   <Button type="submit" className="bg-cyan-400 text-white px-16 hover:bg-cyan-500">

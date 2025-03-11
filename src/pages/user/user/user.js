@@ -37,7 +37,7 @@ function User() {
   };
   return (
     <div className={cx('user')}>
-      <div className={cx('', 'py-6')}>
+      <div className={cx('-mt-20 mb-8 ms-8 md:mt-8')}>
         <ul className="flex">
           <li className="flex items-center">
             <a href="#/" className="font-semibold">

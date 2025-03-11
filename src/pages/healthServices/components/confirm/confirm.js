@@ -35,8 +35,8 @@ function Confirm() {
   return (
     <div className={cx('appointment-doctor')}>
       <div className="max-w-screen-lg m-auto">
-        <div className={cx('', 'py-4')}>
-          <ul className={cx('flex flex-col sm:flex-row')}>
+        <div className={cx('-mt-20 mb-8 ms-8 md:mt-8')}>
+          <ul className={cx('flex flex-col sm:flex-row text-xl')}>
             <li className={cx('flex items-center')}>
               <a href="#/" className="font-semibold">
                 {t('header.home')}
@@ -56,11 +56,11 @@ function Confirm() {
             </li>
           </ul>
         </div>
-        <div className={cx('grid grid-cols-1 md:grid-cols-4 gap-10 px-10 pb-18')}>
+        <div className={cx('grid grid-cols-1 md:grid-cols-4 gap-10 px-4 pb-18')}>
           <div className=" rounded-lg">
             <Sidebar />
           </div>
-          <div className="flex gap-8 flex-col col-span-3 rounded-lg overflow-hidden">
+          <div className="flex gap-8 flex-col md:col-span-3 rounded-lg overflow-hidden">
             <div className={cx('bg-white rounded-lg')}>
               <div>
                 <div className={cx('title')}>{t('appointments.confirm.title')}</div>
@@ -99,7 +99,7 @@ function Confirm() {
                           {extractTime(bookingData?.time.start)} - {extractTime(bookingData?.time.end)} <br />{' '}
                           {bookingData?.date}
                         </li>
-                        <li className="w-1/5 text-left">
+                        <li className="w-1/5 text-left text-base sm:text-lg md:text-xl lg:text-2xl">
                           {bookingData?.price?.toLocaleString('en-US', { style: 'currency', currency: 'VND' })} Vnđ
                         </li>
                         <li className="w-1/12 text-left">
@@ -126,7 +126,7 @@ function Confirm() {
                                 {t('patientRecords.list.name')}:{' '}
                               </span>
                             </div>
-                            <div className="col-span-3 text-2xl text-sky-500">
+                            <div className="col-span-3 text-2xl text-sky-500 ">
                               {bookingData?.patientProfile?.fullName.toUpperCase()}
                             </div>
                           </li>

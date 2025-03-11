@@ -212,16 +212,11 @@ function Appointment() {
 
 
   useEffect(() => {
-    const fetchDoctordata = async () => {
-      const res = await dispatch(fetchGetAppointment(patientId));
-      const result = unwrapResult(res);
-      setAppointmentData(result.data);
-      } catch (error) {
-        console.error('Failed to fetch records:', error);
-      } finally {
-        setIsLoading(false); 
+      const fetchDoctordata = async () => {
+        const res = await dispatch(fetchGetAppointment(patientId));
+        const result = unwrapResult(res);
+        setAppointmentData(result.data);
       }
-    };
     fetchDoctordata();
   }, [dispatch, patientId]);
   return (

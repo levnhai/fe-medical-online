@@ -43,10 +43,10 @@ function FormBooking() {
   return (
     <div className={cx('AppointmentBooking')}>
       <div className="max-w-screen-lg m-auto pb-20">
-        <div className={cx('', 'py-4')}>
-        <ul className={cx('flex flex-col sm:flex-row')}>
+      <div className={cx('-mt-20 ms-8 md:mt-8')}>
+        <ul className={cx('flex flex-col sm:flex-row text-xl')}>  
           <li className={cx('flex items-center')}>
-            <a href="#/" className="font-semibold">
+            <a href="#/" className="font-semibold" >
               {t('header.home')}
             </a>
             <MdKeyboardArrowRight />
@@ -63,11 +63,12 @@ function FormBooking() {
             </a>
           </li>
         </ul>
+        
         </div>
         <div className={cx('flex justify-center flex-col items-center')}>
           <div className="py-10">
-            <div className={cx('text-center text-sky-500 font-bold text-3xl sm:text-4xl lg:text-5xl')}>{t('appointments.form.title')}</div>
-            <div className="text-slate-500 py-2 text-sm md:text-lg lg:text-xl">
+            <div className={cx('text-center text-sky-500 font-bold text-4xl sm:text-4xl lg:text-5xl')}>{t('appointments.form.title')}</div>
+            <div className="text-slate-500 py-2 text-lg md:text-lg lg:text-xl text-center">
                 {t('appointments.form.subTitle')}
               </div>
             </div>

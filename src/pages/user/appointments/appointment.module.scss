@@ -1,3 +1,36 @@
+/* Option 1: Horizontal scrolling tabs for mobile */
+.tabs-container {
+  display: flex;
+  margin-bottom: 16px;
+  
+  @media (max-width: 768px) {
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    
+    &::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera */
+    }
+  }
+}
+
+/* Option 2: 2x2 grid layout for mobile */
+.tabs-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+  
+  @media (max-width: 575px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+  }
+}
+
+/* Shared styles for both options */
 .tab-btn {
   display: flex;
   padding: 6px 16px;
@@ -10,9 +43,22 @@
   min-width: 145px;
   background: #dcdddd;
   border: 1px solid transparent;
+  
   &:hover {
     border: 1px solid #11a2f3;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.24);
+  }
+  
+  @media (max-width: 768px) {
+    min-width: 120px;
+    font-size: 14px;
+  }
+  
+  @media (max-width: 575px) {
+    min-width: unset;
+    width: 100%;
+    font-size: 13px;
+    padding: 4px 10px;
   }
 }
 
@@ -27,21 +73,4 @@
 .active {
   background: linear-gradient(83.63deg, #00b5f1 33.34%, #00e0ff 113.91%) !important;
   color: #fff !important;
-}
-
-/* Kích thước nhỏ hơn 425px: nút thu nhỏ lại */
-@media (max-width: 425px) {
-  .tab-btn {
-    min-width: 110px; /* Giảm độ rộng */
-    font-size: 14px; /* Giảm cỡ chữ */
-    padding: 4px 10px;
-  }
-}
-
-/* Kích thước nhỏ hơn 375px: nút chiếm toàn bộ chiều rộng */
-@media (max-width: 375px) {
-  .tab-btn {
-    width: 100%; /* Nút full width */
-    min-width: unset;
-  }
 }

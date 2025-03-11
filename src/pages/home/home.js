@@ -52,7 +52,7 @@ function Home() {
     <div className={cx('home', 'container mx-auto w-full px-4 md:px-6 lg:px-8 overflow-x-hidden')}>
       <div className={cx('home_header', 'mb-8')}>
         <div className={cx('home_header_banner', 'bg-gray-100 rounded-lg p-6 md:p-10')}>
-          <div className={cx('banner_wrapper', 'sm:flex sm:flex-col')}>
+          <div className={cx('banner_wrapper', 'sm:flex sm:flex-col -mt-20')}>
             <div className={cx('banner_content', 'sm:w-full')}>
               <div className={cx('content_tag')}>{t('home.tech_platform')}</div>
               <div className={cx('content_title', 'text-2xl sm:text-6xl')}>

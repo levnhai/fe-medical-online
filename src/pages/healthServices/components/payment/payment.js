@@ -131,7 +131,7 @@ function PaymentMethod() {
   return (
     <div className={cx('appointment-doctor')}>
       <div className="max-w-screen-lg m-auto">
-        <div className={cx('', 'py-4')}>
+        <div className={cx('-mt-20 mb-8 ms-8 md:mt-8')}>
           <ul className={cx('flex flex-col sm:flex-row')}>
             <li className={cx('flex items-center')}>
               <a href="#/" className="font-semibold">
@@ -152,11 +152,11 @@ function PaymentMethod() {
             </li>
           </ul>
         </div>
-        <div className={cx('grid grid-cols-1 md:grid-cols-4 gap-4')}>
+        <div className={cx('grid grid-cols-1 md:grid-cols-4 gap-4 px-4')}>
           <div className={cx('md:col-span-1')}>
             <Sidebar />
           </div>
-          <div className="flex gap-10 flex-col col-span-3 rounded-lg overflow-hidden">
+          <div className="flex gap-10 flex-col md:col-span-3 rounded-lg overflow-hidden">
             <div className={cx('bg-white', 'rounded-lg')}>
               <div>
                 <div className={cx('title')}>{t('appointments.payment.title')}</div>

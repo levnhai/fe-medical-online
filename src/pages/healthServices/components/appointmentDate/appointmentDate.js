@@ -105,8 +105,8 @@ function AppointmentDate() {
   return (
     <div className={cx('appointment-doctor')}>
       <div className="max-w-screen-lg m-auto">
-        <div className={cx('', 'py-6')}>
-        <ul className={cx('flex flex-col sm:flex-row')}>
+      <div className={cx('-mt-20 mb-8 ms-8 md:mt-8')}>
+        <ul className={cx('flex flex-col sm:flex-row text-xl')}>
           <li className={cx('flex items-center')}>
               <a href="#/" className="font-semibold">
               {t('header.home')}
@@ -126,11 +126,11 @@ function AppointmentDate() {
             </li>
           </ul>
         </div>
-        <div className={cx('grid grid-cols-1 md:grid-cols-4 gap-10 px-10 pb-18')}>
-          <div className="">
+        <div className={cx('grid grid-cols-1 md:grid-cols-4 gap-10 px-4 pb-18')}>
+          <div className="hidden md:block">
             <Sidebar />
           </div>
-          <div className="col-span-3 rounded-lg overflow-hidden">
+          <div className="md:col-span-3 rounded-lg overflow-hidden">
             <div className={cx('bg-white', 'rounded-lg')}>
               <div className={cx('title')}>{showCalendar ?  t('appointments.date.title') :  t('appointments.date.time')}</div>
               <div className="calendar-container mb-6">
@@ -221,6 +221,9 @@ function AppointmentDate() {
                   </div>
                 )}
               </div>
+            </div>
+            <div className="md:hidden mt-6">
+              <Sidebar />
             </div>
             <div className={'my-6'}>
               <Button

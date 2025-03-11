@@ -1,31 +1,3 @@
-// import React, { createContext, useContext, useState } from 'react';
-
-// const BookingContext = createContext();
-
-// export const useBooking = () => useContext(BookingContext);
-
-// export const BookingProvider = ({ children }) => {
-//   const [bookingData, setBookingData] = useState({
-//     hospital: { fullName: null, id: null, address: null },
-//     doctor: { fullName: null, id: null, specialty: null },
-//     date: null,
-//     price: null,
-//     time: { start: null, end: null },
-//     patientProfile: null,
-//     confirmed: false,
-//     paymentStatus: null,
-//   });
-
-//   const updateBookingData = (key, value) => {
-//     setBookingData((prev) => ({
-//       ...prev,
-//       [key]: value,
-//     }));
-//   };
-
-//   return <BookingContext.Provider value={{ bookingData, updateBookingData }}>{children}</BookingContext.Provider>;
-// };
-
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const BookingContext = createContext();
@@ -43,7 +15,7 @@ export const BookingProvider = ({ children }) => {
           doctor: { fullName: null, id: null, specialty: null },
           date: null,
           price: null,
-          time: { start: null, end: null },
+          time: { timeId: null, start: null, end: null },
           patientProfile: null,
           confirmed: false,
           paymentStatus: null,

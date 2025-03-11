@@ -106,10 +106,10 @@ function AppointmentDate() {
     <div className={cx('appointment-doctor')}>
       <div className="max-w-screen-lg m-auto">
         <div className={cx('', 'py-6')}>
-        <ul className={cx('flex flex-col sm:flex-row')}>
-          <li className={cx('flex items-center')}>
+          <ul className={cx('flex flex-col sm:flex-row')}>
+            <li className={cx('flex items-center')}>
               <a href="#/" className="font-semibold">
-              {t('header.home')}
+                {t('header.home')}
               </a>
               <MdKeyboardArrowRight />
             </li>
@@ -121,7 +121,7 @@ function AppointmentDate() {
             </li>
             <li className="flex items-center">
               <a href="#/" className="text-sky-500 font-semibold">
-              {t('appointments.date.path')}
+                {t('appointments.date.path')}
               </a>
             </li>
           </ul>
@@ -132,7 +132,9 @@ function AppointmentDate() {
           </div>
           <div className="col-span-3 rounded-lg overflow-hidden">
             <div className={cx('bg-white', 'rounded-lg')}>
-              <div className={cx('title')}>{showCalendar ?  t('appointments.date.title') :  t('appointments.date.time')}</div>
+              <div className={cx('title')}>
+                {showCalendar ? t('appointments.date.title') : t('appointments.date.time')}
+              </div>
               <div className="calendar-container mb-6">
                 {/* Thanh điều hướng tháng */}
                 {showCalendar && (
@@ -196,20 +198,22 @@ function AppointmentDate() {
                                     updateBooking({
                                       key: 'time',
                                       value: {
-                                        start: hour.start,
-                                        end: hour.end,
+                                        timeId: hour?._id,
+                                        start: hour?.start,
+                                        end: hour?.end,
                                       },
                                     }),
                                   );
                                   dispatch(
                                     updateBooking({
                                       key: 'price',
-                                      value: hour.price,
+                                      value: hour?.price,
                                     }),
                                   );
                                   // updateBookingData('price', hour.price);
                                   navigate('/chon-lich-kham?feature=booking.doctor&stepName=record');
                                 }}
+                                disabled={hour.isBooked}
                               >
                                 {extractTime(hour.start)} - {extractTime(hour.end)}
                               </Button>

@@ -10,14 +10,14 @@ export const menu = [
       { labelKey: 'laboratory', href: '/co-so-y-te/xet-nghiem' },
     ],
   },
-  {
-    labelKey: 'medical_services',
-    href: '/#',
-    children: [
-      { labelKey: 'book_at_facility', href: '/dich-vu-y-te/dat-kham-tai-co-so' },
-      { labelKey: 'book_with_doctor', href: '/dich-vu-y-te/dat-kham-theo-bac-si' },
-    ],
-  },
+  // {
+  //   labelKey: 'medical_services',
+  //   href: '/#',
+  //   children: [
+  //     { labelKey: 'book_at_facility', href: '/dich-vu-y-te/dat-kham-tai-co-so' },
+  //     { labelKey: 'book_with_doctor', href: '/dich-vu-y-te/dat-kham-theo-bac-si' },
+  //   ],
+  // },
   {
     labelKey: 'news',
     href: '/tin-tuc',

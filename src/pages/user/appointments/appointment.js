@@ -85,19 +85,22 @@ function Appointment() {
                     </div>
                   </div>
                   <div className="flex items-end justify-center md:justify-end flex-col col-span-1 md:col-span-2">
-                    <Button className="bg-green-500 text-white text-sm md:text-xl font-bold py-1 md:py-2">{t('appointments.details.success')}</Button>
+                    <Button className="bg-green-500 text-white text-sm md:text-xl font-bold py-1 md:py-2">
+                      {t('appointments.details.success')}
+                    </Button>
                   </div>
                 </div>
               );
             })}
           </div>
         ) : (
-          <div className="flex flex-col items-center my-12 ">
-            <p className="mb-6 text-4xl font-semibold text-neutral-400">Bạn chưa có phiếu khám nào</p>
+          <div className="flex flex-col items-center my-6 md:my-12">
+            <p className="mb-4 md:mb-6 text-lg md:text-4xl font-semibold text-neutral-400">
+              Bạn chưa có phiếu khám nào
+            </p>
             <img
               alt="empty"
-              width="302px"
-              height="298px"
+              className="w-40 md:w-72"
               src="https://medpro.vn/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fnull-data.b105c645.png&w=384&q=75"
             />
           </div>
@@ -166,7 +169,9 @@ function Appointment() {
           </div>
         ) : (
           <div className="flex flex-col items-center my-6 md:my-12">
-            <p className="mb-4 md:mb-6 text-lg md:text-4xl font-semibold text-neutral-400">Bạn chưa có phiếu khám nào</p>
+            <p className="mb-4 md:mb-6 text-lg md:text-4xl font-semibold text-neutral-400">
+              Bạn chưa có phiếu khám nào
+            </p>
             <img
               alt="empty"
               className="w-40 md:w-72"
@@ -182,7 +187,9 @@ function Appointment() {
           <div className="text-center">Đã khám</div>
         ) : (
           <div className="flex flex-col items-center my-6 md:my-12">
-            <p className="mb-4 md:mb-6 text-lg md:text-4xl font-semibold text-neutral-400">Bạn chưa có phiếu khám nào</p>
+            <p className="mb-4 md:mb-6 text-lg md:text-4xl font-semibold text-neutral-400">
+              Bạn chưa có phiếu khám nào
+            </p>
             <img
               alt="empty"
               className="w-40 md:w-72"
@@ -198,7 +205,9 @@ function Appointment() {
           <div className="text-center">Đã hủy</div>
         ) : (
           <div className="flex flex-col items-center my-6 md:my-12">
-            <p className="mb-4 md:mb-6 text-lg md:text-4xl font-semibold text-neutral-400">Bạn chưa có phiếu khám nào</p>
+            <p className="mb-4 md:mb-6 text-lg md:text-4xl font-semibold text-neutral-400">
+              Bạn chưa có phiếu khám nào
+            </p>
             <img
               alt="empty"
               className="w-40 md:w-72"
@@ -210,17 +219,11 @@ function Appointment() {
     ),
   };
 
-
   useEffect(() => {
     const fetchDoctordata = async () => {
       const res = await dispatch(fetchGetAppointment(patientId));
       const result = unwrapResult(res);
       setAppointmentData(result.data);
-      } catch (error) {
-        console.error('Failed to fetch records:', error);
-      } finally {
-        setIsLoading(false); 
-      }
     };
     fetchDoctordata();
   }, [dispatch, patientId]);

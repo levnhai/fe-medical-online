@@ -2,11 +2,12 @@ import classNames from 'classnames/bind';
 import '~/translation/i18n';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styles from './news.module.scss';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { FaCalendarAlt, FaBars } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMedicalNews } from '~/redux/news/newsSlice';
 import NewsSkeleton from './loading/news_skeleton';
+import Pagination from '~/components/paination';
 const cx = classNames.bind(styles);
 
 function NewsMedical() {
@@ -27,12 +28,17 @@ function NewsMedical() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedMenuItem, setSelectedMenuItem] = useState(null);
 
+  const [desktopCurrentPage, setDesktopCurrentPage] = useState(1);
+  const [mobileCurrentPage, setMobileCurrentPage] = useState(1);
+  const desktopPageSize = 3;
+  const mobilePageSize = 3; 
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
   const handleMenuItemClick = (item) => {
     setSelectedMenuItem(item.title);
-    setIsMenuOpen(false); // Đóng menu khi đã chọn
+    setIsMenuOpen(false);
   };
   const menuItems = [
     { title: 'Tin dịch vụ', path: '/tin-tuc/dich-vu' },
@@ -45,6 +51,20 @@ function NewsMedical() {
     dispatch(fetchMedicalNews());
 
   }, []);
+
+  const currentDesktopNewsItems = useMemo(() => {
+    if (!newData?.news) return [];
+    const firstPageIndex = (desktopCurrentPage - 1) * desktopPageSize;
+    const lastPageIndex = firstPageIndex + desktopPageSize;
+    return newData.news.slice(firstPageIndex, lastPageIndex);
+  }, [desktopCurrentPage, newData?.news, desktopPageSize]);
+
+  const currentMobileNewsItems = useMemo(() => {
+    if (!newData?.news) return [];
+    const firstPageIndex = (mobileCurrentPage - 1) * mobilePageSize;
+    const lastPageIndex = firstPageIndex + mobilePageSize;
+    return newData.news.slice(firstPageIndex, lastPageIndex);
+  }, [mobileCurrentPage, newData?.news, mobilePageSize]);
 
   if (isLoading) {
     return <NewsSkeleton />;
@@ -153,15 +173,11 @@ function NewsMedical() {
       </div>
 
       {/* Service News Section */}
-      {/* Service News Section */}
       <div className="hidden md:block">
         <div className={cx('news_wapper', 'overflow-hidden')}>
           <div className="grid grid-cols-3 gap-4">
-            {newData?.news?.map((item) => (
-              <Link 
-              to={`/tin-tuc/${item._id}`} 
-              key={item.id} 
-              >
+            {currentDesktopNewsItems.map((item) => (
+              <Link to={`/tin-tuc/${item._id}`} key={item.id}>
               <div
                 key={item.id}
                 className="relative transition-transform duration-300 transform hover:scale-105 hover:shadow-lg p-5"
@@ -179,15 +195,26 @@ function NewsMedical() {
           </Link>
         ))}
         </div>
+        {/* Desktop Pagination Component */}
+        <div className="mt-8 flex justify-center">
+            <Pagination
+              currentPage={desktopCurrentPage}
+              totalCount={newData?.news?.length || 0}
+              pageSize={desktopPageSize}
+              onPageChange={page => setDesktopCurrentPage(page)}
+              siblingCount={1}
+            />
+          </div>
         </div>
       </div>
-      <div className="block md:hidden space-y-12">
-      <h2 className={cx('service_title')}>Tin Y tế</h2>
-        {newData?.news?.slice(0, 8).map((article) => (
+
+      <div className="block md:hidden space-y-6 mt-8">
+        <h2 className={cx('service_title')}>Tin y tế</h2>
+        {currentMobileNewsItems.map((article) => (
           <Link 
           to={`/tin-tuc/${article._id}`} 
           key={article.id} 
-          className="block relative mx-2 transition-transform duration-300 transform hover:scale-105 hover:shadow-lg px-5"
+          className="block relative mx-2"
           >
           <div key={article.id} className={cx('side_article')}>
             <img 
@@ -210,6 +237,16 @@ function NewsMedical() {
           </div>
           </Link>
         ))}
+        {/* Mobile Pagination Component */}
+        <div className="mt-6 flex justify-center pb-6">
+          <Pagination
+            currentPage={mobileCurrentPage}
+            totalCount={newData?.news?.length || 0}
+            pageSize={mobilePageSize}
+            onPageChange={page => setMobileCurrentPage(page)}
+            siblingCount={1}
+          />
+        </div>
       </div>
 </div>
   );

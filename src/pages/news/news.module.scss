@@ -1,9 +1,11 @@
 .news {
     width: 100%;
-    max-width: 1200px; // Giới hạn độ rộng tối đa
-    margin: 0 auto; // Căn giữa container
-    padding: 0 20px; // Thêm padding ở hai bên
-    background: var(--white-color);
+    max-width: 1200px;
+    margin: 0 auto; 
+    padding: 0 20px;
+    margin-bottom: 20px;
+    background-color: #E8F2F7;;
+    //background: var(--white-color);
     @media (max-width: 1024px) {
       margin-top: -50px;
     }
@@ -11,7 +13,7 @@
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 1rem;
-    
+        background-color: #fff;;
         .news_header {
           display: flex;
           align-items: center;
@@ -198,7 +200,7 @@
     max-width: 100%;
     margin: auto;
     border-radius: 20px;
-    background-color: #fff;
+    background-color: #E8F2F7;
     cursor: pointer;
     margin-bottom: 100px;
     height: 420px;
@@ -206,6 +208,8 @@
 .news_wapper {
     padding-top: 39px;
     padding-bottom: 39px;
+    margin-bottom: 100px;
+    background-color: #fff;
 }
 .service_title {
     padding-bottom: 30px;

@@ -24,8 +24,6 @@ function News() {
   const isLoading = useSelector((state) => state.new.loading);
   console.log('check newData', newData)
 
-  
-  // State for different news sections
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedMenuItem, setSelectedMenuItem] = useState(null);
 
@@ -224,9 +222,15 @@ function News() {
                       <FaCalendarAlt />&nbsp;{new Date(item.createdAt).toLocaleDateString()}
                     </p>
                   </div>
+                  
                 </Link>
               ))}
             </Slider>
+            <div className={cx('view-all', 'mt-8', '-mb-8')}>
+              <Link to="/tin-tuc/tin-dich-vu">
+                  <a className={cx('view-all-button')}> Xem tất cả »</a>
+                </Link>
+              </div> 
           </div>
         </div>
         
@@ -261,12 +265,13 @@ function News() {
           </div>
           </Link>
         ))}
-      </div>
-      <div className={cx('view-all')}>
+        <div className={cx('view-all')}>
       <Link to="/tin-tuc/tin-dich-vu">
           <a className={cx('view-all-button')}> Xem tất cả »</a>
         </Link>
       </div> 
+      </div>
+      
 
       {/* Medical News Section */}
       <div className="hidden md:block">

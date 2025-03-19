@@ -15,6 +15,7 @@ import Pagination from '~/components/paination';
 import { fetchAllDoctors } from '~/redux/doctor/doctorSlice';
 import { useTranslation } from 'react-i18next';
 import '~/translation/i18n';
+import FacilitieSkeleton from '~/pages/facilitie/loading/facilitie_skeleton';
 
 const cx = classNames.bind(style);
 let PageSize = 4;
@@ -31,9 +32,7 @@ function AppointmentDoctor() {
 
   const docterData = useSelector((state) => state.doctor.docterData);
 
-  console.log('check docterData, docterData');
-
-  const isLoading = useSelector((state) => state.hospital.loading);
+  const isLoading = useSelector((state) => state.doctor.loading);
 
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -47,6 +46,10 @@ function AppointmentDoctor() {
     dispatch(fetchAllDoctors());
   }, [typeParam, dispatch]);
 
+  // Log ra để kiểm tra state loading có đúng không
+  console.log('isLoading:', isLoading);
+  console.log('docterData:', docterData);
+
   return (
     <div className={cx('main')}>
       <Header
@@ -56,10 +59,17 @@ function AppointmentDoctor() {
       />
       <Search />
       <div className={cx('body')}>
-      <div class="grid grid-cols-2 gap-8 md:grid-cols-3 sm:grid-cols-2">
+        <div className="grid grid-cols-2 gap-8 md:grid-cols-3 sm:grid-cols-2">
           <div className="col-span-2">
-            {docterData &&
-              docterData?.result?.data.map((item, index) => {
+            {isLoading ? (
+              <>
+                <FacilitieSkeleton />
+                <FacilitieSkeleton />
+                <FacilitieSkeleton />
+                <FacilitieSkeleton />
+              </>
+            ) : (
+              currentTableData && currentTableData.map((item, index) => {
                 let image =
                   Array.isArray(item.image?.data) && item.image.data.length > 0
                     ? Buffer.from(item.image, 'base64').toString('binary')
@@ -69,8 +79,8 @@ function AppointmentDoctor() {
 
                 let address = `${item.address[0].street}, ${item.address[0].wardName}, ${item.address[0].districtName}, ${item.address[0].provinceName}`;
                 return (
-                  <div className="mb-6 rounded-lg border border-slate-200">
-                    <div key={index} className={cx('content', 'bg-white rounded-t-2xl')}>
+                  <div key={index} className="mb-6 rounded-lg border border-slate-200">
+                    <div className={cx('content', 'bg-white rounded-t-2xl')}>
                       <div className="flex gap-5 w-100 h-100">
                         <div className={cx('image')} style={{ backgroundImage: `url(${image})` }}></div>
                         <div className="h-100">
@@ -83,7 +93,7 @@ function AppointmentDoctor() {
                           </div>
                           <div className={cx('treatment')}>
                             <strong>{t('appointments.bookingDoctor.appointment')}: </strong>
-                            Thứ 2 3 4z
+                            Thứ 2 3 4
                           </div>
                           <div className={cx('treatment')}>
                             <strong>{t('appointments.bookingDoctor.price')}: </strong>
@@ -113,18 +123,21 @@ function AppointmentDoctor() {
                     </div>
                   </div>
                 );
-              })}
+              })
+            )}
           </div>
           <div className={cx('banner', 'col-span-1 rounded-t-2xl')}></div>
         </div>
       </div>
-      <Pagination
-        className="pagination-bar"
-        currentPage={currentPage}
-        totalCount={docterData && docterData?.result?.data?.length}
-        pageSize={PageSize}
-        onPageChange={(page) => setCurrentPage(page)}
-      />
+      {!isLoading && docterData && docterData?.result?.data?.length > 0 && (
+        <Pagination
+          className="pagination-bar"
+          currentPage={currentPage}
+          totalCount={docterData?.result?.data?.length}
+          pageSize={PageSize}
+          onPageChange={(page) => setCurrentPage(page)}
+        />
+      )}
     </div>
   );
 }

@@ -12,7 +12,9 @@
     .news_main {
         max-width: 1200px;
         margin: 0 auto;
+        border-radius: 1%;
         padding: 0 1rem;
+        padding-bottom: 10px;
         background-color: #fff;;
         .news_header {
           display: flex;
@@ -209,9 +211,10 @@
     padding-top: 39px;
     padding-bottom: 39px;
     margin-bottom: 100px;
-    background-color: #fff;
+    background-color: #E8F2F7;
+    margin: 0 5px 0 5px;
 }
-.service_title {
+.title-category {
     padding-bottom: 30px;
   font-family: Montserrat !important;
   font-size: 39px;
@@ -377,7 +380,7 @@
       }
     }
   
-    .service_title {
+    .title-category {
       font-size: 32px;
       
       &::after {
@@ -396,7 +399,7 @@
       }
     }
   
-    .service_title {
+    .title-category {
       font-size: 28px;
       
       &::after {
@@ -411,7 +414,7 @@
       height: 380px;
   }
   
-  .service_title {
+  .title-category {
       font-size: 34px;
       line-height: 42px;
   }
@@ -428,7 +431,7 @@
       padding-bottom: 30px;
   }
   
-  .service_title {
+  .title-category {
       font-size: 28px;
       line-height: 36px;
       padding-bottom: 25px;
@@ -450,7 +453,7 @@
     height: 380px;
   }
   
-  .service_title {
+  .title-category {
     font-size: 34px;
     line-height: 42px;
   }
@@ -484,7 +487,7 @@
     padding-bottom: 30px;
   }
   
-  .service_title {
+  .title-category {
     font-size: 28px;
     line-height: 36px;
     padding-bottom: 25px;
@@ -532,11 +535,12 @@
     padding-bottom: 25px;
   }
   
-  .service_title {
+  .title-category {
     font-size: 24px;
     line-height: 32px;
     padding-bottom: 20px;
   }
+
   
   .news_container {
     grid-template-columns: 1fr;  // Chuyển sang 1 cột
@@ -576,7 +580,7 @@
     padding-bottom: 20px;
   }
   
-  .service_title {
+  .title-category {
     font-size: 20px;
     line-height: 28px;
     padding-bottom: 15px;

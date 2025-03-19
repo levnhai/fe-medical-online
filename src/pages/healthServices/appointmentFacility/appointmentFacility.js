@@ -11,6 +11,7 @@ import Pagination from '~/components/paination';
 import { fetchGetALlHospital } from '~/redux/hospital/hospitalSlice';
 import { useTranslation } from 'react-i18next';
 import '~/translation/i18n';
+import AppointmentFacilitySkeleton from './facilitySkeleton'
 
 import style from './appointmentFacility.module.scss';
 const cx = classNames.bind(style);
@@ -22,6 +23,7 @@ function AppointmentFacility() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const hospitalData = useSelector((state) => state.hospital.hospitalData);
+  const isLoading = useSelector((state) => state.hospital.loading);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [activeTab, setActiveTab] = useState(0);
@@ -70,8 +72,9 @@ function AppointmentFacility() {
           </li>
         </ul>
         <div className={cx('container')}>
-          {currentTableData &&
-            currentTableData.map((item, index) => {
+        {isLoading ? (
+               <AppointmentFacilitySkeleton count={3} />
+            ) : ( currentTableData && currentTableData.map((item, index) => {
               let image = '';
               let address = `${item.address[0].street}, ${item.address[0].wardName}, ${item.address[0].districtName}, ${item.address[0].provinceName}`;
               if (item.image) {
@@ -92,7 +95,8 @@ function AppointmentFacility() {
                   </div>
                 </div>
               );
-            })}
+            })
+          )}
         </div>
       </div>
       <Pagination

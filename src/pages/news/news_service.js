@@ -213,7 +213,8 @@ function NewsService() {
       
       {/* Mobile View - Service News with Pagination */}
       <div className="block md:hidden space-y-6 mt-8">
-        <h2 className={cx('service_title')}>Tin dịch vụ</h2>
+      <div class="border-t-2 border-blue-600 opacity-50 my-4 mt-8"></div>
+      <h2 className={cx('title-category')}>Tin dịch vụ</h2>
         {currentMobileNewsItems.map((article) => (
           <Link 
             to={`/tin-tuc/${article._id}`} 

@@ -2,11 +2,12 @@ import classNames from 'classnames/bind';
 import '~/translation/i18n';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styles from './news.module.scss';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { FaCalendarAlt, FaBars } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchKnowlageNews } from '~/redux/news/newsSlice';
 import NewsSkeleton from './loading/news_skeleton';
+import Pagination from '~/components/paination';
 const cx = classNames.bind(styles);
 
 function NewsKnowlage() {
@@ -27,12 +28,17 @@ function NewsKnowlage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedMenuItem, setSelectedMenuItem] = useState(null);
 
+  const [desktopCurrentPage, setDesktopCurrentPage] = useState(1);
+  const [mobileCurrentPage, setMobileCurrentPage] = useState(1);
+  const desktopPageSize = 3;
+  const mobilePageSize = 3; 
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
   const handleMenuItemClick = (item) => {
     setSelectedMenuItem(item.title);
-    setIsMenuOpen(false); // Đóng menu khi đã chọn
+    setIsMenuOpen(false);
   };
   const menuItems = [
     { title: 'Tin dịch vụ', path: '/tin-tuc/dich-vu' },
@@ -46,6 +52,20 @@ function NewsKnowlage() {
 
   }, []);
 
+  const currentDesktopNewsItems = useMemo(() => {
+    if (!newData?.news) return [];
+    const firstPageIndex = (desktopCurrentPage - 1) * desktopPageSize;
+    const lastPageIndex = firstPageIndex + desktopPageSize;
+    return newData.news.slice(firstPageIndex, lastPageIndex);
+  }, [desktopCurrentPage, newData?.news, desktopPageSize]);
+
+  const currentMobileNewsItems = useMemo(() => {
+    if (!newData?.news) return [];
+    const firstPageIndex = (mobileCurrentPage - 1) * mobilePageSize;
+    const lastPageIndex = firstPageIndex + mobilePageSize;
+    return newData.news.slice(firstPageIndex, lastPageIndex);
+  }, [mobileCurrentPage, newData?.news, mobilePageSize]);
+
   if (isLoading) {
     return <NewsSkeleton />;
   }
@@ -58,7 +78,6 @@ function NewsKnowlage() {
             <h1 className={cx('header_title')}>TIN TỨC Y KHOA</h1>
           </Link>
 
-          {/* Hiển thị cho màn hình lớn hơn 768px */}
           <div className="hidden md:flex">
             {menuItems.map((item) => (
               <Link key={item.path} to={item.path}>
@@ -67,13 +86,11 @@ function NewsKnowlage() {
             ))}
           </div>
 
-          {/* Hiển thị icon menu khi màn hình nhỏ hơn 768px */}
           <div className="block md:hidden flex items-center">
             <FaBars className="text-2xl cursor-pointer" onClick={toggleMenu} />
             {selectedMenuItem && <span className="ml-2">{selectedMenuItem}</span>} {/* Hiển thị lựa chọn bên cạnh */}
           </div>
 
-          {/* Nếu muốn menu sổ xuống có nền trắng, thêm vào một div chứa */}
           {isMenuOpen && (
             <div className="absolute bg-white shadow-lg rounded-lg z-10 mt-2 md:hidden">
               {menuItems.map((item) => (
@@ -154,11 +171,10 @@ function NewsKnowlage() {
         </div>
       </div>
 
-      {/* Service News Section */}
       <div className="hidden md:block">
         <div className={cx('news_wapper', 'overflow-hidden')}>
           <div className="grid grid-cols-3 gap-4">
-            {newData?.news?.map((item) => (
+            {currentDesktopNewsItems.map((item) => (
               <Link 
               to={`/tin-tuc/${item._id}`} 
               key={item.id} 
@@ -181,14 +197,26 @@ function NewsKnowlage() {
               </Link>
             ))}
           </div>
+          <div className="mt-8 flex justify-center">
+            <Pagination
+              currentPage={desktopCurrentPage}
+              totalCount={newData?.news?.length || 0}
+              pageSize={desktopPageSize}
+              onPageChange={page => setDesktopCurrentPage(page)}
+              siblingCount={1}
+            />
+          </div>
         </div>
       </div>
-      <div className="block md:hidden space-y-12">
-        <h2 className={cx('service_title')}>Tin Y tế</h2>
-        {newData?.news?.slice(0, 8).map((article) => (<Link 
+
+      <div className="block md:hidden space-y-6 mt-8">
+      <div class="border-t-2 border-blue-600 opacity-50 my-4 mt-8"></div>
+      <h2 className={cx('title-category')}>Y học thường thức</h2>
+        {currentMobileNewsItems.map((article) => (
+          <Link 
           to={`/tin-tuc/${article._id}`} 
           key={article.id} 
-          className="block relative mx-2 transition-transform duration-300 transform hover:scale-105 hover:shadow-lg px-5"
+          className="block relative mx-2"
           >
           <div key={article.id} className={cx('side_article')}>
             <img 
@@ -211,6 +239,15 @@ function NewsKnowlage() {
           </div>
           </Link>
         ))}
+        <div className="mt-6 flex justify-center pb-6">
+          <Pagination
+            currentPage={mobileCurrentPage}
+            totalCount={newData?.news?.length || 0}
+            pageSize={mobilePageSize}
+            onPageChange={page => setMobileCurrentPage(page)}
+            siblingCount={1}
+          />
+        </div>
       </div>
     </div>
   );

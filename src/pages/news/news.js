@@ -24,8 +24,6 @@ function News() {
   const isLoading = useSelector((state) => state.new.loading);
   console.log('check newData', newData)
 
-  
-  // State for different news sections
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedMenuItem, setSelectedMenuItem] = useState(null);
 
@@ -208,7 +206,8 @@ function News() {
       <div className={cx('news_service')}>
         <div className={cx('news_wapper')}>
           <div>
-            <h2 className={cx('service_title')}>Tin dịch vụ</h2>
+          <div class="border-t-2 border-blue-600 opacity-50 my-4"></div>
+            <h2 className={cx('title-category')}>Tin dịch vụ</h2>
             <Slider {...settings}>
               {newData?.news?.filter((article) => article.category?.slug === 'tin-dich-vu').map((item) => (
                 <Link 
@@ -224,16 +223,23 @@ function News() {
                       <FaCalendarAlt />&nbsp;{new Date(item.createdAt).toLocaleDateString()}
                     </p>
                   </div>
+                  
                 </Link>
               ))}
             </Slider>
+            <div className={cx('view-all', 'mt-8', '-mb-8')}>
+              <Link to="/tin-tuc/tin-dich-vu">
+                  <a className={cx('view-all-button')}> Xem tất cả »</a>
+                </Link>
+              </div> 
           </div>
         </div>
         
       </div>
       </div>
       <div className="block md:hidden space-y-12">
-      <h2 className={cx('service_title')}>Tin dịch vụ</h2>
+      <div class="border-t-2 border-blue-600 opacity-50 my-4 mt-8"></div>
+      <h2 className={cx('title-category')}>Tin dịch vụ</h2>
         {newData?.news?.filter((article) => article.category?.slug === 'tin-dich-vu').slice(0, 8).map((article) => (
           <Link 
           to={`/tin-tuc/${article._id}`} 
@@ -261,18 +267,20 @@ function News() {
           </div>
           </Link>
         ))}
-      </div>
-      <div className={cx('view-all')}>
+        <div className={cx('view-all')}>
       <Link to="/tin-tuc/tin-dich-vu">
           <a className={cx('view-all-button')}> Xem tất cả »</a>
         </Link>
       </div> 
+      </div>
+      
 
       {/* Medical News Section */}
       <div className="hidden md:block">
       <div className={cx('medical_service')}>
         <div className={cx('news_medical')}>
-          <h2 className={cx('service_title')}>Tin Y tế</h2>
+        <div class="border-t-2 border-blue-600 opacity-50 my-4"></div>
+          <h2 className={cx('title-category')}>Tin Y tế</h2>
           <div className={cx('news_container')}>
             {newData?.news?.filter((article) => article.category?.slug === 'tin-y-te').map((item) => (
               <Link 
@@ -296,7 +304,8 @@ function News() {
       </div>
       </div>
       <div className="block md:hidden space-y-12">
-      <h2 className={cx('service_title')}>Tin Y tế</h2>
+      <div class="border-t-2 border-blue-600 opacity-50 my-4"></div>
+      <h2 className={cx('title-category')}>Tin Y tế</h2>
         {newData?.news?.filter((article) => article.category?.slug === 'tin-y-te').slice(0, 8).map((article) => (
           <Link 
           to={`/tin-tuc/${article._id}`} 
@@ -334,7 +343,8 @@ function News() {
       {/* Common Medical Knowledge Section */}
       <div className={cx('medical_service')}>
         <div className={cx('news_medical')}>
-          <h2 className={cx('service_title')}>Y học thường thức</h2>
+        <div class="border-t-2 border-blue-600 opacity-50 my-4"></div>
+          <h2 className={cx('title-category')}>Y học thường thức</h2>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 ">
             {newData?.news?.filter((article) => article.category?.slug === 'thuong-thuc-y-te').length > 0 && (
               <>

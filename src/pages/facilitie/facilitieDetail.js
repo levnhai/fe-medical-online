@@ -164,7 +164,7 @@ useEffect(() => {
               
               <div className="min-w-full">
                 <img 
-                  src="https://benhvienbacbinhthuan.vn/Uploads/images/Album/BenhVien/8.jpg" 
+                  src="https://nld.mediacdn.vn/291774122806476800/2021/7/15/cho-ray-tai-bv-hs-covid-dem-1407-1-1626337146041189187091.jpg" 
                   alt="Máy MRI 3 Tesla" 
                   className="w-full h-[305px] object-cover"
                 />

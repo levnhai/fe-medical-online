@@ -28,31 +28,54 @@ function PatientRecord() {
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
   const [selectedPatientId, setSelectedPatientId] = useState(null);
   const [recordData, setRecordData] = useState([]);
-  console.log('check recordData', recordData);
-
+  const [isLoading, setIsLoading] = useState(true);
+  
   const partnerId = useSelector((state) => state.auth?.user.payload?.userData?._id);
 
   const fetchRecords = async () => {
-    const res = await dispatch(fetchRecordUser({ recordId: partnerId }));
-    const result = unwrapResult(res);
-    setRecordData(result);
+    setIsLoading(true);
+    try {
+      const res = await dispatch(fetchRecordUser({ recordId: partnerId }));
+      const result = unwrapResult(res);
+      setRecordData(result);
+    } catch (error) {
+      console.error('Error fetching records:', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleDeleteRecord = async () => {
-    const res = await dispatch(fetchDeleteRecord({ recordId: selectedPatientId }));
-    const result = unwrapResult(res);
-    fetchRecords();
-    setIsModalDeleteOpen(false);
-    toast.success(result?.message);
+    try {
+      const res = await dispatch(fetchDeleteRecord({ recordId: selectedPatientId }));
+      const result = unwrapResult(res);
+      fetchRecords();
+      setIsModalDeleteOpen(false);
+      toast.success(result?.message);
+    } catch (error) {
+      toast.error('Xóa hồ sơ thất bại');
+    }
   };
 
   useEffect(() => {
     fetchRecords();
   }, []);
 
+  // Hiển thị loading state
+  if (isLoading) {
+    return (
+      <div className="mx-10 mb-20">
+        <h1 className="font-bold text-3xl">Danh sách hồ sơ bệnh nhân</h1>
+        <div className="flex flex-col items-center my-12">
+          <p className="mb-6 text-2xl font-semibold text-neutral-400">Đang tải dữ liệu...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="mx-10 mb-20">
-      <h1 className="font-bold text-3xl">Danh sách hồ sơ bệnh nhân </h1>
+      <h1 className="font-bold text-3xl">Danh sách hồ sơ bệnh nhân</h1>
 
       {recordData?.data?.length > 0 ? (
         <div>
@@ -60,11 +83,11 @@ function PatientRecord() {
             const address = `
                 ${item?.address[0]?.street}, 
                 ${item?.address[0]?.wardName}, 
-                ${item?.address[0]?.provinceName}, 
-                ${item?.address[0]?.wardName}`;
+                ${item?.address[0]?.districtName},
+                ${item?.address[0]?.provinceName}`;
             return (
-              <div className="mt-8">
-                <div className="border rounded-3xl border-cyan-400 overflow-hidden" key={index}>
+              <div className="mt-8" key={item._id || index}>
+                <div className="border rounded-3xl border-cyan-400 overflow-hidden">
                   <ul className="p-8">
                     <li className="flex items-center gap-3">
                       <span className="">
@@ -212,15 +235,6 @@ function PatientRecord() {
                     </li>
                   </ul>
                 </Modal>
-                <Modal isOpen={isModalDeleteOpen} onClose={() => setIsModalDeleteOpen(false)} title="Thông báo">
-                  <p className="px-10 py-10 text-2xl ">Bạn có muốn chắc chắn xóa bệnh nhân này không?</p>
-                  <div className="flex justify-end border-t py-2 pr-6 gap-4">
-                    <Button onClick={() => setIsModalDeleteOpen(false)}>Đóng</Button>
-                    <Button className="bg-red-400" onClick={handleDeleteRecord}>
-                      Đồng ý
-                    </Button>
-                  </div>
-                </Modal>
               </div>
             );
           })}
@@ -238,6 +252,17 @@ function PatientRecord() {
           />
         </div>
       )}
+
+      {/* Modal xóa hồ sơ - đặt bên ngoài để không bị ảnh hưởng bởi map */}
+      <Modal isOpen={isModalDeleteOpen} onClose={() => setIsModalDeleteOpen(false)} title="Thông báo">
+        <p className="px-10 py-10 text-2xl ">Bạn có muốn chắc chắn xóa bệnh nhân này không?</p>
+        <div className="flex justify-end border-t py-2 pr-6 gap-4">
+          <Button onClick={() => setIsModalDeleteOpen(false)}>Đóng</Button>
+          <Button className="bg-red-400" onClick={handleDeleteRecord}>
+            Đồng ý
+          </Button>
+        </div>
+      </Modal>
     </div>
   );
 }

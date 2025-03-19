@@ -563,6 +563,7 @@
       "sum": "Total",
       "payment": "Payment",
       "confirm": "Confirm payment",
+      "processing": "Confirming",
       "q1": "Pay the amount",
       "q0": "by",
       "q2": "Pay at the Clinic",

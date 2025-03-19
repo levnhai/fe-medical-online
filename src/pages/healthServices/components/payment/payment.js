@@ -9,6 +9,7 @@ import Sidebar from '../sidebar';
 import { extractTime } from '~/utils/time';
 import Modal from '~/components/modal';
 import { useTranslation } from 'react-i18next';
+import { BiLoaderAlt } from 'react-icons/bi';
 import '~/translation/i18n';
 // icon
 import { MdKeyboardArrowRight } from 'react-icons/md';
@@ -29,8 +30,15 @@ function PaymentMethod() {
   const [selectedMethod, setSelectedMethod] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const bookingData = useSelector((state) => state.booking);
+  const [isLoading, setIsLoading] = useState(false);
   console.log('check booking data', bookingData);
 
+  // Format giá
+  const formatPrice = (price) => {
+    if (!price) return '0';
+    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  };
+  
   // phương thức thanh toán
   const paymentMethods = [
     // {
@@ -82,8 +90,54 @@ function PaymentMethod() {
   };
 
   // Xử lý xác nhận thanh toán
-  const handleConfirmPayment = async () => {
-    setIsModalOpen(false); // Đóng Modal
+  // const handleConfirmPayment = async () => {
+  //   setIsModalOpen(false); // Đóng Modal
+  //   const formData = {
+  //     patientId: bookingData.patientProfile,
+  //     doctor: bookingData.doctor,
+  //     hospital: bookingData.hospital,
+  //     date: bookingData.date,
+  //     price: bookingData.price,
+  //     status: 'pending',
+  //     hours: bookingData.time,
+  //     paymentMethod: selectedMethod,
+  //     orderId: `ORDER_${Date.now()}`,
+  //   };
+
+  //   switch (selectedMethod) {
+  //     case 'cash': {
+  //       const res = await dispatch(fetchClinicPayment({ formData }));
+  //       const result = unwrapResult(res);
+
+  //       if (result?.status) {
+  //         navigate(`/chi-tiet-phieu-kham-benh?transactionId=${result?.appointment?.orderId}`);
+  //       }
+  //       break;
+  //     }
+  //     // case 'vnpay': {
+  //     //   const res = await dispatch(fetchPayment({ formData }));
+  //     //   if (res.payload) {
+  //     //     window.location.href = res.payload; // Chuyển hướng đến trang thanh toán VNPay
+  //     //   }
+  //     //   break;
+  //     // }
+
+  //     case 'momo': {
+  //       const res = await dispatch(fetchCreateUrlMomo({ formData }));
+  //       if (res?.payload?.payUrl) {
+  //         window.location.href = res?.payload?.payUrl; // Chuyển hướng đến trang thanh toán VNPay
+  //       }
+  //       break;
+  //     }
+  //     default: {
+  //     }
+  //   }
+  // };
+
+   // Xử lý xác nhận thanh toán
+   const handleConfirmPayment = async () => {
+    setIsLoading(true); 
+    
     const formData = {
       patientId: bookingData.patientProfile,
       doctor: bookingData.doctor,
@@ -96,33 +150,32 @@ function PaymentMethod() {
       orderId: `ORDER_${Date.now()}`,
     };
 
-    switch (selectedMethod) {
-      case 'cash': {
-        const res = await dispatch(fetchClinicPayment({ formData }));
-        const result = unwrapResult(res);
+    try {
+      switch (selectedMethod) {
+        case 'cash': {
+          const res = await dispatch(fetchClinicPayment({ formData }));
+          const result = unwrapResult(res);
 
-        if (result?.status) {
-          navigate(`/chi-tiet-phieu-kham-benh?transactionId=${result?.appointment?.orderId}`);
+          if (result?.status) {
+            navigate(`/chi-tiet-phieu-kham-benh?transactionId=${result?.appointment?.orderId}`);
+          }
+          break;
         }
-        break;
-      }
-      // case 'vnpay': {
-      //   const res = await dispatch(fetchPayment({ formData }));
-      //   if (res.payload) {
-      //     window.location.href = res.payload; // Chuyển hướng đến trang thanh toán VNPay
-      //   }
-      //   break;
-      // }
-
-      case 'momo': {
-        const res = await dispatch(fetchCreateUrlMomo({ formData }));
-        if (res?.payload?.payUrl) {
-          window.location.href = res?.payload?.payUrl; // Chuyển hướng đến trang thanh toán VNPay
+        case 'momo': {
+          const res = await dispatch(fetchCreateUrlMomo({ formData }));
+          if (res?.payload?.payUrl) {
+            window.location.href = res?.payload?.payUrl;
+          }
+          break;
         }
-        break;
+        default: {
+        }
       }
-      default: {
-      }
+    } catch (error) {
+      console.error("Payment error:", error);
+    } finally {
+      setIsLoading(false);
+      setIsModalOpen(false); // Close modal
     }
   };
 
@@ -237,7 +290,7 @@ function PaymentMethod() {
                             <div className="flex items-center gap-4">
                               <span className="text-2xl text-gray-950">{t('appointments.payment.price')}:</span>
                             </div>
-                            <div>{bookingData?.price.toLocaleString('en-US')}</div>
+                            <div>{formatPrice(bookingData?.price)}</div>
                           </li>
                         </ul>
                       </div>
@@ -249,7 +302,7 @@ function PaymentMethod() {
                         <div className="flex justify-between mb-6">
                           <span className="text-3xl font-medium">{t('appointments.payment.sum')}:</span>
                           <span className="text-sky-500 text-3xl font-semibold">
-                            {bookingData?.price.toLocaleString('en-US')}
+                            {formatPrice(bookingData?.price)}
                           </span>
                         </div>
                       </div>
@@ -288,13 +341,13 @@ function PaymentMethod() {
             <div className="p-8">
               <div>
                 Thanh toán số tiền
-                <strong className="font-semibold"> {bookingData?.price.toLocaleString('en-US')}</strong>
+                <strong className="font-semibold"> {formatPrice(bookingData?.price)}</strong>
                 <strong className="font-semibold">
-                  {selectedMethod === 'cash' ? 'tại phòng khám' : selectedMethod === 'momo' ? 'Với Momo' : 'VnPay'}
+                  {selectedMethod === 'cash' ? ' tại phòng khám ' : selectedMethod === 'momo' ? ' Với Momo' : 'VnPay'}
                 </strong>
               </div>
               <div className="rounded-lg p-8 mt-6 text-2xl" style={{ backgroundColor: '#cce5ff' }}>
-                {t('appointments.payment.q3')} <span className="font-semibold">{t('appointments.payment.q4')} </span>.
+                {t('appointments.payment.q3')} <span className="font-semibold">{t('appointments.payment.q4')} </span>
                 {t('appointments.payment.q5')}
                 <span className="font-semibold"> 1800 1234</span>
               </div>
@@ -306,6 +359,7 @@ function PaymentMethod() {
                     setIsModalOpen(false);
                   }}
                   className="font-medium text-xl"
+                  disabled={isLoading}
                 >
                   {t('appointments.payment.quit')}
                 </Button>
@@ -315,8 +369,16 @@ function PaymentMethod() {
                   }}
                   className="text-white p-4 text-xl"
                   onClick={handleConfirmPayment}
+                  disabled={isLoading}
                 >
-                  {t('appointments.payment.ok')}
+                  {isLoading ? (
+                    <div className="flex items-center">
+                      <BiLoaderAlt className="animate-spin mr-2" />
+                      {t('appointments.payment.processing')}
+                    </div>
+                  ) : (
+                    t('appointments.payment.ok')
+                  )}
                 </Button>
               </div>
             </div>

@@ -20,11 +20,12 @@ import PatientRecordSkeleton from '../patientRecords/skeleton';
 
 const cx = classNames.bind(styles);
 function Appointment() {
-  const { t, i18n } = useTranslation();
-  const [currentLanguages, setCurrentLanguages] = useState(i18n.language);
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const patientId = useSelector((state) => state.auth?.user.payload?.userData?._id);
+
+  console.log('check patientId', patientId);
 
   const [activeTab, setActiveTab] = useState('pending');
   const [appointmentData, setAppointmentData] = useState([]);
@@ -38,55 +39,54 @@ function Appointment() {
             {appointmentData?.pending?.map((item, index) => {
               return (
                 <div
-                  className={cx('tab-content', 'grid grid-cols-1 md:grid-cols-6 gap-4 md:gap-6')}
+                  className={cx('tab-content', 'grid grid-cols-6 gap-6')}
                   key={index}
                   onClick={() => navigate(`/chi-tiet-phieu-kham-benh?transactionId=${item.orderId}`)}
                 >
-                  <div className="md:col-span-4 col-span-1">
-                    <div className="flex flex-wrap gap-2 md:gap-4">
-                      <span className="text-base md:text-xl">{t('appointments.details.code')}</span>
-                      <span className="font-bold text-lg md:text-2xl">{item.orderId}</span>
+                  <div className="col-span-4">
+                    <div className="flex gap-4">
+                      <span className="text-xl">Mã phiếu:</span>
+                      <span className="font-bold text-2xl">{item.orderId}</span>
                     </div>
-                    <div className="font-bold text-lg md:text-2xl mt-2 md:mt-4">
-                      {item?.doctor?.fullName || t('appointments.details.doctor')}
+                    <div className="font-bold text-2xl toUpperCase mt-4 ">
+                      {item?.doctor?.fullName || 'Đang cập nhật'}
                     </div>
-                    <hr className="mt-2 md:mt-4 border-b border-dashed border-black" />
-                    <div className="mt-2 md:mt-4 flex items-center gap-2 md:gap-4">
-                      <FaHospitalAlt className="text-cyan-500 text-lg md:text-2xl" />
-                      <span className="font-medium text-lg md:text-3xl text-cyan-500">
-                        {item.hospital?.fullName || t('appointments.details.hospital')}
+                    <hr className="mt-4 border-b border-dashed border-black" />
+                    <div className="mt-4 flex items-center gap-4">
+                      <FaHospitalAlt className="text-cyan-500" />
+                      <span className="font-medium text-3xl text-cyan-500 toUpperCase">
+                        {item.hospital?.fullName || 'Đang cập nhật'}
                       </span>
                     </div>
-                    <div className="mt-2 md:mt-4 grid grid-cols-1 md:grid-cols-3">
+                    <div className="mt-4 grid grid-cols-3">
                       <div className="col-span-2">
-                        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-2">
-                          <div className="flex items-center gap-2 md:gap-4">
+                        <div className="items-center grid grid-cols-2">
+                          <div className="flex items-center gap-4">
                             <RiServiceLine />
-                            <span className="text-sm md:text-base">{t('appointments.details.service')}</span>
+                            <span>Dịch vụ:</span>
                           </div>
-                          <div className="text-sm md:text-base">Nội tổng quát</div>
+                          <div>Nội tổng quát</div>
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-2 mt-2 md:mt-4">
-                          <div className="flex items-center gap-2 md:gap-4">
+                        <div className="items-center grid grid-cols-2 mt-4 ">
+                          <div className="flex items-center gap-4">
                             <MdCalendarMonth />
-                            <span className="text-sm md:text-base">{t('appointments.details.date')}</span>
+                            <span>Ngày khám:</span>
                           </div>
-                          <div className="text-cyan-500 text-sm md:text-base">{formatDate(item.date)}</div>
+                          <div className="text-cyan-500">{formatDate(item.date)}</div>
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-2 mt-2 md:mt-4">
-                          <div className="flex items-center gap-2 md:gap-4">
+                        <div className="items-center grid grid-cols-2 mt-4 ">
+                          <div className="flex items-center gap-4">
                             <MdOutlineAccessTimeFilled />
-                            <span className="text-sm md:text-base">{t('appointments.details.time')}</span>
+                            <span>Giờ khám dự kiến:</span>
                           </div>
-                          <div className="text-cyan-500 text-sm md:text-base">{extractTime(item?.hours[0]?.start)}</div>
+                          <div className="text-cyan-500">{extractTime(item?.hours[0]?.start)}</div>
                         </div>
                       </div>
+                      <div></div>
                     </div>
                   </div>
-                  <div className="flex items-end justify-center md:justify-end flex-col col-span-1 md:col-span-2">
-                    <Button className="bg-green-500 text-white text-sm md:text-xl font-bold py-1 md:py-2">
-                      {t('appointments.details.success')}
-                    </Button>
+                  <div className="flex items-end flex-col col-span-2">
+                    <Button className="bg-green-500 text-white text-xl font-bold py-2">Đặt khám thành công</Button>
                   </div>
                 </div>
               );

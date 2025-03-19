@@ -28,6 +28,8 @@ function Confirm() {
   const navigate = useNavigate();
   const bookingData = useSelector((state) => state.booking);
 
+  console.log('check bookingData', bookingData);
+
   const goToPreviousStep = () => {
     navigate(`/chon-lich-kham?feature=booking.doctor&stepName=record`);
   };
@@ -160,7 +162,6 @@ function Confirm() {
                               </span>
                             </div>
                             <div className="col-span-3 text-base sm:text-lg md:text-xl lg:text-2xl">
-                              {' '}
                               {bookingData?.patientProfile?.email}
                             </div>
                           </li>
@@ -171,7 +172,7 @@ function Confirm() {
                                 {t('patientRecords.list.idbhyt')}:
                               </span>
                             </div>
-                            <div className="col-span-3 text-base sm:text-lg md:text-xl lg:text-2xl">Cập nhật sau </div>
+                            <div className="col-span-3 text-base sm:text-lg md:text-xl lg:text-2xl">0801503677</div>
                           </li>
                         </div>
 
@@ -218,7 +219,9 @@ function Confirm() {
                                 {t('patientRecords.list.address')}:{' '}
                               </span>
                             </div>
-                            <div className="col-span-3 text-base sm:text-lg md:text-xl lg:text-2xl">Cập nhật sau</div>
+                            <div className="col-span-3 text-base sm:text-lg md:text-xl lg:text-2xl">
+                              {`${bookingData?.patientProfile?.address[0]?.street}, ${bookingData?.patientProfile?.address[0]?.wardName}, ${bookingData?.patientProfile?.address[0]?.districtName}, ${bookingData?.patientProfile?.address[0]?.provinceName}`}
+                            </div>
                           </li>
                         </div>
                       </ul>

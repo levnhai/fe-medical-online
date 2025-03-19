@@ -5,29 +5,29 @@ import Select from 'react-select';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { unwrapResult } from '@reduxjs/toolkit';
+import { useTranslation } from 'react-i18next';
 
 import Sidebar from '../../components/sidebar';
-import { fetchDoctorbyHospitalAndDoctor } from '~/redux/doctor/doctorSlice';
 import { useBooking } from '~/context/bookingContext';
 import Button from '~/components/Button';
 import { SlideInFromBottom } from '~/components/animation';
 import { updateBooking } from '~/redux/booking/bookingSlice';
+import { fetchDoctorbyHospital } from '~/redux/doctor/doctorSlice';
+import '~/translation/i18n';
 
 //icon
-import { MdOutlinePriceChange, MdKeyboardArrowRight } from 'react-icons/md';
+import { MdKeyboardArrowRight, MdPhoneCallback } from 'react-icons/md';
 import { CiSearch, CiMedicalCross } from 'react-icons/ci';
 import { FaCircleXmark, FaUserDoctor } from 'react-icons/fa6';
 import { GrSchedules } from 'react-icons/gr';
 import { BsGenderAmbiguous } from 'react-icons/bs';
 import { HiOutlineArrowUturnLeft } from 'react-icons/hi2';
-import { useTranslation } from 'react-i18next';
-import '~/translation/i18n';
+
 import styles from './appointmentDoctor.module.scss';
 const cx = className.bind(styles);
 
 const AppointmentDoctor = () => {
-  const { t, i18n } = useTranslation();
-  const [currentLanguages, setCurrentLanguages] = useState(i18n.language);
+  const { t } = useTranslation();
   const inputRef = useRef();
   const location = useLocation();
   const dispatch = useDispatch();
@@ -38,6 +38,8 @@ const AppointmentDoctor = () => {
   const [doctorData, setDoctorData] = useState([]);
   const [valueInputSearch, setValueInputSearch] = useState('');
   const [filterParam, setFilterParam] = useState('All');
+
+  console.log('doctorData', doctorData);
 
   const handleClear = () => {
     setValueInputSearch('');
@@ -55,7 +57,6 @@ const AppointmentDoctor = () => {
   };
 
   const searchInput = (items) => {
-    console.log('check item ', items);
     return items.filter((item) => {
       if (item.gender === filterParam.value) {
         return item?.fullName?.toString().toLowerCase().indexOf(valueInputSearch.toLowerCase()) > -1;
@@ -70,9 +71,6 @@ const AppointmentDoctor = () => {
       return null;
     });
   };
-
-  // const optionSpecialty = doctorData?.map((item) => item?.specialty?.fullName);
-  // console.log('optionSpecialty', optionSpecialty);
 
   const handleNext = (item) => {
     dispatch(
@@ -98,7 +96,7 @@ const AppointmentDoctor = () => {
   useEffect(() => {
     const fetchDoctordata = async () => {
       const partnerId = queryParams.get('partnerId');
-      const res = await dispatch(fetchDoctorbyHospitalAndDoctor({ data: { hospitalId: partnerId } }));
+      const res = await dispatch(fetchDoctorbyHospital({ hospitalId: partnerId }));
       const result = unwrapResult(res);
       updateBookingData('hospital', {
         fullName: result.data[0]?.hospital.fullName,
@@ -109,12 +107,12 @@ const AppointmentDoctor = () => {
       setDoctorData(result?.data);
     };
     fetchDoctordata();
-  }, []);
+  }, [doctorData, dispatch]);
 
   return (
     <div className={cx('appointment-doctor')}>
       <div className="max-w-screen-lg m-auto">
-      <div className={cx('-mt-20 ms-8 mb-8 md:mt-8')}>
+        <div className={cx('-mt-20 ms-8 mb-8 md:mt-8')}>
           <ul className={cx('flex flex-col sm:flex-row text-xl')}>
             <li className={cx('flex items-center ')}>
               <a href="#/" className="font-semibold">
@@ -167,7 +165,9 @@ const AppointmentDoctor = () => {
                           </div>
                         </div>
                       </div>
-                      <div className={cx('select-filter', 'grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6 ')}>
+                      <div
+                        className={cx('select-filter', 'grid grid-cols-3 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6 ')}
+                      >
                         <div className={cx('filter-item')}>
                           <Select
                             className={cx('filter-item')}
@@ -213,11 +213,11 @@ const AppointmentDoctor = () => {
                                       </div>
                                       <div className={cx('flex items-center gap-2.5 leading-10')}>
                                         <GrSchedules />
-                                        {t('appointments.doctor.date')}: bổ sung sau
+                                        {t('appointments.doctor.date')}: Thứ 2, 3, 6, 7
                                       </div>
                                       <div className={cx('flex items-center gap-2.5 leading-10')}>
-                                        <MdOutlinePriceChange />
-                                        {t('appointments.doctor.price')}
+                                        <MdPhoneCallback />
+                                        {t('footer.phone')}: {item?.phoneNumber}
                                       </div>
                                     </div>
                                   </div>

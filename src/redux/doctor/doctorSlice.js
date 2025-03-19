@@ -69,6 +69,16 @@ export const fetchDoctorbyHospitalAndDoctor = createAsyncThunk(
   },
 );
 
+export const fetchDoctorbyHospital = createAsyncThunk('docter/fetchDoctorbyHospital', async ({ hospitalId }) => {
+  try {
+    const response = await axios.post('/doctor/get-doctor-by-hospital', { hospitalId });
+    console.log('check response', response);
+    return response.result;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+});
+
 const doctorSlice = createSlice({
   name: 'doctor',
   initialState: {

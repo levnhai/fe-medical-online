@@ -22,15 +22,14 @@ import Button from '~/components/Button';
 const cx = className.bind(styles);
 
 function PaymentMethod() {
-  const { t, i18n } = useTranslation();
-  const [currentLanguages, setCurrentLanguages] = useState(i18n.language);
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   // const { bookingData, updateBookingData } = useBooking();
   const [selectedMethod, setSelectedMethod] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const bookingData = useSelector((state) => state.booking);
-  console.log('check booking data', selectedMethod);
+  console.log('check booking data', bookingData);
 
   // phương thức thanh toán
   const paymentMethods = [
@@ -41,13 +40,13 @@ function PaymentMethod() {
     //   image: 'https://play.thinkmay.net/img/icon/payment.png',
     //   link: 'https://payment.example.com/vietqr',
     // },
-    {
-      id: 'vnpay',
-      name: 'VNPAY QR',
-      description: t('appointments.payment.vnpay'),
-      image: 'https://vinadesign.vn/uploads/images/2023/05/vnpay-logo-vinadesign-25-12-57-55.jpg',
-      link: 'https://payment.example.com/vnpay',
-    },
+    // {
+    //   id: 'vnpay',
+    //   name: 'VNPAY QR',
+    //   description: t('appointments.payment.vnpay'),
+    //   image: 'https://vinadesign.vn/uploads/images/2023/05/vnpay-logo-vinadesign-25-12-57-55.jpg',
+    //   link: 'https://payment.example.com/vnpay',
+    // },
     {
       id: 'momo',
       name: t('appointments.payment.momo'),
@@ -107,20 +106,19 @@ function PaymentMethod() {
         }
         break;
       }
-      case 'vnpay': {
-        const res = await dispatch(fetchPayment({ formData }));
-        if (res.payload) {
-          window.location.href = res.payload; // Chuyển hướng đến trang thanh toán VNPay
-        }
-        break;
-      }
+      // case 'vnpay': {
+      //   const res = await dispatch(fetchPayment({ formData }));
+      //   if (res.payload) {
+      //     window.location.href = res.payload; // Chuyển hướng đến trang thanh toán VNPay
+      //   }
+      //   break;
+      // }
 
       case 'momo': {
         const res = await dispatch(fetchCreateUrlMomo({ formData }));
         if (res?.payload?.payUrl) {
           window.location.href = res?.payload?.payUrl; // Chuyển hướng đến trang thanh toán VNPay
         }
-        console.log('Thanh toán với ví momo');
         break;
       }
       default: {
@@ -135,7 +133,7 @@ function PaymentMethod() {
           <ul className={cx('flex flex-col sm:flex-row')}>
             <li className={cx('flex items-center')}>
               <a href="#/" className="font-semibold">
-              {t('header.home')}
+                {t('header.home')}
               </a>
               <MdKeyboardArrowRight />
             </li>
@@ -147,7 +145,7 @@ function PaymentMethod() {
             </li>
             <li className="flex items-center">
               <a href="#/" className="text-sky-500 font-semibold">
-              {t('appointments.payment.path')}
+                {t('appointments.payment.path')}
               </a>
             </li>
           </ul>
@@ -181,11 +179,7 @@ function PaymentMethod() {
                           {selectedMethod === method.id && (
                             <div className="mt-2">
                               {method.image && (
-                                <img
-                                  src={method.image}
-                                  alt={method.name}
-                                  className="w-32 h-auto cursor-pointer"
-                                />
+                                <img src={method.image} alt={method.name} className="w-32 h-auto cursor-pointer" />
                               )}
                             </div>
                           )}
@@ -196,9 +190,7 @@ function PaymentMethod() {
                     <div className="col-span-9 md:col-span-4">
                       <div className="flex items-center gap-4 py-4">
                         <CiCreditCard1 />
-                        <h2 className="text-sky-500 text-4xl font-semibold">
-                          {t('appointments.payment.subTitle')}
-                        </h2>
+                        <h2 className="text-sky-500 text-4xl font-semibold">{t('appointments.payment.subTitle')}</h2>
                       </div>
                       <div className="border border-cyan-400 rounded-lg">
                         <ul className="p-4">
@@ -214,36 +206,28 @@ function PaymentMethod() {
                           <li className="flex p-3 border-t justify-between">
                             <div className="flex items-center gap-4">
                               <FaUserDoctor className="text-2xl text-gray-950" />
-                              <span className="text-2xl text-gray-950">
-                                {t('appointments.payment.doctor')}:
-                              </span>
+                              <span className="text-2xl text-gray-950">{t('appointments.payment.doctor')}:</span>
                             </div>
                             <div>{bookingData?.doctor?.fullName}</div>
                           </li>
                           <li className="flex p-3 border-t justify-between">
                             <div className="flex items-center gap-4">
                               <MdAlternateEmail className="text-2xl text-gray-950" />
-                              <span className="text-2xl text-gray-950">
-                                {t('appointments.payment.service')}:
-                              </span>
+                              <span className="text-2xl text-gray-950">{t('appointments.payment.service')}:</span>
                             </div>
                             <div>Khám dịch vụ</div>
                           </li>
                           <li className="flex p-3 border-t justify-between">
                             <div className="flex items-center gap-4">
                               <MdOutlineDateRange className="text-2xl text-gray-950" />
-                              <span className="text-2xl text-gray-950">
-                                {t('appointments.payment.date')}:
-                              </span>
+                              <span className="text-2xl text-gray-950">{t('appointments.payment.date')}:</span>
                             </div>
                             <div>{bookingData?.date}</div>
                           </li>
                           <li className="flex p-3 border-t justify-between">
                             <div className="flex items-center gap-4">
                               <MdAccessTime className="text-2xl text-gray-950" />
-                              <span className="text-2xl text-gray-950">
-                                {t('appointments.payment.time')}:
-                              </span>
+                              <span className="text-2xl text-gray-950">{t('appointments.payment.time')}:</span>
                             </div>
                             <div>
                               {extractTime(bookingData?.time.start)} - {extractTime(bookingData?.time.end)}
@@ -251,9 +235,7 @@ function PaymentMethod() {
                           </li>
                           <li className="flex p-3 border-t justify-between">
                             <div className="flex items-center gap-4">
-                              <span className="text-2xl text-gray-950">
-                                {t('appointments.payment.price')}:
-                              </span>
+                              <span className="text-2xl text-gray-950">{t('appointments.payment.price')}:</span>
                             </div>
                             <div>{bookingData?.price.toLocaleString('en-US')}</div>
                           </li>
@@ -262,7 +244,7 @@ function PaymentMethod() {
                       <div>
                         <div className="flex justify-between my-6">
                           <span className="text-2xl font-medium">{t('appointments.payment.fee')}:</span>
-                          <span>1.000 đ</span>
+                          <span>0đ</span>
                         </div>
                         <div className="flex justify-between mb-6">
                           <span className="text-3xl font-medium">{t('appointments.payment.sum')}:</span>
@@ -312,8 +294,8 @@ function PaymentMethod() {
                 </strong>
               </div>
               <div className="rounded-lg p-8 mt-6 text-2xl" style={{ backgroundColor: '#cce5ff' }}>
-              {t('appointments.payment.q3')} <span className="font-semibold">{t('appointments.payment.q4')} </span>.
-              {t('appointments.payment.q5')}
+                {t('appointments.payment.q3')} <span className="font-semibold">{t('appointments.payment.q4')} </span>.
+                {t('appointments.payment.q5')}
                 <span className="font-semibold"> 1800 1234</span>
               </div>
             </div>

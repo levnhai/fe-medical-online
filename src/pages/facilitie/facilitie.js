@@ -24,7 +24,7 @@ import { updateBooking, clearBooking } from '~/redux/booking/bookingSlice';
 import style from './facilitie.module.scss';
 const cx = classNames.bind(style);
 
-let PageSize = 2;
+let PageSize = 5;
 
 function Facilitie() {
   const { t } = useTranslation();
@@ -165,7 +165,9 @@ function Facilitie() {
           <div className={cx('breadcrumb__container')}>
             <ul>
               <li>
-                <a href="/" className="font-semibold md: ms-8">Trang chủ</a>
+                <a href="/" className="font-semibold md: ms-8">
+                  Trang chủ
+                </a>
               </li>
               <li>
                 <MdKeyboardArrowRight style={{ width: '1.8rem', height: '1.8rem', color: '#999' }} />
@@ -178,7 +180,7 @@ function Facilitie() {
           <div className={cx('facilitie__content')}>
             <div className={cx('facilitie__header')}>
               <div className={cx('facilitie__header--title')}>{labelTitle}</div>
-              <div className={cx('facilitie__header--des', 'md: px-8')} >{subLableTitle}</div>
+              <div className={cx('facilitie__header--des', 'md: px-8')}>{subLableTitle}</div>
             </div>
             <div className={cx('facilitie__body', 'md: me-10')}>
               <div className={cx('facilitie__formcontent')}>

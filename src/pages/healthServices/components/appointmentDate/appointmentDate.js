@@ -25,8 +25,7 @@ import styles from '../appointmentDoctor/appointmentDoctor.module.scss';
 const cx = className.bind(styles);
 
 function AppointmentDate() {
-  const { t, i18n } = useTranslation();
-  const [currentLanguages, setCurrentLanguages] = useState(i18n.language);
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
@@ -71,8 +70,8 @@ function AppointmentDate() {
   const goToPreviousStep = () => {
     dispatch(
       updateBooking({
-        key: 'doctor',
-        value: { fullName: null, id: null, specialty: null },
+        key: 'date',
+        value: null,
       }),
     );
 

@@ -30,6 +30,8 @@ function ChooseRecord() {
   const bookingData = useSelector((state) => state.booking);
   const [selectedItem, setSelectedItem] = useState(null);
 
+  console.log('check recordId', records);
+
   const goToPreviousStep = () => {
     updateBookingData('doctor', { fullName: null, id: null, specialty: null });
     navigate(
@@ -67,7 +69,7 @@ function ChooseRecord() {
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-sky-500 text-center mb-8">
             Chọn hồ sơ bệnh nhân
           </h1>
-          
+
           <div className="w-full px-4">
             <div>
               {records?.data?.length > 0 ? (
@@ -90,7 +92,7 @@ function ChooseRecord() {
                             </span>
                           </div>
                         </div>
-                        
+
                         {/* Profile details with responsive grid */}
                         <ul className="flex flex-col gap-3 w-full">
                           <li className="grid grid-cols-1 sm:grid-cols-3 gap-1 sm:gap-2">
@@ -100,7 +102,7 @@ function ChooseRecord() {
                             </div>
                             <div className="sm:col-span-2 pl-7 sm:pl-0">16-02-03</div>
                           </li>
-                          
+
                           <li className="grid grid-cols-1 sm:grid-cols-3 gap-1 sm:gap-2">
                             <div className="flex gap-2 items-center">
                               <FaPhoneAlt className="text-lg sm:text-xl text-zinc-500" />
@@ -108,7 +110,7 @@ function ChooseRecord() {
                             </div>
                             <div className="sm:col-span-2 pl-7 sm:pl-0">{item?.phoneNumber}</div>
                           </li>
-                          
+
                           <li className="grid grid-cols-1 sm:grid-cols-3 gap-1 sm:gap-2">
                             <div className="flex gap-2 items-center">
                               <GiPositionMarker className="text-lg sm:text-xl text-zinc-500" />
@@ -116,7 +118,7 @@ function ChooseRecord() {
                             </div>
                             <div className="sm:col-span-2 pl-7 sm:pl-0 break-words">{address}</div>
                           </li>
-                          
+
                           <li className="grid grid-cols-1 sm:grid-cols-3 gap-1 sm:gap-2">
                             <div className="flex gap-2 items-center">
                               <MdOutlineMail className="text-lg sm:text-xl text-zinc-500" />
@@ -124,7 +126,7 @@ function ChooseRecord() {
                             </div>
                             <div className="sm:col-span-2 pl-7 sm:pl-0 break-words">{item?.email}</div>
                           </li>
-                          
+
                           {selectedItem === index && (
                             <>
                               <li className="grid grid-cols-1 sm:grid-cols-3 gap-1 sm:gap-2">
@@ -134,7 +136,7 @@ function ChooseRecord() {
                                 </div>
                                 <div className="sm:col-span-2 pl-7 sm:pl-0">{item?.gender}</div>
                               </li>
-                              
+
                               <li className="grid grid-cols-1 sm:grid-cols-3 gap-1 sm:gap-2">
                                 <div className="flex gap-2 items-center">
                                   <HiOutlineUserGroup className="text-lg sm:text-xl text-zinc-500" />
@@ -145,36 +147,35 @@ function ChooseRecord() {
                             </>
                           )}
                         </ul>
-                        
+
                         {/* Action buttons when selected */}
                         {selectedItem === index && (
                           <div className="border-t border-slate-300 mt-4 pt-4">
-                          <div className="flex flex-row gap-3 justify-between items-center">
-                            <Button
-                              leftIcon={<RiDeleteBin6Line />}
-                              className="bg-red-100 text-rose-500 p-2 text-sm sm:text-base"
-                            >
-                              Xóa
-                            </Button>
-                            <Button
-                              leftIcon={<FaRegEdit />}
-                              className="bg-cyan-100 text-sky-500 p-2 text-sm sm:text-base"
-                            >
-                              Sửa
-                            </Button>
-                            <Button
-                              rightIcon={<FaLongArrowAltRight />}
-                              className="text-sm sm:text-base text-white bg-cyan-400 hover:bg-cyan-500 p-2 w-auto"
-                              onClick={() => {
-                                dispatch(updateBooking({ key: 'patientProfile', value: item }));
-                                navigate('/chon-lich-kham?feature=booking.doctor&stepName=confirm');
-                              }}
-                            >
-                              Tiếp tục
-                            </Button>
+                            <div className="flex flex-row gap-3 justify-between items-center">
+                              <Button
+                                leftIcon={<RiDeleteBin6Line />}
+                                className="bg-red-100 text-rose-500 px-2 py-3 text-sm sm:text-base"
+                              >
+                                Xóa
+                              </Button>
+                              <Button
+                                leftIcon={<FaRegEdit />}
+                                className="bg-cyan-100 text-sky-500 px-2 py-3 text-sm sm:text-base"
+                              >
+                                Sửa
+                              </Button>
+                              <Button
+                                rightIcon={<FaLongArrowAltRight />}
+                                className="text-sm sm:text-base text-white bg-cyan-400 hover:bg-cyan-500 px-2 py-3 w-auto"
+                                onClick={() => {
+                                  dispatch(updateBooking({ key: 'patientProfile', value: item }));
+                                  navigate('/chon-lich-kham?feature=booking.doctor&stepName=confirm');
+                                }}
+                              >
+                                Tiếp tục
+                              </Button>
+                            </div>
                           </div>
-                        </div>
-                        
                         )}
                       </div>
                     );
@@ -193,22 +194,22 @@ function ChooseRecord() {
                 </div>
               )}
             </div>
-          <div className="flex flex-row justify-between gap-3 mt-8 sm:mt-10 md:mt-12">
-            <Button
-              rightIcon={<HiOutlineArrowUturnLeft />}
-              onClick={goToPreviousStep}
-              className="bg-transparent font-medium hover:bg-zinc-100"
-            >
-              {t('appointments.form.back')}
-            </Button>
-            <Button
-              to="/tao-moi-ho-so"
-              leftIcon={<FaUserPlus />}
-              className="bg-transparent font-medium hover:bg-zinc-100"
-            >
-              {t('patientRecords.sidebar.add')}
-            </Button>
-          </div>
+            <div className="flex flex-row justify-between gap-3 mt-8 sm:mt-10 md:mt-12">
+              <Button
+                rightIcon={<HiOutlineArrowUturnLeft />}
+                onClick={goToPreviousStep}
+                className="bg-transparent font-medium hover:bg-zinc-100"
+              >
+                {t('appointments.form.back')}
+              </Button>
+              <Button
+                to="/tao-moi-ho-so"
+                leftIcon={<FaUserPlus />}
+                className="bg-transparent font-medium hover:bg-zinc-100"
+              >
+                {t('patientRecords.sidebar.add')}
+              </Button>
+            </div>
           </div>
         </div>
       </div>

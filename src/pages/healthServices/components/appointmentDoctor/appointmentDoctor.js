@@ -13,6 +13,7 @@ import Button from '~/components/Button';
 import { SlideInFromBottom } from '~/components/animation';
 import { updateBooking } from '~/redux/booking/bookingSlice';
 import { fetchDoctorbyHospital } from '~/redux/doctor/doctorSlice';
+import DoctorSkeleton from './doctorSkeleton'; 
 import '~/translation/i18n';
 
 //icon
@@ -34,6 +35,7 @@ const AppointmentDoctor = () => {
   const navigate = useNavigate();
   const queryParams = new URLSearchParams(location.search);
   const { updateBookingData } = useBooking();
+  const [loading, setLoading] = useState(true);
 
   const [doctorData, setDoctorData] = useState([]);
   const [valueInputSearch, setValueInputSearch] = useState('');
@@ -95,19 +97,26 @@ const AppointmentDoctor = () => {
 
   useEffect(() => {
     const fetchDoctordata = async () => {
-      const partnerId = queryParams.get('partnerId');
-      const res = await dispatch(fetchDoctorbyHospital({ hospitalId: partnerId }));
-      const result = unwrapResult(res);
-      updateBookingData('hospital', {
-        fullName: result.data[0]?.hospital.fullName,
-        address: result.data[0]?.hospital.address,
-        id: result.data[0]?.hospital._id,
-      });
+      try {
+        setLoading(true);
+        const partnerId = queryParams.get('partnerId');
+        const res = await dispatch(fetchDoctorbyHospital({ hospitalId: partnerId }));
+        const result = unwrapResult(res);
+        updateBookingData('hospital', {
+          fullName: result.data[0]?.hospital.fullName,
+          address: result.data[0]?.hospital.address,
+          id: result.data[0]?.hospital._id,
+        });
 
-      setDoctorData(result?.data);
+        setDoctorData(result?.data);
+      } catch (error) {
+        console.error('Lỗi khi tải dữ liệu bác sĩ:', error);
+      } finally {
+        setLoading(false);
+      }
     };
     fetchDoctordata();
-  }, [doctorData, dispatch]);
+  }, []);
 
   return (
     <div className={cx('appointment-doctor')}>
@@ -192,6 +201,9 @@ const AppointmentDoctor = () => {
                         </div>
                       </div>
                       <div className={cx('listDocter')}>
+                      {loading ? (
+                          <DoctorSkeleton count={3} />
+                        ) : (
                         <>
                           {doctorData &&
                             searchInput(doctorData)?.map((item, index) => {
@@ -225,6 +237,7 @@ const AppointmentDoctor = () => {
                               );
                             })}
                         </>
+                         )}
                       </div>
                     </div>
                   </div>

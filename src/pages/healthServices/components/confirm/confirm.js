@@ -23,6 +23,12 @@ import '~/translation/i18n';
 import styles from '../appointmentDoctor/appointmentDoctor.module.scss';
 const cx = className.bind(styles);
 
+// Format giá
+const formatPrice = (price) => {
+  if (!price) return '0';
+  return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+};
+
 function Confirm() {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -102,7 +108,8 @@ function Confirm() {
                           {bookingData?.date}
                         </li>
                         <li className="w-1/5 text-left text-base sm:text-lg md:text-xl lg:text-2xl">
-                          {bookingData?.price?.toLocaleString('en-US', { style: 'currency', currency: 'VND' })} Vnđ
+                          {/* {bookingData?.price?.toLocaleString('en-US', { style: 'currency', currency: 'VND' })} Vnđ */}
+                          {formatPrice(bookingData?.price)} Vnđ
                         </li>
                         <li className="w-1/12 text-left">
                           <MdDelete style={{}} />

@@ -1,20 +1,12 @@
 import classNames from 'classnames/bind';
-import React, { useState, useEffect } from 'react';
-import HospitalServices from './Section/HospitalServices';
-import HealthServices from './Section/HealthServices';
-import Button from '~/components/Button';
-import Support from '~/layouts/components/support';
-import OutStandingDocter from './Section/OutStandingDocter';
-import { ImageMedia } from './Section/ImageMediaData';
-import { fetchGetAllNew } from '~/redux/news/newsSlice';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { FaCalendarAlt, FaBars } from 'react-icons/fa';
-import NewsLoadingSkeleton from './loading/newsLoading';
 import { Link } from 'react-router-dom';
-//language
 import { useTranslation } from 'react-i18next';
 import '~/translation/i18n';
 
+// icon
+import { FaCalendarAlt } from 'react-icons/fa';
 import {
   VisitsIcon,
   HospitalIcon,
@@ -25,29 +17,30 @@ import {
   ArowIcon,
 } from '~/components/Icon';
 import { GoArrowRight } from 'react-icons/go';
-import { PiCaretDoubleRightThin } from 'react-icons/pi';
+
+import HospitalServices from './Section/HospitalServices';
+import HealthServices from './Section/HealthServices';
+import Button from '~/components/Button';
+import Support from '~/layouts/components/support';
+import { fetchGetAllNew } from '~/redux/news/newsSlice';
+import OutStandingDocter from './Section/OutStandingDocter';
+import { ImageMedia } from './Section/ImageMediaData';
+import NewsLoadingSkeleton from './loading/newsLoading';
 
 import style from './home.module.scss';
 const cx = classNames.bind(style);
 
 function Home() {
-  const { t, i18n } = useTranslation();
-  const [currentLanguages, setCurrentLanguages] = useState(i18n.language);
+  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const newData = useSelector((state) => state.new.newData);
   const isLoading = useSelector((state) => state.new.loading);
-  console.log('check newData', newData);
 
   useEffect(() => {
     dispatch(fetchGetAllNew());
   }, [dispatch]);
 
-  // handle onchange language
-  const handleLanguageChange = (language) => {
-    i18n.changeLanguage(language);
-    setCurrentLanguages(language);
-  };
   return (
     <div className={cx('home', 'container mx-auto w-full px-4 md:px-6 lg:px-8 overflow-x-hidden')}>
       <div className={cx('home_header', 'mb-8')}>

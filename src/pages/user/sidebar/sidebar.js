@@ -2,7 +2,6 @@ import classNames from 'classnames/bind';
 import styles from './sidebar.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-import { useState } from 'react';
 
 // Icons
 import { IoMdNotificationsOutline } from 'react-icons/io';
@@ -16,8 +15,7 @@ import '~/translation/i18n';
 const cx = classNames.bind(styles);
 
 function Sidebar() {
-  const { t, i18n } = useTranslation();
-  const [currentLanguages, setCurrentLanguages] = useState(i18n.language);
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -29,7 +27,7 @@ function Sidebar() {
       id: '',
       icon: <FaUserPlus />,
       title: t('patientRecords.sidebar.add'),
-      href: '/#',
+      href: '/tao-moi-ho-so',
     },
     {
       id: 'records',

@@ -220,7 +220,7 @@ function Confirm() {
                               </span>
                             </div>
                             <div className="col-span-3 text-base sm:text-lg md:text-xl lg:text-2xl">
-                              {`${bookingData?.patientProfile?.address[0]?.street}, ${bookingData?.patientProfile?.address[0]?.wardName}, ${bookingData?.patientProfile?.address[0]?.districtName}, ${bookingData?.patientProfile?.address[0]?.provinceName}`}
+                              {`${bookingData?.patientProfile?.street}, ${bookingData?.patientProfile?.wardName}, ${bookingData?.patientProfile?.districtName}, ${bookingData?.patientProfile?.provinceName}`}
                             </div>
                           </li>
                         </div>

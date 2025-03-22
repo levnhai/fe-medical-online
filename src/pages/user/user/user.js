@@ -40,7 +40,7 @@ function User() {
       <div className={cx('-mt-20 mb-8 ms-8 md:mt-8')}>
         <ul className="flex">
           <li className="flex items-center">
-            <a href="#/" className="font-semibold">
+            <a href="#/" className="font-bold text-2xl">
               {t('header.home')}
             </a>
             <MdKeyboardArrowRight />
@@ -48,16 +48,18 @@ function User() {
 
           <li className="flex items-center">
             <a href="#/" className="text-sky-500 font-semibold">
-            {t('header.profile')}
+              {t('header.profile')}
             </a>
           </li>
         </ul>
       </div>
-        <div className={cx('grid grid-cols-1 md:grid-cols-4 gap-4')}>
-          <div className={cx('md:col-span-1')}>
-            <Sidebar />
-          </div>
-        <div div className={cx('md:col-span-3')}>{renderView()}</div>
+      <div className={cx('grid grid-cols-1 md:grid-cols-4 gap-4')}>
+        <div className={cx('md:col-span-1')}>
+          <Sidebar />
+        </div>
+        <div div className={cx('md:col-span-3')}>
+          {renderView()}
+        </div>
       </div>
     </div>
   );

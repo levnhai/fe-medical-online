@@ -359,9 +359,9 @@ function Home() {
           ></iframe>
         </div>
       </div>
-      <div className={cx('outstanding-doctor')}>
+      {/* <div className={cx('outstanding-doctor')}>
         <OutStandingDocter />
-      </div>
+      </div> */}
       {isLoading ? (
         <NewsLoadingSkeleton />
       ) : (

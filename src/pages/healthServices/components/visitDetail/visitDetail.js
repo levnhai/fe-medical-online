@@ -11,6 +11,12 @@ import { PiWarningCircle } from 'react-icons/pi';
 import { useTranslation } from 'react-i18next';
 import '~/translation/i18n';
 
+// Format giá
+const formatPrice = (price) => {
+  if (!price) return '0';
+  return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+};
+
 function VisitDetail() {
   const { t, i18n } = useTranslation();
   const [currentLanguages, setCurrentLanguages] = useState(i18n.language);
@@ -65,7 +71,7 @@ function VisitDetail() {
                     </div>
                     <div>
                       <div className="text-2xl font-semibold text-orange-500 text-center">
-                      {t('appointments.visit.fee')}: {bookingData?.price}
+                      {t('appointments.visit.fee')}: {formatPrice(bookingData?.price)}
                       </div>
                       <div className="text-orange-500 text-lg text-center pt-2 pb-4">
                         (Đã bao gồm phí khám + phí tiện ích)

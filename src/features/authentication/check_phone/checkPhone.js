@@ -1,12 +1,13 @@
 import classNames from 'classnames/bind';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FormProvider, useForm } from 'react-hook-form';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { GoogleLogin } from '@react-oauth/google';
 import { googleLogin, facebookLogin } from '~/redux/user/authSlice';
 import ReactFacebookLogin from 'react-facebook-login';
+import { BiLoaderAlt } from 'react-icons/bi';
 
 import Button from '~/components/Button';
 import { Input } from '~/components/input/input';
@@ -28,11 +29,14 @@ function CheckPhone() {
   const dispatch = useDispatch();
   const methods = useForm();
   const { setFocus } = methods;
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const { isLoggedIn, user } = useSelector((state) => state.auth);
 
   const handleBtnLogin = methods.handleSubmit(async (data) => {
+    if (isSubmitting) return;
     try {
+      setIsSubmitting(true);
       const res = await dispatch(fetchCheckPhone(data.phoneNumber));
       const checkPhone = unwrapResult(res);
 
@@ -45,6 +49,8 @@ function CheckPhone() {
       }
     } catch (error) {
       console.log(error);
+    }finally {
+      setIsSubmitting(false);
     }
   });
 
@@ -110,8 +116,16 @@ function CheckPhone() {
             onClick={() => {
               handleBtnLogin();
             }}
+            disabled={isSubmitting}
           >
-            {t('check-phone.continu')}
+            {isSubmitting ? (
+              <div className="flex items-center justify-center">
+                <BiLoaderAlt className="animate-spin mr-2" />
+                Đang xử lý...
+              </div>
+            ) : (
+            t('check-phone.continu')
+            )}
           </Button>
 
           <div className={cx('text-center')}>{t('check-phone.login_title')}</div>

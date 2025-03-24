@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { useSelector, useDispatch } from 'react-redux';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useTranslation } from 'react-i18next';
+import { BiLoaderAlt } from 'react-icons/bi';
 
 import '~/translation/i18n';
 
@@ -25,6 +26,7 @@ function OtpInput() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   console.log('check location', location.pathname);
 
@@ -35,6 +37,8 @@ function OtpInput() {
   const pathName = location.pathname;
 
   const handleverifyOtp = async () => {
+    if (isSubmitting) return;
+    setIsSubmitting(true);
     const res = await dispatch(fetchVerifyOtp({ phoneNumber, otpInput }));
     const verify = unwrapResult(res);
     console.log('check verifyOtp', verify);
@@ -43,6 +47,7 @@ function OtpInput() {
     } else {
       toast.warning(verify?.message);
     }
+      setIsSubmitting(false);
   };
 
   // otpInput send code
@@ -140,8 +145,16 @@ function OtpInput() {
             onClick={() => {
               handleverifyOtp();
             }}
+            disabled={isSubmitting}
           >
-            {t('opt.auth')}
+            {isSubmitting ? (
+              <div className="flex items-center justify-center">
+                <BiLoaderAlt className="animate-spin mr-2" />
+                Đang xử lý...
+              </div>
+            ) : (
+            t('opt.auth')
+            )}
           </Button>
 
           <div className={cx('card')}>

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { FormProvider, useForm } from 'react-hook-form';
 import { unwrapResult } from '@reduxjs/toolkit';
+import { BiLoaderAlt } from 'react-icons/bi';
 
 // icon
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
@@ -26,6 +27,7 @@ function SingUp() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const methods = useForm();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [showHidePassword, setShowHidePassword] = useState(true);
   const [confirmPassword, setConfirmPassword] = useState(true);
@@ -41,7 +43,9 @@ function SingUp() {
   };
 
   const handleSubmitCreateUser = methods.handleSubmit(async (data) => {
+    if (isSubmitting) return;
     try {
+      setIsSubmitting(true);
       const formData = { ...data, phoneNumber };
       const res = await dispatch(fetchCreateUser(formData));
       const userSelector = unwrapResult(res);
@@ -54,6 +58,8 @@ function SingUp() {
       }
     } catch (error) {
       toast.error(error);
+    }finally {
+      setIsSubmitting(false);
     }
   });
 
@@ -132,8 +138,17 @@ function SingUp() {
                 </a>
               </p>
               <div>
-                <Button type="submit" onClick={handleSubmitCreateUser} className={cx('register-btn')}>
-                  {t('register.comlate')}
+                <Button type="submit" onClick={handleSubmitCreateUser} className={cx('register-btn')}
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? (
+              <div className="flex items-center justify-center">
+                <BiLoaderAlt className="animate-spin mr-2" />
+                Đang xử lý...
+              </div>
+            ) : (
+                  t('register.comlate')
+                  )}
                 </Button>
               </div>
             </div>

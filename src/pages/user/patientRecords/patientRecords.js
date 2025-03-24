@@ -1,7 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { unwrapResult } from '@reduxjs/toolkit';
-import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
 //icon
@@ -19,17 +18,18 @@ import Modal from '~/components/modal';
 import { fetchRecordUser } from '~/redux/user/authSlice';
 import { fetchDeleteRecord } from '~/redux/record/recordSlice';
 import { formatDate } from '~/utils/time';
+import EditRecord from './modal/editRecord';
 
 function PatientRecord() {
-  const { t, i18n } = useTranslation();
-  const [currentLanguages, setCurrentLanguages] = useState(i18n.language);
   const dispatch = useDispatch();
   const [isModalDetailOpen, setIsModalDetailOpen] = useState(false);
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
+  const [showModalEdit, setShowModalEdit] = useState(false);
   const [selectedPatientId, setSelectedPatientId] = useState(null);
+  const [editRecord, setEditRecord] = useState(null);
   const [recordData, setRecordData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  
+
   const partnerId = useSelector((state) => state.auth?.user.payload?.userData?._id);
 
   const fetchRecords = async () => {
@@ -149,7 +149,8 @@ function PatientRecord() {
                       text
                       leftIcon={<FiEdit />}
                       onClick={() => {
-                        alert('Tính năng này đang phát triển, vui lòng thử lại sau');
+                        setShowModalEdit(true);
+                        setEditRecord(item);
                       }}
                     >
                       Sửa hồ sơ
@@ -253,8 +254,7 @@ function PatientRecord() {
         </div>
       )}
 
-      {/* Modal xóa hồ sơ - đặt bên ngoài để không bị ảnh hưởng bởi map */}
-      <Modal isOpen={isModalDeleteOpen} onClose={() => setIsModalDeleteOpen(false)} title="Thông báo">
+      <Modal isOpen={isModalDeleteOpen} onClose={() => setIsModalDeleteOpen(false)} title="Xóa hồ sơ">
         <p className="px-10 py-10 text-2xl ">Bạn có muốn chắc chắn xóa bệnh nhân này không?</p>
         <div className="flex justify-end border-t py-2 pr-6 gap-4">
           <Button onClick={() => setIsModalDeleteOpen(false)}>Đóng</Button>
@@ -263,6 +263,11 @@ function PatientRecord() {
           </Button>
         </div>
       </Modal>
+      <div>
+        {showModalEdit && (
+          <EditRecord setShowModalEdit={setShowModalEdit} editRecord={editRecord} fetchRecords={fetchRecords} />
+        )}
+      </div>
     </div>
   );
 }

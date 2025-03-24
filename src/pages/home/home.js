@@ -23,7 +23,7 @@ import HealthServices from './Section/HealthServices';
 import Button from '~/components/Button';
 import Support from '~/layouts/components/support';
 import { fetchGetAllNew } from '~/redux/news/newsSlice';
-import OutStandingDocter from './Section/OutStandingDocter';
+import OutStandingDoctor from './Section/OutStandingDoctor';
 import { ImageMedia } from './Section/ImageMediaData';
 import NewsLoadingSkeleton from './loading/newsLoading';
 
@@ -359,8 +359,8 @@ function Home() {
           ></iframe>
         </div>
       </div>
-      <div className={cx('outstanding-doctor')}>
-        <OutStandingDocter />
+      <div className={cx('outstanding-doctor', 'mb-20')}>
+        <OutStandingDoctor />
       </div>
       {isLoading ? (
         <NewsLoadingSkeleton />

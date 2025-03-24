@@ -15,9 +15,13 @@ $subtext-color: rgb(98, 98, 98);
 
 @mixin responsive($breakpoint) {
   @if $breakpoint == tablet {
-    @media (min-width: 768px) { @content; }
+    @media (min-width: 768px) {
+      @content;
+    }
   } @else if $breakpoint == desktop {
-    @media (min-width: 1024px) { @content; }
+    @media (min-width: 1024px) {
+      @content;
+    }
   }
 }
 
@@ -31,11 +35,11 @@ $subtext-color: rgb(98, 98, 98);
 
 .container {
   margin: 0 20px;
-  
+
   @include responsive(tablet) {
     margin: 0 80px;
   }
-  
+
   @include responsive(desktop) {
     margin: 0 164px;
   }
@@ -47,7 +51,7 @@ $subtext-color: rgb(98, 98, 98);
   justify-content: space-between;
   text-align: center;
   flex-direction: column;
-  
+
   @include responsive(tablet) {
     flex-direction: row;
   }
@@ -57,7 +61,7 @@ $subtext-color: rgb(98, 98, 98);
     color: $primary-color;
     font-size: 20px;
     margin-bottom: 10px;
-    
+
     @include responsive(tablet) {
       font-size: 24px;
       margin-bottom: 0;
@@ -70,7 +74,7 @@ $subtext-color: rgb(98, 98, 98);
     border-radius: 16px;
     cursor: pointer;
     align-self: center;
-    
+
     @include responsive(tablet) {
       padding: 10px 8px;
     }
@@ -81,7 +85,7 @@ $subtext-color: rgb(98, 98, 98);
       font-size: 16px;
       color: $secondary-color;
       font-weight: 600;
-      
+
       @include responsive(tablet) {
         font-size: 20px;
       }
@@ -97,10 +101,10 @@ $subtext-color: rgb(98, 98, 98);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  
-  @include responsive(tablet) {
-    justify-content: space-between;
-  }
+
+  // @include responsive(tablet) {
+  //   justify-content: space-between;
+  // }
 }
 
 .profile {
@@ -108,14 +112,14 @@ $subtext-color: rgb(98, 98, 98);
   flex-direction: column;
   width: 100%;
   margin-bottom: 20px;
-  
-  @include responsive(tablet) {
-    width: 48%;
-  }
-  
-  @include responsive(desktop) {
-    width: 23%;
-  }
+
+  // @include responsive(tablet) {
+  //   width: 48%;
+  // }
+
+  // @include responsive(desktop) {
+  //   width: 23%;
+  // }
 
   div {
     @include flex-center;
@@ -127,12 +131,12 @@ $subtext-color: rgb(98, 98, 98);
   width: 150px;
   height: 150px;
   box-shadow: 0 6px 5px #ccc;
-  
+
   @include responsive(tablet) {
     width: 180px;
     height: 180px;
   }
-  
+
   @include responsive(desktop) {
     width: 200px;
     height: 200px;
@@ -149,7 +153,7 @@ $subtext-color: rgb(98, 98, 98);
     font-weight: 600;
     text-align: center;
     color: $text-color;
-    
+
     @include responsive(tablet) {
       font-size: 18px;
     }
@@ -160,7 +164,7 @@ $subtext-color: rgb(98, 98, 98);
     text-align: center;
     font-weight: 400;
     color: $subtext-color;
-    
+
     @include responsive(tablet) {
       font-size: 16px;
     }
@@ -176,12 +180,12 @@ $subtext-color: rgb(98, 98, 98);
   position: relative;
   background: #fff;
   box-sizing: border-box;
-  
+
   @include responsive(tablet) {
     width: 200px;
     height: 200px;
   }
-  
+
   @include responsive(desktop) {
     width: 215px;
     height: 215px;
@@ -194,10 +198,8 @@ $subtext-color: rgb(98, 98, 98);
     top: 15px;
     left: 15px;
     position: absolute;
-    background-image: 
-      linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5) 50%, transparent 100%),
-      radial-gradient(circle 50px, #ddd 100%, transparent 0),
-      linear-gradient(#ddd 16px, transparent 0),
+    background-image: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5) 50%, transparent 100%),
+      radial-gradient(circle 50px, #ddd 100%, transparent 0), linear-gradient(#ddd 16px, transparent 0),
       linear-gradient(#ddd 24px, transparent 0);
     background-repeat: no-repeat;
     background-size: 75px 175px, 100% 100px, 80% 16px, 80% 16px;

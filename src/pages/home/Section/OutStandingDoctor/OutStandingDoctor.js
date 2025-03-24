@@ -1,17 +1,20 @@
 import classNames from 'classnames/bind';
 import Slider from 'react-slick';
-import { useEffect, useState } from 'react';
-import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/md';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Buffer } from 'buffer';
 import LazyLoad from 'react-lazyload';
 
+//icon
+import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/md';
+
 import Button from '~/components/Button';
 import { fetchTopDoctors } from '~/redux/doctor/doctorSlice';
-import style from './OutStandingDocter.module.scss';
 //language
 import { useTranslation } from 'react-i18next';
 import '~/translation/i18n';
+
+import style from './OutStandingDoctor.module.scss';
 const cx = classNames.bind(style);
 
 const Loading = () => <div className={cx('loader')}></div>;
@@ -65,17 +68,12 @@ function SamplePrevArrow(props) {
   );
 }
 
-function OutStandingDocter() {
-  const { t, i18n } = useTranslation();
-  const [currentLanguages, setCurrentLanguages] = useState(i18n.language);
+function OutStandingDoctor() {
+  const { t } = useTranslation();
 
-  // handle onchange language
-  const handleLanguageChange = (language) => {
-    i18n.changeLanguage(language);
-    setCurrentLanguages(language);
-  };
   const dispatch = useDispatch();
   const topDoctors = useSelector((state) => state.doctor.topDoctors);
+  console.log('check topDoctors', topDoctors);
   var settings = {
     infinite: true,
     speed: 500,
@@ -91,13 +89,14 @@ function OutStandingDocter() {
   }, [dispatch]);
 
   return (
-    <div className={cx('wapper')}>
+    <div className={cx('wrapper')}>
       <div className={cx('container')}>
         <div className={cx('header')}>
           <div className={cx('header-title')}>{t('doctor.featured_doctor')}</div>
-          <div className={cx('header-seeMoreBtn')}>
+          {/* <div className={cx('header-seeMoreBtn')}>
             <Button>{t('home.show_more')}</Button>
-          </div>
+          </div> */}
+          <div></div>
         </div>
 
         <div>
@@ -117,8 +116,16 @@ function OutStandingDocter() {
                       </div>
                       {/* </LazyLoad> */}
                       <div className={cx('position')}>
-                        <div>{`${item.positionIdData[0].valueVi}, ${item.fullName}`}</div>
-                        <span>tai mũi họng</span>
+                        <div>{`${
+                          item.positionId === 'doctor'
+                            ? 'Bác sĩ'
+                            : item.positionId === 'mater'
+                            ? 'Thạc sĩ'
+                            : item.positionId === 'associate professor'
+                            ? 'Phó giáo sư'
+                            : 'Giáo sư'
+                        }, ${item.fullName}`}</div>
+                        <span>{item?.specialty?.fullName}</span>
                       </div>
                     </div>
                   </LazyLoad>
@@ -132,4 +139,4 @@ function OutStandingDocter() {
   );
 }
 
-export default OutStandingDocter;
+export default OutStandingDoctor;

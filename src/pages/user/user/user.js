@@ -1,6 +1,5 @@
 import classNames from 'classnames/bind';
 import { useLocation } from 'react-router-dom';
-import { useState } from 'react';
 
 // icon
 import { MdKeyboardArrowRight } from 'react-icons/md';
@@ -16,8 +15,7 @@ import styles from './user.module.scss';
 const cx = classNames.bind(styles);
 
 function User() {
-  const { t, i18n } = useTranslation();
-  const [currentLanguages, setCurrentLanguages] = useState(i18n.language);
+  const { t } = useTranslation();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const key = searchParams.get('key');

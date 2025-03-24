@@ -87,7 +87,7 @@ function NewRecord() {
       console.log('check result record', result);
       if (result.status) {
         toast.success(result.message);
-        dispatch(updateBooking({ key: 'patientProfile', value: formData }));
+        dispatch(updateBooking({ key: 'patientProfile', value: result?.record }));
         navigate('/chon-lich-kham?feature=booking.doctor&stepName=confirm');
       } else {
         toast.error(result.message);
@@ -174,7 +174,7 @@ function NewRecord() {
             <div className="">
               <form onSubmit={handleSubmit(submitForm)}>
                 <div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 px-8">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 px-8">
                     <div className="col-span-1">
                       <div className="flex">
                         <h2 className="font-semibold">Họ và tên (Có dấu)</h2>

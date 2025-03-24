@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 // icon
 import { MdKeyboardArrowRight } from 'react-icons/md';
-import { CiLocationOn, CiSearch } from 'react-icons/ci';
+import { CiSearch } from 'react-icons/ci';
 import { LuClock7 } from 'react-icons/lu';
 
 import Button from '~/components/Button';
@@ -43,7 +43,6 @@ function Facilitie() {
   const [subLableTitle, setSubLableTitle] = useState(
     'Với những cơ sở Y Tế hàng đầu sẽ giúp trải nghiệm khám, chữa bệnh của bạn tốt hơn',
   );
-  //const [sliderMode, setSliderMode] = useState('full');
 
   const hospitalDataByType = useSelector((state) => state.hospital.hospitalDataByType);
 
@@ -152,8 +151,13 @@ function Facilitie() {
   // count hospital types
   useEffect(() => {
     dispatch(fetchGetCountHospitalByType(search));
-    countHospitalType();
-  }, [search, dispatch]);
+  }, []);
+
+  useEffect(() => {
+    if (countHospitalByType?.typeCounts) {
+      countHospitalType();
+    }
+  }, [countHospitalByType]);
 
   useEffect(() => {
     dispatch(clearBooking());
@@ -192,14 +196,6 @@ function Facilitie() {
                     <input placeholder={t('home.search')} value={search} onChange={(e) => setSearch(e.target.value)} />
                   </div>
                 </div>
-                {/* <div className={cx('facilitie__formcontent--item')}>
-                  <div className={cx('facilitie__formcontent--icon')}>
-                    <CiLocationOn style={{ width: '2rem', height: '2rem' }} />
-                  </div>
-                  <div className={cx('facilitie__formcontent--input')}>
-                    <input placeholder={t('home.choose')}/>
-                  </div>
-                </div> */}
               </div>
             </div>
             <div className={cx('btnGroup')} ref={sliderRef}>

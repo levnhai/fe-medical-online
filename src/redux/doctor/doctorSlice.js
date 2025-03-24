@@ -3,8 +3,8 @@ import axios from '~/axios';
 
 export const fetchTopDoctors = createAsyncThunk('doctor/fetchTopDoctors', async (limit) => {
   try {
-    const response = await axios.get(`/api/get-top-docter?limit=${limit}`);
-    return response.data.data;
+    const response = await axios.get(`/doctor/get-top-doctor?limit=${limit}`);
+    return response?.result?.data;
   } catch (error) {
     throw new Error(error.message);
   }

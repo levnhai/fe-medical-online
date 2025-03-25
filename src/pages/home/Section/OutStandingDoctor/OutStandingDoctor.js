@@ -73,7 +73,7 @@ function OutStandingDoctor() {
 
   const dispatch = useDispatch();
   const topDoctors = useSelector((state) => state.doctor.topDoctors);
-  console.log('check topDoctors', topDoctors);
+  
   var settings = {
     infinite: true,
     speed: 500,
@@ -81,9 +81,31 @@ function OutStandingDoctor() {
     slidesToScroll: 1,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024, // tablet
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 768, // small tablet
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 480, // mobile
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        }
+      }
+    ]
   };
 
-  // Select data from store
   useEffect(() => {
     dispatch(fetchTopDoctors(10));
   }, [dispatch]);
@@ -93,9 +115,6 @@ function OutStandingDoctor() {
       <div className={cx('container')}>
         <div className={cx('header')}>
           <div className={cx('header-title')}>{t('doctor.featured_doctor')}</div>
-          {/* <div className={cx('header-seeMoreBtn')}>
-            <Button>{t('home.show_more')}</Button>
-          </div> */}
           <div></div>
         </div>
 
@@ -110,11 +129,9 @@ function OutStandingDoctor() {
                 return (
                   <LazyLoad key={item._id} placeholder={<Loading />}>
                     <div key={item._id} className={cx('profile')}>
-                      {/* <LazyLoad key={item._id} placeholder={<Loading />}> */}
                       <div>
                         <img className={cx('avata')} src={base64String} alt="" />
                       </div>
-                      {/* </LazyLoad> */}
                       <div className={cx('position')}>
                         <div>{`${
                           item.positionId === 'doctor'

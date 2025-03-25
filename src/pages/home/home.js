@@ -20,6 +20,7 @@ import { GoArrowRight } from 'react-icons/go';
 
 import HospitalServices from './Section/HospitalServices';
 import HealthServices from './Section/HealthServices';
+import BannerServices from './Section/BannerServices';
 import Button from '~/components/Button';
 import Support from '~/layouts/components/support';
 import { fetchGetAllNew } from '~/redux/news/newsSlice';
@@ -42,7 +43,7 @@ function Home() {
   }, [dispatch]);
 
   return (
-    <div className={cx('home', 'container mx-auto w-full px-4 md:px-6 lg:px-8 overflow-x-hidden')}>
+    <div className={cx('home', 'container mx-auto w-full overflow-x-hidden')}>
       <div className={cx('home_header', 'mb-8')}>
         <div className={cx('home_header_banner', 'bg-gray-100 rounded-lg p-6 md:p-10')}>
           <div className={cx('banner_wrapper', 'sm:flex sm:flex-col -mt-20')}>
@@ -79,8 +80,8 @@ function Home() {
             </div>
           </div>
 
-          <div className={cx('home_card', 'grid', 'grid-cols-1', 'sm:grid-cols-2', 'md:grid-cols-3', 'gap-4')}>
-            <div className={cx('home_cardTitle')}>
+          <div className={cx('home_card', 'grid', 'grid-cols-1', 'sm:grid-cols-1', 'md:grid-cols-1')}>
+            {/* <div className={cx('home_cardTitle')}>
               <div className={cx('cardTitle_img')}></div>
               <div className={cx('cardTitle_title')}>{t('home.quick_booking')}</div>
               <div className={cx('cardTitle_des')}>{t('home.quick_booking_description')}</div>
@@ -121,7 +122,8 @@ function Home() {
                   {t('home.show_more')}
                 </Button>
               </div>
-            </div>
+            </div> */}
+            <BannerServices />
           </div>
         </div>
         <div className={cx('home_statistic')}>

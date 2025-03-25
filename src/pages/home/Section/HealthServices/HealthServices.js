@@ -1,7 +1,7 @@
 import Slider from 'react-slick';
 import classNames from 'classnames/bind';
 import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/md';
-import React, { useState } from 'react';
+import React from 'react';
 
 import style from './HealthServices.module.scss';
 //language
@@ -95,14 +95,8 @@ const services = [
   },
 ];
 function HealthServices() {
-  const { t, i18n } = useTranslation();
-  const [currentLanguages, setCurrentLanguages] = useState(i18n.language);
+  const { t } = useTranslation();
 
-  // handle onchange language
-  const handleLanguageChange = (language) => {
-    i18n.changeLanguage(language);
-    setCurrentLanguages(language);
-  };
   const settings = {
     infinite: true,
     speed: 500,
@@ -205,14 +199,8 @@ function HealthServices() {
         <div className="grid grid-cols-4 gap-1 p-2">
           {services.map((service, index) => (
             <div key={index} className="flex flex-col items-center justify-between p-1 h-full">
-              {' '}
-              {/* Thiết lập chiều cao đầy đủ */}
               <img src={service.img} alt={t(`services.${service.text}`)} className="w-10 h-10 object-contain mb-1" />
-              <span className="text-center text-[9px] leading-tight flex-grow">
-                {' '}
-                {/* flex-grow để phần tử chữ có thể mở rộng */}
-                {t(`services.${service.text}`)}
-              </span>
+              <span className="text-center text-[9px] leading-tight flex-grow">{t(`services.${service.text}`)}</span>
             </div>
           ))}
         </div>

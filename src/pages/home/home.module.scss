@@ -107,7 +107,6 @@
 }
 .info_header_title {
   min-width: 440px;
-
 }
 .info_header_text {
   background: linear-gradient(83.63deg, var(--blue-color) 33.34%, #00e0ff 113.91%);
@@ -167,21 +166,21 @@
   }
 }
 .view-all {
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
-  height: 100px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
   margin-bottom: 20px;
 }
 
 .view-all-button {
-  background-color: #007bff; 
-  color: white; 
-  border: none; 
-  border-radius: 50px; 
-  padding: 10px 20px; 
-  font-size: 16px; 
-  cursor: pointer; 
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
   transition: background-color 0.3s;
 }
 
@@ -197,11 +196,11 @@
   background-position: center;
 
   @media (min-width: 640px) {
-    width: 75%; 
+    width: 75%;
   }
 
   @media (min-width: 768px) {
-    width: 66%; 
+    width: 66%;
   }
 }
 
@@ -223,7 +222,7 @@
 
 /* Media queries cho màn hình nhỏ */
 @media (max-width: 767px) {
-  .info_header_text{
+  .info_header_text {
     font-size: 40px; /* Giảm kích thước cho màn hình nhỏ */
     line-height: 44px; /* Cập nhật line-height */
   }
@@ -238,7 +237,7 @@
 }
 
 @media (max-width: 480px) {
-  .info_header_text{
+  .info_header_text {
     font-size: 28px; /* Giảm thêm cho màn hình nhỏ hơn */
     line-height: 32px; /* Cập nhật line-height */
   }
@@ -381,7 +380,7 @@
   font-size: 39px;
   line-height: 48px;
   font-weight: 700;
-  @media (max-width : 768px) {
+  @media (max-width: 768px) {
     font-size: 29px;
   }
 }
@@ -389,7 +388,7 @@
   margin-top: 8px;
   font-size: 20px;
   font-weight: 500;
-  @media (max-width : 768px) {
+  @media (max-width: 768px) {
     font-size: 15px;
   }
 }
@@ -407,7 +406,7 @@
   line-height: 1.25;
 }
 
-.article_content{
+.article_content {
   font-size: 15px;
   color: #1a1a1a;
   margin-bottom: 8px;
@@ -454,8 +453,8 @@
   line-height: 46px;
   color: #12263f;
   font-family: Montserrat, sans-serif !important;
-  @media (max-width : 768px) {
-    font-size: 29px;  
+  @media (max-width: 768px) {
+    font-size: 29px;
   }
 }
 
@@ -491,9 +490,18 @@
 }
 
 .service_item {
-  margin-bottom: 70px;
+  margin-bottom: 30px;
   display: flex;
   justify-content: flex-end;
+}
+
+.service_content {
+  max-width: 250px;
+}
+
+.service_image {
+  width: 60px;
+  height: 60px;
 }
 
 .service_item:nth-child(2) {
@@ -520,11 +528,10 @@
   font-size: 20px;
   line-height: 23px;
   font-family: Roboto, sans-serif !important;
-  
+
   @media (max-width: 768px) {
     display: none;
   }
-  
 }
 .service_des {
   color: #858585;
@@ -582,7 +589,7 @@
   font-weight: 700;
   font-size: 39px;
   line-height: 48px;
-  @media (max-width : 768px) {
+  @media (max-width: 768px) {
     font-size: 29px;
   }
 }
@@ -593,7 +600,7 @@
   font-size: 20px;
   line-height: 23px;
   font-family: Roboto, sans-serif !important;
-  @media (max-width : 768px) {
+  @media (max-width: 768px) {
     font-size: 15px;
   }
 }
@@ -635,7 +642,7 @@
   margin-top: 60px;
   border-radius: 20px;
   width: 100%;
-  
+
   iframe {
     position: absolute;
     top: 0;
@@ -856,12 +863,11 @@
   .new_cardRight {
     width: 60%; /* Chiếm 60% chiều rộng trên màn hình lớn */
   }
-  
+
   .cardRight_item {
     width: 330px; /* Chiều rộng cố định cho các item */
   }
 }
-
 
 .new_viewMore {
   margin-top: 40px;

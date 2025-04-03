@@ -2,16 +2,26 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from '~/axios';
 
 // Create contact thunk
-export const fetchcreateAppointment = createAsyncThunk('contact/fetchcreateAppointment', async ({ formData }) => {
+export const fetchcreateAppointment = createAsyncThunk('appointment/fetchcreateAppointment', async ({ formData }) => {
   try {
-    console.log('check form data redux', formData);
     const response = await axios.post('/appointment/create-appointment', { formData });
-    console.log('check /appointment/create-appointment', response);
     return response;
   } catch (error) {
     throw new Error(error.message);
   }
 });
+
+// Create contact thunk
+export const fetchUpdateStatus = createAsyncThunk('appointment/fetchUpdateStatus', async ({ status, id }) => {
+  try {
+    const response = await axios.put(`/appointment/update-status/${id}`, { status });
+    console.log('check /appointment/create-appointment', response.result);
+    return response.result;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+});
+
 const appointmentSlice = createSlice({
   name: 'appointment',
   initialState: {

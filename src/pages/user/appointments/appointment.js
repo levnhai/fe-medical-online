@@ -57,7 +57,9 @@ function Appointment() {
           <div
             className={cx('tab-content', 'grid grid-cols-1 md:grid-cols-6 gap-4 md:gap-6')}
             key={item.orderId || index}
-            onClick={() => navigate(`/chi-tiet-phieu-kham-benh?transactionId=${item.orderId}`)}
+            onClick={() =>
+              navigate(`/chi-tiet-phieu-kham-benh?transactionId=${item.orderId}`, { state: { result: item } })
+            }
           >
             <div className="md:col-span-4 col-span-1">
               <div className="flex flex-wrap gap-2 md:gap-4">

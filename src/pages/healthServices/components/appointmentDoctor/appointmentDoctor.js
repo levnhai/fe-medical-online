@@ -13,7 +13,7 @@ import Button from '~/components/Button';
 import { SlideInFromBottom } from '~/components/animation';
 import { updateBooking } from '~/redux/booking/bookingSlice';
 import { fetchDoctorbyHospital } from '~/redux/doctor/doctorSlice';
-import DoctorSkeleton from './doctorSkeleton'; 
+import DoctorSkeleton from './doctorSkeleton';
 import '~/translation/i18n';
 
 //icon
@@ -40,8 +40,6 @@ const AppointmentDoctor = () => {
   const [doctorData, setDoctorData] = useState([]);
   const [valueInputSearch, setValueInputSearch] = useState('');
   const [filterParam, setFilterParam] = useState('All');
-
-  console.log('doctorData', doctorData);
 
   const handleClear = () => {
     setValueInputSearch('');
@@ -204,40 +202,45 @@ const AppointmentDoctor = () => {
                       {loading ? (
                           <DoctorSkeleton count={3} />
                         ) : (
-                        <>
-                          {doctorData &&
-                            searchInput(doctorData)?.map((item, index) => {
-                              return (
-                                <SlideInFromBottom>
-                                  <div key={index} className={cx('docter-infor')} onClick={() => handleNext(item)}>
-                                    <div>
-                                      <div className={cx('highlight', 'flex items-center gap-2.5 leading-10')}>
-                                        <FaUserDoctor />
-                                        {item?.fullName}
-                                      </div>
-                                      <div className={cx('flex items-center gap-2.5 leading-10')}>
-                                        <BsGenderAmbiguous />
-                                        {t('appointments.doctor.sex')}: {item?.gender === 'male' ? 'Nam' : 'Nữ'}
-                                      </div>
-                                      <div className={cx('flex items-center gap-2.5 leading-10')}>
-                                        <CiMedicalCross />
-                                        {t('appointments.doctor.specialist')}: {item?.specialty?.fullName}
-                                      </div>
-                                      <div className={cx('flex items-center gap-2.5 leading-10')}>
-                                        <GrSchedules />
-                                        {t('appointments.doctor.date')}: Thứ 2, 3, 6, 7
-                                      </div>
-                                      <div className={cx('flex items-center gap-2.5 leading-10')}>
-                                        <MdPhoneCallback />
-                                        {t('footer.phone')}: {item?.phoneNumber}
+                          <>
+                            {doctorData && doctorData.length > 0 ? (
+                              searchInput(doctorData)?.map((item, index) => {
+                                return (
+                                  <SlideInFromBottom key={index}>
+                                    <div className={cx('docter-infor')} onClick={() => handleNext(item)}>
+                                      <div>
+                                        <div className={cx('highlight', 'flex items-center gap-2.5 leading-10')}>
+                                          <FaUserDoctor />
+                                          {item?.fullName}
+                                        </div>
+                                        <div className={cx('flex items-center gap-2.5 leading-10')}>
+                                          <BsGenderAmbiguous />
+                                          {t('appointments.doctor.sex')}: {item?.gender === 'male' ? 'Nam' : 'Nữ'}
+                                        </div>
+                                        <div className={cx('flex items-center gap-2.5 leading-10')}>
+                                          <CiMedicalCross />
+                                          {t('appointments.doctor.specialist')}: {item?.specialty?.fullName}
+                                        </div>
+                                        <div className={cx('flex items-center gap-2.5 leading-10')}>
+                                          <GrSchedules />
+                                          {t('appointments.doctor.date')}: Thứ 2, 3, 6, 7
+                                        </div>
+                                        <div className={cx('flex items-center gap-2.5 leading-10')}>
+                                          <MdPhoneCallback />
+                                          {t('footer.phone')}: {item?.phoneNumber}
+                                        </div>
                                       </div>
                                     </div>
-                                  </div>
-                                </SlideInFromBottom>
-                              );
-                            })}
-                        </>
-                         )}
+                                  </SlideInFromBottom>
+                                );
+                              })
+                            ) : (
+                              <div className={cx('no-doctors-message', 'p-4 text-center border rounded-lg')}>
+                                <div className="text-gray-600">{'Không có bác sĩ nào tại bệnh viện này'}</div>
+                              </div>
+                            )}
+                          </>
+                        )}
                       </div>
                     </div>
                   </div>

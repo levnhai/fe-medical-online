@@ -60,7 +60,7 @@
     "quick_booking_description": "Quick booking, payment, and online queue number retrieval save time and effort",
     "show_more": "Show more",
     "show_detail": "Show details",
-    "search": "Search for medical facilities ...",  
+    "search": "Search for medical facilities ...",
     "choose": "Choose province, city ...",
     "new_title": "News medical",
     "media_recognition": "Media Recognition",
@@ -88,7 +88,7 @@
     "title": "Download the MEDICAL Quick Booking App"
   },
   "serviceInfo": {
-    "title": "Get online queue number quickly",
+    "title": ["Get online queue number quickly"],
     "description": [
       "Register for the exam/retake by the deadline",
       "By specialist doctor",
@@ -606,7 +606,7 @@
       "quit": "Cancel the voucher",
       "note3": "Within the specified time, if you cancel the voucher, you will be refunded the examination fee and additional services (excluding utility fees)."
     },
-    "facility":{
+    "facility": {
       "title": "Book an appointment by facility",
       "subTitle": "Book an appointment quickly, save time, safe and convenient",
       "search": "Search for medical facilities ...",

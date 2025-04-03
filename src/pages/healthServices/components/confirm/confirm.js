@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
 import className from 'classnames/bind';
 import { useSelector } from 'react-redux';
 
 import Sidebar from '../../components/sidebar';
 import Button from '~/components/Button';
-import { extractTime } from '~/utils/time';
+import { extractTime, formatDate } from '~/utils/time';
+import { formatPrice } from '~/utils/common';
 
 // icon
 import { MdKeyboardArrowRight } from 'react-icons/md';
@@ -22,12 +22,6 @@ import '~/translation/i18n';
 
 import styles from '../appointmentDoctor/appointmentDoctor.module.scss';
 const cx = className.bind(styles);
-
-// Format giá
-const formatPrice = (price) => {
-  if (!price) return '0';
-  return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-};
 
 function Confirm() {
   const { t } = useTranslation();
@@ -105,15 +99,14 @@ function Confirm() {
                         </li>
                         <li className="w-1/5 text-left text-base sm:text-lg md:text-xl lg:text-2xl">
                           {extractTime(bookingData?.time.start)} - {extractTime(bookingData?.time.end)} <br />{' '}
-                          {bookingData?.date}
+                          {formatDate(bookingData?.date)}
                         </li>
                         <li className="w-1/5 text-left text-base sm:text-lg md:text-xl lg:text-2xl">
-                          {/* {bookingData?.price?.toLocaleString('en-US', { style: 'currency', currency: 'VND' })} Vnđ */}
                           {formatPrice(bookingData?.price)} Vnđ
                         </li>
-                        <li className="w-1/12 text-left">
+                        {/* <li className="w-1/12 text-left">
                           <MdDelete style={{}} />
-                        </li>
+                        </li> */}
                       </ul>
                     </div>
                   </div>
@@ -131,7 +124,7 @@ function Confirm() {
                           <li className="grid grid-cols-5 gap-4">
                             <div className="flex gap-4 col-span-2 items-center">
                               <FaUserCircle className="text-2xl  text-zinc-500" />
-                              <span className="text-2xl text-zinc-500 text-base sm:text-lg md:text-xl lg:text-2xl">
+                              <span className="text-2xl text-zinc-500 sm:text-lg md:text-xl lg:text-2xl">
                                 {t('patientRecords.list.name')}:{' '}
                               </span>
                             </div>
@@ -141,17 +134,19 @@ function Confirm() {
                           </li>
                           <li className="grid grid-cols-5 gap-4">
                             <div className="flex gap-4 items-center col-span-2">
-                              <FaBirthdayCake className="text-2xl text-zinc-500 text-base sm:text-lg md:text-xl lg:text-2xl" />
-                              <span className="text-2xl text-zinc-500 text-base sm:text-lg md:text-xl lg:text-2xl">
+                              <FaBirthdayCake className="text-2xl text-zinc-500 sm:text-lg md:text-xl lg:text-2xl" />
+                              <span className="text-2xl text-zinc-500 sm:text-lg md:text-xl lg:text-2xl">
                                 {t('patientRecords.list.date')}:{' '}
                               </span>
                             </div>
-                            <div className="col-span-3 text-base sm:text-lg md:text-xl lg:text-2xl">16-02-03</div>
+                            <div className="col-span-3 text-base sm:text-lg md:text-xl lg:text-2xl">
+                              {formatDate(bookingData?.patientProfile?.birthdate)}
+                            </div>
                           </li>
                           <li className="grid grid-cols-5 gap-4">
                             <div className="flex gap-4 items-center col-span-2">
-                              <FaPhoneAlt className="text-2xl text-zinc-500 text-base sm:text-lg md:text-xl lg:text-2xl" />
-                              <span className="text-2xl text-zinc-500 text-base sm:text-lg md:text-xl lg:text-2xl">
+                              <FaPhoneAlt className="text-2xl text-zinc-500 sm:text-lg md:text-xl lg:text-2xl" />
+                              <span className="text-2xl text-zinc-500 sm:text-lg md:text-xl lg:text-2xl">
                                 {t('patientRecords.list.phone')}:
                               </span>
                             </div>
@@ -163,8 +158,8 @@ function Confirm() {
 
                           <li className="grid grid-cols-5 gap-4">
                             <div className="flex gap-4 col-span-2 items-center">
-                              <MdAlternateEmail className="text-2xl text-zinc-500 text-base sm:text-lg md:text-xl lg:text-2xl" />
-                              <span className="text-2xl text-zinc-500 text-base sm:text-lg md:text-xl lg:text-2xl">
+                              <MdAlternateEmail className="text-2xl text-zinc-500  sm:text-lg md:text-xl lg:text-2xl" />
+                              <span className="text-2xl text-zinc-500  sm:text-lg md:text-xl lg:text-2xl">
                                 {t('patientRecords.list.email')}:
                               </span>
                             </div>
@@ -174,8 +169,8 @@ function Confirm() {
                           </li>
                           <li className="grid grid-cols-5 gap-4 ">
                             <div className="flex gap-4 items-center col-span-2">
-                              <CiCreditCard1 className="text-2xl text-zinc-500 text-base sm:text-lg md:text-xl lg:text-2xl" />
-                              <span className="text-2xl text-zinc-500 text-base sm:text-lg md:text-xl lg:text-2xl">
+                              <CiCreditCard1 className="text-2xl text-zinc-500 sm:text-lg md:text-xl lg:text-2xl" />
+                              <span className="text-2xl text-zinc-500  sm:text-lg md:text-xl lg:text-2xl">
                                 {t('patientRecords.list.idbhyt')}:
                               </span>
                             </div>
@@ -186,8 +181,8 @@ function Confirm() {
                         <div className="col-span-1">
                           <li className="grid grid-cols-5 gap-4">
                             <div className="flex gap-4 items-center col-span-2">
-                              <BsGenderTrans className="text-2xl text-zinc-500 text-base sm:text-lg md:text-xl lg:text-2xl" />
-                              <span className="text-2xl text-zinc-500 text-base sm:text-lg md:text-xl lg:text-2xl">
+                              <BsGenderTrans className="text-2xl text-zinc-500 sm:text-lg md:text-xl lg:text-2xl" />
+                              <span className="text-2xl text-zinc-500 sm:text-lg md:text-xl lg:text-2xl">
                                 {t('patientRecords.list.sex')}:{' '}
                               </span>
                             </div>
@@ -198,8 +193,8 @@ function Confirm() {
                           </li>
                           <li className="grid grid-cols-5 gap-4">
                             <div className="flex gap-4 items-center col-span-2">
-                              <FaIdCard className="text-2xl text-zinc-500 text-base sm:text-lg md:text-xl lg:text-2xl" />
-                              <span className="text-2xl text-zinc-500 text-base sm:text-lg md:text-xl lg:text-2xl">
+                              <FaIdCard className="text-2xl text-zinc-500 sm:text-lg md:text-xl lg:text-2xl" />
+                              <span className="text-2xl text-zinc-500 sm:text-lg md:text-xl lg:text-2xl">
                                 {t('patientRecords.list.CCCD')}:{' '}
                               </span>
                             </div>
@@ -210,8 +205,8 @@ function Confirm() {
                           </li>
                           <li className="grid grid-cols-5 gap-4">
                             <div className="flex gap-4 items-center col-span-2">
-                              <HiOutlineUserGroup className="text-2xl text-zinc-500 text-base sm:text-lg md:text-xl lg:text-2xl" />
-                              <span className="text-2xl text-zinc-500 text-base sm:text-lg md:text-xl lg:text-2xl">
+                              <HiOutlineUserGroup className="text-2xl text-zinc-500 sm:text-lg md:text-xl lg:text-2xl" />
+                              <span className="text-2xl text-zinc-500 sm:text-lg md:text-xl lg:text-2xl">
                                 {t('patientRecords.list.nation')}:{' '}
                               </span>
                             </div>
@@ -221,19 +216,19 @@ function Confirm() {
                           </li>
                           <li className="grid grid-cols-5 gap-4">
                             <div className="flex gap-4 items-center col-span-2">
-                              <GiPositionMarker className="text-2xl text-zinc-500 text-base sm:text-lg md:text-xl lg:text-2xl" />
-                              <span className="text-2xl text-zinc-500 text-base sm:text-lg md:text-xl lg:text-2xl">
+                              <GiPositionMarker className="text-2xl text-zinc-500 sm:text-lg md:text-xl lg:text-2xl" />
+                              <span className="text-2xl text-zinc-500 sm:text-lg md:text-xl lg:text-2xl">
                                 {t('patientRecords.list.address')}:{' '}
                               </span>
                             </div>
                             <div className="col-span-3 text-base sm:text-lg md:text-xl lg:text-2xl">
-                              {`${bookingData?.patientProfile?.street}, ${bookingData?.patientProfile?.wardName}, ${bookingData?.patientProfile?.districtName}, ${bookingData?.patientProfile?.provinceName}`}
+                              {`${bookingData?.patientProfile?.address[0]?.street}, ${bookingData?.patientProfile?.address[0]?.wardName}, ${bookingData?.patientProfile?.address[0]?.districtName}, ${bookingData?.patientProfile?.address[0]?.provinceName}`}
                             </div>
                           </li>
                         </div>
                       </ul>
                     </div>
-                    <div className="flex bg-red-100 text-rose-600 p-2 rounded-xl mt-6 text-2xl text-base sm:text-lg md:text-xl lg:text-2xl">
+                    <div className="flex bg-red-100 text-rose-600 p-2 rounded-xl mt-6 text-2xl sm:text-lg md:text-xl lg:text-2xl">
                       <PiWarningCircle className="min-w-10" />
                       {t('appointments.confirm.note')}
                     </div>

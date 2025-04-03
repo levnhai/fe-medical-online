@@ -109,6 +109,7 @@ function Facilitie() {
     return hospitalDataByType && hospitalDataByType?.data?.slice(firstPageIndex, lastPageIndex);
   }, [currentPage, hospitalDataByType?.data]);
 
+  console.log('check currentTableData', currentTableData);
   const handleClickType = (tab, index) => {
     setLabelTitle(t(tab.label));
     setSubLableTitle(t(tab.subTitle));
@@ -246,7 +247,6 @@ function Facilitie() {
                                         ? `url(${convertImage(item.image)})`
                                         : "url('https://img.freepik.com/premium-vector/drawing-building-with-bird-it_1065891-1524.jpg?semt=ais_hybrid')",
                                   }}
-                                  // style={{"backgroundImage: url('https://www.citypng.com/public/')"}}
                                 ></div>
                                 <div className={cx('content-title-ini')}>
                                   <div className={cx('content-name', 'capitalize')}>{item.fullName}</div>
@@ -254,10 +254,6 @@ function Facilitie() {
                                   <div className={cx('content-groupBtn')}>
                                     <Button
                                       className={cx('content-btn')}
-                                      // to={
-                                      //   (`/${createSlugName(item.fullName)}?hptId=${item._id}`,
-                                      //   { state: { hospital: item } })
-                                      // }
                                       to={`/${createSlugName(item.fullName)}?hptId=${item._id}`}
                                       state={{ hospital: item }}
                                     >

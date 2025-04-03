@@ -20,6 +20,7 @@ import { HiOutlineArrowUturnLeft } from 'react-icons/hi2';
 
 import styles from '../appointmentDoctor/appointmentDoctor.module.scss';
 import Button from '~/components/Button';
+import { formatPrice } from '~/utils/common';
 const cx = className.bind(styles);
 
 function PaymentMethod() {
@@ -31,14 +32,7 @@ function PaymentMethod() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const bookingData = useSelector((state) => state.booking);
   const [isLoading, setIsLoading] = useState(false);
-  console.log('check booking data', bookingData);
 
-  // Format giá
-  const formatPrice = (price) => {
-    if (!price) return '0';
-    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-  };
-  
   // phương thức thanh toán
   const paymentMethods = [
     // {
@@ -81,7 +75,7 @@ function PaymentMethod() {
 
   const goToPreviousStep = () => {
     // updateBookingData('doctor', { fullName: null, id: null, specialty: null });
-    // navigate(`/chon-lich-kham?feature=booking.doctor&partnerId=${partnerId}&stepName=doctor`);
+    navigate(`/chon-lich-kham?feature=booking.doctor&stepName=confirm`);
   };
 
   // Xử lý mở Modal
@@ -134,10 +128,10 @@ function PaymentMethod() {
   //   }
   // };
 
-   // Xử lý xác nhận thanh toán
-   const handleConfirmPayment = async () => {
-    setIsLoading(true); 
-    
+  // Xử lý xác nhận thanh toán
+  const handleConfirmPayment = async () => {
+    setIsLoading(true);
+
     const formData = {
       patientId: bookingData.patientProfile,
       doctor: bookingData.doctor,
@@ -157,7 +151,9 @@ function PaymentMethod() {
           const result = unwrapResult(res);
 
           if (result?.status) {
-            navigate(`/chi-tiet-phieu-kham-benh?transactionId=${result?.appointment?.orderId}`);
+            navigate(`/chi-tiet-phieu-kham-benh?transactionId=${result?.appointment?.orderId}`, {
+              state: { result: result?.appointment },
+            });
           }
           break;
         }
@@ -172,7 +168,7 @@ function PaymentMethod() {
         }
       }
     } catch (error) {
-      console.error("Payment error:", error);
+      console.error('Payment error:', error);
     } finally {
       setIsLoading(false);
       setIsModalOpen(false); // Close modal
@@ -301,9 +297,7 @@ function PaymentMethod() {
                         </div>
                         <div className="flex justify-between mb-6">
                           <span className="text-3xl font-medium">{t('appointments.payment.sum')}:</span>
-                          <span className="text-sky-500 text-3xl font-semibold">
-                            {formatPrice(bookingData?.price)}
-                          </span>
+                          <span className="text-sky-500 text-3xl font-semibold">{formatPrice(bookingData?.price)}</span>
                         </div>
                       </div>
                       <div className="flex justify-end w-full">

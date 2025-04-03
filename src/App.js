@@ -1,13 +1,30 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
+import { io } from 'socket.io-client';
+import { useSelector } from 'react-redux';
 
 import DefaultLayout from './layouts/defaultLayout';
 import ProtectedRoute from './utils/protectedRoute';
 import { publicRoutes } from '~/routes';
 import ScrollToTop from './components/scroll';
 
+const socket = io(process.env.REACT_APP_BACKEND_URL);
+
 function App() {
+  const userId = useSelector((state) => state.auth?.user?.payload?.userData?._id);
+
+  useEffect(() => {
+    socket.emit('user_online', userId);
+
+    window.addEventListener('beforeunload', () => {
+      socket.emit('user_offline', userId);
+    });
+
+    return () => {
+      socket.emit('user_offline', userId);
+    };
+  }, []);
   return (
     <>
       <Router>

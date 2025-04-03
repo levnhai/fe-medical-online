@@ -7,6 +7,7 @@ import '~/translation/i18n';
 
 // icon
 import { FaCalendarAlt } from 'react-icons/fa';
+import { GoArrowRight } from 'react-icons/go';
 import {
   VisitsIcon,
   HospitalIcon,
@@ -16,7 +17,6 @@ import {
   EyeIcon,
   ArowIcon,
 } from '~/components/Icon';
-import { GoArrowRight } from 'react-icons/go';
 
 import HospitalServices from './Section/HospitalServices';
 import HealthServices from './Section/HealthServices';
@@ -239,11 +239,11 @@ function Home() {
           </div>
         </div>
         <div className={cx('download_service')}>
-          <div className={cx('download_serviceInfo')}>
+          <div className={cx('download_serviceInfo', 'flex justify-end')}>
             <ul className={cx('serviceInfo_list')}>
               <li className={cx('service_item')}>
                 <div className={cx('service_content')}>
-                  <h3 className={cx('service_title')}>{t('serviceInfo.title')}</h3>
+                  <h3 className={cx('service_title')}>{t('serviceInfo.title.0')}</h3>
                   <div className={cx('service_des')}>
                     <p>{t('serviceInfo.description.0')}</p>
                     <p>{t('serviceInfo.description.1')}</p>
@@ -256,28 +256,33 @@ function Home() {
               </li>
               <li className={cx('service_item')}>
                 <div className={cx('service_content')}>
-                  <h3 className={cx('service_title')}>{t('serviceInfo.title')}</h3>
+                  <h3 className={cx('service_title')}>{t('serviceInfo.title.1')}</h3>
                   <div className={cx('service_des')}>
-                    <p>{t('serviceInfo.description.0')}</p>
-                    <p>{t('serviceInfo.description.1')}</p>
-                    <p>{t('serviceInfo.description.2')}</p>
+                    <p>{t('serviceInfo.description.3')}</p>
+                    <p>{t('serviceInfo.description.4')}</p>
                   </div>
                 </div>
                 <div className={cx('service_image')}>
-                  <DocterServiceIcon />
+                  <img
+                    alt=""
+                    src="https://medpro.vn/_next/image?url=https%3A%2F%2Fcdn-pkh.longvan.net%2Fprod-partner%2F9762607b-d91a-4c94-a673-bbc516680154-2.svg&w=1920&q=75"
+                    style={{ width: '60px', height: '60px' }}
+                  />
                 </div>
               </li>
               <li className={cx('service_item')}>
                 <div className={cx('service_content')}>
-                  <h3 className={cx('service_title')}>{t('serviceInfo.title')}</h3>
+                  <h3 className={cx('service_title')}>{t('serviceInfo.title.2')}</h3>
                   <div className={cx('service_des')}>
-                    <p>{t('serviceInfo.description.0')}</p>
-                    <p>{t('serviceInfo.description.1')}</p>
-                    <p>{t('serviceInfo.description.2')}</p>
+                    <p>{t('serviceInfo.description.5')}</p>
                   </div>
                 </div>
                 <div className={cx('service_image')}>
-                  <DocterServiceIcon />
+                  <img
+                    alt=""
+                    src="https://medpro.vn/_next/image?url=https%3A%2F%2Fcdn-pkh.longvan.net%2Fprod-partner%2F770cc02d-88f4-4e82-b26a-493b35810a28-3.svg&w=1920&q=75"
+                    style={{ width: '60px', height: '60px' }}
+                  />
                 </div>
               </li>
             </ul>
@@ -286,44 +291,51 @@ function Home() {
             <div className={cx('backgroundCenter_circle')}></div>
             <div className={cx('backgroundCenter_phone')}></div>
           </div>
-          <div className={cx('download_serviceInfo')}>
+          <div className={cx('download_serviceInfo', 'flex justify-start')}>
             <ul className={cx('serviceInfo_list')}>
               <li className={cx('service_item', 'service_itemRight')}>
                 <div className={cx('service_image')}>
-                  <DocterServiceIcon />
+                  <img
+                    alt="Thanh toán viện phí"
+                    src="https://medpro.vn/_next/image?url=https%3A%2F%2Fcdn-pkh.longvan.net%2Fprod-partner%2F000a18f1-7158-4631-bd03-db97a76fc203-4.svg&w=1920&q=75"
+                    style={{ width: '60px', height: '60px' }}
+                  />
                 </div>
                 <div className={cx('service_content')}>
-                  <h3 className={cx('service_title')}>{t('serviceInfo.title')}</h3>
+                  <h3 className={cx('service_title')}>{t('serviceInfo.title.3')}</h3>
                   <div className={cx('service_des')}>
-                    <p>{t('serviceInfo.description.0')}</p>
-                    <p>{t('serviceInfo.description.1')}</p>
-                    <p>{t('serviceInfo.description.2')}</p>
+                    <p>{t('serviceInfo.description.6')}</p>
+                    <p>{t('serviceInfo.description.7')}</p>
                   </div>
                 </div>
               </li>
               <li className={cx('service_item', 'service_itemRight')}>
                 <div className={cx('service_image')}>
-                  <DocterServiceIcon />
+                  <img
+                    alt="Y tế tại nhà"
+                    src="https://medpro.vn/_next/image?url=https%3A%2F%2Fcdn-pkh.longvan.net%2Fprod-partner%2F4fff6c05-f49b-4f4a-a532-f2de15060877-5.svg&w=1920&q=75"
+                    style={{ width: '60px', height: '60px' }}
+                  />
                 </div>
                 <div className={cx('service_content')}>
-                  <h3 className={cx('service_title')}>{t('serviceInfo.title')}</h3>
+                  <h3 className={cx('service_title')}>{t('serviceInfo.title.4')}</h3>
                   <div className={cx('service_des')}>
-                    <p>{t('serviceInfo.description.0')}</p>
-                    <p>{t('serviceInfo.description.1')}</p>
-                    <p>{t('serviceInfo.description.2')}</p>
+                    <p>{t('serviceInfo.description.8')}</p>
                   </div>
                 </div>
               </li>
               <li className={cx('service_item', 'service_itemRight')}>
                 <div className={cx('service_image')}>
-                  <DocterServiceIcon />
+                  <img
+                    alt="Y tế tại nhà"
+                    src="https://medpro.vn/_next/image?url=https%3A%2F%2Fcdn-pkh.longvan.net%2Fprod-partner%2F02a98830-d4c2-41ec-a16a-5403e43f4e13-6.svg&w=1920&q=75"
+                    style={{ width: '60px', height: '60px' }}
+                  />
                 </div>
                 <div className={cx('service_content')}>
-                  <h3 className={cx('service_title')}>{t('serviceInfo.title')}</h3>
+                  <h3 className={cx('service_title')}>{t('serviceInfo.title.5')}</h3>
                   <div className={cx('service_des')}>
-                    <p>{t('serviceInfo.description.0')}</p>
-                    <p>{t('serviceInfo.description.1')}</p>
-                    <p>{t('serviceInfo.description.2')}</p>
+                    <p>{t('serviceInfo.description.9')}</p>
                   </div>
                 </div>
               </li>

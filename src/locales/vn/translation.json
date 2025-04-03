@@ -87,11 +87,25 @@
     "title": "Tải ứng dụng đặt khám nhanh MEDICAL"
   },
   "serviceInfo": {
-    "title": "Lấy số thứ tự khám nhanh trực tuyến",
+    "title": [
+      "Lấy số thứ tự khám nhanh trực tuyến",
+      "Tư vấn sức khỏe từ xa",
+      "Tra cứu kết quả cận lâm sàng",
+      "Thanh toán viện phí",
+      "Chăm sóc y tế tại nhà",
+      "Mạng lưới cơ sở hợp tác"
+    ],
     "description": [
       "Đăng ký khám/ Tái khám nhanh theo ngày đăng ký",
       "Theo bác sĩ chuyên khoa",
-      "Tái khám theo lịch hẹn"
+      "Tái khám theo lịch hẹn",
+      "Tư vấn sức khỏe từ xa, cuộc gọi",
+      "Video với các bác sĩ chuyên môn",
+      "Tra cứu kết quả cận lâm sàng trực tuyến dễ dàng và tiện lợi",
+      "Đa dạng hệ thống thanh toán trực tuyến",
+      "Hỗ trợ ví điện tử thịnh hành hiện nay",
+      "Dịch vụ Y tế tại nhà (điều dưỡng, xét nghiệm) chuyên nghiệp, đáp ứng các nhu cầu chăm sóc Y tế tại nhà phổ thông",
+      "Mạng lưới kết nối với các bệnh viện, phòng khám, phòng mạch rộng khắp phủ sóng toàn quốc"
     ]
   },
   "services": {
@@ -607,7 +621,7 @@
       "quit": "Hủy phiếu",
       "note3": "Trong thời gian quy định, nếu quý khách hàng hủy phiếu khám sẽ được hoàn lại tiền khám và các dịch vụ đặt thêm (không bao gồm phí tiện ích)."
     },
-    "facility":{
+    "facility": {
       "title": "Đặt khám theo cơ sở",
       "subTitle": "Đặt khám nhanh chóng, tiết kiệm thời gian, an toàn tiện lợi",
       "search": "Tìm kiếm cơ sở y tế ...",

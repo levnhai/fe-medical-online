@@ -13,7 +13,7 @@ import Button from '~/components/Button';
 import { SlideInFromBottom } from '~/components/animation';
 import { updateBooking } from '~/redux/booking/bookingSlice';
 import { fetchDoctorbyHospital } from '~/redux/doctor/doctorSlice';
-import DoctorSkeleton from './doctorSkeleton'; 
+import DoctorSkeleton from './doctorSkeleton';
 import '~/translation/i18n';
 
 //icon
@@ -40,8 +40,6 @@ const AppointmentDoctor = () => {
   const [doctorData, setDoctorData] = useState([]);
   const [valueInputSearch, setValueInputSearch] = useState('');
   const [filterParam, setFilterParam] = useState('All');
-
-  console.log('doctorData', doctorData);
 
   const handleClear = () => {
     setValueInputSearch('');
@@ -238,9 +236,7 @@ const AppointmentDoctor = () => {
                               })
                             ) : (
                               <div className={cx('no-doctors-message', 'p-4 text-center border rounded-lg')}>
-                                <div className="text-gray-600">
-                                  {'Không có bác sĩ nào tại bệnh viện này'}
-                                </div>
+                                <div className="text-gray-600">{'Không có bác sĩ nào tại bệnh viện này'}</div>
                               </div>
                             )}
                           </>

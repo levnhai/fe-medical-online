@@ -43,7 +43,6 @@ function Forgotpassword() {
   const handleSubmitCreateUser = methods.handleSubmit(async (data) => {
     try {
       const formData = { ...data, phoneNumber };
-      console.log('check form data', formData);
       const res = await dispatch(fetchForgotPassword(formData));
       const userSelector = unwrapResult(res);
       if (userSelector.status) {
@@ -108,14 +107,14 @@ function Forgotpassword() {
                 </form>
               </FormProvider>
               <p className={cx('customFont')}>
-              {t('register.des')}
+                {t('register.des')}
                 <br />
                 <a href="https://medpro.vn/quy-dinh-su-dung" target="_blank" rel="noreferrer">
-                {t('register.des1')}
+                  {t('register.des1')}
                 </a>
                 &nbsp; {t('register.and')} &nbsp;
                 <a href="https://medpro.vn/chinh-sach-bao-mat" target="_blank" rel="noreferrer">
-                {t('register.des2')}
+                  {t('register.des2')}
                 </a>
               </p>
               <div>

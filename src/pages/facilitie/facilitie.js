@@ -109,7 +109,6 @@ function Facilitie() {
     return hospitalDataByType && hospitalDataByType?.data?.slice(firstPageIndex, lastPageIndex);
   }, [currentPage, hospitalDataByType?.data]);
 
-  console.log('check currentTableData', currentTableData);
   const handleClickType = (tab, index) => {
     setLabelTitle(t(tab.label));
     setSubLableTitle(t(tab.subTitle));
@@ -136,7 +135,6 @@ function Facilitie() {
 
   const searchInput = (items) => {
     return items?.filter((item) => {
-      console.log('check item', item);
       return removeAccents(item?.fullName)?.toString().toLowerCase().indexOf(removeAccents(search).toLowerCase()) > -1;
     });
   };

@@ -31,8 +31,6 @@ function EditRecord({ editRecord, setShowModalEdit, fetchRecords }) {
   const [wardOptions, setWardOptions] = useState([]);
   const recordId = editRecord?._id;
 
-  console.log('check editRecord', editRecord);
-
   const [selectedProvince, setSelectedProvince] = useState(editRecord?.address[0]?.provinceId || null);
   const [selectedDistrict, setSelectedDistrict] = useState(editRecord?.address[0]?.districtId || null);
 
@@ -51,8 +49,6 @@ function EditRecord({ editRecord, setShowModalEdit, fetchRecords }) {
 
   const handleEditRecord = async (record) => {
     try {
-      console.log('check record', record);
-
       const birthdate = new Date(
         `${record?.year?.value}-${record?.month?.value.padStart(2, '0')}-${record?.day?.value.padStart(
           2,
@@ -80,8 +76,6 @@ function EditRecord({ editRecord, setShowModalEdit, fetchRecords }) {
 
       const res = await dispatch(fetchUpdateRecord({ recordId, formData }));
       const result = unwrapResult(res);
-
-      console.log('check result', result);
 
       if (result.status) {
         setShowModalEdit(false);

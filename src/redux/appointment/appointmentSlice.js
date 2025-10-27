@@ -15,7 +15,6 @@ export const fetchcreateAppointment = createAsyncThunk('appointment/fetchcreateA
 export const fetchUpdateStatus = createAsyncThunk('appointment/fetchUpdateStatus', async ({ status, id }) => {
   try {
     const response = await axios.put(`/appointment/update-status/${id}`, { status });
-    console.log('check /appointment/create-appointment', response.result);
     return response.result;
   } catch (error) {
     throw new Error(error.message);

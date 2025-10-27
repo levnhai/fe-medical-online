@@ -22,7 +22,6 @@ export const fetchCreateUrlMomo = createAsyncThunk('paymentSlice/fetchCreateUrlM
       // amount: formData.price,
       formData,
     });
-    console.log('check fetchCreateUrlMomo', response);
     return response;
   } catch (error) {
     throw new Error(error.message);
@@ -35,7 +34,6 @@ export const fetchClinicPayment = createAsyncThunk('paymentSlice/fetchClinicPaym
     const response = await axios.post('/payment/clinic-create', {
       formData,
     });
-    console.log('check response', response);
     return response;
   } catch (error) {
     throw new Error(error.message);
@@ -48,7 +46,6 @@ export const fetchGetAppointment = createAsyncThunk('paymentSlice/fetchClinicPay
     const response = await axios.post('/payment/get-appointment-by-userId', {
       patientId,
     });
-    console.log('check response', response);
     return response;
   } catch (error) {
     throw new Error(error.message);

@@ -9,16 +9,13 @@ import { extractTime } from '~/utils/time';
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
 
 function CustomCalendar({ dates }) {
-  console.log('check date cusstom', dates);
   const [selectedDate, setSelectedDate] = useState(new Date()); // Ngày đang chọn
   const [currentMonth, setCurrentMonth] = useState(new Date()); // Tháng đang hiển thị
   const [showCalendar, setShowCalendar] = useState(true);
   const [hours, setHours] = useState([]);
 
   const handleDateChange = (date) => {
-    console.log('check date change', date);
     const formattedDate = date.toLocaleDateString('en-CA'); // Format yyyy-mm-dd
-    console.log('check formattedDate', formattedDate);
     setSelectedDate(formattedDate);
     setShowCalendar(false); // Thu gọn lịch sau khi chọn ngày
     const result = dates.filter((item) => item.date.startsWith(formattedDate));

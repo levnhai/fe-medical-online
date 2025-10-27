@@ -29,8 +29,6 @@ function SingIn() {
   const redirectPath = useSelector((state) => state.auth.redirectPath);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  console.log('redirectPath', redirectPath);
-
   const methods = useForm();
   const dispatch = useDispatch();
   const navigator = useNavigate();
@@ -67,7 +65,7 @@ function SingIn() {
       }
     } catch (error) {
       toast.error('lỗi r bạn ơi ');
-    }finally {
+    } finally {
       setIsSubmitting(false);
     }
   });
@@ -123,7 +121,7 @@ function SingIn() {
                 Đang xử lý...
               </div>
             ) : (
-            t('check-phone.continu')
+              t('check-phone.continu')
             )}
           </Button>
           <div className={cx('text-right')}>

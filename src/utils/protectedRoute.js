@@ -5,7 +5,6 @@ import Cookies from 'js-cookie';
 const ProtectedRoute = () => {
   const loginToken = Cookies.get('login');
 
-  console.log('Login token: ', loginToken);
   if (!loginToken) {
     return <Navigate to="/check-phone" replace />;
   }

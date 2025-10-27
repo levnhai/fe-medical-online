@@ -6,7 +6,6 @@ export const fetchCreateRecord = createAsyncThunk('record/fetchCreateRecord', as
   try {
     const response = await axios.post('/record/create-record', { formData });
 
-    console.log('check response docter', response);
     return response.result;
   } catch (error) {
     throw new Error(error.message);
@@ -17,7 +16,6 @@ export const fetchDeleteRecord = createAsyncThunk('record/fetchDeleteRecord', as
   try {
     const response = await axios.delete(`/record/delete-record/${recordId}`);
 
-    console.log('check response docter', response);
     return response.result;
   } catch (error) {
     throw new Error(error.message);
@@ -27,9 +25,6 @@ export const fetchDeleteRecord = createAsyncThunk('record/fetchDeleteRecord', as
 export const fetchUpdateRecord = createAsyncThunk('record/fetchUpdateRecord', async ({ recordId, formData }) => {
   try {
     const response = await axios.put(`/record/update-record/${recordId}`, formData);
-
-    console.log('check response docter', response);
-
     return response.result;
   } catch (error) {
     throw new Error(error.message);

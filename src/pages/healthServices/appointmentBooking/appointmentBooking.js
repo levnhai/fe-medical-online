@@ -17,12 +17,9 @@ function AppointmentBooking() {
   const queryParams = new URLSearchParams(location.search);
   const baseUrl = `${window.location.origin}/`;
 
-  console.log(baseUrl); // "http://localhost:3000/"
-  console.log('check  queryParams', queryParams);
   const currentStep = queryParams.get('stepName') || 'doctor';
 
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-  console.log('check islogin', isLoggedIn);
 
   const renderStep = () => {
     switch (currentStep) {

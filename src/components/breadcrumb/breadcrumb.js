@@ -6,7 +6,6 @@ import styles from './breadcrumb.module.scss';
 const cx = className.bind(styles);
 
 function Breadcrumb({ items, separator = '/' }) {
-  console.log('check item: ', items);
   return (
     <nav className={cx('breadcrumb')}>
       {items.map((item, index) => (

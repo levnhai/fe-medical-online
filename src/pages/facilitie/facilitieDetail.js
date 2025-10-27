@@ -72,8 +72,6 @@ function FacilitieDetail() {
       }
     };
   }, [moveCarousel]);
-  console.log('check hospital', hospitalData);
-
   return (
     <div className="max-w-screen-lg m-auto pb-20">
       <div className={cx('-mt-20 ms-8 mb-8 md:mt-8')}>

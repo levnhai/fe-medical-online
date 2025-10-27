@@ -28,8 +28,6 @@ function Confirm() {
   const navigate = useNavigate();
   const bookingData = useSelector((state) => state.booking);
 
-  console.log('check bookingData', bookingData);
-
   const goToPreviousStep = () => {
     navigate(`/chon-lich-kham?feature=booking.doctor&stepName=record`);
   };

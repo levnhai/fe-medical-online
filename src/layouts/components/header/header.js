@@ -52,10 +52,7 @@ function Header() {
 
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
-  console.log('chekc isLoggedIn', isLoggedIn);
   const user = useSelector((state) => state.auth.user?.payload);
-
-  console.log('check user', user);
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);

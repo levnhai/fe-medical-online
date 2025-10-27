@@ -28,8 +28,6 @@ function OtpInput() {
   const location = useLocation();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  console.log('check location', location.pathname);
-
   const phoneNumber = useSelector((state) => state.auth.phoneNumber);
 
   const [otpInput, setOtpInput] = useState('');
@@ -41,13 +39,12 @@ function OtpInput() {
     setIsSubmitting(true);
     const res = await dispatch(fetchVerifyOtp({ phoneNumber, otpInput }));
     const verify = unwrapResult(res);
-    console.log('check verifyOtp', verify);
     if (verify?.status) {
       pathName === '/otp-input' ? navigate('/register-account') : navigate('/new-password');
     } else {
       toast.warning(verify?.message);
     }
-      setIsSubmitting(false);
+    setIsSubmitting(false);
   };
 
   // otpInput send code
@@ -153,7 +150,7 @@ function OtpInput() {
                 Đang xử lý...
               </div>
             ) : (
-            t('opt.auth')
+              t('opt.auth')
             )}
           </Button>
 

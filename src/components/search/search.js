@@ -84,7 +84,6 @@ function Search() {
                     {/* {provinceData &&
                 provinceData.map(
                   (result, index) => <div key={index} data={result}></div>,
-                  // console.log(result),
                 )} */}
                   </PopperWrapper>
                 </div>

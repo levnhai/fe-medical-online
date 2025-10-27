@@ -186,7 +186,6 @@ function AppointmentDate() {
                         <div className="slot-container flex gap-10 border-t-2 border-sky-400 mx-8 py-10">
                           {hours.map((hour, index) => (
                             <div key={index}>
-                              {console.log('check hour: ', hour)}
                               <Button
                                 outline
                                 key={index}

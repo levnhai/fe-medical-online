@@ -41,7 +41,6 @@ function NewRecord() {
 
   // Khi chọn tỉnh/thành phố
   const handleProvinceChange = (selectedOption) => {
-    console.log('check selectedOption', selectedOption);
     setSelectedProvince(selectedOption);
     setSelectedDistrict(null); // Reset quận/huyện khi đổi tỉnh
   };
@@ -53,16 +52,12 @@ function NewRecord() {
 
   const submitForm = async (data) => {
     try {
-      console.log('check da6aa', data.year?.value);
-      console.log('check da6aa', data.month?.value);
-      console.log('check da6aa', data.day?.value);
       const birthdate = new Date(
         `${data?.year?.value}-${data?.month?.value.padStart(2, '0')}-${data?.day?.value.padStart(
           2,
           '0',
         )}T00:00:00.000Z`,
       );
-      console.log(1, birthdate);
       const formData = {
         userId,
         fullName: data?.fullName,
@@ -81,10 +76,8 @@ function NewRecord() {
         wardId: data?.ward?.value,
         wardName: data?.ward?.label,
       };
-      console.log('check form data', formData);
       const res = await dispatch(fetchCreateRecord(formData));
       const result = unwrapResult(res);
-      console.log('check result record', result);
       if (result.status) {
         toast.success(result.message);
         dispatch(updateBooking({ key: 'patientProfile', value: result?.record }));
@@ -127,7 +120,6 @@ function NewRecord() {
 
   useEffect(() => {
     if (selectedDistrict) {
-      console.log('check quận huyện', selectedDistrict);
       const fetchWards = async () => {
         const res = await dispatch(fetchWardsByDistricts(selectedDistrict.value));
         const result = unwrapResult(res);

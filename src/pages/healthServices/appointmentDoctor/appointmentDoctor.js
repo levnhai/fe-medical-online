@@ -46,10 +46,6 @@ function AppointmentDoctor() {
     dispatch(fetchAllDoctors());
   }, [typeParam, dispatch]);
 
-  // Log ra để kiểm tra state loading có đúng không
-  console.log('isLoading:', isLoading);
-  console.log('docterData:', docterData);
-
   return (
     <div className={cx('main')}>
       <Header
@@ -69,7 +65,8 @@ function AppointmentDoctor() {
                 <FacilitieSkeleton />
               </>
             ) : (
-              currentTableData && currentTableData.map((item, index) => {
+              currentTableData &&
+              currentTableData.map((item, index) => {
                 let image =
                   Array.isArray(item.image?.data) && item.image.data.length > 0
                     ? Buffer.from(item.image, 'base64').toString('binary')
@@ -85,7 +82,9 @@ function AppointmentDoctor() {
                         <div className={cx('image')} style={{ backgroundImage: `url(${image})` }}></div>
                         <div className="h-100">
                           <div className={cx('name')}>
-                            <h4>{item.fullName} | {t('appointments.bookingDoctor.all')}</h4>
+                            <h4>
+                              {item.fullName} | {t('appointments.bookingDoctor.all')}
+                            </h4>
                           </div>
                           <div className={cx('treatment')}>
                             <strong>{t('appointments.bookingDoctor.job')}: </strong>

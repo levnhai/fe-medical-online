@@ -39,8 +39,6 @@ function ChooseRecord() {
   const [editRecord, setEditRecord] = useState(null);
   const [selectedRecordId, setSelectedRecordId] = useState(null);
 
-  console.log('check recordId', records);
-
   const goToPreviousStep = () => {
     updateBookingData('doctor', { fullName: null, id: null, specialty: null });
     navigate(
@@ -56,7 +54,6 @@ function ChooseRecord() {
     try {
       const res = await dispatch(fetchDeleteRecord({ recordId: selectedRecordId }));
       const result = unwrapResult(res);
-      console.log('checck result,', result);
       if (result?.status) {
         setShowModalDelete(false);
         toast.success(result?.message);

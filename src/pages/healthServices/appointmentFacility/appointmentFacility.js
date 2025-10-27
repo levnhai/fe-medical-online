@@ -11,7 +11,7 @@ import Pagination from '~/components/paination';
 import { fetchGetALlHospital } from '~/redux/hospital/hospitalSlice';
 import { useTranslation } from 'react-i18next';
 import '~/translation/i18n';
-import AppointmentFacilitySkeleton from './facilitySkeleton'
+import AppointmentFacilitySkeleton from './facilitySkeleton';
 
 import style from './appointmentFacility.module.scss';
 const cx = classNames.bind(style);
@@ -31,11 +31,8 @@ function AppointmentFacility() {
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
-    console.log('check', hospitalData?.data?.slice(firstPageIndex, lastPageIndex));
     return hospitalData && hospitalData?.data?.slice(firstPageIndex, lastPageIndex);
   }, [currentPage, hospitalData]);
-
-  console.log('check currentTableData', currentTableData);
 
   const handleDetailAppointmentDoctor = (item) => {
     navigate(`/chon-lich-kham/${item._id}`);
@@ -57,24 +54,26 @@ function AppointmentFacility() {
         <ul className={cx('tag')}>
           <li>
             <Button className={cx('tag-Btn', { active: activeTab === 0 })} rounded onClick={() => setActiveTab(0)}>
-            {t('appointments.facility.all')}
+              {t('appointments.facility.all')}
             </Button>
           </li>
           <li>
             <Button className={cx('tag-Btn', { active: activeTab === 1 })} rounded onClick={() => setActiveTab(1)}>
-            {t('appointments.facility.hospital')}
+              {t('appointments.facility.hospital')}
             </Button>
           </li>
           <li>
             <Button className={cx('tag-Btn', { active: activeTab === 2 })} rounded onClick={() => setActiveTab(2)}>
-            {t('appointments.facility.other')}
+              {t('appointments.facility.other')}
             </Button>
           </li>
         </ul>
         <div className={cx('container')}>
-        {isLoading ? (
-               <AppointmentFacilitySkeleton count={3} />
-            ) : ( currentTableData && currentTableData.map((item, index) => {
+          {isLoading ? (
+            <AppointmentFacilitySkeleton count={3} />
+          ) : (
+            currentTableData &&
+            currentTableData.map((item, index) => {
               let image = '';
               let address = `${item.address[0].street}, ${item.address[0].wardName}, ${item.address[0].districtName}, ${item.address[0].provinceName}`;
               if (item.image) {

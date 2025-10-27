@@ -13,7 +13,6 @@ export const fetchTopDoctors = createAsyncThunk('doctor/fetchTopDoctors', async 
 export const fetchAllDoctors = createAsyncThunk('doctor/fetchAllDoctors', async () => {
   try {
     const response = await axios.get('/doctor/get-all-doctor');
-    console.log('check data', response);
     return response;
   } catch (error) {
     throw new Error(error.message);
@@ -59,9 +58,7 @@ export const fetchDoctorbyHospitalAndDoctor = createAsyncThunk(
   'docter/fetchDoctorbyHospitalAndDoctor',
   async (data) => {
     try {
-      console.log('check data slice', data);
       const response = await axios.post('/doctor/get-doctor-by-hospital-doctor', data);
-      console.log('check response', response);
       return response.result;
     } catch (error) {
       throw new Error(error.message);
@@ -72,7 +69,6 @@ export const fetchDoctorbyHospitalAndDoctor = createAsyncThunk(
 export const fetchDoctorbyHospital = createAsyncThunk('docter/fetchDoctorbyHospital', async ({ hospitalId }) => {
   try {
     const response = await axios.post('/doctor/get-doctor-by-hospital', { hospitalId });
-    console.log('check response', response);
     return response.result;
   } catch (error) {
     throw new Error(error.message);

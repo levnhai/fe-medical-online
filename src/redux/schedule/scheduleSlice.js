@@ -4,7 +4,6 @@ import axios from '~/axios';
 export const fetchScheduleByDoctor = createAsyncThunk('scheduleSlice/fetchScheduleByDoctor', async ({ doctorId }) => {
   try {
     const response = await axios.post('schedule/get-schedule-by-doctor', { doctorId });
-    console.log('check response', response);
 
     return response.result;
   } catch (error) {

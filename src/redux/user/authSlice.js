@@ -97,7 +97,6 @@ export const facebookLogin = createAsyncThunk('authSlice/facebookLogin', async (
 // get record user
 export const fetchRecordUser = createAsyncThunk('authSlice/fetchRecordUser', async (recordId) => {
   try {
-    console.log('check record user', recordId);
     const response = await axios.post('record/get-record-by-id', recordId);
     return response.result;
   } catch (error) {

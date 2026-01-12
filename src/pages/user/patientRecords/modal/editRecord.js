@@ -15,7 +15,7 @@ import { fetchAllProvinces, fetchDistrictsByProvince, fetchWardsByDistricts } fr
 import styles from '../record.module.scss';
 const cx = classNames.bind(styles);
 
-function EditRecord({ editRecord, setShowModalEdit, fetchRecords }) {
+function EditRecord({ editRecord, localDispatch, fetchRecords }) {
   const {
     register,
     control,
@@ -78,7 +78,7 @@ function EditRecord({ editRecord, setShowModalEdit, fetchRecords }) {
       const result = unwrapResult(res);
 
       if (result.status) {
-        setShowModalEdit(false);
+        localDispatch({ type: 'SHOW_MODAL_EDIT', payload: false });
         toast.success(result.message);
         fetchRecords();
       } else {
@@ -167,7 +167,11 @@ function EditRecord({ editRecord, setShowModalEdit, fetchRecords }) {
     }
   }, [editRecord, reset]);
   return (
-    <Modal isOpen={true} onClose={() => setShowModalEdit(false)} title="Hồ sơ bệnh nhân">
+    <Modal
+      isOpen={true}
+      onClose={() => localDispatch({ type: 'SHOW_MODAL_EDIT', payload: false })}
+      title="Hồ sơ bệnh nhân"
+    >
       <div>
         <div className="max-h-[400px] overflow-auto my-8">
           <form onSubmit={handleSubmit(handleEditRecord)}>
@@ -742,7 +746,7 @@ function EditRecord({ editRecord, setShowModalEdit, fetchRecords }) {
           </form>
         </div>
         <div className="flex justify-end border-t py-2 pr-6 gap-4 pt-2">
-          <Button className="text-[#2c3e50]" onClick={() => setShowModalEdit(false)}>
+          <Button className="text-[#2c3e50]" onClick={() => localDispatch({ type: 'SHOW_MODAL_EDIT', payload: false })}>
             Đóng
           </Button>
           <Button

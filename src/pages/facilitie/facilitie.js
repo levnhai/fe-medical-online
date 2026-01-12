@@ -16,10 +16,12 @@ import ResultEmpty from '../resultEmpty';
 import { createSlugName } from '~/utils/createSlug';
 import FacilitieSkeleton from './loading/facilitie_skeleton';
 import Skeleton from './loading/skeleton';
+import { getTabMenus } from './data/tabMenus';
 import { convertImage } from '~/utils/convertImage';
 import { SlideInFromBottom } from '~/components/animation';
 import { fetchGetHospitalByType, fetchGetCountHospitalByType } from '~/redux/hospital/hospitalSlice';
 import { updateBooking, clearBooking } from '~/redux/booking/bookingSlice';
+import { useGetHospitalsByTypeQuery, useGetHospitalCountByTypeQuery } from '~/services/hospital.api';
 
 import style from './facilitie.module.scss';
 const cx = classNames.bind(style);
@@ -28,6 +30,8 @@ let PageSize = 5;
 
 function Facilitie() {
   const { t } = useTranslation();
+  const tabMenus = getTabMenus(t);
+  console.log('🚀 ~ Facilitie ~ tabMenus:', tabMenus);
   const { type } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -44,56 +48,15 @@ function Facilitie() {
     'Với những cơ sở Y Tế hàng đầu sẽ giúp trải nghiệm khám, chữa bệnh của bạn tốt hơn',
   );
 
-  const hospitalDataByType = useSelector((state) => state.hospital.hospitalDataByType);
+  const { data: hospitalData, isLoading } = useGetHospitalsByTypeQuery({ type, search });
 
-  const countHospitalByType = useSelector((state) => state.hospital.countHospitalByType);
-  const isLoading = useSelector((state) => state.hospital.loading);
+  const { data: countHospitalByType } = useGetHospitalCountByTypeQuery(search);
+
+  const hospitalDataByType = useSelector((state) => state.hospital.hospitalDataByType);
 
   const handleHospitalClick = (hospital) => {
     setSelectedHospitalId(hospital._id);
   };
-  const tabMenus = [
-    {
-      label: t('facilities.publicHospital.label'),
-      href: 'benh-vien-cong',
-      subTitle: t(
-        'facilities.publicHospital.subTitle',
-        'Đặt khám dễ dàng, không lo chờ đợi tại các bệnh viện công hàng đầu Việt Nam',
-      ),
-    },
-    {
-      label: t('facilities.privateHospital.label'),
-      href: 'benh-vien-tu',
-      subTitle: t(
-        'facilities.privateHospital.subTitle',
-        'Tận hưởng dịch vụ y tế tư nhân, chăm sóc sức khỏe chuyên nghiệp',
-      ),
-    },
-    {
-      label: t('facilities.clinic.label'),
-      href: 'phong-kham',
-      subTitle: t(
-        'facilities.clinic.subTitle',
-        'Trải nghiệm chăm sóc y tế tập trung và gần gũi tại phòng khám chuyên khoa',
-      ),
-    },
-    {
-      label: t('facilities.medicalOffice.label'),
-      href: 'phong-mach',
-      subTitle: t(
-        'facilities.medicalOffice.subTitle',
-        'Chẩn đoán và điều trị chất lượng với bác sĩ chuyên khoa được nhiều người tin tưởng',
-      ),
-    },
-    {
-      label: t('facilities.laboratory.label'),
-      href: 'xet-nghiem',
-      subTitle: t(
-        'facilities.laboratory.subTitle',
-        'Xét nghiệm chính xác, nhanh chóng và hỗ trợ chẩn đoán hiệu quả với các cơ sở uy tín hàng đầu',
-      ),
-    },
-  ];
 
   const countHospitalType = () => {
     const counts = {};
@@ -104,10 +67,10 @@ function Facilitie() {
   };
 
   const currentTableData = useMemo(() => {
-    const firstPageIndex = (currentPage - 1) * PageSize;
-    const lastPageIndex = firstPageIndex + PageSize;
-    return hospitalDataByType && hospitalDataByType?.data?.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage, hospitalDataByType?.data]);
+    if (!hospitalData?.data) return [];
+    const start = (currentPage - 1) * PageSize;
+    return hospitalData.data.slice(start, start + PageSize);
+  }, [hospitalData, currentPage]);
 
   const handleClickType = (tab, index) => {
     setLabelTitle(t(tab.label));
@@ -143,24 +106,24 @@ function Facilitie() {
     document.title = 'Cơ sở y tế || Medpro';
   }, []);
 
-  useEffect(() => {
-    dispatch(fetchGetHospitalByType({ type, search }));
-  }, [type, search, dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchGetHospitalByType({ type, search }));
+  // }, [type, search, dispatch]);
 
-  // count hospital types
-  useEffect(() => {
-    dispatch(fetchGetCountHospitalByType(search));
-  }, []);
+  // // count hospital types
+  // useEffect(() => {
+  //   dispatch(fetchGetCountHospitalByType(search));
+  // }, []);
 
-  useEffect(() => {
-    if (countHospitalByType?.typeCounts) {
-      countHospitalType();
-    }
-  }, [countHospitalByType]);
+  // useEffect(() => {
+  //   if (countHospitalByType?.typeCounts) {
+  //     countHospitalType();
+  //   }
+  // }, [countHospitalByType]);
 
-  useEffect(() => {
-    dispatch(clearBooking());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(clearBooking());
+  // }, []);
   return (
     <>
       <div className={cx('facilitie')}>

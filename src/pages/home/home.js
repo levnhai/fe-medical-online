@@ -7,7 +7,6 @@ import '~/translation/i18n';
 
 // icon
 import { FaCalendarAlt } from 'react-icons/fa';
-import { GoArrowRight } from 'react-icons/go';
 import {
   VisitsIcon,
   HospitalIcon,
@@ -43,7 +42,7 @@ function Home() {
   }, [dispatch]);
 
   return (
-    <div className={cx('home', 'container mx-auto w-full overflow-x-hidden')}>
+    <div className={cx('home', 'mx-auto w-full overflow-x-hidden')}>
       <div className={cx('home_header', 'mb-8')}>
         <div className={cx('home_header_banner', 'bg-gray-100 rounded-lg p-6 md:p-10')}>
           <div className={cx('banner_wrapper', 'sm:flex sm:flex-col -mt-20')}>
@@ -81,48 +80,6 @@ function Home() {
           </div>
 
           <div className={cx('home_card', 'grid', 'grid-cols-1', 'sm:grid-cols-1', 'md:grid-cols-1')}>
-            {/* <div className={cx('home_cardTitle')}>
-              <div className={cx('cardTitle_img')}></div>
-              <div className={cx('cardTitle_title')}>{t('home.quick_booking')}</div>
-              <div className={cx('cardTitle_des')}>{t('home.quick_booking_description')}</div>
-              <div className={cx('cardTitle_btn')}>
-                <Button
-                  rounded
-                  rightIcon={<GoArrowRight style={{ width: '1.8rem', height: '1.8rem' }} />}
-                  className={cx('seeMore_btn')}
-                >
-                  {t('home.show_more')}
-                </Button>
-              </div>
-            </div>
-            <div className={cx('home_cardTitle')}>
-              <div className={cx('cardTitle_img')}></div>
-              <div className={cx('cardTitle_title')}>{t('home.quick_booking')}</div>
-              <div className={cx('cardTitle_des')}>{t('home.quick_booking_description')}</div>
-              <div className={cx('cardTitle_btn')}>
-                <Button
-                  rounded
-                  rightIcon={<GoArrowRight style={{ width: '1.8rem', height: '1.8rem' }} />}
-                  className={cx('seeMore_btn')}
-                >
-                  {t('home.show_more')}
-                </Button>
-              </div>
-            </div>
-            <div className={cx('home_cardTitle')}>
-              <div className={cx('cardTitle_img')}></div>
-              <div className={cx('cardTitle_title')}>{t('home.quick_booking')}</div>
-              <div className={cx('cardTitle_des')}>{t('home.quick_booking_description')}</div>
-              <div className={cx('cardTitle_btn')}>
-                <Button
-                  rounded
-                  rightIcon={<GoArrowRight style={{ width: '1.8rem', height: '1.8rem' }} />}
-                  className={cx('seeMore_btn')}
-                >
-                  {t('home.show_more')}
-                </Button>
-              </div>
-            </div> */}
             <BannerServices />
           </div>
         </div>

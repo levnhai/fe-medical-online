@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useReducer } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { unwrapResult } from '@reduxjs/toolkit';
 import { useNavigate } from 'react-router-dom';
@@ -23,21 +23,48 @@ import { BsGenderTrans } from 'react-icons/bs';
 import { HiOutlineUserGroup, HiOutlineArrowUturnLeft } from 'react-icons/hi2';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 
+const initialState = {
+  records: [],
+  selectedItem: null,
+  showModalDelete: false,
+  showModalEdit: false,
+  editRecord: null,
+  selectedRecordId: null,
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'FETCH_RECORDS':
+      return { ...state, records: action.payload };
+    case 'DELETE_RECORD':
+      return { ...state, records: state?.records.filter((record) => record?._id !== action?.payload) };
+    case 'SELECTED_ITEM':
+      return { ...state, selectedItem: state?.selectedItem === action?.payload ? null : action?.payload };
+    case 'SHOW_MODAL_DELETE':
+      return { ...state, showModalDelete: action.payload };
+    case 'SHOW_MODAL_EDIT':
+      return { ...state, showModalEdit: action.payload };
+    case 'EDIT_RECORD':
+      return { ...state, editRecord: action.payload };
+    default:
+      return state;
+  }
+};
+
 function ChooseRecord() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { updateBookingData } = useBooking();
+  const [state, localDispatch] = useReducer(reducer, initialState);
 
   const user = useSelector((state) => state.auth.user?.payload);
   const userId = user?.userData._id;
   const bookingData = useSelector((state) => state.booking);
-  const [records, setRecords] = useState([]);
-  const [selectedItem, setSelectedItem] = useState(null);
-  const [showModalDelete, setShowModalDelete] = useState(false);
-  const [showModalEdit, setShowModalEdit] = useState(false);
   const [editRecord, setEditRecord] = useState(null);
   const [selectedRecordId, setSelectedRecordId] = useState(null);
+
+  console.log('editRecord', editRecord);
 
   const goToPreviousStep = () => {
     updateBookingData('doctor', { fullName: null, id: null, specialty: null });
@@ -47,7 +74,7 @@ function ChooseRecord() {
   };
 
   const handleClickShowMoreItem = (id) => {
-    setSelectedItem(selectedItem === id ? null : id);
+    localDispatch({ type: 'SELECTED_ITEM', payload: id });
   };
 
   const handleDeleteRecord = async () => {
@@ -55,13 +82,9 @@ function ChooseRecord() {
       const res = await dispatch(fetchDeleteRecord({ recordId: selectedRecordId }));
       const result = unwrapResult(res);
       if (result?.status) {
-        setShowModalDelete(false);
+        localDispatch({ type: 'SHOW_MODAL_DELETE', payload: false });
+        localDispatch({ type: 'DELETE_RECORD', payload: selectedRecordId });
         toast.success(result?.message);
-        setRecords((prev) =>
-          prev.filter((record) => {
-            return record._id !== selectedRecordId;
-          }),
-        );
       } else {
         toast.warning(result?.message);
       }
@@ -74,7 +97,7 @@ function ChooseRecord() {
     try {
       const res = await dispatch(fetchRecordUser({ recordId: userId }));
       const result = unwrapResult(res);
-      setRecords(result?.data);
+      localDispatch({ type: 'FETCH_RECORDS', payload: result?.data });
     } catch (error) {
       console.error('Error fetching records:', error);
     }
@@ -104,9 +127,9 @@ function ChooseRecord() {
 
           <div className="w-full px-4">
             <div>
-              {records?.length > 0 ? (
+              {state?.records?.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 lg:gap-10">
-                  {records?.map((item, index) => {
+                  {state?.records?.map((item, index) => {
                     let address = `${item.address[0].street}, ${item.address[0].wardName}, ${item.address[0].districtName}, ${item.address[0].provinceName}`;
                     return (
                       <div
@@ -158,7 +181,7 @@ function ChooseRecord() {
                             <div className="sm:col-span-2 pl-7 sm:pl-0 break-words">{item?.email}</div>
                           </li>
 
-                          {selectedItem === index && (
+                          {state?.selectedItem === index && (
                             <>
                               <li className="grid grid-cols-1 sm:grid-cols-3 gap-1 sm:gap-2">
                                 <div className="flex gap-2 items-center">
@@ -179,14 +202,14 @@ function ChooseRecord() {
                           )}
                         </ul>
 
-                        {selectedItem === index && (
+                        {state?.selectedItem === index && (
                           <div className="border-t border-slate-300 mt-4 pt-4">
                             <div className="flex flex-row gap-3 justify-between items-center">
                               <Button
                                 leftIcon={<RiDeleteBin6Line />}
                                 className="bg-red-100 text-rose-500 px-2 py-3 text-sm sm:text-base"
                                 onClick={() => {
-                                  setShowModalDelete(true);
+                                  localDispatch({ type: 'SHOW_MODAL_DELETE', payload: true });
                                   setSelectedRecordId(item._id);
                                 }}
                               >
@@ -196,7 +219,7 @@ function ChooseRecord() {
                                 leftIcon={<FaRegEdit />}
                                 className="bg-cyan-100 text-sky-500 px-2 py-3 text-sm sm:text-base"
                                 onClick={() => {
-                                  setShowModalEdit(true);
+                                  localDispatch({ type: 'SHOW_MODAL_EDIT', payload: true });
                                   setEditRecord(item);
                                 }}
                               >
@@ -249,10 +272,14 @@ function ChooseRecord() {
               </Button>
             </div>
 
-            <Modal isOpen={showModalDelete} onClose={() => setShowModalDelete(false)} title="Thông báo">
+            <Modal
+              isOpen={state?.showModalDelete}
+              onClose={() => localDispatch({ type: 'SHOW_MODAL_DELETE', payload: true })}
+              title="Thông báo"
+            >
               <p className="px-10 py-10 text-2xl ">Bạn có muốn chắc chắn xóa bệnh nhân này không?</p>
               <div className="flex justify-end border-t py-2 pr-6 gap-4">
-                <Button onClick={() => setShowModalDelete(false)}>Đóng</Button>
+                <Button onClick={() => localDispatch({ type: 'SHOW_MODAL_DELETE', payload: false })}>Đóng</Button>
                 <Button className="bg-red-400" onClick={handleDeleteRecord}>
                   Đồng ý
                 </Button>
@@ -260,12 +287,8 @@ function ChooseRecord() {
             </Modal>
 
             <div>
-              {showModalEdit && (
-                <EditRecord
-                  setShowModalEdit={setShowModalEdit}
-                  editRecord={editRecord}
-                  fetchRecords={fetchRecordData}
-                />
+              {state?.showModalEdit && (
+                <EditRecord localDispatch={localDispatch} editRecord={editRecord} fetchRecords={fetchRecordData} />
               )}
             </div>
           </div>

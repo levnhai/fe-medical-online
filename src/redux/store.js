@@ -15,6 +15,7 @@ import appointmentSlice from './appointment/appointmentSlice';
 import bookingSlice from './booking/bookingSlice';
 import locationSlice from './location/locationSlice';
 import recordSlice from './record/recordSlice';
+import { api } from '../services/api.core';
 
 const persistConfig = {
   key: 'auth',
@@ -45,13 +46,14 @@ const Store = configureStore({
     booking: bookingPersistReducer,
     location: locationSlice,
     record: recordSlice,
+    [api.reducerPath]: api.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    }).concat(api.middleware),
 });
 
 export default Store;

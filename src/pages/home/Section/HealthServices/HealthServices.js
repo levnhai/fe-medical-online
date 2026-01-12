@@ -57,6 +57,7 @@ function SamplePrevArrow(props) {
     </div>
   );
 }
+
 const services = [
   {
     img: 'https://medpro.vn/_next/image?url=https%3A%2F%2Fprod-partner.s3-hcm-r1.longvan.net%2F7751fd3f-f46c-436a-af19-2c64d4d5cf25-dkcs.png&w=64&q=75',
@@ -94,6 +95,7 @@ const services = [
     text: 'hospitalFee',
   },
 ];
+
 function HealthServices() {
   const { t } = useTranslation();
 
@@ -125,6 +127,7 @@ function HealthServices() {
       },
     ],
   };
+
   return (
     <div className={cx('healthServices', 'w-full px-4')}>
       <div className="hidden md:block">

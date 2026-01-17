@@ -1,6 +1,5 @@
 import classNames from 'classnames/bind';
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import '~/translation/i18n';
@@ -22,25 +21,19 @@ import HealthServices from './Section/HealthServices';
 import BannerServices from './Section/BannerServices';
 import Button from '~/components/Button';
 import Support from '~/layouts/components/support';
-import { fetchGetAllNew } from '~/redux/news/newsSlice';
 import OutStandingDoctor from './Section/OutStandingDoctor';
 import { ImageMedia } from './Section/ImageMediaData';
 import NewsLoadingSkeleton from './loading/newsLoading';
+import { useGetNewsQuery } from '~/services/new.api';
 
 import style from './home.module.scss';
 const cx = classNames.bind(style);
 
 function Home() {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
 
-  const newData = useSelector((state) => state.new.newData);
-  const isLoading = useSelector((state) => state.new.loading);
-
-  useEffect(() => {
-    dispatch(fetchGetAllNew());
-  }, [dispatch]);
-
+  const { data, isLoading } = useGetNewsQuery({});
+  const newData = data?.data;
   return (
     <div className={cx('home', 'mx-auto w-full overflow-x-hidden')}>
       <div className={cx('home_header', 'mb-8')}>

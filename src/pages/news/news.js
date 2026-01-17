@@ -1,27 +1,24 @@
 import { useState, useEffect } from 'react';
 import Slider from 'react-slick';
-import classNames from 'classnames/bind';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
-import { FaCalendarAlt, FaBars } from 'react-icons/fa';
-import { unwrapResult } from '@reduxjs/toolkit';
-import NewsSkeleton from './loading/news_skeleton';
-import { useDispatch, useSelector } from 'react-redux';
 
-// import { newsSlice } from '~/redux/news/newsSlice';
-import { fetchGetAllNew } from '~/redux/news/newsSlice';
+import { FaCalendarAlt, FaBars } from 'react-icons/fa';
+
+import NewsSkeleton from './loading/news_skeleton';
+import { useGetNewsQuery } from '~/services/new.api';
+
 import '~/translation/i18n';
 
 import styles from './news.module.scss';
+import classNames from 'classnames/bind';
 const cx = classNames.bind(styles);
 
 function News() {
-  const { t } = useTranslation();
   const location = useLocation();
-  const dispatch = useDispatch();
 
-  const newData = useSelector((state) => state.new.newData);
-  const isLoading = useSelector((state) => state.new.loading);
+  const { data, isLoading } = useGetNewsQuery({});
+  const newData = data?.data;
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedMenuItem, setSelectedMenuItem] = useState(null);
@@ -51,9 +48,11 @@ function News() {
       },
     ],
   };
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
   const handleMenuItemClick = (item) => {
     setSelectedMenuItem(item.title);
     setIsMenuOpen(false); // Đóng menu khi đã chọn
@@ -67,7 +66,6 @@ function News() {
 
   useEffect(() => {
     document.title = 'Tin tức y khoa || Medical';
-    dispatch(fetchGetAllNew());
   }, []);
   if (isLoading) {
     return <NewsSkeleton />;

@@ -6,6 +6,6 @@ export const api = createApi({
     baseUrl: process.env.REACT_APP_BACKEND_URL,
     credentials: 'include',
   }),
-  tagTypes: ['Hospital', 'Doctor'],
+  tagTypes: ['Hospital', 'Doctor', 'New'],
   endpoints: () => ({}),
 });

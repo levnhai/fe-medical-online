@@ -56,7 +56,7 @@ module.exports = {
     return result;
   },
 
-  // Format giá
+  // Format price
   formatPrice: function (price) {
     if (!price) return '0';
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');

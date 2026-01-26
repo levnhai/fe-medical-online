@@ -1,28 +1,30 @@
-import classNames from 'classnames/bind';
-import '~/translation/i18n';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import styles from './news.module.scss';
 import { useState, useEffect, useMemo } from 'react';
+
+//icon
 import { FaCalendarAlt, FaBars } from 'react-icons/fa';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchKnowlageNews } from '~/redux/news/newsSlice';
+
 import NewsSkeleton from './loading/news_skeleton';
 import Pagination from '~/components/paination';
+import '~/translation/i18n';
+import { useGetNewsKnowlageQuery } from '~/services/new.api';
+
+import classNames from 'classnames/bind';
+import styles from './news.module.scss';
 const cx = classNames.bind(styles);
 
 function NewsKnowlage() {
   const location = useLocation();
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const { data, isLoading } = useGetNewsKnowlageQuery({});
+  const newData = data?.data;
 
   useEffect(() => {
     if (location.pathname === '/tin-tuc/thuong-thu-y-te') {
       navigate('/tin-tuc/y-hoc-thuong-thuc', { replace: true });
     }
   }, [location, navigate]);
-
-  const newData = useSelector((state) => state.new.newData);
-  const isLoading = useSelector((state) => state.new.loading);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedMenuItem, setSelectedMenuItem] = useState(null);
@@ -47,7 +49,6 @@ function NewsKnowlage() {
 
   useEffect(() => {
     document.title = 'Tin dịch vụ || Medical';
-    dispatch(fetchKnowlageNews());
   }, []);
 
   const currentDesktopNewsItems = useMemo(() => {

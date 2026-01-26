@@ -15,6 +15,7 @@ export function formatDate(isoDate) {
   const year = date.getFullYear();
   return `${day}/${month}/${year}`;
 }
+
 export function generateYears(startYear) {
   const currentYear = new Date().getFullYear();
   let years = [];

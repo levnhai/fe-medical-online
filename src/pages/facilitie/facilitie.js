@@ -1,6 +1,5 @@
 import classNames from 'classnames/bind';
 import { useEffect, useState, useMemo, useRef } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -8,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import { CiSearch } from 'react-icons/ci';
 import { LuClock7 } from 'react-icons/lu';
+import { useDispatch } from 'react-redux';
 
 import Button from '~/components/Button';
 import Pagination from '~/components/paination';
@@ -19,9 +19,8 @@ import Skeleton from './loading/skeleton';
 import { getTabMenus } from './data/tabMenus';
 import { convertImage } from '~/utils/convertImage';
 import { SlideInFromBottom } from '~/components/animation';
-import { fetchGetHospitalByType, fetchGetCountHospitalByType } from '~/redux/hospital/hospitalSlice';
 import { updateBooking, clearBooking } from '~/redux/booking/bookingSlice';
-import { useGetHospitalsByTypeQuery, useGetHospitalCountByTypeQuery } from '~/services/hospital.api';
+import { useGetHospitalsByTypeQuery, useGetCountHospitalsByTypeQuery } from '~/services/hospital.api';
 
 import style from './facilitie.module.scss';
 const cx = classNames.bind(style);
@@ -31,11 +30,10 @@ let PageSize = 5;
 function Facilitie() {
   const { t } = useTranslation();
   const tabMenus = getTabMenus(t);
-  console.log('🚀 ~ Facilitie ~ tabMenus:', tabMenus);
   const { type } = useParams();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const sliderRef = useRef(null);
+  const dispatch = useDispatch();
 
   const [currentPage, setCurrentPage] = useState(1);
   const [tabCounts, setTabCounts] = useState({});
@@ -48,11 +46,11 @@ function Facilitie() {
     'Với những cơ sở Y Tế hàng đầu sẽ giúp trải nghiệm khám, chữa bệnh của bạn tốt hơn',
   );
 
-  const { data: hospitalData, isLoading } = useGetHospitalsByTypeQuery({ type, search });
+  const { data, isLoading } = useGetHospitalsByTypeQuery({ type, search });
+  const { data: typeCountData } = useGetCountHospitalsByTypeQuery({ search });
 
-  const { data: countHospitalByType } = useGetHospitalCountByTypeQuery(search);
-
-  const hospitalDataByType = useSelector((state) => state.hospital.hospitalDataByType);
+  const hospitalDataByType = data?.data;
+  const hospitalDataTotal = data?.total || 0;
 
   const handleHospitalClick = (hospital) => {
     setSelectedHospitalId(hospital._id);
@@ -61,16 +59,16 @@ function Facilitie() {
   const countHospitalType = () => {
     const counts = {};
     tabMenus.forEach((item) => {
-      counts[item.href] = countHospitalByType?.typeCounts?.[item.href] || 0;
+      counts[item.href] = typeCountData?.data?.typeCounts[item.href] || 0;
     });
     setTabCounts(counts);
   };
 
   const currentTableData = useMemo(() => {
-    if (!hospitalData?.data) return [];
+    if (!hospitalDataByType) return [];
     const start = (currentPage - 1) * PageSize;
-    return hospitalData.data.slice(start, start + PageSize);
-  }, [hospitalData, currentPage]);
+    return hospitalDataByType.slice(start, start + PageSize);
+  }, [hospitalDataByType, currentPage]);
 
   const handleClickType = (tab, index) => {
     setLabelTitle(t(tab.label));
@@ -86,17 +84,18 @@ function Facilitie() {
 
   const hospitalDetail = useMemo(() => {
     return selectedHospitalId
-      ? hospitalDataByType?.data.find((item) => item._id === selectedHospitalId)
-      : hospitalDataByType?.data?.length > 0
-      ? hospitalDataByType?.data[0]
-      : null;
-  }, [selectedHospitalId, hospitalDataByType?.data]);
+      ? hospitalDataByType.find((item) => item._id === selectedHospitalId)
+      : hospitalDataByType?.length > 0
+        ? hospitalDataByType[0]
+        : null;
+  }, [selectedHospitalId, hospitalDataByType]);
 
   const removeAccents = (str) => {
     return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   };
 
   const searchInput = (items) => {
+    console.log('🚀 ~ searchInput ~ items:', items);
     return items?.filter((item) => {
       return removeAccents(item?.fullName)?.toString().toLowerCase().indexOf(removeAccents(search).toLowerCase()) > -1;
     });
@@ -106,24 +105,13 @@ function Facilitie() {
     document.title = 'Cơ sở y tế || Medpro';
   }, []);
 
-  // useEffect(() => {
-  //   dispatch(fetchGetHospitalByType({ type, search }));
-  // }, [type, search, dispatch]);
+  useEffect(() => {
+    countHospitalType();
+  }, []);
 
-  // // count hospital types
-  // useEffect(() => {
-  //   dispatch(fetchGetCountHospitalByType(search));
-  // }, []);
-
-  // useEffect(() => {
-  //   if (countHospitalByType?.typeCounts) {
-  //     countHospitalType();
-  //   }
-  // }, [countHospitalByType]);
-
-  // useEffect(() => {
-  //   dispatch(clearBooking());
-  // }, []);
+  useEffect(() => {
+    dispatch(clearBooking());
+  }, []);
   return (
     <>
       <div className={cx('facilitie')}>
@@ -312,7 +300,7 @@ function Facilitie() {
             <Pagination
               className="pagination-bar"
               currentPage={currentPage}
-              totalCount={hospitalDataByType && hospitalDataByType?.data?.length}
+              totalCount={hospitalDataTotal && hospitalDataTotal}
               pageSize={PageSize}
               onPageChange={(page) => setCurrentPage(page)}
             />

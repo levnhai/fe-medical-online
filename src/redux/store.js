@@ -7,7 +7,6 @@ import storage from 'redux-persist/lib/storage';
 import doctorSlice from './doctor/doctorSlice';
 import authReducer from '../redux/user/authSlice';
 import newSlice from '../redux/news/newsSlice';
-import hospitalSlice from './hospital/hospitalSlice';
 import contactSlice from '../redux/contact/contactSlice';
 import scheduleSlice from './schedule/scheduleSlice';
 import paymentSlice from './payment/paymentSlice';
@@ -38,7 +37,6 @@ const Store = configureStore({
     auth: persistedReducer,
     doctor: doctorSlice,
     new: newSlice,
-    hospital: hospitalSlice,
     contact: contactSlice,
     schedule: scheduleSlice,
     payment: paymentSlice,

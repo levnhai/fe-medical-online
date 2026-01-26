@@ -8,10 +8,11 @@ import Header from '../components/header';
 import Search from '~/components/search';
 import Button from '~/components/Button';
 import Pagination from '~/components/paination';
-import { fetchGetALlHospital } from '~/redux/hospital/hospitalSlice';
+// import { fetchGetALlHospital } from '~/redux/hospital/hospitalSlice';
 import { useTranslation } from 'react-i18next';
 import '~/translation/i18n';
 import AppointmentFacilitySkeleton from './facilitySkeleton';
+import { useGetHospitalsQuery } from '~/services/hospital.api';
 
 import style from './appointmentFacility.module.scss';
 const cx = classNames.bind(style);
@@ -21,26 +22,29 @@ function AppointmentFacility() {
   const { t, i18n } = useTranslation();
   const [currentLanguages, setCurrentLanguages] = useState(i18n.language);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const hospitalData = useSelector((state) => state.hospital.hospitalData);
-  const isLoading = useSelector((state) => state.hospital.loading);
+  // const isLoading = useSelector((state) => state.hospital.loading);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [activeTab, setActiveTab] = useState(0);
+  const { data, isLoading } = useGetHospitalsQuery({});
+  const hospitalData = data?.data;
+  const hospitalTotalData = data?.total;
+
+  console.log('🚀 ~ AppointmentFacility ~ data:', data);
 
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
-    return hospitalData && hospitalData?.data?.slice(firstPageIndex, lastPageIndex);
+    return hospitalData && hospitalData?.slice(firstPageIndex, lastPageIndex);
   }, [currentPage, hospitalData]);
 
   const handleDetailAppointmentDoctor = (item) => {
     navigate(`/chon-lich-kham/${item._id}`);
   };
 
-  useEffect(() => {
-    dispatch(fetchGetALlHospital());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchGetALlHospital());
+  // }, [dispatch]);
 
   return (
     <div className={cx('main')}>
@@ -101,7 +105,7 @@ function AppointmentFacility() {
       <Pagination
         className="pagination-bar"
         currentPage={currentPage}
-        totalCount={hospitalData && hospitalData.data.length}
+        totalCount={hospitalTotalData && hospitalTotalData}
         pageSize={PageSize}
         onPageChange={(page) => setCurrentPage(page)}
       />

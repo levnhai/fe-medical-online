@@ -1,28 +1,36 @@
-import classNames from 'classnames/bind';
-import '~/translation/i18n';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import styles from './news.module.scss';
 import { useState, useEffect, useMemo } from 'react';
+
+// Icons
 import { FaCalendarAlt, FaBars } from 'react-icons/fa';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchMedicalNews } from '~/redux/news/newsSlice';
+
+import { useGetNewsMedicalQuery } from '~/services/new.api';
 import NewsSkeleton from './loading/news_skeleton';
 import Pagination from '~/components/paination';
+import '~/translation/i18n';
+
+import classNames from 'classnames/bind';
+import styles from './news.module.scss';
 const cx = classNames.bind(styles);
 
 function NewsMedical() {
   const location = useLocation();
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const menuItems = [
+    { title: 'Tin dịch vụ', path: '/tin-tuc/dich-vu' },
+    { title: 'Tin y tế', path: '/tin-tuc/y-te' },
+    { title: 'Y học thường thức', path: '/tin-tuc/y-hoc-thuong-thuc' },
+  ];
+
+  const { data, isLoading } = useGetNewsMedicalQuery({});
+  const newData = data?.data;
 
   useEffect(() => {
     if (location.pathname === '/tin-tuc/tin-y-te') {
       navigate('/tin-tuc/y-te', { replace: true });
     }
   }, [location, navigate]);
-
-  const newData = useSelector((state) => state.new.newData);
-  const isLoading = useSelector((state) => state.new.loading);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedMenuItem, setSelectedMenuItem] = useState(null);
@@ -39,15 +47,9 @@ function NewsMedical() {
     setSelectedMenuItem(item.title);
     setIsMenuOpen(false);
   };
-  const menuItems = [
-    { title: 'Tin dịch vụ', path: '/tin-tuc/dich-vu' },
-    { title: 'Tin y tế', path: '/tin-tuc/y-te' },
-    { title: 'Y học thường thức', path: '/tin-tuc/y-hoc-thuong-thuc' },
-  ];
 
   useEffect(() => {
     document.title = 'Tin dịch vụ || Medical';
-    dispatch(fetchMedicalNews());
   }, []);
 
   const currentDesktopNewsItems = useMemo(() => {

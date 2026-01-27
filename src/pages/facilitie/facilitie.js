@@ -13,7 +13,7 @@ import Button from '~/components/Button';
 import Pagination from '~/components/paination';
 import Contact from '../contact';
 import ResultEmpty from '../resultEmpty';
-import { createSlugName } from '~/utils/createSlug';
+import { createSlugName } from '~/utils/string';
 import FacilitieSkeleton from './loading/facilitie_skeleton';
 import Skeleton from './loading/skeleton';
 import { getTabMenus } from './data/tabMenus';
@@ -21,6 +21,7 @@ import { convertImage } from '~/utils/convertImage';
 import { SlideInFromBottom } from '~/components/animation';
 import { updateBooking, clearBooking } from '~/redux/booking/bookingSlice';
 import { useGetHospitalsByTypeQuery, useGetCountHospitalsByTypeQuery } from '~/services/hospital.api';
+import { removeAccents } from '~/utils/string';
 
 import style from './facilitie.module.scss';
 const cx = classNames.bind(style);
@@ -89,10 +90,6 @@ function Facilitie() {
         ? hospitalDataByType[0]
         : null;
   }, [selectedHospitalId, hospitalDataByType]);
-
-  const removeAccents = (str) => {
-    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-  };
 
   const searchInput = (items) => {
     console.log('🚀 ~ searchInput ~ items:', items);

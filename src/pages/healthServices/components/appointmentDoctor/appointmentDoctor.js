@@ -1,20 +1,9 @@
-import React from 'react';
 import className from 'classnames/bind';
-import { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import Select from 'react-select';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { unwrapResult } from '@reduxjs/toolkit';
+import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-
-import Sidebar from '../../components/sidebar';
-import { useBooking } from '~/context/bookingContext';
-import Button from '~/components/Button';
-import { SlideInFromBottom } from '~/components/animation';
-import { updateBooking } from '~/redux/booking/bookingSlice';
-import { fetchDoctorbyHospital } from '~/redux/doctor/doctorSlice';
-import DoctorSkeleton from './doctorSkeleton';
-import '~/translation/i18n';
 
 //icon
 import { MdKeyboardArrowRight, MdPhoneCallback } from 'react-icons/md';
@@ -23,6 +12,16 @@ import { FaCircleXmark, FaUserDoctor } from 'react-icons/fa6';
 import { GrSchedules } from 'react-icons/gr';
 import { BsGenderAmbiguous } from 'react-icons/bs';
 import { HiOutlineArrowUturnLeft } from 'react-icons/hi2';
+
+import Sidebar from '../../components/sidebar';
+import { useBooking } from '~/context/bookingContext';
+import Button from '~/components/Button';
+import { SlideInFromBottom } from '~/components/animation';
+import { updateBooking } from '~/redux/booking/bookingSlice';
+import DoctorSkeleton from './doctorSkeleton';
+import '~/translation/i18n';
+import { removeAccents } from '~/utils/string';
+import { useGetDoctorByHospitalQuery } from '~/services/doctor.api';
 
 import styles from './appointmentDoctor.module.scss';
 const cx = className.bind(styles);
@@ -34,17 +33,8 @@ const AppointmentDoctor = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const queryParams = new URLSearchParams(location.search);
+  const partnerId = queryParams.get('partnerId');
   const { updateBookingData } = useBooking();
-  const [loading, setLoading] = useState(true);
-
-  const [doctorData, setDoctorData] = useState([]);
-  const [valueInputSearch, setValueInputSearch] = useState('');
-  const [filterParam, setFilterParam] = useState('All');
-
-  const handleClear = () => {
-    setValueInputSearch('');
-    inputRef.current.focus();
-  };
 
   const options = [
     { value: 'apple', label: 'Apple' },
@@ -52,8 +42,15 @@ const AppointmentDoctor = () => {
     { value: 'mango', label: 'Mango' },
   ];
 
-  const removeAccents = (str) => {
-    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  const [valueInputSearch, setValueInputSearch] = useState('');
+  const [filterParam, setFilterParam] = useState('All');
+
+  const { data, isLoading } = useGetDoctorByHospitalQuery({ hospitalId: partnerId }, { skip: !partnerId });
+  const doctorData = data?.data || [];
+
+  const handleClear = () => {
+    setValueInputSearch('');
+    inputRef.current.focus();
   };
 
   const searchInput = (items) => {
@@ -83,6 +80,7 @@ const AppointmentDoctor = () => {
       `/chon-lich-kham?feature=booking.doctor&partnerId=${item?.hospital._id}&stepName=date&doctorId=${item?._id}`,
     );
   };
+
   const goToPreviousStep = () => {
     dispatch(
       updateBooking({
@@ -94,27 +92,17 @@ const AppointmentDoctor = () => {
   };
 
   useEffect(() => {
-    const fetchDoctordata = async () => {
-      try {
-        setLoading(true);
-        const partnerId = queryParams.get('partnerId');
-        const res = await dispatch(fetchDoctorbyHospital({ hospitalId: partnerId }));
-        const result = unwrapResult(res);
-        updateBookingData('hospital', {
-          fullName: result.data[0]?.hospital.fullName,
-          address: result.data[0]?.hospital.address,
-          id: result.data[0]?.hospital._id,
-        });
+    if (!doctorData.length) return;
 
-        setDoctorData(result?.data);
-      } catch (error) {
-        console.error('Lỗi khi tải dữ liệu bác sĩ:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchDoctordata();
-  }, []);
+    const hospital = doctorData[0]?.hospital;
+    if (!hospital) return;
+
+    updateBookingData('hospital', {
+      fullName: hospital.fullName,
+      address: hospital.address,
+      id: hospital._id,
+    });
+  }, [doctorData]);
 
   return (
     <div className={cx('appointment-doctor')}>
@@ -198,8 +186,8 @@ const AppointmentDoctor = () => {
                           />
                         </div>
                       </div>
-                      <div className={cx('listDocter')}>
-                        {loading ? (
+                      <div className={cx('list-doctor')}>
+                        {isLoading ? (
                           <DoctorSkeleton count={3} />
                         ) : (
                           <>
@@ -207,7 +195,7 @@ const AppointmentDoctor = () => {
                               searchInput(doctorData)?.map((item, index) => {
                                 return (
                                   <SlideInFromBottom key={index}>
-                                    <div className={cx('docter-infor')} onClick={() => handleNext(item)}>
+                                    <div className={cx('doctor-infor')} onClick={() => handleNext(item)}>
                                       <div>
                                         <div className={cx('highlight', 'flex items-center gap-2.5 leading-10')}>
                                           <FaUserDoctor />

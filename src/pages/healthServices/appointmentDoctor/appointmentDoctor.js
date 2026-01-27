@@ -1,7 +1,6 @@
 import classNames from 'classnames/bind';
 import style from './appointmentDoctor.module.scss';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 // icon
 import { CiLocationOn } from 'react-icons/ci';
@@ -9,42 +8,32 @@ import { CiLocationOn } from 'react-icons/ci';
 import Header from '../components/header/header';
 import Search from '~/components/search';
 import Button from '~/components/Button';
-import { useEffect, useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { Buffer } from 'buffer';
 import Pagination from '~/components/paination';
-import { fetchAllDoctors } from '~/redux/doctor/doctorSlice';
 import { useTranslation } from 'react-i18next';
 import '~/translation/i18n';
 import FacilitieSkeleton from '~/pages/facilitie/loading/facilitie_skeleton';
+import { useGetDoctorsQuery } from '~/services/doctor.api';
 
 const cx = classNames.bind(style);
 let PageSize = 4;
 
 function AppointmentDoctor() {
   const { t, i18n } = useTranslation();
-  const [currentLanguages, setCurrentLanguages] = useState(i18n.language);
+  // const [currentLanguages, setCurrentLanguages] = useState(i18n.language);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const [searchParams] = useSearchParams();
-
-  // Lấy giá trị tabType từ URL
-  const typeParam = searchParams.get('tabType');
-
-  const docterData = useSelector((state) => state.doctor.docterData);
-
-  const isLoading = useSelector((state) => state.doctor.loading);
+  const { data, isLoading } = useGetDoctorsQuery({});
+  const doctorData = useMemo(() => data?.data || [], [data?.data]);
+  const doctorTotal = data?.total || 0;
 
   const [currentPage, setCurrentPage] = useState(1);
 
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
-    return docterData && docterData?.result?.data?.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage, docterData]);
-
-  useEffect(() => {
-    dispatch(fetchAllDoctors());
-  }, [typeParam, dispatch]);
+    return doctorData && doctorData?.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage, doctorData]);
 
   return (
     <div className={cx('main')}>
@@ -71,8 +60,8 @@ function AppointmentDoctor() {
                   Array.isArray(item.image?.data) && item.image.data.length > 0
                     ? Buffer.from(item.image, 'base64').toString('binary')
                     : item.gender === 'male'
-                    ? 'https://cdn.medpro.vn/medpro-production/default/avatar/BSNam.png'
-                    : 'https://cdn.medpro.vn/medpro-production/default/avatar/BSNu.png';
+                      ? 'https://cdn.medpro.vn/medpro-production/default/avatar/BSNam.png'
+                      : 'https://cdn.medpro.vn/medpro-production/default/avatar/BSNu.png';
 
                 let address = `${item.address[0].street}, ${item.address[0].wardName}, ${item.address[0].districtName}, ${item.address[0].provinceName}`;
                 return (
@@ -128,11 +117,11 @@ function AppointmentDoctor() {
           <div className={cx('banner', 'col-span-1 rounded-t-2xl')}></div>
         </div>
       </div>
-      {!isLoading && docterData && docterData?.result?.data?.length > 0 && (
+      {!isLoading && doctorData && doctorTotal > 0 && (
         <Pagination
           className="pagination-bar"
           currentPage={currentPage}
-          totalCount={docterData?.result?.data?.length}
+          totalCount={doctorTotal}
           pageSize={PageSize}
           onPageChange={(page) => setCurrentPage(page)}
         />

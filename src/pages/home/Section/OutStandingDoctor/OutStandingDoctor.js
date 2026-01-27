@@ -1,18 +1,14 @@
 import classNames from 'classnames/bind';
 import Slider from 'react-slick';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Buffer } from 'buffer';
 import LazyLoad from 'react-lazyload';
 
 //icon
 import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/md';
 
-import Button from '~/components/Button';
-import { fetchTopDoctors } from '~/redux/doctor/doctorSlice';
-//language
 import { useTranslation } from 'react-i18next';
 import '~/translation/i18n';
+import { useGetTopDoctorQuery } from '~/services/doctor.api';
 
 import style from './OutStandingDoctor.module.scss';
 const cx = classNames.bind(style);
@@ -71,9 +67,10 @@ function SamplePrevArrow(props) {
 function OutStandingDoctor() {
   const { t } = useTranslation();
 
-  const dispatch = useDispatch();
-  const topDoctors = useSelector((state) => state.doctor.topDoctors);
-  
+  const { data } = useGetTopDoctorQuery({ limit: 10 });
+  const doctorData = data?.data || [];
+  console.log('🚀 ~ OutStandingDoctor ~ data:', data);
+
   var settings = {
     infinite: true,
     speed: 500,
@@ -87,28 +84,24 @@ function OutStandingDoctor() {
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
-        }
+        },
       },
       {
         breakpoint: 768, // small tablet
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
-        }
+        },
       },
       {
         breakpoint: 480, // mobile
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-        }
-      }
-    ]
+        },
+      },
+    ],
   };
-
-  useEffect(() => {
-    dispatch(fetchTopDoctors(10));
-  }, [dispatch]);
 
   return (
     <div className={cx('wrapper')}>
@@ -121,7 +114,7 @@ function OutStandingDoctor() {
         <div>
           <div>
             <Slider {...settings}>
-              {topDoctors?.map((item, index) => {
+              {doctorData?.map((item, index) => {
                 let base64String = '';
                 if (item.image) {
                   base64String = Buffer.from(item.image, 'base64').toString('binary');
@@ -137,10 +130,10 @@ function OutStandingDoctor() {
                           item.positionId === 'doctor'
                             ? 'Bác sĩ'
                             : item.positionId === 'mater'
-                            ? 'Thạc sĩ'
-                            : item.positionId === 'associate professor'
-                            ? 'Phó giáo sư'
-                            : 'Giáo sư'
+                              ? 'Thạc sĩ'
+                              : item.positionId === 'associate professor'
+                                ? 'Phó giáo sư'
+                                : 'Giáo sư'
                         }, ${item.fullName}`}</div>
                         <span>{item?.specialty?.fullName}</span>
                       </div>

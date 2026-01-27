@@ -15,7 +15,7 @@ function AppointmentBooking() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const queryParams = new URLSearchParams(location.search);
-  const baseUrl = `${window.location.origin}/`;
+  // const baseUrl = `${window.location.origin}/`;
 
   const currentStep = queryParams.get('stepName') || 'doctor';
 

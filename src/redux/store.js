@@ -4,7 +4,6 @@ import { persistStore, persistReducer } from 'redux-persist';
 import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import doctorSlice from './doctor/doctorSlice';
 import authReducer from '../redux/user/authSlice';
 import newSlice from '../redux/news/newsSlice';
 import contactSlice from '../redux/contact/contactSlice';
@@ -35,7 +34,6 @@ const bookingPersistReducer = persistReducer(bookingPersistConfig, bookingSlice)
 const Store = configureStore({
   reducer: {
     auth: persistedReducer,
-    doctor: doctorSlice,
     new: newSlice,
     contact: contactSlice,
     schedule: scheduleSlice,

@@ -53,7 +53,6 @@ export const fetchLoginUser = createAsyncThunk('authSlice/fetchLoginUser', async
       password,
     });
 
-    console.log('check reaction: ', response);
     return response.result;
   } catch (error) {
     throw new Error(error.message);
@@ -84,6 +83,7 @@ export const googleLogin = createAsyncThunk('authSlice/googleLogin', async (toke
     throw new Error(error.response?.data?.message || 'An error occurred');
   }
 });
+
 //fb login
 export const facebookLogin = createAsyncThunk('authSlice/facebookLogin', async (accessToken) => {
   try {

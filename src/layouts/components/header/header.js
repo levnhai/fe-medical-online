@@ -1,11 +1,11 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
 // icon
-import { LogoIcon, SupportIcon } from '~/components/Icon';
+import { SupportIcon } from '~/components/Icon';
 import { FaTiktok, FaFacebookF, FaYoutube } from 'react-icons/fa';
 import { MdOutlinePhoneAndroid } from 'react-icons/md';
 import { IoPersonSharp } from 'react-icons/io5';
@@ -16,38 +16,66 @@ import {
   IoMdMenu,
   IoIosSearch,
   IoIosNotificationsOutline,
+  IoMdClose,
 } from 'react-icons/io';
-import { GoPerson } from 'react-icons/go';
 import { CiCalendar } from 'react-icons/ci';
-import { IoMdClose } from 'react-icons/io';
+import logo from '~/assets/images/logo.png';
 
 //language
 import { useTranslation } from 'react-i18next';
 import '~/translation/i18n';
 
-import style from './header.module.scss';
 import Button from '~/components/Button';
 import { menu } from '../menu';
 import { logoutUser } from '~/redux/user/authSlice';
 
+import style from './header.module.scss';
 import classNames from 'classnames/bind';
 const cx = classNames.bind(style);
+
+const languages = [
+  { code: 'vi', name: 'Tiếng Việt', flag: require('~/assets/images/flag/Vn.png'), alt: 'flag vietnam' },
+  { code: 'en', name: 'English', flag: require('~/assets/images/flag/Us.png'), alt: 'flag english' },
+];
+
+const socialData = [
+  {
+    title: 'Tiktok',
+    href: 'https://www.tiktok.com/@medprovn/',
+    icon: FaTiktok,
+  },
+  {
+    title: 'Youtube',
+    href: 'https://www.youtube.com/@medpro-atlichkhambenh1543',
+    icon: FaYoutube,
+  },
+  {
+    title: 'Facebook',
+    href: 'https://www.facebook.com/www.medpro.vn',
+    icon: FaFacebookF,
+  },
+];
+
+const getShortName = (fullName = '') => {
+  const parts = fullName.trim().split(/\s+/);
+  if (parts.length >= 2) return `${parts[parts.length - 2]} ${parts[parts.length - 1]}`;
+  return parts[0] || '';
+};
 
 function Header() {
   const modalRef = useRef(null);
   const dispatch = useDispatch();
   const btnLoginRef = useRef(null);
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
 
   const [showModal, setShowModal] = useState(false);
-  const [shortName, setShortName] = useState('');
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [prevScrollPos, setPrevScrollPos] = useState(window.scrollY);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
   const [openSubmenus, setOpenSubmenus] = useState({});
+  const [isCompact, setIsCompact] = useState(false);
+  const lastScrollY = useRef(0);
 
-  const { t, i18n } = useTranslation();
   const [currentLanguages, setCurrentLanguages] = useState(i18n.language);
 
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -57,18 +85,20 @@ function Header() {
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
+
   const toggleSubmenu = (menuItemHref) => {
     setOpenSubmenus((prev) => ({
       ...prev,
       [menuItemHref]: !prev[menuItemHref],
     }));
   };
-  // bắt sự kiện click show modal
+
   const handleShowModalProfile = () => {
     if (isLoggedIn) {
       setShowModal(!showModal);
     }
   };
+
   const handleLogout = () => {
     dispatch(logoutUser());
     setShowModal(false);
@@ -81,29 +111,16 @@ function Header() {
     setCurrentLanguages(language);
     setLanguageMenuOpen(false);
   };
+
   const toggleLanguageMenu = () => {
     setLanguageMenuOpen(!languageMenuOpen);
   };
-  const languages = [
-    { code: 'vi', name: 'Tiếng Việt', flag: require('~/assets/images/flag/Vn.png'), alt: 'flag vietnam' },
-    { code: 'en', name: 'English', flag: require('~/assets/images/flag/Us.png'), alt: 'flag english' },
-  ];
-  // rút gọn name
-  const handleshortName = () => {
-    let fullName = isLoggedIn && user && `${user?.userData?.fullName}`;
-    if (isLoggedIn && fullName) {
-      let nameParts = fullName?.split(' ');
-      let shortName = '';
-      if (nameParts.length > 1) {
-        shortName = nameParts[nameParts.length - 2] + ' ' + nameParts[nameParts.length - 1];
-      } else {
-        shortName = nameParts[0];
-      }
-      setShortName(shortName);
-    }
-  };
 
-  // bắt sự kiện click ra ngoài modal profile
+  const shortName = useMemo(() => {
+    if (!isLoggedIn || !user?.userData?.fullName) return '';
+    return getShortName(user.userData.fullName);
+  }, [isLoggedIn, user]);
+
   const handleClickOusideModal = (e) => {
     if (modalRef.current && !modalRef.current.contains(e.target) && !btnLoginRef.current.contains(e.target)) {
       setShowModal(false);
@@ -111,7 +128,6 @@ function Header() {
   };
 
   useEffect(() => {
-    handleshortName();
     document.addEventListener('click', handleClickOusideModal);
     return () => {
       document.removeEventListener('click', handleClickOusideModal);
@@ -119,59 +135,59 @@ function Header() {
   }, []);
 
   useEffect(() => {
+    let ticking = false;
+    const THRESHOLD = 150;
+
     const handleScroll = () => {
-      if (window.matchMedia('(min-width: 992px)').matches) {
-        const currentScrollPos = window.scrollY;
-        if (currentScrollPos > prevScrollPos) {
-          setIsScrolled(true);
-        } else {
-          setIsScrolled(false);
+      if (ticking) return;
+
+      ticking = true;
+
+      window.requestAnimationFrame(() => {
+        const currentY = window.scrollY;
+        const delta = currentY - lastScrollY.current;
+
+        // default
+        if (currentY < THRESHOLD) {
+          setIsCompact(false);
         }
-        setPrevScrollPos(currentScrollPos);
-      }
+        // Scroll down
+        else if (delta > 10) {
+          setIsCompact(true);
+        }
+        // Scroll up
+        else if (delta < -10) {
+          setIsCompact(false);
+        }
+
+        lastScrollY.current = currentY;
+        ticking = false;
+      });
     };
 
-    window.addEventListener('scroll', handleScroll);
-
-    // Cleanup event listener khi component bị unmount
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [prevScrollPos]);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    // className={cx('header')}
-    // className={!isScrolled ? cx('header', 'fixed-on-scroll') : cx('header')}
-    // className={cx('header')}
-    <div className={cx('header')}>
+    <div className={cx('header', { compact: isCompact })}>
       <div className={cx('header-wapper')}>
         <div className={cx('logo')}>
           <a href="/">
-            {/* <LogoIcon className={cx('icon')} /> */}
-            <img src={require('~/assets/images/logo.png')} alt="" width="5rem" height="5rem" />
+            <img src={logo} alt="" width="5rem" height="5rem" />
           </a>
         </div>
         <div className={cx('body')}>
-          <div className={cx('topNavbar')}>
-            {/* <div className={isScrolled ? cx('topNavbar', 'fixed-on-scroll') : cx('topNavbar')}> */}
+          <div className={cx('topNavbar', { compact: isCompact })}>
             <div className={cx('social')}>
-              <a target="_blank" rel="noreferrer" href="https://www.tiktok.com/@medprovn/" className={cx('item')}>
-                <FaTiktok style={{ width: '1.6rem', height: '1.6rem' }} />
-                Tiktok
-              </a>
-              <a
-                target="_blank"
-                rel="noreferrer"
-                href="https://www.youtube.com/@medpro-atlichkhambenh1543"
-                className={cx('item')}
-              >
-                <FaYoutube style={{ width: '1.6rem', height: '1.6rem' }} />
-                Youtube
-              </a>
-              <a target="_blank" rel="noreferrer" href="https://www.facebook.com/www.medpro.vn" className={cx('item')}>
-                <FaFacebookF style={{ width: '1.6rem', height: '1.6rem' }} />
-                Facebook
-              </a>
+              {socialData?.map((s) => {
+                return (
+                  <a key={s.title} target="_blank" rel="noreferrer" href={s.href} className={cx('item')}>
+                    <s.icon style={{ width: '1.6rem', height: '1.6rem' }} />
+                    {s?.title}
+                  </a>
+                );
+              })}
             </div>
             <div className={cx('groupBtn')}>
               <div>
@@ -299,8 +315,6 @@ function Header() {
               </div>
             )}
           </div>
-          {/* cx('header_menu' */}
-
           <div className={cx('header_menu')}>
             <a href="tel:0915948664">
               <div className={cx('support')}>
@@ -348,7 +362,7 @@ function Header() {
       <div className={cx('header-mobile', 'flex items-center justify-between p-4 bg-white shadow-md lg:hidden')}>
         <div className={cx('logo', 'w-5 h-5')}>
           <a href="/">
-            <img src={require('~/assets/images/logo.png')} alt="logo" />
+            <img src={logo} alt="logo" />
           </a>
         </div>
 
@@ -391,7 +405,7 @@ function Header() {
           <div className="p-4 border-b border-gray-200 flex justify-between items-center">
             <div className={cx('logo', 'w-5 h-5')}>
               <a href="/" className="text-lg font-bold">
-                <img alt="" src={require('~/assets/images/logo.png')} />
+                <img alt="" src={logo} />
               </a>
             </div>
             <div className="flex items-center space-x-4">
@@ -405,10 +419,6 @@ function Header() {
           </div>
           <div className="p-4 overflow-y-auto h-screen">
             <div className="mb-4">
-              {/* <button className="w-full text-left px-4 py-2 bg-indigo-500 text-white rounded-lg flex items-center">
-          <GoPerson className="mr-2" />
-          {isLoggedIn ? shortName : t('header.account')}
-        </button> */}
               <div ref={btnLoginRef}>
                 <Button
                   to={isLoggedIn ? '/user?key=records' : '/check-phone'}
@@ -486,4 +496,4 @@ function Header() {
   );
 }
 
-export default React.memo(Header);
+export default Header;

@@ -1,14 +1,12 @@
 import classNames from 'classnames/bind';
 import { useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { Buffer } from 'buffer';
-import { useEffect, useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 
 import Header from '../components/header';
 import Search from '~/components/search';
 import Button from '~/components/Button';
 import Pagination from '~/components/paination';
-// import { fetchGetALlHospital } from '~/redux/hospital/hospitalSlice';
+import { convertImage } from '~/utils/convertImage';
 import { useTranslation } from 'react-i18next';
 import '~/translation/i18n';
 import AppointmentFacilitySkeleton from './facilitySkeleton';
@@ -16,21 +14,18 @@ import { useGetHospitalsQuery } from '~/services/hospital.api';
 
 import style from './appointmentFacility.module.scss';
 const cx = classNames.bind(style);
-let PageSize = 4;
+let PageSize = 10;
 
 function AppointmentFacility() {
-  const { t, i18n } = useTranslation();
-  const [currentLanguages, setCurrentLanguages] = useState(i18n.language);
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
-  // const isLoading = useSelector((state) => state.hospital.loading);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [activeTab, setActiveTab] = useState(0);
   const { data, isLoading } = useGetHospitalsQuery({});
   const hospitalData = data?.data;
-  const hospitalTotalData = data?.total;
-
-  console.log('🚀 ~ AppointmentFacility ~ data:', data);
+  const hospitalTotalData = data?.total || 0;
 
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
@@ -41,10 +36,6 @@ function AppointmentFacility() {
   const handleDetailAppointmentDoctor = (item) => {
     navigate(`/chon-lich-kham/${item._id}`);
   };
-
-  // useEffect(() => {
-  //   dispatch(fetchGetALlHospital());
-  // }, [dispatch]);
 
   return (
     <div className={cx('main')}>
@@ -74,19 +65,18 @@ function AppointmentFacility() {
         </ul>
         <div className={cx('container')}>
           {isLoading ? (
-            <AppointmentFacilitySkeleton count={3} />
+            <AppointmentFacilitySkeleton count={PageSize} />
           ) : (
             currentTableData &&
             currentTableData.map((item, index) => {
-              let image = '';
               let address = `${item.address[0].street}, ${item.address[0].wardName}, ${item.address[0].districtName}, ${item.address[0].provinceName}`;
-              if (item.image) {
-                image = Buffer.from(item.image.data, 'base64').toString('binary');
-              }
               return (
                 <div key={index} className={cx('content')} onClick={() => handleDetailAppointmentDoctor(item)}>
                   <div className={cx('content-title')}>
-                    <div className={cx('content-image')} style={{ backgroundImage: `url(${image})` }}></div>
+                    <div
+                      className={cx('content-image')}
+                      style={{ backgroundImage: `url(${convertImage(item?.image)})` }}
+                    ></div>
                     <div className={cx('content-title-ini')}>
                       <div className={cx('content-name')}>{item.fullName}</div>
                       <div className={cx('content-address')}>{address}</div>

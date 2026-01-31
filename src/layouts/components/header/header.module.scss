@@ -1,21 +1,38 @@
 .header {
-  position: fixed;
-  z-index: 1;
-  background-color: #fff;
-  width: 100%;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.04), 0 0 1px rgba(0, 0, 0, 0.04);
-}
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #fff;
+  transition: all 0.3s ease;
 
-.fixed-on-scroll {
-  // position: fixed;
-  // top: 0;
-  // width: 100%;
-  // background-color: #fff; /* hoặc bất kỳ style nào bạn muốn áp dụng khi cuộn */
-  // z-index: 1000;
-  opacity: 0;
-  transform: translateY(-25px) translateZ(0px);
-  height: 0px;
-  padding: 0px !important;
+  .topNavbar {
+    transition: all 0.3s ease;
+  }
+
+  .header_menu {
+    transition: all 0.3s ease;
+  }
+
+  &.compact {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+
+    .topNavbar {
+      opacity: 0;
+      height: 0;
+      overflow: hidden;
+      pointer-events: none;
+      padding-bottom: -12px;
+    }
+
+    .header_menu {
+      padding: 8px 0;
+    }
+
+    .logo img {
+      height: 40px;
+      transition: all 0.3s ease;
+    }
+  }
 }
 
 .header-wapper {
@@ -27,7 +44,6 @@
   margin: auto;
   padding: 0px 10px;
   width: 100%;
-  
 
   .logo {
     width: 150px;
@@ -199,6 +215,10 @@
       }
     }
 
+    .topNavbar.compact {
+      padding: 0px 0px 0px 20px;
+    }
+
     .header_menu {
       padding-top: 4px;
       display: flex;
@@ -339,7 +359,10 @@
     overflow: hidden;
     background-color: hsla(0, 0%, 100%, 0.9);
     backdrop-filter: blur(10px);
-    box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.04), 0 2px 6px 0 rgba(0, 0, 0, 0.04), 0 10px 20px 0 rgba(0, 0, 0, 0.04);
+    box-shadow:
+      0 0 1px 0 rgba(0, 0, 0, 0.04),
+      0 2px 6px 0 rgba(0, 0, 0, 0.04),
+      0 10px 20px 0 rgba(0, 0, 0, 0.04);
 
     .profile-header {
       display: flex;
@@ -443,7 +466,10 @@
 
   .header-mobile {
     background: #ffffffcc;
-    box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.04), 0 2px 6px 0 rgba(0, 0, 0, 0.04), 0 10px 20px 0 rgba(0, 0, 0, 0.04);
+    box-shadow:
+      0 0 1px 0 rgba(0, 0, 0, 0.04),
+      0 2px 6px 0 rgba(0, 0, 0, 0.04),
+      0 10px 20px 0 rgba(0, 0, 0, 0.04);
     -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(15px);
     height: 60px;
@@ -491,7 +517,10 @@
       z-index: 3;
       border-bottom: 1px solid #f0f0f0;
       background: var(--white-color);
-      box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.04), 0 2px 6px 0 rgba(0, 0, 0, 0.04), 0 10px 20px 0 rgba(0, 0, 0, 0.04);
+      box-shadow:
+        0 0 1px 0 rgba(0, 0, 0, 0.04),
+        0 2px 6px 0 rgba(0, 0, 0, 0.04),
+        0 10px 20px 0 rgba(0, 0, 0, 0.04);
 
       .buttonbar-mobile {
         display: flex;

@@ -1,31 +1,44 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { FaCalendarAlt, FaUser, FaEye } from 'react-icons/fa';
-import classNames from 'classnames/bind';
-import { fetchNewsById, fetchRelatedNews, fetchMostViewedNews } from '~/redux/news/newsSlice';
+
+//icon
+import { FaCalendarAlt, FaUser } from 'react-icons/fa';
+
+import { useGetNewsByIdQuery, useGetMostViewNewsQuery, useGetRelateNewsQuery } from '~/services/new.api';
 import NewsSkeleton from './loading/news_skeleton';
 import styles from './news.module.scss';
 
+import classNames from 'classnames/bind';
 const cx = classNames.bind(styles);
 
 function NewsDetails() {
   const { id } = useParams();
-  const dispatch = useDispatch();
-  const { newData, relatedNews, mostViewedNews, loading } = useSelector((state) => state.new);
+  const { newData, isLoading } = useGetNewsByIdQuery(id, {
+    skip: !id,
+    selectFromResult: ({ data, isLoading }) => ({
+      newData: data?.data?.news,
+      isLoading,
+    }),
+  });
 
-  useEffect(() => {
-    if (id) {
-      dispatch(fetchNewsById(id));
-      dispatch(fetchRelatedNews(id));
-      dispatch(fetchMostViewedNews()).then((result) => {});
-    }
-    window.scrollTo(0, 0);
-  }, [id, dispatch]);
+  const { mostViewedNews } = useGetMostViewNewsQuery(id, {
+    skip: !id,
+    selectFromResult: ({ data }) => ({
+      mostViewedNews: data?.data?.news,
+    }),
+  });
+
+  const { relatedNews } = useGetRelateNewsQuery(id, {
+    skip: !id,
+    selectFromResult: ({ data, isFetching }) => ({
+      relatedNews: data?.data?.news,
+      isFetching,
+    }),
+  });
 
   const hasMostViewedNews = mostViewedNews && mostViewedNews.length > 0;
 
-  if (loading || !newData) {
+  if (isLoading || !newData) {
     return <NewsSkeleton />;
   }
 

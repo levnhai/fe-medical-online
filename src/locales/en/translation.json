@@ -1,54 +1,4 @@
 {
-  "header": {
-    "news": "News",
-    "account": "Account",
-    "download_app": "Download app",
-    "flag_alt": "Current language flag",
-    "flag_vn_alt": "Vietnamese flag",
-    "flag_en_alt": "English flag",
-    "vietnamese": "Vietnamese",
-    "english": "English",
-    "greeting": "Hello",
-    "patient_profile": "Patient Profile",
-    "medical_record": "Medical Record",
-    "notifications": "Notifications",
-    "logout": "Logout",
-    "logout_success": "Logged out successfully",
-    "last_update": "Last update: {{date}}",
-    "support_title": "Appointment Support",
-    "recruitment": "Recruitment",
-    "home": "Home",
-    "profile": "Patient profile",
-    "form": "Medical examine form",
-    "notifi": "Notification"
-  },
-  "menu": {
-    "medical_facilities": "Medical Facilities",
-    "public_hospitals": "Public Hospitals",
-    "private_hospitals": "Private Hospitals",
-    "clinics": "Clinics",
-    "medical_offices": "Medical Offices",
-    "laboratory": "Laboratory Tests",
-    "medical_services": "Medical Services",
-    "book_at_facility": "Book Appointment at Facility",
-    "book_with_doctor": "Book Appointment with Doctor",
-    "news": "News",
-    "service_news": "Service News",
-    "medical_news": "Medical News",
-    "health_knowledge": "General Medical Knowledge",
-    "guide": "Guide",
-    "app_installation": "App Installation",
-    "appointment_booking": "Appointment Booking",
-    "refund_process": "Refund Process",
-    "faq": "Frequently Asked Questions",
-    "about_us": "About Us",
-    "recruitment": "Recruitment"
-  },
-  "actions": {
-    "add": "Add",
-    "edit": "Edit",
-    "delete": "Delete"
-  },
   "home": {
     "tech_platform": "Technology platform",
     "connect_people": "Connecting people with",
@@ -66,23 +16,10 @@
     "media_recognition": "Media Recognition",
     "media_recognition_decrip": "The benefits of the Medpro quick appointment booking app have been widely recognized"
   },
-  "statistics": {
-    "title": "Statistics",
-    "visits": "Visits",
-    "hospitals": "Hospitals",
-    "healthcareFacilities": "Healthcare Facilities",
-    "doctors": "Doctors",
-    "monthlyVisits": "Monthly Visits",
-    "dailyVisits": "Daily Visits"
-  },
+
   "hospitalDeployment": {
     "title": "Hospital System Deployment",
     "description": "Schedule appointments with over 50 patients nationwide"
-  },
-  "bookingInfo": {
-    "title": "Quick Booking - Get Online Queue Number",
-    "description": "Patients can actively choose quick booking information (date, time, and medical facility). Patients will receive an online queue number directly on the software",
-    "button": "Book Now"
   },
   "downloadApp": {
     "title": "Download the MEDICAL Quick Booking App"
@@ -104,106 +41,7 @@
     "doctorAppointment": "Book appointment with doctor",
     "facilityAppointment": "Book appointment at facility"
   },
-  "footer": {
-    "address": "Address",
-    "addresss": " 97 Tran Quang Dieu, Ward 14, District 3, Ho Chi Minh City",
-    "website": "Website",
-    "email": "Email",
-    "phone": "Phone",
-    "medicalServices": "Medical Services",
-    "bookAtFacility": "Book at facility",
-    "bookByDoctor": "Book by doctor",
-    "remoteConsultation": "Remote consultation",
-    "bookLabTest": "Book lab test",
-    "homeHealthcare": "Home healthcare",
-    "homePayment": "Home payment",
-    "medicalFacilities": "Medical Facilities",
-    "publicHospital": "Public hospital",
-    "privateHospital": "Private hospital",
-    "clinic": "Clinic",
-    "privateClinic": "Private clinic",
-    "guide": "Guide",
-    "appInstallation": "App installation",
-    "booking": "Booking",
-    "refundProcess": "Refund process",
-    "faq": "FAQ",
-    "news": "News",
-    "serviceNews": "Service news",
-    "medicalNews": "Medical news",
-    "generalMedicine": "General medicine",
-    "aboutUs": "About Us",
-    "introduction": "Introduction",
-    "termsOfService": "Terms of service",
-    "privacyPolicy": "Privacy policy",
-    "usagePolicy": "Usage policy"
-  },
-  "doctor": {
-    "featured_doctor": "Featured doctor of the week"
-  },
-  "about": {
-    "about_title": "Welcome to",
-    "about_name": "PKH APPLICATION JOINT STOCK COMPANY",
-    "about": "About PKH",
-    "option": [
-      "Register for date selection",
-      "examination time",
-      "Payment of expenses",
-      "cashless",
-      "Information management",
-      "examination and re-examination",
-      "Manage appointments",
-      "patient data"
-    ],
-    "vision": "Vision",
-    "vision_description": "PKH aims to become the leading technology solution provider in Vietnam and Southeast Asia, helping to connect medical services to a wide range of people, bringing breakthrough efficiency to medical units, as well as convenient and satisfying experiences for patients in medical examination, treatment, and personal health care.",
-    "mission": "Mission",
-    "mission_description": "PKH provides the Medpro platform - an intelligent healthcare access solution that offers users new healthcare methods, anytime and anywhere, through a highly interactive online platform, connecting with leading medical facilities and a large, dedicated, and experienced team of medical experts.",
-    "about_description": "This application helps patients and their relatives to register for medical appointments online at hospitals anytime and anywhere without needing to visit the hospital.",
-    "product_service": "Product - Service Philosophy",
-    "product_service_description": "With a user-centric philosophy, the Medpro solution is designed to provide the best experience for users through the use of numerous digital technology resources and features.",
-    "app_option": [
-      "For public health",
-      "The goal of healthcare is to provide everyone with a healthy lifestyle and good health",
-      "Inclusivity",
-      "Everyone has the right to equal access to healthcare services",
-      "Implementation",
-      "Users are given access to appropriate healthcare services",
-      "Cooperation",
-      "In the current digital transformation process, medical facilities need to cooperate and expand convenient services to serve users"
-    ],
-    "hospital": "Prominent Hospitals",
-    "hotline": "SUPPORT METHODS"
-  },
-  "check-phone": {
-    "title": "Please enter your phone number to continue",
-    "login_title": "Log in with your account",
-    "btn_gg_login": "Log in with Google",
-    "btn_fb_login": "Log in with Facebook",
-    "continu": "Continue"
-  },
-  "login": {
-    "title": "Please login to continue",
-    "fogot_pas": "Forgot Password"
-  },
-  "register": {
-    "title": "Please enter information to continue",
-    "des": "By registering, you agree to Medpro's terms of use",
-    "des1": "Terms of Use",
-    "and": "and",
-    "des2": "privacy policy",
-    "comlate": "Complete registration"
-  },
-  "opt": {
-    "title": "HELLO!",
-    "fogot_pas": "Please enter the 6-digit code sent to you via phone.",
-    "auth": "Authenticate",
-    "not_get": " Didn't receive the confirmation code?",
-    "if_you": "If you didn't receive the code:",
-    "auth_phone": "Verify your phone number:",
-    "sms": "Check your SMS inbox",
-    "resend": "Resend the confirmation code",
-    "not_phone": "This is not my phone number"
-  },
+
   "validation": {
     "name": "Please enter your name..."
   },

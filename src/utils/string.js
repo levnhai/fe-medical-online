@@ -22,3 +22,9 @@ export function createSlugName(name) {
     .replace(/\s+/g, '-') // Replace one or more spaces with a single hyphen
     .replace(/-+/g, '-'); // Remove duplicate hyphens
 }
+
+export function getShortName(name = '') {
+  const parts = name.trim().split(/\s+/);
+  if (parts.length >= 2) return `${parts[parts.length - 2]} ${parts[parts.length - 1]}`;
+  return parts[0] || '';
+}

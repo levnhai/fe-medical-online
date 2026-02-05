@@ -9,7 +9,7 @@ import { FaCalendarAlt } from 'react-icons/fa';
 import {
   VisitsIcon,
   HospitalIcon,
-  DocterServiceIcon,
+  DoctorServiceIcon,
   DocterIcon,
   HealthIcon,
   EyeIcon,
@@ -25,30 +25,33 @@ import OutStandingDoctor from './Section/OutStandingDoctor';
 import { ImageMedia } from './Section/ImageMediaData';
 import NewsLoadingSkeleton from './loading/newsLoading';
 import { useGetNewsQuery } from '~/services/new.api';
+import { serviceConfig } from './Section/serviceConfig';
 
 import style from './home.module.scss';
 const cx = classNames.bind(style);
 
 function Home() {
-  const { t } = useTranslation();
+  const { t } = useTranslation(['button', 'home', 'translation']);
 
   const { data, isLoading } = useGetNewsQuery({});
   const newData = data?.data;
+  const items = t('home:serviceInfo.items', { returnObjects: true });
+  console.log('🚀 ~ Home ~ items:', items);
   return (
     <div className={cx('home', 'mx-auto w-full overflow-x-hidden')}>
       <div className={cx('home_header', 'mb-8')}>
         <div className={cx('home_header_banner', 'bg-gray-100 rounded-lg p-6 md:p-10')}>
           <div className={cx('banner_wrapper', 'sm:flex sm:flex-col -mt-20')}>
             <div className={cx('banner_content', 'sm:w-full')}>
-              <div className={cx('content_tag')}>{t('home.tech_platform')}</div>
+              <div className={cx('content_tag')}>{t('home:information.tech_platform')}</div>
               <div className={cx('content_title', 'text-2xl sm:text-6xl')}>
-                <div>{t('home.connect_people')}</div>
-                <div>{t('home.healthcare_facilities')}</div>
+                <div>{t('home:information.connect_people')}</div>
+                <div>{t('home:information.healthcare_facilities')}</div>
               </div>
-              <div className={cx('content_des', 'w-full sm:w-auto')}>{t('home.services_description')}</div>
+              <div className={cx('content_des', 'w-full sm:w-auto')}>{t('home:information.services_description')}</div>
               <div>
                 <Button to="/co-so-y-te/benh-vien-cong" className={cx('content_btn')} rounded>
-                  {t('home.book_appointment')}
+                  {t('button:booking_now')}
                 </Button>
               </div>
             </div>
@@ -64,11 +67,11 @@ function Home() {
           <div className={cx('info_header', 'flex', 'flex-col', 'md:flex-row', 'md:items-center')}>
             <div className={cx('info_header_title', 'md:w-1/2')}>
               <div className={cx('info_header_text')}>MEDICAL</div>
-              <div className={cx('info_header_tag')}>{t('home.book_appointment')}</div>
+              <div className={cx('info_header_tag')}>{t('button:booking_now')}</div>
             </div>
             <div className={cx('info_header_des', 'mt-4', 'md:mt-0', 'md:w-1/2')}>
               <b>Medical </b>
-              {t('home.medical_description')}
+              {t('home:information.medical_description')}
             </div>
           </div>
 
@@ -77,7 +80,7 @@ function Home() {
           </div>
         </div>
         <div className={cx('home_statistic')}>
-          <h1 className={cx('statistic_title')}>{t('statistics.title')}</h1>
+          <h1 className={cx('statistic_title')}>{t('home:statistics.title')}</h1>
           <ul
             className={cx(
               'statistic_list',
@@ -90,7 +93,7 @@ function Home() {
               </div>
               <div className={cx('statistic_content')}>
                 <div className={cx('statistic_number')}>2.2M+</div>
-                <div className={cx('statistic_tag')}>{t('statistics.visits')}</div>
+                <div className={cx('statistic_tag')}>{t('home:statistics.visits')}</div>
               </div>
             </li>
             <li className={cx('statistic_item', 'w-full max-w-[150px] sm:max-w-none')}>
@@ -99,7 +102,7 @@ function Home() {
               </div>
               <div className={cx('statistic_content')}>
                 <div className={cx('statistic_number')}>30+</div>
-                <div className={cx('statistic_tag')}>{t('statistics.hospitals')}</div>
+                <div className={cx('statistic_tag')}>{t('home:statistics.hospitals')}</div>
               </div>
             </li>
             <li className={cx('statistic_item', 'w-full max-w-[150px] sm:max-w-none')}>
@@ -108,7 +111,7 @@ function Home() {
               </div>
               <div className={cx('statistic_content')}>
                 <div className={cx('statistic_number')}>50+</div>
-                <div className={cx('statistic_tag')}>{t('statistics.healthcareFacilities')}</div>
+                <div className={cx('statistic_tag')}>{t('home:statistics.healthcareFacilities')}</div>
               </div>
             </li>
             <li className={cx('statistic_item', 'w-full max-w-[150px] sm:max-w-none')}>
@@ -117,7 +120,7 @@ function Home() {
               </div>
               <div className={cx('statistic_content')}>
                 <div className={cx('statistic_number')}>200+</div>
-                <div className={cx('statistic_tag')}>{t('statistics.doctors')}</div>
+                <div className={cx('statistic_tag')}>{t('home:statistics.doctors')}</div>
               </div>
             </li>
             <li className={cx('statistic_item', 'w-full max-w-[150px] sm:max-w-none')}>
@@ -126,7 +129,7 @@ function Home() {
               </div>
               <div className={cx('statistic_content')}>
                 <div className={cx('statistic_number')}>25.4k+</div>
-                <div className={cx('statistic_tag')}>{t('statistics.monthlyVisits')}</div>
+                <div className={cx('statistic_tag')}>{t('home:statistics.monthlyVisits')}</div>
               </div>
             </li>
             <li className={cx('statistic_item', 'w-full max-w-[150px] sm:max-w-none')}>
@@ -135,7 +138,7 @@ function Home() {
               </div>
               <div className={cx('statistic_content')}>
                 <div className={cx('statistic_number')}>823</div>
-                <div className={cx('statistic_tag')}>{t('statistics.dailyVisits')}</div>
+                <div className={cx('statistic_tag')}>{t('home:statistics.dailyVisits')}</div>
               </div>
             </li>
           </ul>
@@ -143,25 +146,25 @@ function Home() {
       </div>
       <div className={cx('home_hospitalDeloy')}>
         <div className={cx('home_hospotalContent')}>
-          <h1 className={cx('hospotalContent_title')}>{t('hospitalDeployment.title')}</h1>
-          <span className={cx('hospotalContent_des')}>{t('hospitalDeployment.description')}</span>
+          <h1 className={cx('hospotalContent_title')}>{t('translation:hospitalDeployment.title')}</h1>
+          <span className={cx('hospotalContent_des')}>{t('translation:hospitalDeployment.description')}</span>
         </div>
         <HospitalServices />
       </div>
       <div className={cx('home_bookingInfo', 'flex flex-col sm:flex-row')}>
         <div className={cx('bookingInfo_image', 'w-full sm:w-1/2 mb-4 sm:mb-0')}></div>
         <div className={cx('bookingInfo_content', 'w-full sm:w-1/2')}>
-          <div className={cx('bookingInfo_title')}>{t('bookingInfo.title')}</div>
-          <div className={cx('bookingInfo_des')}>{t('bookingInfo.description')}</div>
+          <div className={cx('bookingInfo_title')}>{t('home:bookingInfo.title')}</div>
+          <div className={cx('bookingInfo_des')}>{t('home:bookingInfo.description')}</div>
           <Button className={cx('bookingInfo_btn', 'w-full sm:w-auto')} rounded>
-            {t('home.book_appointment')}
+            {t('button:booking_now')}
           </Button>
         </div>
       </div>
       <div id="downloadBtn" className={cx('home_download')}>
         <div className={cx('download_header')}>
           <h1 className={cx('download_title')}>
-            {t('downloadApp.title')} <span>MEDICAL</span>
+            {t('translation:downloadApp.title')} <span>MEDICAL</span>
           </h1>
           <div className={cx('download_groupBtn')}>
             <div>
@@ -193,23 +196,23 @@ function Home() {
             <ul className={cx('serviceInfo_list')}>
               <li className={cx('service_item')}>
                 <div className={cx('service_content')}>
-                  <h3 className={cx('service_title')}>{t('serviceInfo.title.0')}</h3>
+                  <h3 className={cx('service_title')}>{t('translation:serviceInfo.title.0')}</h3>
                   <div className={cx('service_des')}>
-                    <p>{t('serviceInfo.description.0')}</p>
-                    <p>{t('serviceInfo.description.1')}</p>
-                    <p>{t('serviceInfo.description.2')}</p>
+                    <p>{t('translation:serviceInfo.description.0')}</p>
+                    <p>{t('translation:serviceInfo.description.1')}</p>
+                    <p>{t('translation:serviceInfo.description.2')}</p>
                   </div>
                 </div>
                 <div className={cx('service_image')}>
-                  <DocterServiceIcon />
+                  <DoctorServiceIcon />
                 </div>
               </li>
               <li className={cx('service_item')}>
                 <div className={cx('service_content')}>
-                  <h3 className={cx('service_title')}>{t('serviceInfo.title.1')}</h3>
+                  <h3 className={cx('service_title')}>{t('translation:serviceInfo.title.1')}</h3>
                   <div className={cx('service_des')}>
-                    <p>{t('serviceInfo.description.3')}</p>
-                    <p>{t('serviceInfo.description.4')}</p>
+                    <p>{t('translation:serviceInfo.description.3')}</p>
+                    <p>{t('translation:serviceInfo.description.4')}</p>
                   </div>
                 </div>
                 <div className={cx('service_image')}>
@@ -222,9 +225,9 @@ function Home() {
               </li>
               <li className={cx('service_item')}>
                 <div className={cx('service_content')}>
-                  <h3 className={cx('service_title')}>{t('serviceInfo.title.2')}</h3>
+                  <h3 className={cx('service_title')}>{t('translation:serviceInfo.title.2')}</h3>
                   <div className={cx('service_des')}>
-                    <p>{t('serviceInfo.description.5')}</p>
+                    <p>{t('translation:serviceInfo.description.5')}</p>
                   </div>
                 </div>
                 <div className={cx('service_image')}>
@@ -252,10 +255,10 @@ function Home() {
                   />
                 </div>
                 <div className={cx('service_content')}>
-                  <h3 className={cx('service_title')}>{t('serviceInfo.title.3')}</h3>
+                  <h3 className={cx('service_title')}>{t('translation:serviceInfo.title.3')}</h3>
                   <div className={cx('service_des')}>
-                    <p>{t('serviceInfo.description.6')}</p>
-                    <p>{t('serviceInfo.description.7')}</p>
+                    <p>{t('translation:serviceInfo.description.6')}</p>
+                    <p>{t('translation:serviceInfo.description.7')}</p>
                   </div>
                 </div>
               </li>
@@ -268,9 +271,9 @@ function Home() {
                   />
                 </div>
                 <div className={cx('service_content')}>
-                  <h3 className={cx('service_title')}>{t('serviceInfo.title.4')}</h3>
+                  <h3 className={cx('service_title')}>{t('translation:serviceInfo.title.4')}</h3>
                   <div className={cx('service_des')}>
-                    <p>{t('serviceInfo.description.8')}</p>
+                    <p>{t('translation:serviceInfo.description.8')}</p>
                   </div>
                 </div>
               </li>
@@ -283,20 +286,48 @@ function Home() {
                   />
                 </div>
                 <div className={cx('service_content')}>
-                  <h3 className={cx('service_title')}>{t('serviceInfo.title.5')}</h3>
+                  <h3 className={cx('service_title')}>{t('translation:serviceInfo.title.5')}</h3>
                   <div className={cx('service_des')}>
-                    <p>{t('serviceInfo.description.9')}</p>
+                    <p>{t('translation:serviceInfo.description.9')}</p>
                   </div>
                 </div>
               </li>
             </ul>
           </div>
         </div>
+        {/* <div className={cx('download_service')}>
+          <div className={cx('serviceWrapper')}>
+            <ul className={cx('serviceList')}>
+              {items.map((item, index) => {
+                const config = serviceConfig[index];
+
+                return (
+                  <li key={index} className={cx('serviceItem')} data-side={config.side}>
+                    <div className={cx('serviceContent')}>
+                      <h3 className={cx('serviceTitle')}>{item.title}</h3>
+
+                      <div className={cx('serviceDesc')}>
+                        {item.descriptions.map((desc, i) => (
+                          <p key={i}>{desc}</p>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className={cx('serviceIcon')}>{config.icon}</div>
+                  </li>
+                );
+              })}
+            </ul>
+
+            <div className={cx('centerPhone')} />
+          </div>
+        </div>
+      </div> */}
       </div>
       <div className={cx('home_media')}>
         <div className={cx('media_header')}>
-          <h2>{t('home.media_recognition')}</h2>
-          <span>{t('home.media_recognition_decrip')}</span>
+          <h2>{t('home:information.media_recognition')}</h2>
+          <span>{t('home:information.media_recognition_decrip')}</span>
         </div>
         <div className={cx('media_listLogo')}>
           {ImageMedia &&
@@ -330,7 +361,7 @@ function Home() {
         <NewsLoadingSkeleton />
       ) : (
         <div className={cx('home_news')}>
-          <h2 className={cx('new_title')}>{t('home.new_title')}</h2>
+          <h2 className={cx('new_title')}>{t('home:information.new_title')}</h2>
           <div className={cx('new_card')}>
             <div className={cx('new_cardLeft')}>
               <div className={cx('cardLeft_title')}>
@@ -390,7 +421,9 @@ function Home() {
           </div>
           <div className={cx('view-all')}>
             <Link to="/tin-tuc">
-              <a className={cx('view-all-button')}> Xem tất cả »</a>
+              <a href="/#" className={cx('view-all-button')}>
+                Xem tất cả »
+              </a>
             </Link>
           </div>
         </div>

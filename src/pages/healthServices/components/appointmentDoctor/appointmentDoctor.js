@@ -27,7 +27,7 @@ import styles from './appointmentDoctor.module.scss';
 const cx = className.bind(styles);
 
 const AppointmentDoctor = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation('translation');
   const inputRef = useRef();
   const location = useLocation();
   const dispatch = useDispatch();

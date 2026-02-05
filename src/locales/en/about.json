@@ -1,0 +1,34 @@
+{
+  "title": "Welcome to",
+  "name": "PKH APPLICATION JOINT STOCK COMPANY",
+  "about": "About PKH",
+  "option": [
+    "Register for date selection",
+    "examination time",
+    "Payment of expenses",
+    "cashless",
+    "Information management",
+    "examination and re-examination",
+    "Manage appointments",
+    "patient data"
+  ],
+  "vision": "Vision",
+  "vision_description": "PKH aims to become the leading technology solution provider in Vietnam and Southeast Asia, helping to connect medical services to a wide range of people, bringing breakthrough efficiency to medical units, as well as convenient and satisfying experiences for patients in medical examination, treatment, and personal health care.",
+  "mission": "Mission",
+  "mission_description": "PKH provides the Medpro platform - an intelligent healthcare access solution that offers users new healthcare methods, anytime and anywhere, through a highly interactive online platform, connecting with leading medical facilities and a large, dedicated, and experienced team of medical experts.",
+  "about_description": "This application helps patients and their relatives to register for medical appointments online at hospitals anytime and anywhere without needing to visit the hospital.",
+  "product_service": "Product - Service Philosophy",
+  "product_service_description": "With a user-centric philosophy, the Medpro solution is designed to provide the best experience for users through the use of numerous digital technology resources and features.",
+  "app_option": [
+    "For public health",
+    "The goal of healthcare is to provide everyone with a healthy lifestyle and good health",
+    "Inclusivity",
+    "Everyone has the right to equal access to healthcare services",
+    "Implementation",
+    "Users are given access to appropriate healthcare services",
+    "Cooperation",
+    "In the current digital transformation process, medical facilities need to cooperate and expand convenient services to serve users"
+  ],
+  "hospital": "Prominent Hospitals",
+  "hotline": "SUPPORT METHODS"
+}

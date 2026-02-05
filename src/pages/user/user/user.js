@@ -15,7 +15,7 @@ import styles from './user.module.scss';
 const cx = classNames.bind(styles);
 
 function User() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('translation');
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const key = searchParams.get('key');

@@ -28,6 +28,7 @@ import '~/translation/i18n';
 import Button from '~/components/Button';
 import { menu } from '../menu';
 import { logoutUser } from '~/redux/user/authSlice';
+import { getShortName } from '~/utils/string';
 
 import style from './header.module.scss';
 import classNames from 'classnames/bind';
@@ -35,7 +36,7 @@ const cx = classNames.bind(style);
 
 const languages = [
   { code: 'vi', name: 'Tiếng Việt', flag: require('~/assets/images/flag/Vn.png'), alt: 'flag vietnam' },
-  { code: 'en', name: 'English', flag: require('~/assets/images/flag/Us.png'), alt: 'flag english' },
+  { code: 'en', name: 'Tiếng anh', flag: require('~/assets/images/flag/Us.png'), alt: 'flag english' },
 ];
 
 const socialData = [
@@ -56,18 +57,12 @@ const socialData = [
   },
 ];
 
-const getShortName = (fullName = '') => {
-  const parts = fullName.trim().split(/\s+/);
-  if (parts.length >= 2) return `${parts[parts.length - 2]} ${parts[parts.length - 1]}`;
-  return parts[0] || '';
-};
-
 function Header() {
   const modalRef = useRef(null);
   const dispatch = useDispatch();
   const btnLoginRef = useRef(null);
   const navigate = useNavigate();
-  const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation([['common', 'button', 'menu', 'notification', 'patient', 'visit']]);
 
   const [showModal, setShowModal] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -75,6 +70,7 @@ function Header() {
   const [openSubmenus, setOpenSubmenus] = useState({});
   const [isCompact, setIsCompact] = useState(false);
   const lastScrollY = useRef(0);
+  const tickingRef = useRef(false);
 
   const [currentLanguages, setCurrentLanguages] = useState(i18n.language);
 
@@ -134,40 +130,36 @@ function Header() {
     };
   }, []);
 
-  useEffect(() => {
-    let ticking = false;
-    const THRESHOLD = 150;
+  // // scrool
+  // useEffect(() => {
+  //   const THRESHOLD = 80;
 
-    const handleScroll = () => {
-      if (ticking) return;
+  //   lastScrollY.current = window.scrollY;
 
-      ticking = true;
+  //   const handleScroll = () => {
+  //     if (tickingRef.current) return;
+  //     tickingRef.current = true;
 
-      window.requestAnimationFrame(() => {
-        const currentY = window.scrollY;
-        const delta = currentY - lastScrollY.current;
+  //     requestAnimationFrame(() => {
+  //       const currentY = window.scrollY;
+  //       const delta = currentY - lastScrollY.current;
 
-        // default
-        if (currentY < THRESHOLD) {
-          setIsCompact(false);
-        }
-        // Scroll down
-        else if (delta > 10) {
-          setIsCompact(true);
-        }
-        // Scroll up
-        else if (delta < -10) {
-          setIsCompact(false);
-        }
+  //       if (currentY < THRESHOLD) {
+  //         setIsCompact((prev) => (prev ? false : prev));
+  //       } else if (delta > 10) {
+  //         setIsCompact((prev) => (prev ? prev : true));
+  //       } else if (delta < -10) {
+  //         setIsCompact((prev) => (!prev ? prev : false));
+  //       }
 
-        lastScrollY.current = currentY;
-        ticking = false;
-      });
-    };
+  //       lastScrollY.current = currentY;
+  //       tickingRef.current = false;
+  //     });
+  //   };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  //   window.addEventListener('scroll', handleScroll, { passive: true });
+  //   return () => window.removeEventListener('scroll', handleScroll);
+  // }, []);
 
   return (
     <div className={cx('header', { compact: isCompact })}>
@@ -197,7 +189,7 @@ function Header() {
                   leftIcon={<MdOutlinePhoneAndroid style={{ width: '1.7rem', height: '1.7rem' }} />}
                   className={cx('donwloadBtn')}
                 >
-                  {t('header.download_app')}
+                  {t('button:download_app')}
                 </Button>
               </div>
               <div ref={btnLoginRef}>
@@ -208,7 +200,7 @@ function Header() {
                   className={cx('accountBtn')}
                   onClick={handleShowModalProfile}
                 >
-                  {isLoggedIn && `${user?.userData?.fullName}` ? shortName : t('header.account')}
+                  {isLoggedIn && `${user?.userData?.fullName}` ? shortName : t('button:account')}
                 </Button>
               </div>
               <div className={cx('language')}>
@@ -247,7 +239,7 @@ function Header() {
                   <div className={cx('profile-header')}>
                     <div className={cx('profile-avata')}></div>
                     <div className={cx('profile-info')}>
-                      <span>{t('header.greeting')}</span>
+                      <span>{t('common:greeting.hello')}</span>
                       <h5> {`${user?.userData?.fullName}`}</h5>
                     </div>
                   </div>
@@ -262,7 +254,7 @@ function Header() {
                         <span className={cx('icon')}>
                           <IoPersonSharp style={{ width: '1.7rem', height: '1.7rem' }} />
                         </span>
-                        <span className={cx('title')}>{t('header.patient_profile')}</span>
+                        <span className={cx('title')}>{t('patient:profile.patient_profile')}</span>
                       </div>
                     </li>
                     <li
@@ -275,7 +267,7 @@ function Header() {
                         <span className={cx('icon')}>
                           <CiCalendar />
                         </span>
-                        <span className={cx('title')}>{t('header.medical_record')}</span>
+                        <span className={cx('title')}>{t('visit:medical_record')}</span>
                       </div>
                     </li>
                     <li
@@ -288,7 +280,7 @@ function Header() {
                         <span className={cx('icon')}>
                           <IoIosNotificationsOutline />
                         </span>
-                        <span className={cx('title')}>{t('header.notifications')}</span>
+                        <span className={cx('title')}>{t('notification:notification')}</span>
                       </div>
                     </li>
                     <li className={cx('information-item')}>
@@ -302,12 +294,12 @@ function Header() {
                         <span className={cx('icon')}>
                           <i className="fa-solid fa-right-from-bracket"></i>
                         </span>
-                        <span className={cx('title')}>{t('header.logout')}</span>
+                        <span className={cx('title')}>{t('button:logout')}</span>
                       </div>
                     </li>
                     <li className={cx('information-item')} disabled>
                       <div>
-                        <span>{t('header.last_update', { date: '29/12/2023' })}</span>
+                        <span>{t('common:meta.last_update', { date: '29/12/2023' })}</span>
                       </div>
                     </li>
                   </ul>
@@ -322,7 +314,7 @@ function Header() {
                   <SupportIcon />
                 </div>
                 <div className={cx('suportTitle')}>
-                  {t('header.support_title')}
+                  {t('common:suport.support_title')}
                   <div>1900 1211</div>
                 </div>
               </div>
@@ -332,7 +324,7 @@ function Header() {
                 {menu.map((menuItem) => (
                   <li key={menuItem.href} className={cx('navbarItem')}>
                     <Link className={cx('navbarLink')} to={menuItem.href}>
-                      {t(`menu.${menuItem.labelKey}`)}
+                      {t(`menu:${menuItem.labelKey}`)}
                     </Link>
                     {menuItem.children && (
                       <>
@@ -344,7 +336,7 @@ function Header() {
                             {menuItem.children.map((childItem) => (
                               <li key={childItem.href} className={cx('menuItem')}>
                                 <Link className={cx('menuLink')} to={childItem.href}>
-                                  {t(`menu.${childItem.labelKey}`)}
+                                  {t(`menu:${childItem.labelKey}`)}
                                 </Link>
                               </li>
                             ))}
@@ -431,7 +423,7 @@ function Header() {
                   onClick={() => {
                     if (isLoggedIn) {
                       navigate('/user?key=records');
-                      setMobileMenuOpen(false); // Close the mobile menu
+                      setMobileMenuOpen(false);
                     } else {
                       handleShowModalProfile();
                     }

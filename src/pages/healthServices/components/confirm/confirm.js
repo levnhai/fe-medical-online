@@ -24,7 +24,7 @@ import styles from '../appointmentDoctor/appointmentDoctor.module.scss';
 const cx = className.bind(styles);
 
 function Confirm() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('translation');
   const navigate = useNavigate();
   const bookingData = useSelector((state) => state.booking);
 

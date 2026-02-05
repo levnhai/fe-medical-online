@@ -23,7 +23,7 @@ import Auth from '../auth';
 const cx = classNames.bind(style);
 
 function SingIn() {
-  const { t } = useTranslation();
+  const { t } = useTranslation(['translation', 'button', 'auth']);
   const navigate = useNavigate();
   const phoneNumber = useSelector((state) => state.auth.phoneNumber);
   const redirectPath = useSelector((state) => state.auth.redirectPath);
@@ -78,7 +78,7 @@ function SingIn() {
     <>
       <Auth>
         <div className={cx('login-wrapper')}>
-          <p className={cx('text-center')}>{t('login.title')}</p>
+          <p className={cx('text-center')}>{t('auth:login.title')}</p>
           <div className={cx('wrapper-input')}>
             <div className={cx('tel-input')}>
               <input onDoubleClick={null} className={cx('form-control')} value={phoneNumber} disabled />
@@ -121,7 +121,7 @@ function SingIn() {
                 Đang xử lý...
               </div>
             ) : (
-              t('check-phone.continu')
+              t('button:continue')
             )}
           </Button>
           <div className={cx('text-right')}>
@@ -132,7 +132,7 @@ function SingIn() {
               }}
               className={cx('forgot-password')}
             >
-              {t('login.fogot_pas')}
+              {t('auth:login.forgot_password')}
             </p>
           </div>
         </div>

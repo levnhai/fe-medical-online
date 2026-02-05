@@ -1,0 +1,11 @@
+{
+  "greeting": {
+    "hello": "Hello"
+  },
+  "meta": {
+    "last_update": "Last update: {{date}}"
+  },
+  "suport": {
+    "support_title": "Appointment Support"
+  }
+}

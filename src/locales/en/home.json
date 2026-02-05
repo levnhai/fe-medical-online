@@ -1,0 +1,66 @@
+{
+  "information": {
+    "tech_platform": "Technology platform",
+    "connect_people": "Connecting people with",
+    "healthcare_facilities": "Health facilities - services",
+    "services_description": "Quick appointment booking - Online queue number - Remote health consultation",
+    "medical_description": "Provides quick appointment booking services, online queue number retrieval, and remote health consultations at leading facilities in Vietnam such as Ho Chi Minh City University of Medicine and Pharmacy Hospital, Cho Ray Hospital, Children's Hospital...",
+    "quick_booking": "Quick Booking",
+    "quick_booking_description": "Quick booking, payment, and online queue number retrieval save time and effort",
+    "show_more": "Show more",
+    "show_detail": "Show details",
+    "search": "Search for medical facilities ...",
+    "choose": "Choose province, city ...",
+    "new_title": "News medical",
+    "media_recognition": "Media Recognition",
+    "media_recognition_decrip": "The benefits of the Medpro quick appointment booking app have been widely recognized"
+  },
+  "statistics": {
+    "title": "Statistics",
+    "visits": "Visits",
+    "hospitals": "Hospitals",
+    "healthcareFacilities": "Healthcare Facilities",
+    "doctors": "Doctors",
+    "monthlyVisits": "Monthly Visits",
+    "dailyVisits": "Daily Visits"
+  },
+  "bookingInfo": {
+    "title": "Quick Booking - Get Online Queue Number",
+    "description": "Patients can actively choose quick booking information (date, time, and medical facility). Patients will receive an online queue number directly on the software",
+    "button": "Book Now"
+  },
+  "serviceInfo": {
+    "items": [
+      {
+        "title": "Fast Online Appointment Queue",
+        "descriptions": [
+          "Quick registration for new or follow-up appointments by selected date",
+          "Choose consultation by medical specialty",
+          "Follow-up visits based on scheduled appointments"
+        ]
+      },
+      {
+        "title": "Remote Health Consultation",
+        "descriptions": ["Remote health consultation via phone call", "Video calls with qualified medical specialists"]
+      },
+      {
+        "title": "Clinical Test Results Lookup",
+        "descriptions": ["Easily access clinical and laboratory test results online"]
+      },
+      {
+        "title": "Hospital Fee Payment",
+        "descriptions": ["Multiple online payment methods available", "Support for popular e-wallets"]
+      },
+      {
+        "title": "Home Healthcare Services",
+        "descriptions": [
+          "Professional home healthcare services including nursing care and testing, meeting common home medical needs"
+        ]
+      },
+      {
+        "title": "Partner Healthcare Network",
+        "descriptions": ["A nationwide network of partnered hospitals, clinics, and medical offices"]
+      }
+    ]
+  }
+}

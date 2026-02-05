@@ -22,7 +22,7 @@ import classNames from 'classnames/bind';
 const cx = classNames.bind(styles);
 
 function Forgotpassword() {
-  const { t } = useTranslation();
+  const { t } = useTranslation(['translation', 'auth']);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const methods = useForm();
@@ -61,7 +61,7 @@ function Forgotpassword() {
       <Auth>
         <div className={cx('register-body')}>
           <div className={cx('register-form_content')}>
-            <div className={cx('content-title_section')}>{t('register.title')}</div>
+            <div className={cx('content-title_section')}>{t('auth:register.title')}</div>
             <div className={cx('wrapper-input')}>
               <FormProvider {...methods}>
                 <form onSubmit={(e) => e.preventDefault()} noValidate className="container">
@@ -107,19 +107,19 @@ function Forgotpassword() {
                 </form>
               </FormProvider>
               <p className={cx('customFont')}>
-                {t('register.des')}
+                {t('auth:register.des')}
                 <br />
                 <a href="https://medpro.vn/quy-dinh-su-dung" target="_blank" rel="noreferrer">
-                  {t('register.des1')}
+                  {t('auth:register.des1')}
                 </a>
-                &nbsp; {t('register.and')} &nbsp;
+                &nbsp; {t('auth:register.and')} &nbsp;
                 <a href="https://medpro.vn/chinh-sach-bao-mat" target="_blank" rel="noreferrer">
-                  {t('register.des2')}
+                  {t('auth:register.des2')}
                 </a>
               </p>
               <div>
                 <Button type="submit" onClick={handleSubmitCreateUser} className={cx('register-btn')}>
-                  {t('register.comlate')}
+                  {t('auth:register.comlate')}
                 </Button>
               </div>
             </div>

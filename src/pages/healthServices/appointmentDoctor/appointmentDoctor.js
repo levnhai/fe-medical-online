@@ -20,7 +20,7 @@ const cx = classNames.bind(style);
 let PageSize = 4;
 
 function AppointmentDoctor() {
-  const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation('translation');
   // const [currentLanguages, setCurrentLanguages] = useState(i18n.language);
   const navigate = useNavigate();
   const { data, isLoading } = useGetDoctorsQuery({});

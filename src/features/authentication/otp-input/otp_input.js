@@ -22,7 +22,7 @@ import style from './otp_input.module.scss';
 const cx = classNames.bind(style);
 
 function OtpInput() {
-  const { t } = useTranslation();
+  const { t } = useTranslation(['translation', 'auth']);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
@@ -104,8 +104,8 @@ function OtpInput() {
     <Auth>
       <div className={cx('wrapper-otp')}>
         <div className={cx('otp-content')}>
-          <h4 className={cx('tag-header')}>{t('opt.title')}</h4>
-          <p className={cx('customFotnSize')}>{t('opt.fogot_pas')}</p>
+          <h4 className={cx('tag-header')}>{t('auth:opt.title')}</h4>
+          <p className={cx('customFotnSize')}>{t('auth:opt.fogot_pas')}</p>
           <div className={cx('tel-input')}>
             <input className={cx('form-control', 'disable-form')} value={phoneNumber} disabled />
             <div className={cx('selected-flag')}>
@@ -163,20 +163,20 @@ function OtpInput() {
                 className={cx('resendCode')}
               >
                 {showAccordion ? <FaAngleDown /> : <FaAngleRight />}
-                {t('opt.not_get')}
+                {t('auth:opt.not_get')}
               </div>
             </div>
             {showAccordion && (
               <div className={cx('collapse')}>
                 <div className={cx('wrapper--collapse__content')}>
-                  <p className={cx('collapse--title')}>{t('opt.if_you')} </p>
+                  <p className={cx('collapse--title')}>{t('auth:opt.if_you')} </p>
                   <p className={cx('collapse--des')}>
                     <i className="fa-solid fa-mobile-screen-button"></i>
-                    {t('opt.auth_phone')} <strong>{phoneNumber}</strong>
+                    {t('auth:opt.auth_phone')} <strong>{phoneNumber}</strong>
                   </p>
                   <p className={cx('collapse--des')}>
                     <i className="fa-solid fa-comment-sms"></i>
-                    {t('opt.sms')}
+                    {t('auth:opt.sms')}
                   </p>
                   <div>
                     <Button
@@ -185,10 +185,10 @@ function OtpInput() {
                         dispatch(fetchOtpInput(phoneNumber));
                       }}
                     >
-                      {t('opt.resend')}
+                      {t('auth:opt.resend')}
                     </Button>
                     <Button className={cx('collapseBtn')} to={'/check-phone'}>
-                      {t('opt.not_phone')}
+                      {t('auth:opt.not_phone')}
                     </Button>
                   </div>
                 </div>

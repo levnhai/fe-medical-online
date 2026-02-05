@@ -29,7 +29,7 @@ const cx = classNames.bind(style);
 let PageSize = 5;
 
 function Facilitie() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('translation');
   const tabMenus = getTabMenus(t);
   const { type } = useParams();
   const navigate = useNavigate();
@@ -77,6 +77,7 @@ function Facilitie() {
     if (activeMenu === index) {
       setActiveMenu(null);
       navigate('/co-so-y-te');
+      setLabelTitle('Cơ sở y tế');
     } else {
       setActiveMenu(index);
       navigate(`/co-so-y-te/${tab.href}`);
@@ -92,7 +93,6 @@ function Facilitie() {
   }, [selectedHospitalId, hospitalDataByType]);
 
   const searchInput = (items) => {
-    console.log('🚀 ~ searchInput ~ items:', items);
     return items?.filter((item) => {
       return removeAccents(item?.fullName)?.toString().toLowerCase().indexOf(removeAccents(search).toLowerCase()) > -1;
     });

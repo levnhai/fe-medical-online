@@ -11,13 +11,10 @@ import '~/translation/i18n';
 const cx = classNames.bind(styles);
 
 function DownApp() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('translation');
   return (
     <div className={cx('guide_downApp')}>
-      <Header
-        title={t('download_app.header.title')}
-        des={t('download_app.header.description')}
-      />
+      <Header title={t('download_app.header.title')} des={t('download_app.header.description')} />
       <div className={cx('downApp_container')}>
         <div className={cx('downApp_install')}>
           <div className={cx('install_content')}>
@@ -55,6 +52,6 @@ function DownApp() {
       </div>
     </div>
   );
-};
+}
 
 export default DownApp;

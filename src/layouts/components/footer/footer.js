@@ -10,7 +10,7 @@ import styles from './footer.module.scss';
 const cx = classNames.bind(styles);
 
 function Footer() {
-  const { t } = useTranslation();
+  const { t } = useTranslation(['common', 'menu', 'footer']);
 
   return (
     <div className={cx('footer')}>
@@ -21,18 +21,18 @@ function Footer() {
           </a>
           <ul>
             <li className={cx('footer_infoItem')}>
-              <b>{t('footer.address')}: </b> {t('footer.addresss')}:
+              <b>{t('footer:contact.address')}: </b> {t('footer:contact.address_medical')}
             </li>
             <li className={cx('footer_infoItem')}>
-              <b>{t('footer.website')}: </b>
+              <b>{t('footer:contact.website')}: </b>
               https://pkh.vn
             </li>
             <li className={cx('footer_infoItem')}>
-              <b>{t('footer.email')}: </b>
+              <b>{t('footer:contact.email')}: </b>
               cskh@medical.vn
             </li>
             <li className={cx('footer_infoItem')}>
-              <b>{t('footer.phone')}: </b>
+              <b>{t('footer:contact.phone')}: </b>
               (028) 710 78098
             </li>
           </ul>
@@ -42,13 +42,13 @@ function Footer() {
             menu.map((item, index) => {
               return (
                 <div className={cx('footer_menuWapper')} key={index}>
-                  <h3 className={cx('footer_title')}>{t(`menu.${item.labelKey}`)}</h3>
+                  <h3 className={cx('footer_title')}>{t(`menu:${item.labelKey}`)}</h3>
                   <ul className={cx('footer_listMenu')}>
                     {item &&
                       item.children?.map((childItem, index) => {
                         return (
                           <li className={cx('footer_itemMenu')} key={index}>
-                            <Button to={childItem.href}>{t(`menu.${childItem.labelKey}`)}</Button>
+                            <Button to={childItem.href}>{t(`menu:${childItem.labelKey}`)}</Button>
                           </li>
                         );
                       })}

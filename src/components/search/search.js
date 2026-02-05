@@ -22,7 +22,7 @@ import style from './search.module.scss';
 const cx = classNames.bind(style);
 
 function Search() {
-  const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation('translation');
   const [currentLanguages, setCurrentLanguages] = useState(i18n.language);
   const [searchValueBasic, setsearchValueBasic] = useState('');
   const [searchValueProvince, setSearchValueProvince] = useState('');

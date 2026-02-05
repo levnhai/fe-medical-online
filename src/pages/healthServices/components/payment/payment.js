@@ -24,7 +24,7 @@ import { formatPrice } from '~/utils/common';
 const cx = className.bind(styles);
 
 function PaymentMethod() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('translation');
   const navigate = useNavigate();
   const dispatch = useDispatch();
   // const { bookingData, updateBookingData } = useBooking();

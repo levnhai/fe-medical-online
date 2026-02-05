@@ -10,14 +10,11 @@ import '~/translation/i18n';
 
 const cx = classNames.bind(styles);
 function Appointment() {
-  const { t } = useTranslation();
-  
+  const { t } = useTranslation('translation');
+
   return (
     <div className={cx('guide_refunds')}>
-      <Header
-        title={t('appointment.header.title')}
-        des={t('appointment.header.description')}
-      />
+      <Header title={t('appointment.header.title')} des={t('appointment.header.description')} />
       <div className={cx('refunds_wapper')}>
         <div className={cx('refunds_container')}>
           <div className={cx('refunds_card')}>
@@ -109,16 +106,10 @@ function Appointment() {
             <div className={cx('refunds__cardBottom--title')}>{t('appointment.examination.title')}</div>
             <div className={cx('refunds__cardBottom--content')}>
               <ul>
-                <li>
-                {t('appointment.examination.items.0')}
-                </li>
+                <li>{t('appointment.examination.items.0')}</li>
                 <li>{t('appointment.examination.items.1')}</li>
-                <li>
-                {t('appointment.examination.items.2')}
-                </li>
-                <li>
-                {t('appointment.examination.items.3')}
-                </li>
+                <li>{t('appointment.examination.items.2')}</li>
+                <li>{t('appointment.examination.items.3')}</li>
               </ul>
             </div>
           </div>

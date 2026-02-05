@@ -1,0 +1,24 @@
+{
+  "label": {
+    "full_name": "Họ và tên",
+    "date_of_birth": "Ngày sinh",
+    "gender": "Giới tính",
+    "phone": "Số điện thoại",
+    "email": "Email",
+    "address": "Địa chỉ",
+    "insurance_number": "Số thẻ BHYT",
+    "identity_number": "CMND / CCCD"
+  },
+  "gender": {
+    "male": "Nam",
+    "female": "Nữ",
+    "other": "Khác"
+  },
+  "placeholder": {
+    "full_name": "Nhập họ và tên",
+    "phone": "Nhập số điện thoại"
+  },
+  "profile": {
+    "patient_profile": "Hồ sơ bệnh nhân"
+  }
+}

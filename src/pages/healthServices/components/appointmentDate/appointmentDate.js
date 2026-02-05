@@ -25,7 +25,7 @@ import styles from '../appointmentDoctor/appointmentDoctor.module.scss';
 const cx = className.bind(styles);
 
 function AppointmentDate() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('translation');
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();

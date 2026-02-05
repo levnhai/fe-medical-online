@@ -17,7 +17,7 @@ const cx = classNames.bind(style);
 let PageSize = 10;
 
 function AppointmentFacility() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('translation');
 
   const navigate = useNavigate();
 

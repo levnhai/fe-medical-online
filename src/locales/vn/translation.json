@@ -1,53 +1,4 @@
 {
-  "header": {
-    "news": "Tin tức",
-    "account": "Tài khoản",
-    "download_app": "Tải ứng dụng",
-    "flag_alt": "Cờ ngôn ngữ hiện tại",
-    "flag_vn_alt": "Cờ Việt Nam",
-    "flag_en_alt": "Cờ Anh",
-    "vietnamese": "Tiếng Việt",
-    "english": "Tiếng Anh",
-    "greeting": "Xin chào",
-    "patient_profile": "Hồ sơ bệnh nhân",
-    "medical_record": "Phiếu khám bệnh",
-    "notifications": "Thông báo",
-    "logout": "Đăng xuất",
-    "logout_success": "Đăng xuất thành công",
-    "last_update": "Cập nhật mới nhất: {{date}}",
-    "support_title": "Hỗ trợ đặt khám",
-    "home": "Trang chủ",
-    "profile": "Hồ sơ bệnh nhân",
-    "form": "Phiếu khám bệnh",
-    "notifi": "Thông báo"
-  },
-  "menu": {
-    "medical_facilities": "Cơ sở y tế",
-    "public_hospitals": "Bệnh viện công",
-    "private_hospitals": "Bệnh viện tư",
-    "clinics": "Phòng khám",
-    "medical_offices": "Phòng mạch",
-    "laboratory": "Xét nghiệm",
-    "medical_services": "Dịch vụ y tế",
-    "book_at_facility": "Đặt khám tại cơ sở",
-    "book_with_doctor": "Đặt khám theo bác sĩ",
-    "news": "Tin tức",
-    "service_news": "Tin dịch vụ",
-    "medical_news": "Tin y tế",
-    "health_knowledge": "Y học thường thức",
-    "guide": "Hướng dẫn",
-    "app_installation": "Cài đặt ứng dụng",
-    "appointment_booking": "Đặt lịch khám",
-    "refund_process": "Quy trình hoàn phí",
-    "faq": "Câu hỏi thường gặp",
-    "about_us": "Về chúng tôi",
-    "recruitment": "Tuyển dụng"
-  },
-  "actions": {
-    "add": "Thêm",
-    "edit": "Sửa",
-    "delete": "Xóa"
-  },
   "home": {
     "tech_platform": "Nền tảng công nghệ",
     "connect_people": "Kết nối người dân với",
@@ -65,23 +16,9 @@
     "media_recognition": "Ghi nhận từ truyền thông",
     "media_recognition_decrip": "Sự lợi ích của ứng dụng đặt khám nhanh Medpro đã được ghi nhận rộng rãi"
   },
-  "statistics": {
-    "title": "Số liệu thống kê",
-    "visits": "Lượt khám",
-    "hospitals": "Bệnh viện",
-    "healthcareFacilities": "Cơ sở y tế",
-    "doctors": "Bác sĩ",
-    "monthlyVisits": "Lượt truy cập tháng",
-    "dailyVisits": "Lượt truy cập ngày"
-  },
   "hospitalDeployment": {
     "title": "Hệ thống bệnh viện triển khai",
     "description": "Đặt lịch khám với hơn 50 bệnh nhân trên khắp cả nước"
-  },
-  "bookingInfo": {
-    "title": "Đặt khám nhanh - lấy số thứ tự trực tuyến",
-    "description": "Bệnh nhân chủ động chọn thông tin đặt khám nhanh(ngày tháng, giờ khám và cơ sở y tế) . Bệnh nhân sẽ nhận số thứ tự trực tuyến ngay trên phần mềm",
-    "button": "Đặt khám ngay"
   },
   "downloadApp": {
     "title": "Tải ứng dụng đặt khám nhanh MEDICAL"
@@ -116,107 +53,6 @@
     "telehealth": "Tư vấn khám bệnh từ xa",
     "doctorAppointment": "Đặt khám theo bác sĩ",
     "facilityAppointment": "Đặt khám tại cơ sở"
-  },
-  "footer": {
-    "address": "Địa chỉ:",
-    "addresss": "97 Trần Quang Diệu, PHường 14, Quận 3, Tp Hồ Chí Minh",
-    "website": "Website",
-    "email": "Email",
-    "phone": "Điện thoại",
-    "medicalServices": "Dịch vụ y tế",
-    "bookAtFacility": "Đặt khám tại cơ sở",
-    "bookByDoctor": "Đặt khám theo bác sĩ",
-    "remoteConsultation": "Tư vấn khám bệnh từ xa",
-    "bookLabTest": "Đặt lịch xét nghiệm",
-    "homeHealthcare": "Y tế tại nhà",
-    "homePayment": "Thanh toán tại nhà",
-    "medicalFacilities": "Cơ sở y tế",
-    "publicHospital": "Bệnh viện công",
-    "privateHospital": "Bệnh viện tư",
-    "clinic": "Phòng khám",
-    "privateClinic": "Phòng mạch",
-    "guide": "Hướng dẫn",
-    "appInstallation": "Cài đặt ứng dụng",
-    "booking": "Đặt khám",
-    "refundProcess": "Quy trình hoàn phí",
-    "faq": "Câu hỏi thường gặp",
-    "news": "Tin tức",
-    "serviceNews": "Tin dịch vụ",
-    "medicalNews": "Tin y tế",
-    "generalMedicine": "Y học thường thức",
-    "aboutUs": "Về chúng tôi",
-    "introduction": "Giới thiệu",
-    "termsOfService": "Điều khoản và dịch vụ",
-    "privacyPolicy": "Chính sách bảo mật",
-    "usagePolicy": "Quy định sử dụng"
-  },
-  "doctor": {
-    "featured_doctor": "Bác sĩ nổi bật tuần qua"
-  },
-  "about": {
-    "about_title": "Chào mừng bạn đến với",
-    "about_name": "CÔNG TY CỔ PHẦN ỨNG DỤNG PKH",
-    "about": "Giới thiệu về PKH",
-    "option": [
-      "Đăng ký chọn ngày,",
-      "giờ khám bệnh",
-      "Thanh toán chi phí",
-      "không dùng tiền mặt",
-      "Quản lý thông tin",
-      "khám bệnh và tái khám",
-      "Quản lý cuộc hẹn ",
-      "dữ liệu của người bệnh"
-    ],
-    "vision": "Tầm nhìn",
-    "vision_description": "PKH trở thành công ty cung cấp giải pháp công nghệ hàng đầu tại Việt Nam và khu vực Đông Nam Á giúp kết nối các dịch vụ y tế đến rộng rãi người dân, mang lại hiệu quả đột phá cho đơn vị y tế, cũng như những trải nghiệm tiện nghi, hài lòng cho bệnh nhân trong khám chữa bệnh và chăm sóc sức khỏe cá nhân.",
-    "mission": "Sứ mệnh",
-    "mission_description": "PKH cung cấp nền tảng Medpro - giải pháp tiếp cận y tế thông minh mang đến cho người dùng những phương thức chăm sóc sức khỏe mới, ở bất cứ không gian - thời gian nào thông qua nền tảng trực tuyến  tương tác cao, kết nối với các cơ sở y tế hàng đầu cùng đội ngũ chuyên gia y tế đông đảo, tận tình, giàu kinh nghiệm.",
-    "about_description": "Ứng dụng này giúp người bệnh và thân nhân người bệnh có thể thực hiện trực tuyến quá trình đăng ký khám bệnh tại bệnh viện ở mọi lúc mọi nơi mà không cần tới bệnh viện.",
-    "product_service": "Triết lý sản phẩm - dịch vụ",
-    "product_service_description": "Với triết lý người dùng làm trung tâm, giải pháp Medpro được thiết kế mang trải nghiệm tốt nhất cho người dùng thông qua việc sử dụng các tài nguyên và đặc điểm nhiều công nghệ số",
-    "app_option": [
-      "Vì sức khỏe cộng đồng",
-      "Mục đích chăm sóc sức khỏe là mang lại cho mỗi người lối sống lành mạnh, sức khỏe tốt",
-      "Rộng mở",
-      "Mọi người đều có quyền bình đẳng về tiếp cận dịch vụ chăm sóc sức khỏe",
-      "Thực hiện",
-      "Người dùng được tiếp cận với các dịch vụ chăm sóc sức khỏe phù hợp",
-      "Hợp tác",
-      "Trong tiến trinh chuyển đổi số hiện nay các CSYT cần hợp tác, mở rộng dịch vụ tiện ích phục vụ người dùng"
-    ],
-    "hospital": "Các bệnh viện tiêu biểu",
-    "hotline": "CÁC HÌNH THỨC HỖ TRỢ"
-  },
-  "check-phone": {
-    "title": "Vui lòng nhập số điện thoại để tiếp tục",
-    "login_title": "Đăng nhập bằng tài khoản",
-    "btn_gg_login": "Đăng nhập với Google",
-    "btn_fb_login": "Đăng nhập với Facebook",
-    "continu": "Tiếp tục"
-  },
-  "login": {
-    "title": "Vui lòng đăng nhập để tiếp tục",
-    "fogot_pas": "Quên mật khẩu"
-  },
-  "register": {
-    "title": "Vui lòng nhập thông tin để tiếp tục",
-    "des": " Bằng việc đăng ký, bạn đã đồng ý với Medpro về",
-    "des1": "Quy định sử dụng",
-    "and": "và",
-    "des2": "chính sách bảo mật",
-    "comlate": "Hoàn tất đăng kí"
-  },
-  "forgot": {},
-  "opt": {
-    "title": "XIN CHÀO!",
-    "fogot_pas": "Vui lòng nhập mã 6 số đã gửi cho bạn qua số điện thoại.",
-    "auth": "Xác thực",
-    "not_get": " Bạn không nhận được mã xác nhận?",
-    "if_you": "Nếu bạn không nhận được mã:",
-    "auth_phone": "Xác minh số điện thoại của bạn:",
-    "sms": "Kiểm tra hộp thư SMS của bạn",
-    "resend": "Gửi lại mã xác nhận",
-    "not_phone": "Đây không phải là số điện thoại của tôi"
   },
   "validation": {
     "name": "Vui lòng nhập tên của bạn..."
@@ -447,7 +283,6 @@
       }
     }
   },
-
   "facilities": {
     "publicHospital": {
       "label": "Bệnh viện công",
@@ -641,5 +476,18 @@
       "price": "Giá khám",
       "booking": "Đặt khám ngay"
     }
+  },
+  "header": {
+    "home": "Trang chủ",
+    "services": "Dịch vụ",
+    "facilities": "Cơ sở y tế",
+    "doctors": "Bác sĩ",
+    "news": "Tin tức",
+    "download": "Tải ứng dụng",
+    "login": "Đăng nhập",
+    "register": "Đăng ký",
+    "profile": "Hồ sơ của tôi",
+    "appointments": "Phiếu khám bệnh",
+    "patientRecords": "Hồ sơ bệnh nhân"
   }
 }

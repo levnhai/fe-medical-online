@@ -1,0 +1,22 @@
+{
+  "medical_facilities": "Medical Facilities",
+  "public_hospitals": "Public Hospitals",
+  "private_hospitals": "Private Hospitals",
+  "clinics": "Clinics",
+  "medical_offices": "Medical Offices",
+  "laboratory": "Laboratory Tests",
+  "medical_services": "Medical Services",
+  "book_at_facility": "Book Appointment at Facility",
+  "book_with_doctor": "Book Appointment with Doctor",
+  "news": "News",
+  "service_news": "Service News",
+  "medical_news": "Medical News",
+  "health_knowledge": "General Medical Knowledge",
+  "guide": "Guide",
+  "app_installation": "App Installation",
+  "appointment_booking": "Appointment Booking",
+  "refund_process": "Refund Process",
+  "faq": "Frequently Asked Questions",
+  "about_us": "About Us",
+  "recruitment": "Recruitment"
+}

@@ -12,7 +12,7 @@ import { useEffect } from 'react';
 const cx = classNames.bind(styles);
 
 function About() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('about');
   const settings = {
     dots: true,
     infinite: true,
@@ -28,7 +28,7 @@ function About() {
     document.title = 'Về chúng tôi || Medpro';
   }, []);
 
-  return ( 
+  return (
     <div className={cx('about')}>
       <div className={cx('about_body')}>
         <div className={cx('bannerWrapper')}>
@@ -36,8 +36,8 @@ function About() {
             <div className={cx('banner_content')}>
               <div className={cx('banner_img')}></div>
               <div className={cx('banner_title')}>
-                <span>{t('about.about_title')}</span>
-                <h1>{t('about.about_name')}</h1>
+                <span>{t('about:title')}</span>
+                <h1>{t('about:name')}</h1>
               </div>
             </div>
           </div>
@@ -47,38 +47,36 @@ function About() {
             <div className={cx('introduct_introduce')}>
               <div className={cx('introduce_left', 'w-full')}>
                 <div className={cx('introduce_Content')}>
-                  <h1>{t('about.about')}</h1>
-                  <p>
-                    {t('about.about_description')}
-                  </p>
+                  <h1>{t('about:about')}</h1>
+                  <p>{t('about:about_description')}</p>
                 </div>
                 <div className={cx('introduce_Service')}>
                   <div className={cx('Service_item')}>
                     <h2> 1 </h2>
                     <p>
-                      <strong>{t('about.option.0')}</strong>
-                      {t('about.option.1')}
+                      <strong>{t('about:option.0')}</strong>
+                      {t('about:option.1')}
                     </p>
                   </div>
                   <div className={cx('Service_item')}>
                     <h2> 2 </h2>
                     <p>
-                      <strong>{t('about.option.2')}</strong>
-                      {t('about.option.3')}
+                      <strong>{t('about:option.2')}</strong>
+                      {t('about:option.3')}
                     </p>
                   </div>
                   <div className={cx('Service_item')}>
                     <h2> 3 </h2>
                     <p>
-                      <strong>{t('about.option.4')} </strong>
-                      {t('about.option.5')}
+                      <strong>{t('about:option.4')} </strong>
+                      {t('about:option.5')}
                     </p>
                   </div>
                   <div className={cx('Service_item')}>
                     <h2> 4 </h2>
                     <p>
-                      <strong>{t('about.option.6')}</strong>
-                      {t('about.option.7')}
+                      <strong>{t('about:option.6')}</strong>
+                      {t('about:option.7')}
                     </p>
                   </div>
                 </div>
@@ -91,16 +89,12 @@ function About() {
               <div className={cx('culture_img')}></div>
               <div className={cx('culture_content')}>
                 <div className={cx('culture_contentItem')}>
-                  <h1 className={cx('culture_title')}>{t('about.vision')}</h1>
-                  <p className={cx('culture_des')}>
-                  {t('about.vision_description')}
-                  </p>
+                  <h1 className={cx('culture_title')}>{t('about:vision')}</h1>
+                  <p className={cx('culture_des')}>{t('about:vision_description')}</p>
                 </div>
                 <div className={cx('culture_contentItem')}>
-                  <h1 className={cx('culture_title')}>{t('about.mission')}</h1>
-                  <p className={cx('culture_des')}>
-                  {t('about.mission_description')}
-                  </p>
+                  <h1 className={cx('culture_title')}>{t('about:mission')}</h1>
+                  <p className={cx('culture_des')}>{t('about:mission_description')}</p>
                 </div>
               </div>
             </div>
@@ -109,10 +103,8 @@ function About() {
         <div className={cx('philosophy')}>
           <div className={cx('philosophy_img')}></div>
           <div className={cx('philosophy_content')}>
-            <div className={cx('philosophy_title')}>{t('about.product_service')}</div>
-            <div className={cx('philosophy_des')}>
-            {t('about.product_service_description')}
-            </div>
+            <div className={cx('philosophy_title')}>{t('about:product_service')}</div>
+            <div className={cx('philosophy_des')}>{t('about:product_service_description')}</div>
           </div>
           <div className={cx('philosophy_introduct')}>
             <div className={cx('philosophy_introductBg')}></div>
@@ -121,10 +113,8 @@ function About() {
               <div className={cx('philosophy_detail')}>
                 <h2> 1 </h2>
                 <div className={cx('philosophy_detail_content')}>
-                  <div className={cx('philosophy_detail_title')}>{t('about.app_option.0')}</div>
-                  <div className={cx('philosophy_detail_des')}>
-                  {t('about.app_option.1')}
-                  </div>
+                  <div className={cx('philosophy_detail_title')}>{t('about:app_option.0')}</div>
+                  <div className={cx('philosophy_detail_des')}>{t('about:app_option.1')}</div>
                 </div>
               </div>
             </div>
@@ -132,10 +122,8 @@ function About() {
               <div className={cx('philosophy_detail')}>
                 <h2> 2 </h2>
                 <div className={cx('philosophy_detail_content')}>
-                  <div className={cx('philosophy_detail_title')}>{t('about.app_option.2')}</div>
-                  <div className={cx('philosophy_detail_des')}>
-                  {t('about.app_option.3')}
-                  </div>
+                  <div className={cx('philosophy_detail_title')}>{t('about:app_option.2')}</div>
+                  <div className={cx('philosophy_detail_des')}>{t('about:app_option.3')}</div>
                 </div>
               </div>
             </div>
@@ -143,10 +131,8 @@ function About() {
               <div className={cx('philosophy_detail')}>
                 <h2> 3 </h2>
                 <div className={cx('philosophy_detail_content')}>
-                  <div className={cx('philosophy_detail_title')}>{t('about.app_option.4')}</div>
-                  <div className={cx('philosophy_detail_des')}>
-                  {t('about.app_option.5')}
-                  </div>
+                  <div className={cx('philosophy_detail_title')}>{t('about:app_option.4')}</div>
+                  <div className={cx('philosophy_detail_des')}>{t('about:app_option.5')}</div>
                 </div>
               </div>
             </div>
@@ -154,10 +140,8 @@ function About() {
               <div className={cx('philosophy_detail')}>
                 <h2> 4 </h2>
                 <div className={cx('philosophy_detail_content')}>
-                  <div className={cx('philosophy_detail_title')}>{t('about.app_option.6')}</div>
-                  <div className={cx('philosophy_detail_des')}>
-                  {t('about.app_option.7')}
-                  </div>
+                  <div className={cx('philosophy_detail_title')}>{t('about:app_option.6')}</div>
+                  <div className={cx('philosophy_detail_des')}>{t('about:app_option.7')}</div>
                 </div>
               </div>
             </div>
@@ -166,7 +150,7 @@ function About() {
         <div className={cx('hopital')}>
           <div className={cx('hopital_wapper')}>
             <div>
-              <h2 className={cx('hopital_title')}>{t('about.hospital')}</h2>
+              <h2 className={cx('hopital_title')}>{t('about:hospital')}</h2>
               <div className={cx('hopital_Listlogo')}>
                 <Slider {...settings}>
                   <div className={cx('hopital_sliderItem')}>
@@ -201,7 +185,7 @@ function About() {
                 <PhoneIcon />
               </div>
               <div>
-                <div className={cx('support_infoTitle')}>{t('about.hotline')}</div>
+                <div className={cx('support_infoTitle')}>{t('about:hotline')}</div>
                 <div className={cx('support_infoPhone')}>1900-2115</div>
               </div>
             </div>

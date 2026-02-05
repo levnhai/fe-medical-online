@@ -1,0 +1,24 @@
+{
+  "label": {
+    "full_name": "Full name",
+    "date_of_birth": "Date of birth",
+    "gender": "Gender",
+    "phone": "Phone number",
+    "email": "Email",
+    "address": "Address",
+    "insurance_number": "Insurance number",
+    "identity_number": "Identity number"
+  },
+  "gender": {
+    "male": "Male",
+    "female": "Female",
+    "other": "Other"
+  },
+  "placeholder": {
+    "full_name": "Enter full name",
+    "phone": "Enter phone number"
+  },
+  "profile": {
+    "patient_profile": "Patient Profile"
+  }
+}

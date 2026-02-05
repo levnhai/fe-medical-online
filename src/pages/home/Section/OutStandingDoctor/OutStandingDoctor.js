@@ -65,11 +65,10 @@ function SamplePrevArrow(props) {
 }
 
 function OutStandingDoctor() {
-  const { t } = useTranslation();
+  const { t } = useTranslation(['translation', 'doctor']);
 
   const { data } = useGetTopDoctorQuery({ limit: 10 });
   const doctorData = data?.data || [];
-  console.log('🚀 ~ OutStandingDoctor ~ data:', data);
 
   var settings = {
     infinite: true,
@@ -107,7 +106,7 @@ function OutStandingDoctor() {
     <div className={cx('wrapper')}>
       <div className={cx('container')}>
         <div className={cx('header')}>
-          <div className={cx('header-title')}>{t('doctor.featured_doctor')}</div>
+          <div className={cx('header-title')}>{t('doctor:featured_doctor')}</div>
           <div></div>
         </div>
 

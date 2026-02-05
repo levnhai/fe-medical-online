@@ -1,0 +1,66 @@
+{
+  "information": {
+    "tech_platform": "Nền tảng công nghệ",
+    "connect_people": "Kết nối người dân với",
+    "healthcare_facilities": "Cơ sở - dịch vụ y tế",
+    "services_description": "Đặt khám nhanh - Lấy số thứ tự trực tuyến - Tư vấn khám sức khỏe từ xa",
+    "medical_description": "Cung cấp dịch vụ đặt khám nhanh, lấy số thứ tự trực tuyến và tư vấn sức khỏe từ xa tại các cơ sở hàng đầu Việt Nam như bệnh viện đại học y dược Tp. Hồ Chí Minh, bệnh viện Chợ Rẫy, bệnh viện Nhi Đồng...",
+    "quick_booking": "Đặt khám nhanh",
+    "quick_booking_description": "Đặt khám nhanh, thanh toán, lấy số thứ tự trực tuyến tiết kiệm thời gian và công sức",
+    "show_more": "xem thêm",
+    "show_detail": "Xem chi tiết",
+    "search": "Tìm kiếm cơ sở y tế ...",
+    "choose": "Chọn tỉnh thành ...",
+    "new_title": "Tin tức y tế",
+    "media_recognition": "Ghi nhận từ truyền thông",
+    "media_recognition_decrip": "Sự lợi ích của ứng dụng đặt khám nhanh Medpro đã được ghi nhận rộng rãi"
+  },
+  "statistics": {
+    "title": "Số liệu thống kê",
+    "visits": "Lượt khám",
+    "hospitals": "Bệnh viện",
+    "healthcareFacilities": "Cơ sở y tế",
+    "doctors": "Bác sĩ",
+    "monthlyVisits": "Lượt truy cập tháng",
+    "dailyVisits": "Lượt truy cập ngày"
+  },
+  "bookingInfo": {
+    "title": "Đặt khám nhanh - lấy số thứ tự trực tuyến",
+    "description": "Bệnh nhân chủ động chọn thông tin đặt khám nhanh(ngày tháng, giờ khám và cơ sở y tế) . Bệnh nhân sẽ nhận số thứ tự trực tuyến ngay trên phần mềm",
+    "button": "Đặt khám ngay"
+  },
+  "serviceInfo": {
+    "items": [
+      {
+        "title": "Lấy số thứ tự khám nhanh trực tuyến",
+        "descriptions": [
+          "Đăng ký khám/ Tái khám nhanh theo ngày đăng ký",
+          "Theo bác sĩ chuyên khoa",
+          "Tái khám theo lịch hẹn"
+        ]
+      },
+      {
+        "title": "Tư vấn sức khỏe từ xa",
+        "descriptions": ["Tư vấn sức khỏe từ xa, cuộc gọi", "Video với các bác sĩ chuyên môn"]
+      },
+      {
+        "title": "Tra cứu kết quả cận lâm sàng",
+        "descriptions": ["Tra cứu kết quả cận lâm sàng trực tuyến dễ dàng và tiện lợi"]
+      },
+      {
+        "title": "Thanh toán viện phí",
+        "descriptions": ["Đa dạng hệ thống thanh toán trực tuyến", "Hỗ trợ ví điện tử thịnh hành hiện nay"]
+      },
+      {
+        "title": "Chăm sóc y tế tại nhà",
+        "descriptions": [
+          "Dịch vụ Y tế tại nhà (điều dưỡng, xét nghiệm) chuyên nghiệp, đáp ứng các nhu cầu chăm sóc Y tế tại nhà phổ thông"
+        ]
+      },
+      {
+        "title": "Mạng lưới cơ sở hợp tác",
+        "descriptions": ["Mạng lưới kết nối với các bệnh viện, phòng khám, phòng mạch rộng khắp phủ sóng toàn quốc"]
+      }
+    ]
+  }
+}

@@ -97,7 +97,7 @@ const services = [
 ];
 
 function HealthServices() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('translation');
 
   const settings = {
     infinite: true,

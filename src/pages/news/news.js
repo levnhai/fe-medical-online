@@ -15,7 +15,7 @@ import classNames from 'classnames/bind';
 const cx = classNames.bind(styles);
 
 function News() {
-  const location = useLocation();
+  const location = useLocation('translation');
 
   const { data, isLoading } = useGetNewsQuery({});
   const newData = data?.data;

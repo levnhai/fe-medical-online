@@ -15,7 +15,7 @@ import '~/translation/i18n';
 const cx = classNames.bind(styles);
 
 function Sidebar() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('translation');
   const navigate = useNavigate();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);

@@ -17,7 +17,7 @@ import { formatPrice } from '~/utils/common';
 import { fetchUpdateStatus } from '~/redux/appointment/appointmentSlice';
 
 function VisitDetail() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('translation');
   const dispatch = useDispatch();
   const location = useLocation();
   const appointmentData = location.state?.result;
@@ -83,8 +83,8 @@ function VisitDetail() {
                         {statusAppointment === 'Booked'
                           ? 'Đặt khám thành công'
                           : statusAppointment === 'Completed'
-                          ? 'Đã khám'
-                          : 'Đã hủy'}
+                            ? 'Đã khám'
+                            : 'Đã hủy'}
                       </div>
                     </div>
                     <div>

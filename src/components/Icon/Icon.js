@@ -450,7 +450,7 @@ export const ArowIcon = ({ width = '5.4rem', height = '5.4rem', className }) => 
   </svg>
 );
 
-export const DocterServiceIcon = ({ width = '6rem', height = '6rem', className }) => (
+export const DoctorServiceIcon = ({ width = '6rem', height = '6rem', className }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={width}

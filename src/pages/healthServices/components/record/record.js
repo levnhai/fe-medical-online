@@ -52,7 +52,7 @@ const reducer = (state, action) => {
 };
 
 function ChooseRecord() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('translation');
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { updateBookingData } = useBooking();

@@ -20,7 +20,7 @@ import PatientRecordSkeleton from '../patientRecords/skeleton';
 
 const cx = classNames.bind(styles);
 function Appointment() {
-  const { t } = useTranslation();
+  const { t } = useTranslation('translation');
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const patientId = useSelector((state) => state.auth?.user.payload?.userData?._id);

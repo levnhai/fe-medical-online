@@ -24,7 +24,7 @@ import Auth from '../auth';
 const cx = classNames.bind(style);
 
 function CheckPhone() {
-  const { t } = useTranslation();
+  const { t } = useTranslation(['translation', 'button', 'auth']);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const methods = useForm();
@@ -89,7 +89,7 @@ function CheckPhone() {
     <div>
       <Auth>
         <div className={cx('checkPhone-wrapper')}>
-          <p className={cx('text-center')}>{t('check-phone.title')}</p>
+          <p className={cx('text-center')}>{t('auth:check-phone.title')}</p>
           <FormProvider {...methods}>
             <div className={cx('wrapper-input')}>
               <div className={cx('tel-input')}>
@@ -117,11 +117,11 @@ function CheckPhone() {
                 Đang xử lý...
               </div>
             ) : (
-              t('check-phone.continu')
+              t('button:continue')
             )}
           </Button>
 
-          <div className={cx('text-center')}>{t('check-phone.login_title')}</div>
+          <div className={cx('text-center')}>{t('auth:check-phone.login_title')}</div>
           <div className={cx('socialBtn')}>
             <ul className={cx('socialBtn-group')}>
               <li className={cx('socialBtn-item')}>
@@ -140,7 +140,7 @@ function CheckPhone() {
                           className={cx('socialBtn--img')}
                         />
                       </div>
-                      <div className={cx('socialBtn--btn__title')}>{t('check-phone.btn_gg_login')}</div>
+                      <div className={cx('socialBtn--btn__title')}>{t('auth:check-phone.btn_gg_login')}</div>
                     </div>
                   </GoogleLogin>
                 </div>
@@ -168,7 +168,7 @@ function CheckPhone() {
                         className={cx('socialBtn--img')}
                       />
                     }
-                    textButton={t('check-phone.btn_fb_login')}
+                    textButton={t('auth:check-phone.btn_fb_login')}
                   />
                 </div>
               </li>

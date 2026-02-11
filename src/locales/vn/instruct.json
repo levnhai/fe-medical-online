@@ -1,0 +1,64 @@
+{
+  "download_app": {
+    "title": "Tải ứng dụng đặt khám nhanh MEDICAL",
+    "title1": "Tải App để đặt lịch nhanh",
+    "header": {
+      "title": "Hướng dẫn cài đặt ứng dụng",
+      "description": "Khám phá đơn giản và nhanh chóng để cài đặt ứng dụng y tế, trải nghiệm ngay những lợi ích việt."
+    },
+    "steps": {
+      "title": ["Cách 1:", "Cách 2:", "Cách 3:"],
+      "item": [
+        "Tải ứng dụng:",
+        "Tìm kiếm theo từ khóa \"Medical\" trên App Store(IOS) hoặc Google Play(Android)",
+        "Quét mã QR:"
+      ]
+    }
+  },
+  "appointment": {
+    "header": {
+      "title": "Hướng dẫn đặt khám nhanh",
+      "description": "Trải nghiệm dịch vụ chăm sóc sức khỏe tối ưu và đặt lịch khám một cách dễ dàng, nhanh chóng"
+    },
+    "step1": {
+      "title": "Chọn thông tin đặt khám",
+      "items": [
+        "Đăng nhập phần mềm trên web hoặc ứng dụng di động",
+        "Chọn Đặt khám tại cơ sở hoặc Đặt khám theo bác sĩ",
+        "Chọn thông tin khám: Chuyên khoa, bác sĩ, ngày khám, giờ khám và có BHYT hay không",
+        "Nhập thông tin bệnh nhân: Chọn hồ sơ sẵn có hoặc tạo mới hồ sơ"
+      ]
+    },
+    "step2": {
+      "title": "CHỌN/ TẠO MỚI HỒ SƠ BỆNH NHÂN (Bạn được phép tạo tối đa 10 hồ sơ)",
+      "items": [
+        "Cách 1: Quét mã BHYT",
+        "Cách 2: Nếu đã từng khám ở bệnh viện, nhập số hồ sơ",
+        "Cách 3: Chưa từng khám, đăng ký mới (nhập đầy đủ các thông tin: Họ và tên; Ngày sinh; Giới tính; Mã bảo hiểm y tế; CMND/Passport; Dân tộc; Nghề nghiệp; Số điện thoại; Email; Địa chỉ)"
+      ]
+    },
+    "step3": {
+      "title": "THANH TOÁN PHÍ KHÁM",
+      "items": [
+        "Chọn phương thức thanh toán: Quét mã QR, Chuyển khoản 24/7, Thẻ khám bệnh, Thẻ thanh toán quốc tế hoặc thẻ ATM nội địa hoặc Ví điện tử",
+        "Kiểm tra thông tin thanh toán (phí khám bệnh, phí tiện ích và tổng tiền) và Xác nhận thanh toán",
+        "Thực hiện thanh toán trên Ví điện tử hoặc Ứng dụng Ngân hàng hoặc Cổng thanh toán"
+      ]
+    },
+    "step4": {
+      "title": "NHẬN PHIẾU KHÁM ĐIỆN TỬ",
+      "items": [
+        "Sau khi thanh toán thành công, bạn sẽ nhận được ngay phiếu khám bệnh điện tử trên ứng dụng (và qua email). Trường hợp đặt khám qua Tổng đài 19002115, vui lòng xem phiếu khám được gửi qua tin nhắn SMS"
+      ]
+    },
+    "examination": {
+      "title": "Khám và thực hiện cận lâm sàng",
+      "items": [
+        "Đến ngày khám, người bệnh vui lòng đến trực tiếp phòng khám hoặc quầy tiếp nhận theo như hướng dẫn trên phiếu khám",
+        "Người bệnh được khám lâm sàng theo quy trình của Bệnh viện",
+        "Nếu có chỉ định cận lâm sàng của bác sĩ, người bệnh thanh toán phí trực tuyến hoặc tại quầy thu ngân của bệnh viện và vào phòng cận lâm sàng để được thực hiện",
+        "Người bệnh quay lại phòng khám ban đầu, sau khi nhận đầy đủ kết quả cận lâm sàng, để được bác sĩ khám, tư vấn và trả kết quả khám (toa thuốc, giấy hẹn khám,...)"
+      ]
+    }
+  }
+}

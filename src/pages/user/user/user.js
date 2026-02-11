@@ -15,7 +15,7 @@ import styles from './user.module.scss';
 const cx = classNames.bind(styles);
 
 function User() {
-  const { t } = useTranslation('translation');
+  const { t } = useTranslation('common');
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const key = searchParams.get('key');
@@ -39,14 +39,14 @@ function User() {
         <ul className="flex">
           <li className="flex items-center">
             <a href="#/" className="font-bold text-2xl">
-              {t('header.home')}
+              {t('common:navigation.home')}
             </a>
             <MdKeyboardArrowRight />
           </li>
 
           <li className="flex items-center">
             <a href="#/" className="text-sky-500 font-semibold">
-              {t('header.profile')}
+              {t('common:navigation.profile')}
             </a>
           </li>
         </ul>

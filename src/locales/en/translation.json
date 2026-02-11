@@ -21,9 +21,6 @@
     "title": "Hospital System Deployment",
     "description": "Schedule appointments with over 50 patients nationwide"
   },
-  "downloadApp": {
-    "title": "Download the MEDICAL Quick Booking App"
-  },
   "serviceInfo": {
     "title": ["Get online queue number quickly"],
     "description": [
@@ -74,66 +71,7 @@
       ]
     }
   },
-  "download_app": {
-    "header": {
-      "title": "Application Installation Guide",
-      "description": "A simple and quick way to install the healthcare application, experience the benefits immediately."
-    },
-    "steps": {
-      "title": ["Step 1:", "Step 2:", "Step 3:"],
-      "item": [
-        "Download the application:",
-        "Search for the keyword \"Medical\" on the App Store (iOS) or Google Play (Android)",
-        "Scan the QR code:"
-      ]
-    }
-  },
-  "appointment": {
-    "header": {
-      "title": "Quick Appointment Booking Guide",
-      "description": "Experience optimal healthcare service and book appointments easily and quickly"
-    },
-    "step1": {
-      "title": "Select Appointment Information",
-      "items": [
-        "Log in to the software on web or mobile app",
-        "Choose Booking at facility or Booking by doctor",
-        "Select appointment details: Specialty, doctor, date, time and insurance status",
-        "Enter patient information: Choose existing profile or create new one"
-      ]
-    },
-    "step2": {
-      "title": "SELECT/CREATE PATIENT PROFILE (You can create up to 10 profiles)",
-      "items": [
-        "Method 1: Scan health insurance card",
-        "Method 2: If previously visited the hospital, enter medical record number",
-        "Method 3: For first-time visits, register new profile (enter full information: Full name; Date of birth; Gender; Health insurance number; ID/Passport; Ethnicity; Occupation; Phone number; Email; Address)"
-      ]
-    },
-    "step3": {
-      "title": "PAY EXAMINATION FEE",
-      "items": [
-        "Choose payment method: QR code, 24/7 bank transfer, Medical card, International payment card or domestic ATM card or E-wallet",
-        "Review payment information (examination fee, service fee and total amount) and Confirm payment",
-        "Complete payment via E-wallet or Banking App or Payment Gateway"
-      ]
-    },
-    "step4": {
-      "title": "RECEIVE ELECTRONIC MEDICAL SLIP",
-      "items": [
-        "After successful payment, you will immediately receive an electronic medical slip on the app (and via email). If booking through Hotline 19002115, please check the medical slip sent via SMS"
-      ]
-    },
-    "examination": {
-      "title": "Examination and Clinical Tests",
-      "items": [
-        "On the appointment date, please go directly to the clinic or reception desk as instructed on the medical slip",
-        "Patients will receive clinical examination according to Hospital procedures",
-        "If clinical tests are prescribed by the doctor, patients can pay fees online or at the hospital's cashier and proceed to the clinical testing room",
-        "Patients return to the initial examination room, after receiving all clinical test results, for doctor's examination, consultation and results (prescription, follow-up appointment,...)"
-      ]
-    }
-  },
+
   "question": {
     "header": {
       "title": "How can we help you?",

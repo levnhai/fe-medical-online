@@ -7,5 +7,9 @@
   },
   "suport": {
     "support_title": "Appointment Support"
+  },
+  "navigation": {
+    "home": "Home",
+    "profile": "Profile"
   }
 }

@@ -25,13 +25,12 @@ import OutStandingDoctor from './Section/OutStandingDoctor';
 import { ImageMedia } from './Section/ImageMediaData';
 import NewsLoadingSkeleton from './loading/newsLoading';
 import { useGetNewsQuery } from '~/services/new.api';
-import { serviceConfig } from './Section/serviceConfig';
 
 import style from './home.module.scss';
 const cx = classNames.bind(style);
 
 function Home() {
-  const { t } = useTranslation(['button', 'home', 'translation']);
+  const { t } = useTranslation(['button', 'home', 'translation', 'instruct']);
 
   const { data, isLoading } = useGetNewsQuery({});
   const newData = data?.data;
@@ -164,7 +163,7 @@ function Home() {
       <div id="downloadBtn" className={cx('home_download')}>
         <div className={cx('download_header')}>
           <h1 className={cx('download_title')}>
-            {t('translation:downloadApp.title')} <span>MEDICAL</span>
+            {t('instruct:download_app.title')} <span>MEDICAL</span>
           </h1>
           <div className={cx('download_groupBtn')}>
             <div>

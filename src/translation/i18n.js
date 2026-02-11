@@ -29,6 +29,8 @@ import homeEN from '~/locales/en/home.json';
 import homeVI from '~/locales/vn/home.json';
 import authEN from '~/locales/en/auth.json';
 import authVI from '~/locales/vn/auth.json';
+import instructEN from '~/locales/en/instruct.json';
+import instructVI from '~/locales/vn/instruct.json';
 
 i18n.use(initReactI18next).init({
   fallbackLng: 'vi',
@@ -48,6 +50,7 @@ i18n.use(initReactI18next).init({
     'about',
     'home',
     'auth',
+    'instruct',
   ],
   defaultNS: 'common',
 
@@ -67,6 +70,7 @@ i18n.use(initReactI18next).init({
       about: aboutEN,
       home: homeEN,
       auth: authEN,
+      instruct: instructEN,
     },
     vi: {
       common: commonVI,
@@ -83,6 +87,7 @@ i18n.use(initReactI18next).init({
       about: aboutVI,
       home: homeVI,
       auth: authVI,
+      instruct: instructVI,
     },
   },
 

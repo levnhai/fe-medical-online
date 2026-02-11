@@ -29,7 +29,7 @@ const cx = classNames.bind(style);
 let PageSize = 5;
 
 function Facilitie() {
-  const { t } = useTranslation('translation');
+  const { t } = useTranslation(['translation', 'instruct']);
   const tabMenus = getTabMenus(t);
   const { type } = useParams();
   const navigate = useNavigate();
@@ -37,7 +37,6 @@ function Facilitie() {
   const dispatch = useDispatch();
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [tabCounts, setTabCounts] = useState({});
 
   const [selectedHospitalId, setSelectedHospitalId] = useState(null);
   const [search, setSearch] = useState('');
@@ -47,7 +46,7 @@ function Facilitie() {
     'Với những cơ sở Y Tế hàng đầu sẽ giúp trải nghiệm khám, chữa bệnh của bạn tốt hơn',
   );
 
-  const { data, isLoading } = useGetHospitalsByTypeQuery({ type, search });
+  const { data, isFetching } = useGetHospitalsByTypeQuery({ type, search });
   const { data: typeCountData } = useGetCountHospitalsByTypeQuery({ search });
 
   const hospitalDataByType = data?.data;
@@ -57,13 +56,14 @@ function Facilitie() {
     setSelectedHospitalId(hospital._id);
   };
 
-  const countHospitalType = () => {
-    const counts = {};
-    tabMenus.forEach((item) => {
-      counts[item.href] = typeCountData?.data?.typeCounts[item.href] || 0;
-    });
-    setTabCounts(counts);
-  };
+  const tabCounts = useMemo(() => {
+    if (!typeCountData?.data?.typeCounts) return {};
+
+    return tabMenus.reduce((acc, item) => {
+      acc[item.href] = typeCountData.data.typeCounts[item.href] || 0;
+      return acc;
+    }, {});
+  }, [typeCountData, tabMenus]);
 
   const currentTableData = useMemo(() => {
     if (!hospitalDataByType) return [];
@@ -103,8 +103,8 @@ function Facilitie() {
   }, []);
 
   useEffect(() => {
-    countHospitalType();
-  }, []);
+    setCurrentPage(1);
+  }, [type]);
 
   useEffect(() => {
     dispatch(clearBooking());
@@ -167,7 +167,7 @@ function Facilitie() {
             <div className={cx('list_hospital')}>
               <div className="w-full grid lg:grid-cols-3 gap-6">
                 <div className="col-span-2">
-                  {isLoading === true ? (
+                  {isFetching === true ? (
                     <>
                       <FacilitieSkeleton />
                     </>
@@ -242,7 +242,7 @@ function Facilitie() {
                 <div className="col-span-1">
                   {currentTableData?.length > 0 && (
                     <div>
-                      {isLoading === true ? (
+                      {isFetching === true ? (
                         <>
                           <Skeleton />
                         </>
@@ -282,7 +282,7 @@ function Facilitie() {
                       )}
                       <div className={cx('download_app')}>
                         <div className={cx('body')}>
-                          <div className={cx('title')}>Tải áp để đặt lịch nhanh chóng</div>
+                          <div className={cx('title')}>{t('instruct:download_app.title1')}</div>
                           <div className={cx('button_wapper')}>
                             <Button className={cx('button')}></Button>
                             <Button className={cx('button')}></Button>

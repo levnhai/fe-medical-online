@@ -11,10 +11,10 @@ import '~/translation/i18n';
 const cx = classNames.bind(styles);
 
 function DownApp() {
-  const { t } = useTranslation('translation');
+  const { t } = useTranslation('instruct');
   return (
     <div className={cx('guide_downApp')}>
-      <Header title={t('download_app.header.title')} des={t('download_app.header.description')} />
+      <Header title={t('instruct:download_app.header.title')} des={t('instruct:download_app.header.description')} />
       <div className={cx('downApp_container')}>
         <div className={cx('downApp_install')}>
           <div className={cx('install_content')}>
@@ -22,24 +22,24 @@ function DownApp() {
               <li className={cx('content_item')}>
                 <strong>
                   <BsCheckLg style={{ color: '#116bea' }} />
-                  {t('download_app.steps.title.0')}
+                  {t('instruct:download_app.steps.title.0')}
                 </strong>
-                <h3>{t('download_app.steps.item.0')}</h3>
+                <h3>{t('instruct:download_app.steps.item.0')}</h3>
               </li>
               <li className={cx('content_item')}>
                 <strong>
                   <BsCheckLg style={{ color: '#116bea' }} />
-                  {t('download_app.steps.title.1')}
+                  {t('instruct:download_app.steps.title.1')}
                 </strong>
-                <h3>{t('download_app.steps.item.1')}</h3>
+                <h3>{t('instruct:download_app.steps.item.1')}</h3>
               </li>
               <li className={cx('content_item')}>
                 <strong>
                   <BsCheckLg style={{ color: '#116bea' }} />
-                  {t('download_app.steps.title.2')}
+                  {t('instruct:download_app.steps.title.2')}
                 </strong>
                 <div className={cx('content_Qr')}>
-                  <h3>{t('download_app.steps.item.2')}</h3>
+                  <h3>{t('instruct:download_app.steps.item.2')}</h3>
                   <img src={require('~/assets/images/qr_code.png')} alt="qr download app" />
                 </div>
               </li>

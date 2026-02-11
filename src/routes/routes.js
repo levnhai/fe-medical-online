@@ -35,6 +35,7 @@ import AppointmentFacility from '~/pages/healthServices/appointmentFacility';
 import AppointmentBooking from '~/pages/healthServices/appointmentBooking';
 import FormBooking from '~/pages/facilitie/formBooking/formBooking';
 import VisitDetail from '~/pages/healthServices/components/visitDetail';
+import NewsHomePage from '~/pages/news/NewsHomePage';
 
 const publicRoutes = [
   { path: config.routers.home, component: Home },

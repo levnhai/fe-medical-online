@@ -16,7 +16,6 @@ import { fetchGetAppointment } from '~/redux/payment/paymentSlice';
 
 import { useTranslation } from 'react-i18next';
 import '~/translation/i18n';
-import PatientRecordSkeleton from '../patientRecords/skeleton';
 
 const cx = classNames.bind(styles);
 function Appointment() {

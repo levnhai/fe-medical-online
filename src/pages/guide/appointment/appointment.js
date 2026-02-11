@@ -10,7 +10,7 @@ import '~/translation/i18n';
 
 const cx = classNames.bind(styles);
 function Appointment() {
-  const { t } = useTranslation('translation');
+  const { t } = useTranslation('instruct');
 
   return (
     <div className={cx('guide_refunds')}>

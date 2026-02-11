@@ -14,6 +14,38 @@ import styles from './news.module.scss';
 import classNames from 'classnames/bind';
 const cx = classNames.bind(styles);
 
+const menuItems = [
+  { title: 'Tin dịch vụ', path: '/tin-tuc/dich-vu' },
+  { title: 'Tin y tế', path: '/tin-tuc/y-te' },
+  { title: 'Y học thường thức', path: '/tin-tuc/y-hoc-thuong-thuc' },
+];
+
+const settings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 4000,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1,
+      },
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      },
+    },
+  ],
+};
+
 function News() {
   const location = useLocation('translation');
 
@@ -23,50 +55,19 @@ function News() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedMenuItem, setSelectedMenuItem] = useState(null);
 
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 4000,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
-
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   const handleMenuItemClick = (item) => {
     setSelectedMenuItem(item.title);
-    setIsMenuOpen(false); // Đóng menu khi đã chọn
+    setIsMenuOpen(false);
   };
-
-  const menuItems = [
-    { title: 'Tin dịch vụ', path: '/tin-tuc/dich-vu' },
-    { title: 'Tin y tế', path: '/tin-tuc/y-te' },
-    { title: 'Y học thường thức', path: '/tin-tuc/y-hoc-thuong-thuc' },
-  ];
 
   useEffect(() => {
     document.title = 'Tin tức y khoa || Medical';
   }, []);
+
   if (isLoading) {
     return <NewsSkeleton />;
   }
@@ -79,7 +80,6 @@ function News() {
             <h1 className={cx('header_title')}>TIN TỨC Y KHOA</h1>
           </Link>
 
-          {/* Hiển thị cho màn hình lớn hơn 768px  */}
           <div className="hidden md:flex">
             {menuItems.map((item) => (
               <Link key={item.path} to={item.path}>
@@ -88,13 +88,11 @@ function News() {
             ))}
           </div>
 
-          {/* Hiển thị icon menu khi màn hình nhỏ hơn 768px */}
           <div className="block md:hidden flex items-center">
             <FaBars className="text-2xl cursor-pointer" onClick={toggleMenu} />
             {selectedMenuItem && <span className="ml-2">{selectedMenuItem}</span>}
           </div>
 
-          {/* Nếu muốn menu sổ xuống có nền trắng, thêm vào một div chứa */}
           {isMenuOpen && (
             <div className="absolute bg-white shadow-lg rounded-lg z-10 mt-2 md:hidden">
               {menuItems.map((item) => (
@@ -113,7 +111,6 @@ function News() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Main news article */}
           <div className="md:col-span-2 bg-white rounded-lg shadow-md overflow-hidden">
             {newData && newData?.news?.length > 0 && (
               <>
@@ -159,7 +156,6 @@ function News() {
             )}
           </div>
 
-          {/* Side articles */}
           <div className="space-y-12">
             {newData?.news?.slice(3, 10).map((article) => (
               <Link to={`/tin-tuc/${article._id}`} className={cx('news_link')} key={article.id}>
@@ -181,7 +177,6 @@ function News() {
         </div>
       </div>
 
-      {/* Service News Section */}
       <div className="hidden md:block">
         <div className={cx('news_service')}>
           <div className={cx('news_wapper')}>
@@ -211,7 +206,9 @@ function News() {
               </Slider>
               <div className={cx('view-all', 'mt-8', '-mb-8')}>
                 <Link to="/tin-tuc/tin-dich-vu">
-                  <a className={cx('view-all-button')}> Xem tất cả »</a>
+                  <a href="/#" className={cx('view-all-button')}>
+                    Xem tất cả »
+                  </a>
                 </Link>
               </div>
             </div>
@@ -246,7 +243,9 @@ function News() {
           ))}
         <div className={cx('view-all')}>
           <Link to="/tin-tuc/tin-dich-vu">
-            <a className={cx('view-all-button')}> Xem tất cả »</a>
+            <a href="/#" className={cx('view-all-button')}>
+              Xem tất cả »
+            </a>
           </Link>
         </div>
       </div>
@@ -309,7 +308,9 @@ function News() {
       </div>
       <div className={cx('view-all')}>
         <Link to="/tin-tuc/y-te">
-          <a className={cx('view-all-button')}> Xem tất cả »</a>
+          <a href="/#" className={cx('view-all-button')}>
+            Xem tất cả »
+          </a>
         </Link>
       </div>
 
@@ -364,7 +365,9 @@ function News() {
       </div>
       <div className={cx('view-all')}>
         <Link to="/tin-tuc/y-hoc-thuong-thuc">
-          <a className={cx('view-all-button')}> Xem tất cả »</a>
+          <a href="/#" className={cx('view-all-button')}>
+            Xem tất cả »
+          </a>
         </Link>
       </div>
     </div>

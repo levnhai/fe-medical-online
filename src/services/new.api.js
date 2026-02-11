@@ -22,7 +22,6 @@ export const newApi = api.injectEndpoints({
       getNewsById: builder.query({
         query: (id) => ({ url: `news/get-news-by-id/${id}`, method: 'GET' }),
         transformResponse: (response) => {
-          console.log('🚀 ~ response:', response);
           if (!response?.result?.status) {
             throw new Error(response?.result?.message);
           }

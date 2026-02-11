@@ -35,8 +35,20 @@ import classNames from 'classnames/bind';
 const cx = classNames.bind(style);
 
 const languages = [
-  { code: 'vi', name: 'Tiếng Việt', flag: require('~/assets/images/flag/Vn.png'), alt: 'flag vietnam' },
-  { code: 'en', name: 'Tiếng anh', flag: require('~/assets/images/flag/Us.png'), alt: 'flag english' },
+  {
+    code: 'vi',
+    nameVN: 'Tiếng Việt',
+    nameEN: 'Vietnamese',
+    flag: require('~/assets/images/flag/Vn.png'),
+    alt: 'flag vietnam',
+  },
+  {
+    code: 'en',
+    nameVN: 'Tiếng anh',
+    nameEN: 'English',
+    flag: require('~/assets/images/flag/Us.png'),
+    alt: 'flag english',
+  },
 ];
 
 const socialData = [
@@ -54,6 +66,27 @@ const socialData = [
     title: 'Facebook',
     href: 'https://www.facebook.com/www.medpro.vn',
     icon: FaFacebookF,
+  },
+];
+
+const headerProfileMenuItems = [
+  {
+    key: 'records',
+    icon: <IoPersonSharp style={{ width: '1.7rem', height: '1.7rem' }} />,
+    titleKey: 'patient:profile.patient_profile',
+    path: '/user?key=records',
+  },
+  {
+    key: 'bills',
+    icon: <CiCalendar />,
+    titleKey: 'visit:medical_record',
+    path: '/user?key=bills',
+  },
+  {
+    key: 'notifications',
+    icon: <IoIosNotificationsOutline />,
+    titleKey: 'notification:notification',
+    path: '/user?key=notifications',
   },
 ];
 
@@ -76,7 +109,9 @@ function Header() {
 
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
-  const user = useSelector((state) => state.auth.user?.payload);
+  const user = useSelector((state) => {
+    return state.auth.user?.payload;
+  });
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -99,8 +134,9 @@ function Header() {
     dispatch(logoutUser());
     setShowModal(false);
     setMobileMenuOpen(false);
-    toast.success(t('header.logout_success'));
+    toast.success(t('notification:logout_success'));
   };
+
   // handle onchange language
   const handleLanguageChange = (language) => {
     i18n.changeLanguage(language);
@@ -182,6 +218,11 @@ function Header() {
               })}
             </div>
             <div className={cx('groupBtn')}>
+              {isLoggedIn && (
+                <div className={cx('notification')}>
+                  <IoIosNotificationsOutline className={cx('icon')} style={{ width: '2.4rem', height: '2.4rem' }} />
+                </div>
+              )}
               <div>
                 <Button
                   href="/#downloadBtn"
@@ -226,7 +267,7 @@ function Header() {
                           <span>
                             <img src={item.flag} alt={item.alt} className={cx('flag-image')} />
                           </span>
-                          {item.name}
+                          {currentLanguages === 'vi' ? item.nameVN : item.nameEN}
                         </li>
                       );
                     })}
@@ -244,51 +285,20 @@ function Header() {
                     </div>
                   </div>
                   <ul className={cx('information-list')}>
-                    <li
-                      className={cx('information-item')}
-                      onClick={() => {
-                        navigate('/user?key=records');
-                      }}
-                    >
-                      <div>
-                        <span className={cx('icon')}>
-                          <IoPersonSharp style={{ width: '1.7rem', height: '1.7rem' }} />
-                        </span>
-                        <span className={cx('title')}>{t('patient:profile.patient_profile')}</span>
-                      </div>
-                    </li>
-                    <li
-                      className={cx('information-item')}
-                      onClick={() => {
-                        navigate('/user?key=bills');
-                      }}
-                    >
-                      <div>
-                        <span className={cx('icon')}>
-                          <CiCalendar />
-                        </span>
-                        <span className={cx('title')}>{t('visit:medical_record')}</span>
-                      </div>
-                    </li>
-                    <li
-                      className={cx('information-item')}
-                      onClick={() => {
-                        navigate('/user?key=notifications');
-                      }}
-                    >
-                      <div>
-                        <span className={cx('icon')}>
-                          <IoIosNotificationsOutline />
-                        </span>
-                        <span className={cx('title')}>{t('notification:notification')}</span>
-                      </div>
-                    </li>
+                    {headerProfileMenuItems.map((item) => (
+                      <li key={item.key} className={cx('information-item')} onClick={() => navigate(item.path)}>
+                        <div>
+                          <span className={cx('icon')}>{item.icon}</span>
+                          <span className={cx('title')}>{t(item.titleKey)}</span>
+                        </div>
+                      </li>
+                    ))}
                     <li className={cx('information-item')}>
                       <div
                         onClick={() => {
                           dispatch(logoutUser());
                           setShowModal(false);
-                          toast.success(t('header.logout_success'));
+                          toast.success(t('notification:logout_success'));
                         }}
                       >
                         <span className={cx('icon')}>
@@ -299,7 +309,7 @@ function Header() {
                     </li>
                     <li className={cx('information-item')} disabled>
                       <div>
-                        <span>{t('common:meta.last_update', { date: '29/12/2023' })}</span>
+                        <span>{t('common:meta.last_update', { date: '29/12/2025' })}</span>
                       </div>
                     </li>
                   </ul>
@@ -429,7 +439,7 @@ function Header() {
                     }
                   }}
                 >
-                  {isLoggedIn ? user?.userData?.fullName : t('header.account')}
+                  {isLoggedIn ? user?.userData?.fullName : t('button.account')}
                 </Button>
               </div>
             </div>
@@ -477,7 +487,7 @@ function Header() {
                   className="w-full text-left px-4 py-2 bg-red-500 text-white rounded-lg flex items-center"
                 >
                   <i className="fa-solid fa-right-from-bracket mr-2"></i>
-                  {t('header.logout')}
+                  {t('button:logout')}
                 </button>
               </div>
             )}

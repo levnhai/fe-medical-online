@@ -8,6 +8,7 @@ import { useGetNewsMedicalQuery } from '~/services/new.api';
 import NewsSkeleton from './loading/news_skeleton';
 import Pagination from '~/components/paination';
 import '~/translation/i18n';
+import NewsHeader from '~/pages/news/component/newsHeader';
 
 import classNames from 'classnames/bind';
 import styles from './news.module.scss';
@@ -73,43 +74,7 @@ function NewsMedical() {
   return (
     <div className={cx('news', 'w-full overflow-x-hidden')}>
       <div className={cx('news_main')}>
-        <div className={cx('news_header')}>
-          <Link to="/tin-tuc">
-            <h1 className={cx('header_title')}>TIN TỨC Y KHOA</h1>
-          </Link>
-
-          {/* Hiển thị cho màn hình lớn hơn 768px */}
-          <div className="hidden md:flex">
-            {menuItems.map((item) => (
-              <Link key={item.path} to={item.path}>
-                <h2 className={cx('header_menu', { active: location.pathname === item.path })}>{item.title}</h2>
-              </Link>
-            ))}
-          </div>
-
-          {/* Hiển thị icon menu khi màn hình nhỏ hơn 768px */}
-          <div className="block md:hidden flex items-center">
-            <FaBars className="text-2xl cursor-pointer" onClick={toggleMenu} />
-            {selectedMenuItem && <span className="ml-2">{selectedMenuItem}</span>} {/* Hiển thị lựa chọn bên cạnh */}
-          </div>
-
-          {/* Nếu muốn menu sổ xuống có nền trắng, thêm vào một div chứa */}
-          {isMenuOpen && (
-            <div className="absolute bg-white shadow-lg rounded-lg z-10 mt-2 md:hidden">
-              {menuItems.map((item) => (
-                <Link key={item.path} to={item.path} onClick={() => handleMenuItemClick(item)}>
-                  <h2
-                    className={`${cx('header_menu', {
-                      active: location.pathname === item.path,
-                    })} p-2 hover:bg-gray-200`}
-                  >
-                    {item.title}
-                  </h2>
-                </Link>
-              ))}
-            </div>
-          )}
-        </div>
+        <NewsHeader />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Main news article */}

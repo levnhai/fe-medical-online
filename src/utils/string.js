@@ -28,3 +28,7 @@ export function getShortName(name = '') {
   if (parts.length >= 2) return `${parts[parts.length - 2]} ${parts[parts.length - 1]}`;
   return parts[0] || '';
 }
+
+export function stripHtml(str = '') {
+  return str.replace(/<\/?[^>]+(>|$)/g, '');
+}

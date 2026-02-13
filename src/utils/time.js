@@ -40,3 +40,7 @@ export function generateDays() {
   }
   return days;
 }
+
+export function formatDateToString(date) {
+  return new Date(date).toLocaleDateString();
+}

@@ -1,7 +1,6 @@
 import React from 'react';
 import Slider from 'react-slick';
 import classNames from 'classnames/bind';
-// import { HospitalData } from '../HospitalServices/HospitalData';
 import LazyLoad from 'react-lazyload';
 
 import '../../../../../node_modules/slick-carousel/slick/slick.css';
@@ -9,18 +8,25 @@ import '../../../../../node_modules/slick-carousel/slick/slick-theme.css';
 
 import './BannerServices.scss';
 import style from '../HospitalServices/HospitalServices.module.scss';
+import banner1 from '~/assets/images/banner/banner1.webp';
+import banner2 from '~/assets/images/banner/banner2.webp';
+import banner3 from '~/assets/images/banner/banner3.webp';
+import banner4 from '~/assets/images/banner/banner4.webp';
 
 const cx = classNames.bind(style);
 
 export const HospitalData = [
   {
-    image: 'https://byvn.net/4yRs',
+    image: banner1,
   },
   {
-    image: 'https://byvn.net/DAGe',
+    image: banner2,
   },
   {
-    image: 'https://byvn.net/ChvL',
+    image: banner3,
+  },
+  {
+    image: banner4,
   },
 ];
 

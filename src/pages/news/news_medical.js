@@ -18,12 +18,6 @@ function NewsMedical() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const menuItems = [
-    { title: 'Tin dịch vụ', path: '/tin-tuc/dich-vu' },
-    { title: 'Tin y tế', path: '/tin-tuc/y-te' },
-    { title: 'Y học thường thức', path: '/tin-tuc/y-hoc-thuong-thuc' },
-  ];
-
   const { data, isLoading } = useGetNewsMedicalQuery({});
   const newData = data?.data;
 

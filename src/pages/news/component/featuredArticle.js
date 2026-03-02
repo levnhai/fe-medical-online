@@ -10,7 +10,7 @@ function FeaturedArticle({ article }) {
   if (!article) return null;
 
   return (
-    <Link to={`/tin-tuc/${article._id}`}>
+    <Link to={`/tin-tuc/chi-tiet/${article._id}`}>
       <div className="bg-white shadow rounded overflow-hidden">
         <img loading="lazy" src={article.imageUrl} alt={article.title} className="w-full h-64 object-cover" />
 

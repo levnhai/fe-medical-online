@@ -141,15 +141,6 @@ function NewsDetails() {
               )}
             </div>
 
-            {/* {newData.imageUrl && (
-            <div className="mb-6">
-              <img
-                src={newData.imageUrl}
-                alt={newData.title}
-                className="w-full h-auto object-cover rounded-lg shadow-md"
-              />
-            </div>
-          )} */}
             <div
               className={cx('header_subtitle', 'mb-4 mt-4')}
               dangerouslySetInnerHTML={{
@@ -188,7 +179,6 @@ function NewsDetails() {
             </div>
           </div>
 
-          {/* Phần dành cho banner hoặc tin tức liên quan */}
           {relatedNews && relatedNews.length > 0 && (
             <div className="w-full md:w-1/3 mt-8 md:mt-0">
               <h3 className="text-xxl font-semibold mb-4 mt-4">Tin tức liên quan</h3>

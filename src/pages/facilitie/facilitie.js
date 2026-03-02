@@ -26,7 +26,7 @@ import { removeAccents } from '~/utils/string';
 import style from './facilitie.module.scss';
 const cx = classNames.bind(style);
 
-let PageSize = 5;
+const pageSize = 5;
 
 function Facilitie() {
   const { t } = useTranslation(['translation', 'instruct']);
@@ -67,8 +67,8 @@ function Facilitie() {
 
   const currentTableData = useMemo(() => {
     if (!hospitalDataByType) return [];
-    const start = (currentPage - 1) * PageSize;
-    return hospitalDataByType.slice(start, start + PageSize);
+    const start = (currentPage - 1) * pageSize;
+    return hospitalDataByType.slice(start, start + pageSize);
   }, [hospitalDataByType, currentPage]);
 
   const handleClickType = (tab, index) => {
@@ -298,7 +298,7 @@ function Facilitie() {
               className="pagination-bar"
               currentPage={currentPage}
               totalCount={hospitalDataTotal && hospitalDataTotal}
-              pageSize={PageSize}
+              pageSize={pageSize}
               onPageChange={(page) => setCurrentPage(page)}
             />
           </div>

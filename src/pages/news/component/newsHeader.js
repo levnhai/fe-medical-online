@@ -6,9 +6,9 @@ import classNames from 'classnames/bind';
 const cx = classNames.bind(styles);
 
 const menuItems = [
-  { title: 'Tin dịch vụ', path: '/tin-tuc/dich-vu' },
-  { title: 'Tin y tế', path: '/tin-tuc/y-te' },
-  { title: 'Y học thường thức', path: '/tin-tuc/y-hoc-thuong-thuc' },
+  { title: 'Tin dịch vụ', path: '/tin-tuc/tin-dich-vu' },
+  { title: 'Tin y tế', path: '/tin-tuc/tin-y-te' },
+  { title: 'Y học thường thức', path: '/tin-tuc/thuong-thuc-y-te' },
 ];
 
 function NewsHeader() {
@@ -16,7 +16,7 @@ function NewsHeader() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className={cx('news_header')}>
+    <div className={cx('news_header', 'flex py-3 items-center mt-10')}>
       <Link to="/tin-tuc">
         <h1 className={cx('header_title')}>TIN TỨC Y KHOA</h1>
       </Link>

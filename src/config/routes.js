@@ -32,10 +32,11 @@ const routes = {
 
   // new
   news: '/tin-tuc',
-  newsService: '/tin-tuc/dich-vu',
-  newsMedical: '/tin-tuc/y-te',
-  newsKnowlage: '/tin-tuc/y-hoc-thuong-thuc',
-  newsDetails: '/tin-tuc/:id',
+  // newsService: '/tin-tuc/dich-vu',
+  // newsMedical: '/tin-tuc/y-te',
+  // newsKnowlage: '/tin-tuc/y-hoc-thuong-thuc',
+  newsDetails: '/tin-tuc/chi-tiet/:id',
+  categoryNews: '/tin-tuc/:slug',
 
   //contact
   contact: '/lien-he',

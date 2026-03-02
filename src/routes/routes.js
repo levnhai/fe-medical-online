@@ -10,9 +10,6 @@ import OtpInput from '~/features/authentication/otp-input';
 import SingUp from '~/features/authentication/sign_up';
 import ForgotPassword from '~/features/authentication/forgot_password';
 import News from '~/pages/news';
-import NewsService from '~/pages/news/news_service';
-import NewsMedical from '~/pages/news/news_medical';
-import NewsKnowlage from '~/pages/news/news_knowlage';
 import NewsDetails from '~/pages/news/news_details';
 
 // user
@@ -35,23 +32,19 @@ import AppointmentFacility from '~/pages/healthServices/appointmentFacility';
 import AppointmentBooking from '~/pages/healthServices/appointmentBooking';
 import FormBooking from '~/pages/facilitie/formBooking/formBooking';
 import VisitDetail from '~/pages/healthServices/components/visitDetail';
+import CategoryNews from '~/pages/news/CategoryNews';
 
 const publicRoutes = [
   { path: config.routers.home, component: Home },
   { path: config.routers.about, component: About },
   { path: config.routers.news, component: News },
-  { path: config.routers.newsService, component: NewsService },
-  { path: config.routers.newsMedical, component: NewsMedical },
-  { path: config.routers.newsKnowlage, component: NewsKnowlage },
   { path: config.routers.newsDetails, component: NewsDetails },
   { path: config.routers.facilitie, component: Facilitie },
   { path: config.routers.facilitieDetail, component: FacilitieDetail },
   { path: config.routers.facilitieType, component: Facilitie },
   { path: config.routers.appointmentDoctor, component: AppointmentDoctor },
   { path: config.routers.appointmentFacility, component: AppointmentFacility },
-  { path: '/tin-tuc/tin-dich-vu', component: NewsService },
-  { path: '/tin-tuc/tin-y-te', component: NewsMedical },
-  { path: '/tin-tuc/thuong-thuc-y-te', component: NewsMedical },
+  { path: config.routers.categoryNews, component: CategoryNews },
   { path: config.routers.appointmentBooking, component: AppointmentBooking },
   { path: config.routers.formBooking, component: FormBooking },
   { path: config.routers.visitDetail, component: VisitDetail, isPrivate: false },

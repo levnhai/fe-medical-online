@@ -4,15 +4,15 @@ const NewsSkeleton = () => {
   return (
     <div className="w-full overflow-x-hidden animate-pulse">
       <div className="max-w-[1200px] mx-auto px-4">
-        {/* Header Skeleton */}         
-          <div className="space-y-6 mb-8">                  
+        {/* Header Skeleton */}
+        {/* <div className="space-y-6 mb-8">                  
             <div className="hidden md:flex items-center gap-8">             
               <div className="h-6 bg-gray-200 rounded-md w-1/5 mt-[30px] mr-[30px]"></div>             
               <div className="h-6 bg-gray-200 rounded-md w-36 mt-[30px]"></div>             
               <div className="h-6 bg-gray-200 rounded-md w-32 mt-[30px]"></div>             
               <div className="h-6 bg-gray-200 rounded-md w-60 mt-[30px]"></div>           
             </div>         
-          </div>
+          </div> */}
 
         {/* Main Grid Layout */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

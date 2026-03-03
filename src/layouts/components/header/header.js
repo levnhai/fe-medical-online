@@ -380,7 +380,6 @@ function Header() {
             </button>
             {languageMenuOpen && (
               <ul className={cx('menu', 'absolute bg-white border rounded-md shadow-lg mt-2 w-48 p-2')}>
-                {' '}
                 {languages.map((lang) => (
                   <li
                     key={lang.code}
@@ -394,7 +393,7 @@ function Header() {
               </ul>
             )}
           </div>
-          <div style={{ marginRight: '-22px', marginLeft: '-22px' }}>
+          <div div style={{ marginRight: '-22px', marginLeft: '-22px' }}>
             <Button className={cx('btn-menu', 'btn_headermobile')} onClick={toggleMobileMenu}>
               <IoMdMenu className="w-12 h-12" />
             </Button>
